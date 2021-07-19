@@ -70,7 +70,7 @@ AFL插桩编译：
 
 ```shell
 mkdir build && cd build && cmake -DCMAKE_C_COMPILER=afl-clang-fast -DCMAKE_CXX_COMPILER=afl-clang-fast++ -DCMAKE_C_FLAGS="-g -fsanitize=address" ..
-CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 AFL_USE_UBSAN=1 AFL_HARDEN=1 make
+CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 AFL_USE_UBSAN=1 make
 ```
 
 以`cjpeg`为例进行fuzz：
