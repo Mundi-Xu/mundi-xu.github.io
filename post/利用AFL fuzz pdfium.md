@@ -38,7 +38,6 @@ use_sysroot = false  # Currently must be false on Linux, but entirely omitted on
 
 use_afl = true
 is_asan = true
-enable_nacl = true
 optimize_for_fuzzing = true
 symbol_level=1
 ```
@@ -47,7 +46,7 @@ symbol_level=1
 >
 > `https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/ `
 
-使用 `ninja -C out/afl` 编译
+使用 `ninja -C out/afl` 编译全部文件，或者使用`ninja -C out/afl <test target>`编译自己想fuzz的目标。
 
 # 开始Fuzz
 
