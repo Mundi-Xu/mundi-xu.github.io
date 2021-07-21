@@ -1,5 +1,3 @@
-> 本文首发于安全客
-
 # 简介
 
 AFL号称是当前最高级的Fuzzing测试工具之一，由lcamtuf所开发。在众多安全会议白帽演讲中都介绍过这款工具，以及2016年defcon大会的CGC(Cyber Grand Challenge，形式为机器自动挖掘并修补漏洞)大赛中多支队伍利用AFL fuzzing技术与符号执行(Symbolic Execution)来实现漏洞挖掘，其中参赛队伍shellphish便是采用AFL(Fuzzing) + angr(Symbolic Execution)技术。
