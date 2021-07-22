@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      484 字
+      478 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      9
        分钟
     </span>
   
@@ -272,7 +272,7 @@
 </blockquote>
 <p><code>libjpeg-turbo</code>是pdfium中默认的JPEG编解码器</p>
 <p>AFL插桩编译：</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir build &amp;&amp; cd build &amp;&amp; cmake -DCMAKE_C_COMPILER=afl-clang-fast -DCMAKE_CXX_COMPILER=afl-clang-fast++ -DCMAKE_C_FLAGS=&quot;-g -fsanitize=address&quot; ..<br>CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 AFL_USE_UBSAN=1 make<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir build &amp;&amp; cd build &amp;&amp; cmake -DCMAKE_C_COMPILER=afl-clang-fast -DCMAKE_C_FLAGS=&quot;-g -fsanitize=address&quot; ..<br>CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 make<br></code></pre></div></td></tr></table></figure>
 
 <p>以<code>cjpeg</code>为例进行fuzz：</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">afl-fuzz -M 1 -i ../seed-corpora/afl-testcases/bmp/ -o fuzzout -m none -t 60000  -x ~/AFLplusplus/dictionaries/bmp.dict  -- ./cjpeg-static -quality 95 -dct float -rgb -optimize  -outfile ./1.jpg @@<br></code></pre></div></td></tr></table></figure>
