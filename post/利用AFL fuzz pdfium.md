@@ -78,3 +78,14 @@ CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 make
 afl-fuzz -M 1 -i ../seed-corpora/afl-testcases/bmp/ -o fuzzout -m none -t 60000  -x ~/AFLplusplus/dictionaries/bmp.dict  -- ./cjpeg-static -quality 95 -dct float -rgb -optimize  -outfile ./1.jpg @@
 ```
 
+# 代码覆盖率测试
+
+> `https://github.com/mrash/afl-cov.git`
+
+```shell
+ cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_C_FLAGS="-g  -fprofile-arcs -ftest-coverage" ..
+ make -j8
+
+~/afl-cov/afl-cov -d ../build/jpegout/ --live --coverage-cmd "./jpegtran-static -progess AFL_FILE" -code-dir . --enable-branch-coverage --overwrite
+
+```
