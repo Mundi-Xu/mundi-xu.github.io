@@ -263,7 +263,7 @@ static Local<Number> New(Isolate* isolate, double value); // New()函数声明
 
 ## 对象（Object）
 
-对象继承自 `TaggedImpl`:
+对象继承自 `TaggedImpl`，从`Object`出发，衍生了各种其他非元类型的数据类型，如数组、函数等：
 
 ```c++
 class Object : public TaggedImpl<HeapObjectReferenceType::STRONG, Address> { 
@@ -308,4 +308,126 @@ TEST(Object, Create) {
   EXPECT_EQ(static_cast<int>(obj2.ptr()), 18);
 }
 ```
+
+### ObjectSlot
+
+```c++
+  i::Object obj{18};
+  i::FullObjectSlot slot{&obj};
+```
+
+```
++----------+      +---------+
+|ObjectSlot|      | Object  |
+|----------|      |---------|
+| address  | ---> |   18    |
++----------+      +---------+
+```
+
+样例代码：
+
+```c++
+#include <iostream>
+#include "gtest/gtest.h"
+#include "v8.h"
+#include <bitset>
+#include "src/objects/objects-inl.h"
+#include "src/objects/slots.h"
+
+namespace i = v8::internal;
+
+TEST(ObjectSlot, Create) {
+  i::Object obj{18};
+  i::FullObjectSlot slot{&obj};
+  EXPECT_NE(slot.address(), obj.ptr());
+  EXPECT_EQ(*slot, obj);
+
+  i::Object* p = &obj;
+  i::Object** pp = &p;
+  EXPECT_EQ(*slot, **pp);
+}
+```
+
+### Maybe
+
+`Maybe`是一个简单的用于表现一个对象是否具值的数据类型，当一个API返回一个`Maybe<>`时，就说明它可能是一个布尔值，也可能是一个因为异常而得到的无值结果。
+
+```c++
+template <class T>                                                              
+class Maybe {
+ public:
+  V8_INLINE bool IsNothing() const { return !has_value_; }                      
+  V8_INLINE bool IsJust() const { return has_value_; }
+  ...
+
+ private:
+  bool has_value_;                                                              
+  T value_; 
+}
+```
+
+`Maybe<>`的数据类型有几个常用的函数：
+
++ `bool Maybe<T>::IsNothing() const` 是否具值
++ `bool Maybe<T>::IsJust() const` 与上面这个函数结果相反
++ `T Maybe<T>::FromJust() const` 返回它本体的值，如果不具值则直接崩溃
++ `T Maybe<T>::FromMaybe(const Maybe& default_value) const` 返回它本体的值，如果不具值则返回`default_value`
+
+样例代码：
+
+```c++
+#include <iostream>
+#include "gtest/gtest.h"
+#include "v8_test_fixture.h"
+#include "v8.h"
+
+using namespace v8;
+
+class MaybeTest : public V8TestFixture {
+};
+
+TEST_F(MaybeTest, Maybe) {
+  bool cond = true;
+  Maybe<int> maybe = cond ? Just<int>(10) : Nothing<int>();
+  EXPECT_TRUE(maybe.IsJust());
+  EXPECT_FALSE(maybe.IsNothing());
+  maybe.Check();
+
+  int nr = maybe.ToChecked();
+  EXPECT_EQ(nr, 10);
+  EXPECT_EQ(maybe.FromJust(), 10);
+
+  Maybe<int> nothing = Nothing<int>();
+  int value = nothing.FromMaybe(22);
+  EXPECT_EQ(value, 22);
+}
+
+/*
+ * I think the intention with a type Maybe<void> is that we don't really
+ * care/want to have a value in the Maybe apart from that is is empty or
+ * something. So instead of having a bool and setting it to true just
+ * have void and return an empty. I think this signals the intent of a
+ * function better as one might otherwise wonder what the value in the maybe
+ * represents.
+ */
+Maybe<void> doit(int x) {
+  if (x == -1) {
+    return Nothing<void>();
+  }
+  return JustVoid();
+}
+
+TEST_F(MaybeTest, MaybeVoid) {
+  Maybe<void> maybe = JustVoid();
+  EXPECT_FALSE(maybe.IsNothing());
+
+  Maybe<void> maybe_nothing = Nothing<void>();
+  EXPECT_TRUE(maybe_nothing.IsNothing());
+
+  EXPECT_TRUE(doit(-1).IsNothing());
+  EXPECT_TRUE(doit(1).IsJust());
+}
+```
+
+## 函数（Function）
 
