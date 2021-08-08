@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2021-07-27T12:59:16.434Z</updated>
+  <updated>2021-07-29T12:16:31.530Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Chrome V8基础（二）</title>
+    <link href="https://mundi-xu.github.io/2021/07/29/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://mundi-xu.github.io/2021/07/29/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2021-07-29T12:05:21.000Z</published>
+    <updated>2021-07-29T12:16:31.530Z</updated>
+    
+    
+    <summary type="html">本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，希望能对读者理解浏览器安全相关产生帮助。</summary>
+    
+    
+    
+    
+    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
+    
+    <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    
+    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
+    
+    <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
+    
+  </entry>
   
   <entry>
     <title>Chrome V8基础（一）</title>
@@ -44,7 +67,7 @@
     <link href="https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/"/>
     <id>https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/</id>
     <published>2021-07-03T04:05:21.000Z</published>
-    <updated>2021-07-21T12:41:28.884Z</updated>
+    <updated>2021-07-29T12:14:11.003Z</updated>
     
     
     <summary type="html">简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。</summary>

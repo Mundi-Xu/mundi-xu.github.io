@@ -200,7 +200,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      478 字
+      532 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      11
        分钟
     </span>
   
@@ -244,7 +244,7 @@
             
               <p class="note note-info">
                 
-                  Last update：7 days ago
+                  Last update：10 days ago
                 
               </p>
             
@@ -274,8 +274,13 @@
 <p>AFL插桩编译：</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir build &amp;&amp; cd build &amp;&amp; cmake -DCMAKE_C_COMPILER=afl-clang-fast -DCMAKE_C_FLAGS=&quot;-g -fsanitize=address&quot; ..<br>CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 make<br></code></pre></div></td></tr></table></figure>
 
-<p>以<code>cjpeg</code>为例进行fuzz：</p>
+<p>以<code>cjpeg</code>为例选择目标进行fuzz：</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">afl-fuzz -M 1 -i ../seed-corpora/afl-testcases/bmp/ -o fuzzout -m none -t 60000  -x ~/AFLplusplus/dictionaries/bmp.dict  -- ./cjpeg-static -quality 95 -dct float -rgb -optimize  -outfile ./1.jpg @@<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="代码覆盖率测试"><a href="#代码覆盖率测试" class="headerlink" title="代码覆盖率测试"></a>代码覆盖率测试</h1><blockquote>
+<p><code>https://github.com/mrash/afl-cov.git</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"> cmake -DCMAKE_C_COMPILER=gcc -DCMAKE_C_FLAGS=&quot;-g  -fprofile-arcs -ftest-coverage&quot; ..<br> make -j8<br><br>~/afl-cov/afl-cov -d ../build/jpegout/ --live --coverage-cmd &quot;./jpegtran-static -progess AFL_FILE&quot; -code-dir . --enable-branch-coverage --overwrite<br><br></code></pre></div></td></tr></table></figure>
 
             </div>
             <hr>
