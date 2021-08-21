@@ -44,10 +44,10 @@
     <link href="https://mundi-xu.github.io/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>https://mundi-xu.github.io/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/</id>
     <published>2021-07-27T12:05:21.000Z</published>
-    <updated>2021-07-27T12:59:16.434Z</updated>
+    <updated>2021-08-16T07:03:48.231Z</updated>
     
     
-    <summary type="html">本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，希望能对读者理解浏览器安全相关产生帮助。</summary>
+    <summary type="html">本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，本节主要为Chrome V8的一些基础知识，包括它的内存机制是怎样的，以及几个基础数据类型。</summary>
     
     
     
