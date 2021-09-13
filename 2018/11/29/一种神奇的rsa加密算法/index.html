@@ -14,8 +14,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="
-新的算法并没有透露 n，只给定了两个大整数：(p*q)^(p+q) 和 (p*q)^(p-q)，其中 ^ 是按位异或运算。">
+  <meta name="description" content="">
   <meta name="author" content="寒雨">
   <meta name="keywords" content="">
   
@@ -245,15 +244,14 @@
             
               <p class="note note-info">
                 
-                  Last update：8 months ago
+                  Last update：19 days ago
                 
               </p>
             
             <div class="markdown-body">
               <hr>
-<p><strong>新的算法并没有透露 <code>n</code>，只给定了两个大整数：<code>(p*q)^(p+q)</code> 和 <code>(p*q)^(p-q)</code>，其中 <code>^</code> 是按位异或运算。</strong></p>
-<span id="more"></span>
-
+<p><strong>新的算法并没有透露 <code>n</code>，只给定了两个大整数：<code>(p*q)^(p+q)</code> 和 <code>(p*q)^(p-q)</code>，其中 <code>^</code> 是按位异或运算。</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label=" hackergame2018-RSA_of_Z
+">[1]</span></a></sup></p>
 <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sympy<br><br>p = sympy.randprime(<span class="hljs-number">2</span> ** <span class="hljs-number">1023</span>, <span class="hljs-number">2</span> ** <span class="hljs-number">1024</span>)<br>q = sympy.randprime(<span class="hljs-number">2</span> ** <span class="hljs-number">1023</span>, <span class="hljs-number">2</span> ** <span class="hljs-number">1024</span>)<br><br>a = (p * q) ^ (p + q)<br>b = (p * q) ^ (p - q)<br><br>flag = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag.txt&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>).read()<br>m = <span class="hljs-built_in">int</span>.from_bytes(flag, <span class="hljs-string">&#x27;big&#x27;</span>)<br><br><span class="hljs-built_in">print</span>(a, b, <span class="hljs-built_in">pow</span>(m, <span class="hljs-number">65537</span>, p * q))<br><br></code></pre></div></td></tr></table></figure>
 
 
@@ -264,8 +262,8 @@
 <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2<br><br>a, b, c = [<span class="hljs-built_in">int</span>(s) <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;output.txt&#x27;</span>).read().split()]<br><span class="hljs-comment">#假设已将加密内容保存到 output.txt 文件中</span><br><br>f1 = <span class="hljs-keyword">lambda</span> p, q: (p * q) ^ (p + q)<br>f2 = <span class="hljs-keyword">lambda</span> p, q: (p * q) ^ (p - q)<br><br>candidates = &#123;(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)&#125;<br><br><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1025</span>):<br>    <span class="hljs-built_in">print</span>(m, <span class="hljs-built_in">len</span>(candidates))<br>    candidates_ = <span class="hljs-built_in">set</span>()<br>    mask = (<span class="hljs-number">2</span> &lt;&lt; m) - <span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> candidates:<br>        <span class="hljs-keyword">if</span> f1(x, y) == a <span class="hljs-keyword">and</span> f2(x, y) == b:<br>            p, q = x, y<br>            d = gmpy2.invert(<span class="hljs-number">65537</span>, (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>))<br>            m = <span class="hljs-built_in">pow</span>(c, d, p * q)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-built_in">bytes</span>.fromhex(<span class="hljs-built_in">hex</span>(m)[<span class="hljs-number">2</span>:]))<br>            exit()<br>        <span class="hljs-keyword">for</span> bx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>):<br>            <span class="hljs-keyword">for</span> by <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>):<br>                xx = x + (bx &lt;&lt; m)<br>                yy = y + (by &lt;&lt; m)<br>                <span class="hljs-keyword">if</span> f1(xx, yy) &amp; mask != a &amp; mask:<br>                    <span class="hljs-keyword">continue</span><br>                <span class="hljs-keyword">if</span> f2(xx, yy) &amp; mask != b &amp; mask:<br>                    <span class="hljs-keyword">continue</span><br>                candidates_.add((xx, yy))<br>candidates = candidates_<br><br></code></pre></div></td></tr></table></figure>
 
 <p><strong>有几个人做出来了呢（坏笑:）</strong></p>
-<p>[^1]hackergame2018-RSA_of_Z</p>
-
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>hackergame2018-RSA_of_Z
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
             </div>
             <hr>
             <div>

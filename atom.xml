@@ -67,7 +67,7 @@
     <link href="https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/"/>
     <id>https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/</id>
     <published>2021-07-03T04:05:21.000Z</published>
-    <updated>2021-07-29T12:14:11.003Z</updated>
+    <updated>2021-09-12T07:52:49.675Z</updated>
     
     
     <summary type="html">简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。</summary>
@@ -406,11 +406,17 @@
     <link href="https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
     <id>https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</id>
     <published>2018-11-29T07:21:00.000Z</published>
-    <updated>2020-12-23T11:58:41.661Z</updated>
+    <updated>2021-08-25T07:49:53.907Z</updated>
     
     
+      
+      
+        
+        
     <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;新的算法并没有透露 &lt;code&gt;n&lt;/code&gt;，只给定了两个大整数：&lt;code&gt;(p*q)^(p+q)&lt;/code&gt; 和 &lt;code&gt;(p*q)^(p-q)&lt;/code&gt;，其中 &lt;code&gt;^&lt;/code&gt; 是按位异或运算。&lt;/strong&gt;&lt;/p&gt;</summary>
+&lt;p&gt;&lt;strong&gt;新的算法并没有透露 &lt;code&gt;n&lt;/code&gt;，只给定了两个大整数：&lt;code&gt;(p*q)^(p+q)&lt;/code&gt; 和 &lt;code&gt;(p*q)^(p-q)&lt;/code&gt;，其中 &lt;code&gt;^&lt;/code&gt;</summary>
+        
+      
     
     
     
