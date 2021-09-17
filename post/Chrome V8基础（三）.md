@@ -431,3 +431,538 @@ TEST_F(MaybeTest, MaybeVoid) {
 
 ## 函数（Function）
 
+别忘了函数也是对象的一种，所以说V8中的`Function`也是继承自`Object`的。对于外界传进来的`Value`类型的函数，读者能通过之前介绍过的`Local<T>::Cast`来将其转换成函数类型，也可以通过`CheckCast()`判断。
+
+```c++
+void v8::Function::CheckCast(Value* that) {
+  i::Handle<i::Object> obj = Utils::OpenHandle(that);
+  Utils::ApiCheck(obj->IsCallable(), "v8::Function::Cast",
+                  "Value is not a Function");
+}
+```
+
+而对于一个已经是函数类型的数据来说，我们可以用以下一些常见的函数：
+
++ `Call()` 调用这个函数
++ `NewInstance` 相当于通过`new`的方式调用这个函数以得到类的实例。
++ `Setname()` `GetName()` 设置获取函数名
++ 具体可以看`src/api/api.cc`
+
+这里主要介绍一下如何调用一个函数的数据类型。
+
+### 函数调用（Call）
+
+```c++
+MaybeLocal<v8::Value> Function::Call(Local<Context> context,
+                                     v8::Local<v8::Value> recv, int argc,
+                                     v8::Local<v8::Value> argv[]) {
+  auto isolate = reinterpret_cast<i::Isolate*>(context->GetIsolate());
+  TRACE_EVENT_CALL_STATS_SCOPED(isolate, "v8", "V8.Execute");
+  ENTER_V8(isolate, context, Function, Call, MaybeLocal<Value>(),
+           InternalEscapableScope);
+  i::TimerEventScope<i::TimerEventExecute> timer_scope(isolate);
+  auto self = Utils::OpenHandle(this);
+  Utils::ApiCheck(!self.is_null(), "v8::Function::Call",
+                  "Function to be called is a null pointer");
+  i::Handle<i::Object> recv_obj = Utils::OpenHandle(*recv);
+  STATIC_ASSERT(sizeof(v8::Local<v8::Value>) == sizeof(i::Handle<i::Object>));
+  i::Handle<i::Object>* args = reinterpret_cast<i::Handle<i::Object>*>(argv);
+  Local<Value> result;
+  has_pending_exception = !ToLocal<Value>(
+      i::Execution::Call(isolate, self, recv_obj, argc, args), &result);
+  RETURN_ON_FAILED_EXECUTION(Value);
+  RETURN_ESCAPED(result);
+}
+```
+
+各参数含义如下：
+
++ `context` 上下文
++ `recv` 相当于被调用函数内部的`this`
++ `argc` 这次函数调用的参数个数
++ `argv` 与参数个数对应的参数数组，以本地`Value`句柄的形式出现。
+
+### 构造函数的实例化（NewInstance）
+
+```c++
+MaybeLocal<Object> Function::NewInstance(Local<Context> context, int argc,
+                                         v8::Local<v8::Value> argv[]) const {
+  return NewInstanceWithSideEffectType(context, argc, argv,
+                                       SideEffectType::kHasSideEffect);
+}
+```
+
+调用`NewInstanceWithSideEffectType()`生成
+
+```c++
+MaybeLocal<Object> Function::NewInstanceWithSideEffectType(
+    Local<Context> context, int argc, v8::Local<v8::Value> argv[],
+    SideEffectType side_effect_type) const {
+  auto isolate = reinterpret_cast<i::Isolate*>(context->GetIsolate());
+  TRACE_EVENT_CALL_STATS_SCOPED(isolate, "v8", "V8.Execute");
+  ENTER_V8(isolate, context, Function, NewInstance, MaybeLocal<Object>(),
+           InternalEscapableScope);
+  i::TimerEventScope<i::TimerEventExecute> timer_scope(isolate);
+  auto self = Utils::OpenHandle(this);
+  STATIC_ASSERT(sizeof(v8::Local<v8::Value>) == sizeof(i::Handle<i::Object>));
+  bool should_set_has_no_side_effect =
+      side_effect_type == SideEffectType::kHasNoSideEffect &&
+      isolate->debug_execution_mode() == i::DebugInfo::kSideEffects;
+  if (should_set_has_no_side_effect) {
+    CHECK(self->IsJSFunction() &&
+          i::JSFunction::cast(*self).shared().IsApiFunction());
+    i::Object obj =
+        i::JSFunction::cast(*self).shared().get_api_func_data().call_code(
+            kAcquireLoad);
+    if (obj.IsCallHandlerInfo()) {
+      i::CallHandlerInfo handler_info = i::CallHandlerInfo::cast(obj);
+      if (!handler_info.IsSideEffectFreeCallHandlerInfo()) {
+        handler_info.SetNextCallHasNoSideEffect();
+      }
+    }
+  }
+  i::Handle<i::Object>* args = reinterpret_cast<i::Handle<i::Object>*>(argv);
+  Local<Object> result;
+  has_pending_exception = !ToLocal<Object>(
+      i::Execution::New(isolate, self, self, argc, args), &result);
+  if (should_set_has_no_side_effect) {
+    i::Object obj =
+        i::JSFunction::cast(*self).shared().get_api_func_data().call_code(
+            kAcquireLoad);
+    if (obj.IsCallHandlerInfo()) {
+      i::CallHandlerInfo handler_info = i::CallHandlerInfo::cast(obj);
+      if (has_pending_exception) {
+        // Restore the map if an exception prevented restoration.
+        handler_info.NextCallHasNoSideEffect();
+      } else {
+        DCHECK(handler_info.IsSideEffectCallHandlerInfo() ||
+               handler_info.IsSideEffectFreeCallHandlerInfo());
+      }
+    }
+  }
+  RETURN_ON_FAILED_EXECUTION(Object);
+  RETURN_ESCAPED(result);
+}
+```
+
+### 函数名操作(Name)
+
+获取函数名：
+
+```c++
+Local<Value> Function::GetName() const {
+  auto self = Utils::OpenHandle(this);
+  i::Isolate* isolate = self->GetIsolate();
+  if (self->IsJSBoundFunction()) {
+    auto func = i::Handle<i::JSBoundFunction>::cast(self);
+    i::Handle<i::Object> name;
+    ASSIGN_RETURN_ON_EXCEPTION_VALUE(isolate, name,
+                                     i::JSBoundFunction::GetName(isolate, func),
+                                     Local<Value>());
+    return Utils::ToLocal(name);
+  }
+  if (self->IsJSFunction()) {
+    auto func = i::Handle<i::JSFunction>::cast(self);
+    return Utils::ToLocal(handle(func->shared().Name(), isolate));
+  }
+  return ToApiHandle<Primitive>(isolate->factory()->undefined_value());
+}
+```
+
+设置更改函数名：
+
+```c++
+void Function::SetName(v8::Local<v8::String> name) {
+  auto self = Utils::OpenHandle(this);
+  if (!self->IsJSFunction()) return;
+  auto func = i::Handle<i::JSFunction>::cast(self);
+  ASSERT_NO_SCRIPT_NO_EXCEPTION(func->GetIsolate());
+  func->shared().SetName(*Utils::OpenHandle(*name));
+}
+```
+
+还有一些特定用途（如Debug）的函数
+
+```c++
+Local<Value> Function::GetInferredName() const {
+  auto self = Utils::OpenHandle(this);
+  if (!self->IsJSFunction()) {
+    return ToApiHandle<Primitive>(
+        self->GetIsolate()->factory()->undefined_value());
+  }
+  auto func = i::Handle<i::JSFunction>::cast(self);
+  return Utils::ToLocal(
+      i::Handle<i::Object>(func->shared().inferred_name(), func->GetIsolate()));
+}
+
+Local<Value> Function::GetDebugName() const {
+  auto self = Utils::OpenHandle(this);
+  if (!self->IsJSFunction()) {
+    return ToApiHandle<Primitive>(
+        self->GetIsolate()->factory()->undefined_value());
+  }
+  auto func = i::Handle<i::JSFunction>::cast(self);
+  i::Handle<i::String> name = i::JSFunction::GetDebugName(func);
+  return Utils::ToLocal(i::Handle<i::Object>(*name, self->GetIsolate()));
+}
+```
+
+## 数组（Array）
+
+数组也继承自对象，通常在转换的时候由句柄的`As`函数来完成。
+
+```c++
+class V8_EXPORT Array : public Object {
+ public:
+  uint32_t Length() const;
+
+  /**
+   * Creates a JavaScript array with the given length. If the length
+   * is negative the returned array will have length 0.
+   */
+  static Local<Array> New(Isolate* isolate, int length = 0);
+
+  /**
+   * Creates a JavaScript array out of a Local<Value> array in C++
+   * with a known length.
+   */
+  static Local<Array> New(Isolate* isolate, Local<Value>* elements,
+                          size_t length);
+  V8_INLINE static Array* Cast(Value* obj);
+
+ private:
+  Array();
+  static void CheckCast(Value* obj);
+};
+```
+
+主要介绍一下`Array`的几个常用API：
+
+### New
+
+与对象不同的是，数组的`New`函数还可以多带一个参数，代表该数组的长度。
+
+```c++
+Local<v8::Array> v8::Array::New(Isolate* isolate, int length) {
+  i::Isolate* i_isolate = reinterpret_cast<i::Isolate*>(isolate);
+  LOG_API(i_isolate, Array, New);
+  ENTER_V8_NO_SCRIPT_NO_EXCEPTION(i_isolate);
+  int real_length = length > 0 ? length : 0;
+  i::Handle<i::JSArray> obj = i_isolate->factory()->NewJSArray(real_length);
+  i::Handle<i::Object> length_obj =
+      i_isolate->factory()->NewNumberFromInt(real_length);
+  obj->set_length(*length_obj);
+  return Utils::ToLocal(obj);
+}
+
+Local<v8::Array> v8::Array::New(Isolate* isolate, Local<Value>* elements,
+                                size_t length) {
+  i::Isolate* i_isolate = reinterpret_cast<i::Isolate*>(isolate);
+  i::Factory* factory = i_isolate->factory();
+  LOG_API(i_isolate, Array, New);
+  ENTER_V8_NO_SCRIPT_NO_EXCEPTION(i_isolate);
+  int len = static_cast<int>(length);
+
+  i::Handle<i::FixedArray> result = factory->NewFixedArray(len);
+  for (int i = 0; i < len; i++) {
+    i::Handle<i::Object> element = Utils::OpenHandle(*elements[i]);
+    result->set(i, *element);
+  }
+
+  return Utils::ToLocal(
+      factory->NewJSArrayWithElements(result, i::PACKED_ELEMENTS, len));
+}
+```
+
+### Set与Get
+
+主要使用下标的形式来设置和获取
+
+### Length
+
+获取数组的长度：
+
+```c++
+uint32_t v8::Array::Length() const {
+  i::Handle<i::JSArray> obj = Utils::OpenHandle(this);
+  i::Object length = obj->length();
+  if (length.IsSmi()) {
+    return i::Smi::ToInt(length);
+  } else {
+    return static_cast<uint32_t>(length.Number());
+  }
+}
+```
+
+## JSON解析器
+
+Chrome V8的JSON解析器也充满了黑科技，它在V8中是一个类：
+
+```c++\
+class V8_EXPORT JSON {
+ public:
+  /**
+   * Tries to parse the string |json_string| and returns it as value if
+   * successful.
+   *
+   * \param the context in which to parse and create the value.
+   * \param json_string The string to parse.
+   * \return The corresponding value if successfully parsed.
+   */
+  static V8_WARN_UNUSED_RESULT MaybeLocal<Value> Parse(
+      Local<Context> context, Local<String> json_string);
+
+  /**
+   * Tries to stringify the JSON-serializable object |json_object| and returns
+   * it as string if successful.
+   *
+   * \param json_object The JSON-serializable object to stringify.
+   * \return The corresponding string if successfully stringified.
+   */
+  static V8_WARN_UNUSED_RESULT MaybeLocal<String> Stringify(
+      Local<Context> context, Local<Value> json_object,
+      Local<String> gap = Local<String>());
+};
+```
+
+主要使用`Parse`和`Stringify`
+
+```c++
+MaybeLocal<Value> JSON::Parse(Local<Context> context,
+                              Local<String> json_string) {
+  PREPARE_FOR_EXECUTION(context, JSON, Parse, Value);
+  i::Handle<i::String> string = Utils::OpenHandle(*json_string);
+  i::Handle<i::String> source = i::String::Flatten(isolate, string);
+  i::Handle<i::Object> undefined = isolate->factory()->undefined_value();
+  auto maybe = source->IsOneByteRepresentation()
+                   ? i::JsonParser<uint8_t>::Parse(isolate, source, undefined)
+                   : i::JsonParser<uint16_t>::Parse(isolate, source, undefined);
+  Local<Value> result;
+  has_pending_exception = !ToLocal<Value>(maybe, &result);
+  RETURN_ON_FAILED_EXECUTION(Value);
+  RETURN_ESCAPED(result);
+}
+
+MaybeLocal<String> JSON::Stringify(Local<Context> context,
+                                   Local<Value> json_object,
+                                   Local<String> gap) {
+  PREPARE_FOR_EXECUTION(context, JSON, Stringify, String);
+  i::Handle<i::Object> object = Utils::OpenHandle(*json_object);
+  i::Handle<i::Object> replacer = isolate->factory()->undefined_value();
+  i::Handle<i::String> gap_string = gap.IsEmpty()
+                                        ? isolate->factory()->empty_string()
+                                        : Utils::OpenHandle(*gap);
+  i::Handle<i::Object> maybe;
+  has_pending_exception =
+      !i::JsonStringify(isolate, object, replacer, gap_string).ToHandle(&maybe);
+  RETURN_ON_FAILED_EXECUTION(String);
+  Local<String> result;
+  has_pending_exception =
+      !ToLocal<String>(i::Object::ToString(isolate, maybe), &result);
+  RETURN_ON_FAILED_EXECUTION(String);
+  RETURN_ESCAPED(result);
+}
+```
+
+# 异常机制
+
+`TryCatch`是V8中一个捕获异常的类，管理其生命周期中V8层面异常。
+
+```c++
+class V8_EXPORT TryCatch {
+ public:
+  /**
+   * Creates a new try/catch block and registers it with v8.  Note that
+   * all TryCatch blocks should be stack allocated because the memory
+   * location itself is compared against JavaScript try/catch blocks.
+   */
+  explicit TryCatch(Isolate* isolate);
+
+  /**
+   * Unregisters and deletes this try/catch block.
+   */
+  ~TryCatch();
+
+  /**
+   * Returns true if an exception has been caught by this try/catch block.
+   */
+  bool HasCaught() const;
+
+  /**
+   * For certain types of exceptions, it makes no sense to continue execution.
+   *
+   * If CanContinue returns false, the correct action is to perform any C++
+   * cleanup needed and then return.  If CanContinue returns false and
+   * HasTerminated returns true, it is possible to call
+   * CancelTerminateExecution in order to continue calling into the engine.
+   */
+  bool CanContinue() const;
+
+  /**
+   * Returns true if an exception has been caught due to script execution
+   * being terminated.
+   *
+   * There is no JavaScript representation of an execution termination
+   * exception.  Such exceptions are thrown when the TerminateExecution
+   * methods are called to terminate a long-running script.
+   *
+   * If such an exception has been thrown, HasTerminated will return true,
+   * indicating that it is possible to call CancelTerminateExecution in order
+   * to continue calling into the engine.
+   */
+  bool HasTerminated() const;
+
+  /**
+   * Throws the exception caught by this TryCatch in a way that avoids
+   * it being caught again by this same TryCatch.  As with ThrowException
+   * it is illegal to execute any JavaScript operations after calling
+   * ReThrow; the caller must return immediately to where the exception
+   * is caught.
+   */
+  Local<Value> ReThrow();
+
+  /**
+   * Returns the exception caught by this try/catch block.  If no exception has
+   * been caught an empty handle is returned.
+   */
+  Local<Value> Exception() const;
+
+  /**
+   * Returns the .stack property of an object.  If no .stack
+   * property is present an empty handle is returned.
+   */
+  V8_WARN_UNUSED_RESULT static MaybeLocal<Value> StackTrace(
+      Local<Context> context, Local<Value> exception);
+
+  /**
+   * Returns the .stack property of the thrown object.  If no .stack property is
+   * present or if this try/catch block has not caught an exception, an empty
+   * handle is returned.
+   */
+  V8_WARN_UNUSED_RESULT MaybeLocal<Value> StackTrace(
+      Local<Context> context) const;
+
+  /**
+   * Returns the message associated with this exception.  If there is
+   * no message associated an empty handle is returned.
+   */
+  Local<v8::Message> Message() const;
+
+  /**
+   * Clears any exceptions that may have been caught by this try/catch block.
+   * After this method has been called, HasCaught() will return false. Cancels
+   * the scheduled exception if it is caught and ReThrow() is not called before.
+   *
+   * It is not necessary to clear a try/catch block before using it again; if
+   * another exception is thrown the previously caught exception will just be
+   * overwritten.  However, it is often a good idea since it makes it easier
+   * to determine which operation threw a given exception.
+   */
+  void Reset();
+
+  /**
+   * Set verbosity of the external exception handler.
+   *
+   * By default, exceptions that are caught by an external exception
+   * handler are not reported.  Call SetVerbose with true on an
+   * external exception handler to have exceptions caught by the
+   * handler reported as if they were not caught.
+   */
+  void SetVerbose(bool value);
+
+  /**
+   * Returns true if verbosity is enabled.
+   */
+  bool IsVerbose() const;
+
+  /**
+   * Set whether or not this TryCatch should capture a Message object
+   * which holds source information about where the exception
+   * occurred.  True by default.
+   */
+  void SetCaptureMessage(bool value);
+
+  /**
+   * There are cases when the raw address of C++ TryCatch object cannot be
+   * used for comparisons with addresses into the JS stack. The cases are:
+   * 1) ARM, ARM64 and MIPS simulators which have separate JS stack.
+   * 2) Address sanitizer allocates local C++ object in the heap when
+   *    UseAfterReturn mode is enabled.
+   * This method returns address that can be used for comparisons with
+   * addresses into the JS stack. When neither simulator nor ASAN's
+   * UseAfterReturn is enabled, then the address returned will be the address
+   * of the C++ try catch handler itself.
+   */
+  static void* JSStackComparableAddress(TryCatch* handler) {
+    if (handler == nullptr) return nullptr;
+    return handler->js_stack_comparable_address_;
+  }
+
+  TryCatch(const TryCatch&) = delete;
+  void operator=(const TryCatch&) = delete;
+
+ private:
+  // Declaring operator new and delete as deleted is not spec compliant.
+  // Therefore declare them private instead to disable dynamic alloc
+  void* operator new(size_t size);
+  void* operator new[](size_t size);
+  void operator delete(void*, size_t);
+  void operator delete[](void*, size_t);
+
+  void ResetInternal();
+
+  internal::Isolate* isolate_;
+  TryCatch* next_;
+  void* exception_;
+  void* message_obj_;
+  void* js_stack_comparable_address_;
+  bool is_verbose_ : 1;
+  bool can_continue_ : 1;
+  bool capture_message_ : 1;
+  bool rethrow_ : 1;
+  bool has_terminated_ : 1;
+
+  friend class internal::Isolate;
+};
+```
+
+主要的API如下：
+
++ `TryCatch()` 构造函数传入的是`Isolate*`指针
++ `bool HasCaught()` 是否有错误被该`TryCatch`域捕获
++ `Local<Value> Exception()` 返回一个`Exception`对象，代表捕获的错误实体。
++ ` Local<Value> ReThrow();` 重新将其捕获的错误通过`throw`抛出去
+
+异常生成的类叫`Exception`类：
+
+```c++
+
+class V8_EXPORT Exception {
+ public:
+  static Local<Value> RangeError(Local<String> message);
+  static Local<Value> ReferenceError(Local<String> message);
+  static Local<Value> SyntaxError(Local<String> message);
+  static Local<Value> TypeError(Local<String> message);
+  static Local<Value> WasmCompileError(Local<String> message);
+  static Local<Value> WasmLinkError(Local<String> message);
+  static Local<Value> WasmRuntimeError(Local<String> message);
+  static Local<Value> Error(Local<String> message);
+
+  /**
+   * Creates an error message for the given exception.
+   * Will try to reconstruct the original stack trace from the exception value,
+   * or capture the current stack trace if not available.
+   */
+  static Local<Message> CreateMessage(Isolate* isolate, Local<Value> exception);
+
+  /**
+   * Returns the original stack trace that was captured at the creation time
+   * of a given exception, or an empty handle if not available.
+   */
+  static Local<StackTrace> GetStackTrace(Local<Value> exception);
+};
+```
+
+# 小结
+
+本节介绍了Chrome V8的一些基本数据类型和异常处理，其API均能在文档中找到。
