@@ -92,7 +92,7 @@
     <link href="https://mundi-xu.github.io/2021/03/12/AFL++%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%A7%8BFuzz%E4%B8%8Ecrashes%E5%88%86%E6%9E%90/"/>
     <id>https://mundi-xu.github.io/2021/03/12/AFL++%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%A7%8BFuzz%E4%B8%8Ecrashes%E5%88%86%E6%9E%90/</id>
     <published>2021-03-12T08:53:57.000Z</published>
-    <updated>2021-03-18T10:42:16.849Z</updated>
+    <updated>2021-09-17T07:52:57.107Z</updated>
     
     
     <summary type="html">本文主要介绍如何使用AFL++快速开始Fuzz一个样例程序和对大量的Fuzzer-Generated Crashes进行分类以及部分工具的安装与使用</summary>
@@ -406,17 +406,10 @@
     <link href="https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
     <id>https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</id>
     <published>2018-11-29T07:21:00.000Z</published>
-    <updated>2021-08-25T07:49:53.907Z</updated>
+    <updated>2021-09-17T08:36:38.513Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;新的算法并没有透露 &lt;code&gt;n&lt;/code&gt;，只给定了两个大整数：&lt;code&gt;(p*q)^(p+q)&lt;/code&gt; 和 &lt;code&gt;(p*q)^(p-q)&lt;/code&gt;，其中 &lt;code&gt;^&lt;/code&gt;</summary>
-        
-      
+    <summary type="html">新的算法并没有透露 `n`，只给定了两个大整数：`(p*q)^(p+q)` 和 `(p*q)^(p-q)`，其中 `^` 是按位异或运算。</summary>
     
     
     
