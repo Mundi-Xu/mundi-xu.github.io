@@ -450,9 +450,15 @@
     <link href="/2018/10/25/hello-world/"/>
     <url>/2018/10/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<h2 id="Welcome-to-My-Blog-This-is-my-first-post"><a href="#Welcome-to-My-Blog-This-is-my-first-post" class="headerlink" title="Welcome to My Blog ! This is my first post"></a>Welcome to My Blog ! This is my first post</h2><h2 id="You-can-see-the-about-me-here"><a href="#You-can-see-the-about-me-here" class="headerlink" title="You can see the about me here"></a>You can see the about me <a href="https://mundi-xu.github.io/about/">here</a></h2><h2 id="Thank-you-for-following"><a href="#Thank-you-for-following" class="headerlink" title="Thank you for following"></a>Thank you for following</h2>]]></content>
+    <content type="html"><![CDATA[<p>大四摸鱼党一枚，啥都不会的废物一个，主要研究方向是模糊测试和单排AD的<del>上分</del>策略。</p><hr><p>Following are list of CVE’s which i found and reported to vendors:  </p><p><strong>Year – 2021</strong></p><p><strong>Chrome:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read in libjpeg-turbo.   </li></ul><p><strong>LibRaw Security Issues(No cves):</strong></p><ul><li><strong>issues 411</strong>: heap-buffer-overflow in raw2image.cpp</li><li><strong>issues 412</strong>: heap-buffer-overflow in fp_dng.cpp</li></ul>]]></content>
     
     
+    
+    <tags>
+      
+      <tag>cve</tag>
+      
+    </tags>
     
   </entry>
   
