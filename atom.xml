@@ -427,7 +427,7 @@
     <link href="https://mundi-xu.github.io/2018/10/25/hello-world/"/>
     <id>https://mundi-xu.github.io/2018/10/25/hello-world/</id>
     <published>2018-10-25T09:21:30.000Z</published>
-    <updated>2021-09-22T14:24:04.346Z</updated>
+    <updated>2021-09-23T13:47:03.151Z</updated>
     
     
     <summary type="html">Welcome to My Blog !</summary>
@@ -435,7 +435,11 @@
     
     
     
+    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
+    
     <category term="cve" scheme="https://mundi-xu.github.io/tags/cve/"/>
+    
+    <category term="LibRaw" scheme="https://mundi-xu.github.io/tags/LibRaw/"/>
     
   </entry>
   
