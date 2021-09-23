@@ -29,11 +29,11 @@
     
     
     
+    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
+    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
-    
-    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
     
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
@@ -52,11 +52,11 @@
     
     
     
+    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
+    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
-    
-    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
     
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
@@ -435,9 +435,9 @@
     
     
     
-    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
-    
     <category term="cve" scheme="https://mundi-xu.github.io/tags/cve/"/>
+    
+    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
     
     <category term="LibRaw" scheme="https://mundi-xu.github.io/tags/LibRaw/"/>
     
