@@ -450,7 +450,7 @@
     <link href="/2018/10/25/hello-world/"/>
     <url>/2018/10/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>大四摸鱼党一枚，啥都不会的废物一个，主要研究方向是模糊测试和单排AD的<del>混分</del>策略。</p><hr><p>Following are list of vulnerabilities which i found and reported to vendors:  </p><p><strong>Year – 2021</strong></p><p><strong>Chrome:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read in libjpeg-turbo.   </li></ul><p><strong>LibRaw Security Issues:</strong></p><ul><li><strong>issues 411</strong>: heap-buffer-overflow in raw2image.cpp</li><li><strong>issues 412</strong>: heap-buffer-overflow in fp_dng.cpp</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>大四摸鱼党一枚，啥都不会的废物一个，主要研究方向是模糊测试和单排AD的<del>混分</del>策略。</p><hr><p>Following are list of vulnerabilities which i found and reported to vendors:  </p><p><strong>Year – 2021</strong></p><p><strong>Chrome:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read in libjpeg-turbo.   </li></ul><p><strong>LibRaw Security Issues:</strong></p><ul><li><strong>issues 411</strong>: heap-buffer-overflow in raw2image.cpp</li><li><strong>issues 412</strong>: heap-buffer-overflow in fp_dng.cpp</li></ul><p><img src="https://github-readme-stats.vercel.app/api?username=Mundi-Xu&show_icons=true&theme=tokyonight&count_private=false" srcset="/img/loading.gif" lazyload alt="Hanyu&#39;s github stats"></p>]]></content>
     
     
     
