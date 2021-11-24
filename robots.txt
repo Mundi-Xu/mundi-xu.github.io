@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tags
+Disallow: /2000
+
+Sitemap: https://mundi-xu.github.io/sitemap.xml

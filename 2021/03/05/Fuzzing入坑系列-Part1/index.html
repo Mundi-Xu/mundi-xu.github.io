@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="记录一个关于入坑fuzzing的学习历程">
+  <meta name="author" content="寒雨">
+  <meta name="keywords" content="">
+  <meta name="description" content="记录一个关于入坑fuzzing的学习历程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】Fuzzing入坑系列-Part1">
+<meta property="og:url" content="https://mundi-xu.github.io/2021/03/05/Fuzzing%E5%85%A5%E5%9D%91%E7%B3%BB%E5%88%97-Part1/index.html">
+<meta property="og:site_name" content="Mundi&#39;s Space">
+<meta property="og:description" content="记录一个关于入坑fuzzing的学习历程">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p0.ssl.qhimg.com/t0128fff338f3ae637f.jpg">
+<meta property="og:image" content="https://p4.ssl.qhimg.com/t019d9027629986b2bd.png">
+<meta property="og:image" content="https://p0.ssl.qhimg.com/t013f070ef352e573b7.png">
+<meta property="og:image" content="https://p0.ssl.qhimg.com/t018eea479c2b9ddee8.png">
+<meta property="og:image" content="https://p4.ssl.qhimg.com/t01e24519ac809adda7.png">
+<meta property="article:published_time" content="2021-03-05T07:30:58.000Z">
+<meta property="article:modified_time" content="2021-03-12T09:59:10.000Z">
+<meta property="article:author" content="寒雨">
+<meta property="article:tag" content="Fuzzing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p0.ssl.qhimg.com/t0128fff338f3ae637f.jpg">
+  
+    <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
+  
+  <title>【转载】Fuzzing入坑系列-Part1 - Mundi&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mundi&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="【转载】Fuzzing入坑系列-Part1">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-05 15:30" pubdate>
+        March 5, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      13k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【转载】Fuzzing入坑系列-Part1</h1>
+            
+              <p class="note note-info">
+                
+                  Last update：8 months ago
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>本文由RGDZ原创发布<br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/232185">https://www.anquanke.com/post/id/232185</a></p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言:"></a>前言:</h2><p>最近啃了<a target="_blank" rel="noopener" href="https://www.fuzzingbook.org/">FuzzingBook</a>，然后记录一个关于入坑fuzzing的学习历程</p>
+<h2 id="Fuzzing简介："><a href="#Fuzzing简介：" class="headerlink" title="Fuzzing简介："></a>Fuzzing简介：</h2><p>首先是关于软件测试：</p>
+<p>软件测试主要是三种方式：</p>
+<ol>
+<li>手工测试</li>
+<li>半自动化测试</li>
+<li>自动化测试</li>
+</ol>
+<p>作者觉得Fuzzing是一种介于自动化和半自动化的测试方法</p>
+<blockquote>
+<p>其核心思想是自动或半自动的生成随机数据输入到一个程序中，并监视程序异常，如崩溃，断言(assertion)失败，以发现可能的程序错误，比如内存泄漏。模糊测试常常用于检测软件或计算机系统的安全漏洞。</p>
+<p> ——<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95">维基百科:模糊测试</a></p>
+</blockquote>
+<p>就Fuzzing来说，模糊测试主要有两个重要的模块组成<strong>Fuzzer</strong>和<strong>Runner</strong></p>
+<p>下面是其类图：</p>
+<p><img src="https://p0.ssl.qhimg.com/t0128fff338f3ae637f.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一个很简单的调用关系来进行简单的包装，Runner类主要负责将数据输入程序，以及监控程序的运行状态，这次我们先重点介绍Fuzzer</p>
+<h2 id="Fuzzer"><a href="#Fuzzer" class="headerlink" title="Fuzzer"></a>Fuzzer</h2><p>对于模糊测试来说，很重要的一点就是对数据进行模糊处理，所以一般在实现上都会单独把<strong>Fuzzer</strong>模块抽离出来</p>
+<p><img src="https://p4.ssl.qhimg.com/t019d9027629986b2bd.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图所示，对于数据变异常用的三种基础的方式是<strong>随机删除</strong>，<strong>随机添加</strong>，**随机反转(filp)**，下面是简单的实现代码，我们后续的工作也是基于其来进行的构建</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">del_random_chr</span>(<span class="hljs-params">s</span>):</span><br>        <span class="hljs-keyword">if</span> s <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">return</span> self.insert_random_chr(s)<br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s))<br>        <span class="hljs-keyword">return</span> s[:pos]+s[pos+<span class="hljs-number">1</span>:]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert_random_chr</span>(<span class="hljs-params">s</span>):</span><br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s))<br>        new_s = <span class="hljs-built_in">chr</span>(random.randrange(<span class="hljs-number">32</span>, <span class="hljs-number">127</span>))<br>        <span class="hljs-keyword">return</span> s[:pos]+new_s+s[pos:]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flip_random_chr</span>(<span class="hljs-params">s</span>):</span><br>        <span class="hljs-keyword">if</span> s <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">return</span> self.insert_random_chr(s)<br><br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s)-<span class="hljs-number">1</span>)<br>        bit = <span class="hljs-number">1</span>&lt;&lt;random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>)<br>        <span class="hljs-keyword">return</span> s[:pos]+<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(s[pos])^bit)+s[pos+<span class="hljs-number">1</span>:]<br></code></pre></div></td></tr></table></figure>
+
+<p>为了跟完善一点，在fuzzingbook中，作者将其包装成一个类</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mutator</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        self.mutators = [<br>            self.del_random_chr,<br>            self.insert_random_chr,<br>            self.flip_random_chr<br>        ]<br><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">del_random_chr</span>(<span class="hljs-params">self, s:<span class="hljs-built_in">str</span></span>):</span><br>        <span class="hljs-keyword">if</span> s <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">return</span> self.insert_random_chr(s)<br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s))<br>        <span class="hljs-keyword">return</span> s[:pos]+s[pos+<span class="hljs-number">1</span>:]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert_random_chr</span>(<span class="hljs-params">self, s:<span class="hljs-built_in">str</span></span>):</span><br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s))<br>        new_s = <span class="hljs-built_in">chr</span>(random.randrange(<span class="hljs-number">32</span>, <span class="hljs-number">127</span>))<br>        <span class="hljs-keyword">return</span> s[:pos]+new_s+s[pos:]<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">flip_random_chr</span>(<span class="hljs-params">self, s:<span class="hljs-built_in">str</span></span>):</span><br>        <span class="hljs-keyword">if</span> s <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            <span class="hljs-keyword">return</span> self.insert_random_chr(s)<br><br>        pos = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s)-<span class="hljs-number">1</span>)<br>        bit = <span class="hljs-number">1</span>&lt;&lt;random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>)<br>        <span class="hljs-keyword">return</span> s[:pos]+<span class="hljs-built_in">chr</span>(<span class="hljs-built_in">ord</span>(s[pos])^bit)+s[pos+<span class="hljs-number">1</span>:]<br><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mutate</span>(<span class="hljs-params">self, s</span>):</span><br>        mutator = random.choice(self.mutators)<br>        <span class="hljs-keyword">return</span> mutator(s)<br></code></pre></div></td></tr></table></figure>
+
+<p>在这一部分中，主要是包装数据进行基础变异处理的一些方法，还不能成为Fuzzer</p>
+<p>下面是一个Fuzzer的基类</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Fuzzer</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">pass</span><br><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fuzz</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self, runner:Runner=Runner(<span class="hljs-params"></span>)</span>):</span><br>        <span class="hljs-keyword">return</span> runner.run(inp=self.fuzz())<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">runs</span>(<span class="hljs-params">self, runner:Runner=PrintRunner(<span class="hljs-params"></span>), trials=<span class="hljs-number">10</span></span>):</span><br><br>        outcomes = [self.run(runner) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(trials)]<br>        <span class="hljs-keyword">return</span> outcomes<br></code></pre></div></td></tr></table></figure>
+
+<p>基类的构建主要是为了Runner和Fuzzer联系起来，可以看见其仅仅提供基础的run方法，主要是将我们进行fuzz处理后的数据输入到Runner里面去，由Runner传递给我们<strong>Target程序</strong></p>
+<p>有了上面的基础部件，我们下面就能够实现一个简单突变Fuzzer</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Seed</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, data</span>):</span><br>        self.data = data<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self.data<br><br>    __repr__ = __str__<br><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PowerSchedule</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">assignEnergy</span>(<span class="hljs-params">self, population</span>):</span><br>        <span class="hljs-keyword">for</span> seed <span class="hljs-keyword">in</span> population:<br>            seed.energy = <span class="hljs-number">1</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">normalizedEnergy</span>(<span class="hljs-params">self, population</span>):</span><br>        energy = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> seed: seed.energy, population))<br>        sum_energy = <span class="hljs-built_in">sum</span>(energy)<br>        norm_energy = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> nrg: nrg/sum_energy, energy))<br>        <span class="hljs-keyword">return</span> norm_energy<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">choose</span>(<span class="hljs-params">self, population</span>):</span><br><br>        self.assignEnergy(population)<br>        norm_energy = self.normalizedEnergy(population)<br>        seed = np.random.choice(population, p=norm_energy)<br>        <span class="hljs-keyword">return</span> seed<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MutationFuzzer</span>(<span class="hljs-params">Fuzzer</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, seeds, mutator, schedule</span>):</span><br>        self.seeds = seeds<br>        self.mutator = mutator<br>        self.schedule = schedule<br>        self.inputs = []<br>        self.reset()<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reset</span>(<span class="hljs-params">self</span>):</span><br>        self.population = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-keyword">lambda</span> x: Seed(x), self.seeds))<br>        self.seed_idx = <span class="hljs-number">0</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_candidate</span>(<span class="hljs-params">self</span>):</span><br>        seed:Seed = self.schedule.choose(self.population)<br><br>        candidate = seed.data<br>        trials = <span class="hljs-built_in">min</span>(<span class="hljs-built_in">len</span>(candidate), <span class="hljs-number">1</span> &lt;&lt; random.randint(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>))<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(trials):<br>            candidate = self.mutator.mutate(candidate)<br>        <span class="hljs-keyword">return</span> candidate<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fuzz</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">if</span> self.seed_idx &lt; <span class="hljs-built_in">len</span>(self.seeds):<br>            self.inp = self.seeds[self.seed_idx]<br>            self.seed_idx += <span class="hljs-number">1</span><br>            <span class="hljs-keyword">return</span> self.inp<br><br>        self.inp = self.create_candidate()<br>        self.inputs.append(self.inp)<br>        <span class="hljs-keyword">return</span> self.inp<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><strong>Seed类</strong>主要是为了对种子数据进行一些包装，使得我们能够赋予种子数据一些相关数据，方便我们后续对数据的处理</li>
+<li><strong>PowerSchedule类</strong>相当于一个调度表，主要目的是为了通过种子数据的权级关系来引导后续数据的生成，简单点说，就是对种子数据的权重进行管理</li>
+<li>相对核心的<strong>MutationFuzzer类</strong>，其继承于<strong>Fuzzer</strong>基类，同时能将我们的所给种子数据进行突变模糊</li>
+</ul>
+<p>测试代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">seed_input = <span class="hljs-string">&quot;http://www.google.com/search?q=fuzzing&quot;</span><br>mutation_fuzzer = MutationFuzzer(seeds=[seed_input], mutator=Mutator(), schedule=PowerSchedule())<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    <span class="hljs-built_in">print</span>(mutation_fuzzer.fuzz())<br></code></pre></div></td></tr></table></figure>
+
+<p>输出:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 mutator_test.py<br>http://www.google.com/search?q=fuzzing<br>http:/ww.gooc:le.co/earcH?q&lt;nuzinYg<br>ht<span class="hljs-comment">#tp!://ww7.gogle&amp;com/seamrch?q=cfuozzing</span><br>zLIhtp:/www.g1oogxencOm/bpsgarch?qw=fuzzing<br>ht+t[r/www.google.com/search?1=furzng<br>`ttq:3/7wg.goggne&gt;com/sarch?=uuzinw<br>http://www.google.com[/search?q=fuzzing;<br>http://www.g%oogl.c`omd-se]rc?qfi9o<br>htp:/cww.qgoglg.coi/search?pfuzajg<br>http:/+www.eoogle.coe/ search?q=fuzzing<br></code></pre></div></td></tr></table></figure>
+
+<p>确实将数据进行了模糊处理，但其似乎太发散了，基本不在我们可控范围内，所以我们需要考虑一种方案，其能够引导我们的Fuzzer来生成数据，相当于一种具有引导性的Fuzzer，所以我们需要学习一个新的概念：<strong>Code Coverage</strong>(代码覆盖率)</p>
+<h2 id="Code-Coverage"><a href="#Code-Coverage" class="headerlink" title="Code Coverage:"></a>Code Coverage:</h2><blockquote>
+<p><strong>代码覆盖</strong>（英语：<strong>Code coverage</strong>）是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E9%AB%94%E6%B8%AC%E8%A9%A6">软件测试</a>中的一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E9%AB%94%E5%BA%A6%E9%87%8F">度量</a>，描述<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F">程序</a>中<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%BA%90%E4%BB%A3%E7%A2%BC">源代码</a>被测试的比例和程度，所得比例称为<strong>代码覆盖率</strong>。 ——<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">维基百科:代码覆盖率</a></p>
+</blockquote>
+<p>关于代码覆盖率，其实顾名思义，说简单了也就是我们输入的数据，能够让程序的那些代码得倒执行以及其执行的次数，包括其执行次数占总数的一个比例。</p>
+<p>在FuzzingBook中，其作者举了一个🌰：</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c"><span class="hljs-comment">/* CGI decodeing as c program */</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEBUG   0</span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-keyword">bool</span>;<br><br><br><span class="hljs-keyword">bool</span> <span class="hljs-literal">true</span> = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">bool</span> <span class="hljs-literal">false</span> = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">int</span> hex_values[<span class="hljs-number">256</span>];<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> HEX_VALUES_LENGTH sizeof(hex_values)/sizeof(int)</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init_hex_values</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; HEX_VALUES_LENGTH; i++) &#123;<br>        hex_values[i] = <span class="hljs-number">-1</span>;<br>    &#125;<br><br>   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> i=<span class="hljs-string">&#x27;0&#x27;</span>; i&lt;=<span class="hljs-string">&#x27;9&#x27;</span>; i++) &#123;<br>       hex_values[i] = i-<span class="hljs-string">&#x27;0&#x27;</span>;<br>   &#125;<br><br>   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> i=<span class="hljs-string">&#x27;a&#x27;</span>; i&lt;=<span class="hljs-string">&#x27;f&#x27;</span>; i++) &#123;<br>       hex_values[i] = i-<span class="hljs-string">&#x27;a&#x27;</span>+<span class="hljs-number">0xa</span>;<br>   &#125;<br><br>   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> i=<span class="hljs-string">&#x27;A&#x27;</span>; i&lt;=<span class="hljs-string">&#x27;F&#x27;</span>; i++) &#123;<br>       hex_values[i] = i-<span class="hljs-string">&#x27;A&#x27;</span>+<span class="hljs-number">0xA</span>;<br>   &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">cgi_decode</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *s, <span class="hljs-keyword">char</span> *t)</span> </span>&#123;<br>    <span class="hljs-keyword">while</span> (*s!=<span class="hljs-string">&#x27;\0&#x27;</span>)<br>    &#123;<br>        <span class="hljs-keyword">switch</span> (*s)<br>        &#123;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;+&#x27;</span>:<br>            *t++ = <span class="hljs-string">&#x27; &#x27;</span>;<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;%&#x27;</span>:<br>            &#123;<br>                <span class="hljs-keyword">int</span> dight_high = *++s;<br>                <span class="hljs-keyword">int</span> dight_low = *++s;<br>                <span class="hljs-keyword">if</span> (hex_values[dight_high]&lt;<span class="hljs-number">0</span> &amp;&amp; hex_values[dight_low]&lt;<span class="hljs-number">0</span>) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                &#125;<br>                *t++ = (hex_values[dight_high]&lt;&lt;<span class="hljs-number">4</span>) + hex_values[dight_low];<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        <span class="hljs-keyword">default</span>:<br>            *t++ = *s;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br>        s++;<br>    &#125;<br>    *t = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> <span class="hljs-keyword">const</span> *argv[])</span></span><br><span class="hljs-function"></span>&#123;<br>    init_hex_values();<br><br><span class="hljs-comment">// #if DEBUG</span><br><span class="hljs-comment">//     for (int i=0; i&lt;HEX_VALUES_LENGTH; i++) &#123;</span><br><span class="hljs-comment">//         printf(&quot;%c:0x%x\n&quot;, i, hex_values[i]);</span><br><span class="hljs-comment">//     &#125;</span><br><span class="hljs-comment">// #endif</span><br><br>    <span class="hljs-keyword">if</span> (argc&gt;=<span class="hljs-number">2</span>) &#123;<br>        <span class="hljs-keyword">char</span>* s = (<span class="hljs-keyword">char</span>*)argv[<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">char</span>* t = <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">strlen</span>(s)+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">bool</span> ret = cgi_decode(s, t);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, t);<br>        <span class="hljs-keyword">return</span> ret;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cgi_decode: usage: cgi_decode STRING\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>终端:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; gcc cgi_decode.c --coverage -o cgi_decode<br>$&gt; ./cgi_decode <span class="hljs-string">&#x27;Send+mail+to+me%40fuzzingbook.org&#x27;</span><br>$&gt; gcov cgi_decode.c<br>File <span class="hljs-string">&#x27;cgi_decode.c&#x27;</span><br>Lines executed:92.86% of 42<br>cgi_decode.c:creating <span class="hljs-string">&#x27;cgi_decode.c.gcov&#x27;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>然后在生成的.c.gcov文件中如图所示</p>
+<p><img src="https://p0.ssl.qhimg.com/t013f070ef352e573b7.png" srcset="/img/loading.gif" lazyload></p>
+<p>最左边就是每一行代码执行到的次数</p>
+<p>对于python代码，作者构建了一个<strong>Coverage类</strong>来记录代码覆盖率:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coverage</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">traceit</span>(<span class="hljs-params">self, frame, event, arg</span>):</span><br>        <span class="hljs-keyword">if</span> self.original_trace_function <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>            self.original_trace_function(frame, event, arg)<br><br>        <span class="hljs-keyword">if</span> event == <span class="hljs-string">&quot;line&quot;</span>:<br>            function_name = frame.f_code.co_name<br>            lineno = frame.f_lineno<br>            self._trace.append((function_name, lineno))<br><br>        <span class="hljs-keyword">return</span> self.traceit<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span><br>        self._trace = []<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__enter__</span>(<span class="hljs-params">self</span>):</span><br>        self.original_trace_function = sys.gettrace()<br>        sys.settrace(self.traceit)<br>        <span class="hljs-keyword">return</span> self<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__exit__</span>(<span class="hljs-params">self, exc_type, exc_value, tb</span>):</span><br>        sys.settrace(self.original_trace_function)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trace</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> self._trace<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">coverage</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">set</span>(self.trace())<br></code></pre></div></td></tr></table></figure>
+
+<p>这样的话就可以通过这个Coverage类来使用with语句来记录代码覆盖率</p>
+<p>测试代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">with</span> Coverage() <span class="hljs-keyword">as</span> cov:<br>        cgi_decode(<span class="hljs-string">&quot;a+b&quot;</span>)<br><br>    <span class="hljs-built_in">print</span>(cov.coverage())<br></code></pre></div></td></tr></table></figure>
+
+<p>终端:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 coverage_test.py<br>&#123;(<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 24), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 30), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 43), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 33), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 23), (<span class="hljs-string">&#x27;__exit__&#x27;</span>, 38), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 32), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 45), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 29), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 25), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 22), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 28), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 44), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 31), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 21), (<span class="hljs-string">&#x27;cgi_decode&#x27;</span>, 34)&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>了解代码覆盖率之后，我们就可以使用代码覆盖率，来引导我们的Fuzzer来生成数据，相当于一种具有引导性突变的Fuzzer，我们称为<strong>GreyboxFuzzer</strong>，下面是实现这个类的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GreyboxFuzzer</span>(<span class="hljs-params">MutationFuzzer</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reset</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-built_in">super</span>().reset()<br>        self.coverages_seen = <span class="hljs-built_in">set</span>()<br>        self.population = []<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self, runner: Runner</span>):</span><br>        result, outcome = <span class="hljs-built_in">super</span>().run(runner=runner)<br>        new_coverage = <span class="hljs-built_in">frozenset</span>(runner.coverage())<br>        <span class="hljs-keyword">if</span> new_coverage <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> self.coverages_seen:<br>            seed = Seed(self.inp)<br>            seed.coverage = runner.coverage()<br>            self.coverages_seen.add(new_coverage)<br>            self.population.append(seed)<br><br>        <span class="hljs-keyword">return</span> (result, outcome)<br></code></pre></div></td></tr></table></figure>
+
+<p>在<strong>MutationCoverageFuzzer类</strong>的Run方法中，我们实际上至少比较了每一次Runner执行后的，其输入的数据是否让程序执行到新的代码块，如果有则记录下来，同时将这一次的数据加入到进行帅选到种子列表中，作为下次突变的数据种子，这样就有机会让我们Fuzzer生成出来的数据能够广的代码覆盖率。</p>
+<p>下面是<strong>MutationFuzzer</strong>和<strong>GreyboxFuzzer</strong>的测试对比, 依然使用FuzzingBook中的测试例子，也是一个很有趣的🌰</p>
+<p>Target程序代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crashme</span> (<span class="hljs-params">s</span>):</span><br>    <span class="hljs-keyword">if</span>             <span class="hljs-built_in">len</span>(s) &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> s[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;b&#x27;</span>:<br>        <span class="hljs-keyword">if</span>         <span class="hljs-built_in">len</span>(s) &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> s[<span class="hljs-number">1</span>] == <span class="hljs-string">&#x27;a&#x27;</span>:<br>            <span class="hljs-keyword">if</span>     <span class="hljs-built_in">len</span>(s) &gt; <span class="hljs-number">2</span> <span class="hljs-keyword">and</span> s[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;d&#x27;</span>:<br>                <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(s) &gt; <span class="hljs-number">3</span> <span class="hljs-keyword">and</span> s[<span class="hljs-number">3</span>] == <span class="hljs-string">&#x27;!&#x27;</span>:<br>                    <span class="hljs-keyword">raise</span> Exception()<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>MutationFuzzer</strong>测试代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">seed_input = <span class="hljs-string">&quot;good&quot;</span><br>blackbox_fuzzer = MutationFuzzer([seed_input], Mutator(), PowerSchedule())<br>n = <span class="hljs-number">30000</span> <span class="hljs-comment"># 测试次数</span><br>blackbox_runner = FunctionCoverageRunner(crashme)<br><span class="hljs-keyword">with</span> Timer() <span class="hljs-keyword">as</span> t:<br>    blackbox_fuzzer.runs(blackbox_runner, trials=n)<br><br>all_cov, greybox_coverage = population_coverage(blackbox_fuzzer.inputs, crashme)<br><span class="hljs-built_in">print</span>(t.elapsed_time())<br><br><span class="hljs-built_in">print</span>(all_cov)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">max</span>(greybox_coverage))<br></code></pre></div></td></tr></table></figure>
+
+<p>终端:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 mutator_test.py<br>1.489651209<br>&#123;(<span class="hljs-string">&#x27;crashme&#x27;</span>, 3), (<span class="hljs-string">&#x27;__exit__&#x27;</span>, 38), (<span class="hljs-string">&#x27;crashme&#x27;</span>, 2)&#125;<br>3<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>GreyboxFuzzer</strong>测试代码</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">seed_input = <span class="hljs-string">&quot;good&quot;</span><br>n = <span class="hljs-number">30000</span><br>greybox_fuzzer = GreyboxFuzzer([seed_input], Mutator(), PowerSchedule())<br>runner = FunctionCoverageRunner(crashme)<br><span class="hljs-keyword">with</span> Timer() <span class="hljs-keyword">as</span> t:<br>    greybox_fuzzer.runs(runner, trials=n)<br><br>all_cov, greybox_coverage = population_coverage(greybox_fuzzer.inputs, crashme)<br><br><span class="hljs-built_in">print</span>(t.elapsed_time())<br><span class="hljs-comment"># print(runner.coverage())</span><br><span class="hljs-built_in">print</span>(all_cov)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">max</span>(greybox_coverage))<br><span class="hljs-built_in">print</span>(greybox_fuzzer.population)<br></code></pre></div></td></tr></table></figure>
+
+<p>终端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 greyboxFuzzer.py<br>1.7056656000000001<br>&#123;(<span class="hljs-string">&#x27;crashme&#x27;</span>, 3), (<span class="hljs-string">&#x27;crashme&#x27;</span>, 6), (<span class="hljs-string">&#x27;crashme&#x27;</span>, 2), (<span class="hljs-string">&#x27;crashme&#x27;</span>, 5), (<span class="hljs-string">&#x27;crashme&#x27;</span>, 4), (<span class="hljs-string">&#x27;__exit__&#x27;</span>, 38)&#125;<br>6<br>[good, bEgd, bar<span class="hljs-variable">$Egdi</span>, badEdi, bad!Egi]<br></code></pre></div></td></tr></table></figure>
+
+<p>下面是FuzzingBook所给出的一张对比图，可以直观的发现，没有代码覆盖率引导的普通数据变异很难覆盖完程序的路径，而通过代码覆盖率的引导，Fuzzer生成的数据能逐渐的覆盖程序的路径。</p>
+<p><img src="https://p0.ssl.qhimg.com/t018eea479c2b9ddee8.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="AFLFastSchedule"><a href="#AFLFastSchedule" class="headerlink" title="AFLFastSchedule:"></a>AFLFastSchedule:</h2><p>在我们Fuzz crashme这个例子中，通过上节的实验我们可以发现使用代码覆盖率来引导我们的Fuzzer，可以使其变得更有目的性的去生成变异数据，但其耗时还是相对较长，且fuzzing出来的的数据也相对较多，那么有没有优化的方案呢？</p>
+<p>在FuzzingBook中，作者使用如下公式来计算种子数据的权重</p>
+<p>e(s) =\frac{1}{f(p(s))^e}</p>
+<p>实际上很容易理解:</p>
+<ul>
+<li>s是种子，作为一个参数</li>
+<li>函数p用来获取该种子所覆盖的路径hash值</li>
+<li>函数f用来获取该路径已经被种子覆盖的次数</li>
+<li>e是一个指数常量，用来扩大数量级，通过调整这个e的常量值，我们能减少fuzz的次数, 来提升fuzzer的效率</li>
+</ul>
+<p><strong>AFLFastSchedule类</strong>实现代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFLFastSchdule</span>(<span class="hljs-params">PowerSchedule</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, exponent</span>):</span><br>        self.exponent = exponent<br>        self.path_frequency = &#123;&#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">assignEnergy</span>(<span class="hljs-params">self, population:<span class="hljs-type">List</span>[Seed]</span>):</span><br>        <span class="hljs-keyword">for</span> seed <span class="hljs-keyword">in</span> population:<br>            seed.energy = <span class="hljs-number">1</span> / (self.path_frequency[getPathID(seed.coverage)] ** self.exponent)<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>AFLFastSchedule类</strong>继承PowerSchedule，重写了assignEnergy方法，重新通过上诉公式来计算种子的权重</p>
+<p><strong>CountGreyboxFuzzer类</strong>实现代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CountingGreyboxFuzzer</span>(<span class="hljs-params">GreyboxFuzzer</span>):</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, seeds, mutator: Mutator, schedule: AFLFastSchdule</span>):</span><br>        <span class="hljs-built_in">super</span>().__init__(seeds, mutator, schedule)<br>        self.schedule = schedule<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">reset</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>().reset()<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self, runner: Runner</span>):</span><br>        result, outcome = <span class="hljs-built_in">super</span>().run(runner)<br>        path_id = getPathID(runner.coverage())<br>        <span class="hljs-keyword">if</span> path_id <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> self.schedule.path_frequency:<br>            self.schedule.path_frequency[path_id] = <span class="hljs-number">1</span><br>            <span class="hljs-keyword">return</span> result, outcome<br>        self.schedule.path_frequency[path_id] += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> result, outcome<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>CountGreyboxFuzzer类</strong>继承GreyboxFuzzer，主要重写run方法，将检测代码路径是否已被执行替换为增加路径已执行次数，相比较原来的<strong>普通greyboxFuzzer</strong>，这样当下一次种子调度器在帅选种子时，就有权重变化了。</p>
+<p>通过公式的描述，我们可以发现当一个路径被覆盖多次时，他的权重会减少，而较新的路径的权重反而更大，而目前我们的种子调度器帅选种子主要依赖其权重，那么这就相当于种子调度器在帅选种子来进行变异时，会逐渐逐渐往新路径选择，这在一定程度上更能引导我们的Fuzzer去变异出代码覆盖率更广的数据。</p>
+<p>下面是实验结果：</p>
+<p><strong>Test_CountingGreyboxFuzzer</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_countingGreyboxFuzzer</span>(<span class="hljs-params">e</span>):</span><br>    seed_input = <span class="hljs-string">&quot;good&quot;</span><br>    exponent = e<br>    n = <span class="hljs-number">10000</span><br>    fast_schedule = AFLFastSchdule(exponent)<br>    bostgreybox_fuzzer = CountingGreyboxFuzzer([seed_input], Mutator(), fast_schedule)<br>    runner = FunctionCoverageRunner(crashme)<br>    <span class="hljs-keyword">with</span> Timer() <span class="hljs-keyword">as</span> t:<br>        bostgreybox_fuzzer.runs(runner, trials=n)<br><br>    _, bostgreybox_coverage = population_coverage(bostgreybox_fuzzer.inputs, crashme)<br><br>    <span class="hljs-built_in">print</span>(t.elapsed_time())<br>    <span class="hljs-comment"># print(all_cov)</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">max</span>(bostgreybox_coverage))<br>    <span class="hljs-built_in">print</span>(bostgreybox_fuzzer.population)<br>    <span class="hljs-built_in">print</span>(fast_schedule.path_frequency)<br></code></pre></div></td></tr></table></figure>
+
+<p>当e常量为5，fuzz次数为10000时</p>
+<p>终端:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 greyboxFuzzer_test.py<br>0.723850758<br>6<br>[good, <span class="hljs-built_in">bg</span>, ba, bad, bad!]<br>&#123;<span class="hljs-string">&#x27;457ea827d94ad12c048397ad55d1d030&#x27;</span>: 6005, <span class="hljs-string">&#x27;193f98a7531d0e9a97a787562b595798&#x27;</span>: 2743, <span class="hljs-string">&#x27;80819e22a0983ebc96997fa6fe569ca8&#x27;</span>: 942, <span class="hljs-string">&#x27;00deafe57bb3539da4ee5a01d5fb4ebe&#x27;</span>: 260, <span class="hljs-string">&#x27;c9a83c563333fdb248e6a10e56aa1f12&#x27;</span>: 50&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>当我们调整e为15，trials为4000时</p>
+<p>终端:</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$&gt; python3 greyboxFuzzer_test.py<br>0.251615932<br>6<br>[good, <span class="hljs-built_in">bg</span>=oyodx, ba7g=oyodz,, badBag(yoC&gt;,, bad!sgymIn&#125;C1&lt;]<br>&#123;<span class="hljs-string">&#x27;fbdecb7cc922b14d42f4a4a4d5dc191a&#x27;</span>: 1318, <span class="hljs-string">&#x27;a2229a3e7370c6970c660ec9f7e2a67b&#x27;</span>: 763, <span class="hljs-string">&#x27;1968f4fca86e35f60decaae9699c760d&#x27;</span>: 502, <span class="hljs-string">&#x27;4ea124940551c3bbb6d1f68e8337375e&#x27;</span>: 212, <span class="hljs-string">&#x27;79723bb9baab9395463be50202282c3e&#x27;</span>: 205&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>可以发现，通过一定调整exponent常量，我们可以接近一个更有效率的测试次数值</p>
+<p>下图是三个不同的Fuzzer的效率对比</p>
+<p><img src="https://p4.ssl.qhimg.com/t01e24519ac809adda7.png" srcset="/img/loading.gif" lazyload></p>
+<p>我们可以发现，使用<strong>AFLFastSchedule</strong>优化过的Fuzzer在三者之中覆盖crashme的效率确实是要更快的多。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过该部分的学习，我们基本了解了什么是Fuzzing，以及如何编写基于python程序的Fuzzer，同时根据相关理论指导来优化我们的Fuzzer。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Fuzzing/">Fuzzing</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本站所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/10/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8BMySQL8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">华为鲲鹏服务器下MySQL8的安装与远程连接配置</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/02/%E5%88%A9%E7%94%A8IPy%E5%88%A4%E6%96%ADIP%E5%9C%B0%E5%9D%80%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7/">
+                        <span class="hidden-mobile">利用IPy判断IP地址的合法性</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog+Posts"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog+Posts"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

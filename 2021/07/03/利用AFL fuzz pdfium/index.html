@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。">
+  <meta name="author" content="寒雨">
+  <meta name="keywords" content="">
+  <meta name="description" content="简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用AFL fuzz pdfium">
+<meta property="og:url" content="https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/index.html">
+<meta property="og:site_name" content="Mundi&#39;s Space">
+<meta property="og:description" content="简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-03T04:05:21.000Z">
+<meta property="article:modified_time" content="2021-09-12T07:52:50.000Z">
+<meta property="article:author" content="寒雨">
+<meta property="article:tag" content="Fuzzing">
+<meta property="article:tag" content="模糊测试">
+<meta property="article:tag" content="Chromium">
+<meta property="article:tag" content="AFL">
+<meta property="article:tag" content="pdfium">
+<meta name="twitter:card" content="summary_large_image">
+  
+    <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
+  
+  <title>利用AFL fuzz pdfium - Mundi&#39;s Space</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mundi&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="利用AFL fuzz pdfium">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-03 12:05" pubdate>
+        July 3, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">利用AFL fuzz pdfium</h1>
+            
+              <p class="note note-info">
+                
+                  Last update：2 months ago
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h1><p>安装depot-tools后下载源码</p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash"><span class="hljs-comment"># 安装depot-tools</span><br>git <span class="hljs-built_in">clone</span> https://chromium.googlesource.com/chromium/tools/depot_tools.git<br><span class="hljs-built_in">export</span> PATH=`<span class="hljs-built_in">pwd</span>`/depot_tools:<span class="hljs-string">&quot;<span class="hljs-variable">$PATH</span>&quot;</span><br><span class="hljs-comment"># 下载pdfium</span><br>mkdir repo<br><span class="hljs-built_in">cd</span> repo<br>gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git<br>gclient sync<br><span class="hljs-built_in">cd</span> pdfium<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>ubuntu 或者 Debian 系统可直接使用 <code>./build/install-build-deps.sh</code>安装依赖（不是的可以加上<code>--unsupported</code>试试，或者手动配置依赖），利用<code>gn args out/afl</code>生成编译参数文件，参考如下</p>
+<figure class="highlight ini"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs ini"><span class="hljs-comment"># Build arguments go here.</span><br><span class="hljs-comment"># See &quot;gn args &lt;out_dir&gt; --list&quot; for available build arguments.</span><br><span class="hljs-attr">use_goma</span> = <span class="hljs-literal">false</span> <span class="hljs-comment"># Googlers only. Make sure goma is installed and running first.</span><br><span class="hljs-attr">is_debug</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Enable debugging features.</span><br><br><span class="hljs-attr">pdf_use_skia</span> = <span class="hljs-literal">true</span> <span class="hljs-comment"># Set true to enable experimental skia backend.</span><br><span class="hljs-attr">pdf_use_skia_paths</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Set true to enable experimental skia backend (paths only).</span><br><br><span class="hljs-attr">pdf_enable_xfa</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set false to remove XFA support (implies JS support).</span><br><span class="hljs-attr">pdf_enable_v8</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set false to remove Javascript support.</span><br><span class="hljs-attr">pdf_is_standalone</span> = <span class="hljs-literal">true</span>  <span class="hljs-comment"># Set for a non-embedded build.</span><br><span class="hljs-attr">is_component_build</span> = <span class="hljs-literal">false</span> <span class="hljs-comment"># Disable component build (must be false)</span><br><span class="hljs-attr">v8_static_library</span> = <span class="hljs-literal">true</span><br><br><span class="hljs-attr">clang_use_chrome_plugins</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Currently must be false.</span><br><span class="hljs-attr">use_sysroot</span> = <span class="hljs-literal">false</span>  <span class="hljs-comment"># Currently must be false on Linux, but entirely omitted on windows.</span><br><br><span class="hljs-attr">use_afl</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">is_asan</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">optimize_for_fuzzing</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">symbol_level</span>=<span class="hljs-number">2</span><br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>pdfium 源码仓库中没有afl-fuzz 的代码，需要自己下载，当然也可以使用自己魔改过的afl（默认版本为2.52b，推荐使用2.57b)</p>
+<p><code>https://chromium.googlesource.com/chromium/src/third_party/+/master/afl/ </code></p>
+</blockquote>
+<p>使用 <code>ninja -C out/afl</code> 编译全部文件，或者使用<code>ninja -C out/afl &lt;test target&gt;</code>编译自己想fuzz的目标。</p>
+<h1 id="开始Fuzz"><a href="#开始Fuzz" class="headerlink" title="开始Fuzz"></a>开始Fuzz</h1><p>afl-fuzz 的使用和其他项目一样。初始的种子文件有几个地方可以获取：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/">https://pdfium.googlesource.com/pdfium/+/refs/heads/master/testing/resources/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/mozilla/pdf.js/tree/master/test/pdfs">https://github.com/mozilla/pdf.js/tree/master/test/pdfs</a></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">./afl-fuzz -M 01 -m none -t 30000 -i /home/fuzz/input -o /home/fuzz/out -x /home/fuzz/pdf.dict -- ./pdfium_test @@<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="libjpeg-turbo编译与fuzz"><a href="#libjpeg-turbo编译与fuzz" class="headerlink" title="libjpeg-turbo编译与fuzz"></a>libjpeg-turbo编译与fuzz</h1><blockquote>
+<p><code>https://github.com/libjpeg-turbo/libjpeg-turbo</code></p>
+</blockquote>
+<p><code>libjpeg-turbo</code>是pdfium中默认的JPEG编解码器</p>
+<p>AFL插桩编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir build &amp;&amp; cd build &amp;&amp; cmake -DCMAKE_C_COMPILER=afl-clang-fast -DCMAKE_C_FLAGS=&quot;-g -fsanitize=address&quot; ..<br>CC=afl-clang-fast CXX=afl-clang-fast++ AFL_USE_ASAN=1 make<br></code></pre></div></td></tr></table></figure>
+
+<p>以<code>cjpeg</code>为例选择目标进行fuzz：</p>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">afl-fuzz -M 1 -i ../seed-corpora/afl-testcases/bmp/ -o fuzzout -m none -t 60000  -x ~/AFLplusplus/dictionaries/bmp.dict  -- ./cjpeg-static -quality 95 -dct float -rgb -optimize  -outfile ./1.jpg @@<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="代码覆盖率测试"><a href="#代码覆盖率测试" class="headerlink" title="代码覆盖率测试"></a>代码覆盖率测试</h1><blockquote>
+<p><code>https://github.com/mrash/afl-cov.git</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"> cmake  -DCMAKE_C_FLAGS=&quot;-g -fprofile-arcs -ftest-coverage&quot; -DCMAKE_CXX_FLAGS=&quot;-g  -fprofile-arcs -ftest-coverage&quot; ..<br> make -j8<br><br>~/afl-cov/afl-cov -d ../build/jpegout/ --live --coverage-cmd &quot;./jpegtran-static -progess AFL_FILE&quot; --code-dir . --enable-branch-coverage --overwrite<br><br></code></pre></div></td></tr></table></figure>
+
+
+<div class="hljs code-wrapper"><pre><code>
+</code></pre></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Fuzzing/">Fuzzing</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">模糊测试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Chromium/">Chromium</a>
+                    
+                      <a class="hover-with-bg" href="/tags/AFL/">AFL</a>
+                    
+                      <a class="hover-with-bg" href="/tags/pdfium/">pdfium</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本站所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Chrome V8基础（一）</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/12/AFL++%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%A7%8BFuzz%E4%B8%8Ecrashes%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">AFL++学习日志（一）开始Fuzz与crashes分析</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"en","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
+          {
+            id: '01fe1234663f6eef8fbb5a4d2cba1563'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog+Posts"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog+Posts"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    
+      <script  src="/js/img-lazyload.js" ></script>
+    
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.10.1/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
