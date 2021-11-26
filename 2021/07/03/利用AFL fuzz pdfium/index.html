@@ -24,11 +24,11 @@
 <meta property="og:description" content="简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-03T04:05:21.000Z">
-<meta property="article:modified_time" content="2021-09-12T07:52:50.000Z">
+<meta property="article:modified_time" content="2021-11-25T14:30:40.958Z">
 <meta property="article:author" content="寒雨">
+<meta property="article:tag" content="Chromium">
 <meta property="article:tag" content="Fuzzing">
 <meta property="article:tag" content="模糊测试">
-<meta property="article:tag" content="Chromium">
 <meta property="article:tag" content="AFL">
 <meta property="article:tag" content="pdfium">
 <meta name="twitter:card" content="summary_large_image">
@@ -256,7 +256,7 @@
             
               <p class="note note-info">
                 
-                  Last update：2 months ago
+                  Last update：a day ago
                 
               </p>
             
@@ -292,11 +292,7 @@
 <h1 id="代码覆盖率测试"><a href="#代码覆盖率测试" class="headerlink" title="代码覆盖率测试"></a>代码覆盖率测试</h1><blockquote>
 <p><code>https://github.com/mrash/afl-cov.git</code></p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"> cmake  -DCMAKE_C_FLAGS=&quot;-g -fprofile-arcs -ftest-coverage&quot; -DCMAKE_CXX_FLAGS=&quot;-g  -fprofile-arcs -ftest-coverage&quot; ..<br> make -j8<br><br>~/afl-cov/afl-cov -d ../build/jpegout/ --live --coverage-cmd &quot;./jpegtran-static -progess AFL_FILE&quot; --code-dir . --enable-branch-coverage --overwrite<br><br></code></pre></div></td></tr></table></figure>
-
-
-<div class="hljs code-wrapper"><pre><code>
-</code></pre></div>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cmake  -DCMAKE_C_FLAGS=&quot;-g -fprofile-arcs -ftest-coverage&quot; -DCMAKE_CXX_FLAGS=&quot;-g  -fprofile-arcs -ftest-coverage&quot; ..<br>make -j8<br><br>~/afl-cov/afl-cov -d ../build/jpegout/ --live --coverage-cmd &quot;./jpegtran-static -progess AFL_FILE&quot; --code-dir . --enable-branch-coverage --overwrite<br></code></pre></div></td></tr></table></figure>
 
             </div>
             <hr>
@@ -307,11 +303,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
+                      <a class="hover-with-bg" href="/tags/Chromium/">Chromium</a>
+                    
                       <a class="hover-with-bg" href="/tags/Fuzzing/">Fuzzing</a>
                     
                       <a class="hover-with-bg" href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">模糊测试</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Chromium/">Chromium</a>
                     
                       <a class="hover-with-bg" href="/tags/AFL/">AFL</a>
                     
@@ -332,9 +328,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">
+                      <a href="/2021/07/15/Chromium%20%E7%BB%84%E4%BB%B6%E9%A3%8E%E9%99%A9%E5%89%96%E6%9E%90%E4%B8%8E%E6%94%B6%E6%95%9B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Chrome V8基础（一）</span>
+                        <span class="hidden-mobile">【转载】攻防启示：Chromium 组件风险剖析与收敛</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     

@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /tags
 Disallow: /2000
+Disallow: /lib
 
 Sitemap: https://mundi-xu.github.io/sitemap.xml
