@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2021-11-25T14:27:54.275Z</updated>
+  <updated>2021-11-26T13:54:58.992Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>常见漏洞缓解措施</title>
+    <link href="https://mundi-xu.github.io/2021/11/26/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD/"/>
+    <id>https://mundi-xu.github.io/2021/11/26/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD/</id>
+    <published>2021-11-26T13:05:21.000Z</published>
+    <updated>2021-11-26T13:54:58.992Z</updated>
+    
+    
+    <summary type="html">简单整理Windows和Linux下的常见防护机制。</summary>
+    
+    
+    
+    
+    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
+    
+    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Chrome V8基础（三）</title>
@@ -448,27 +467,6 @@
     <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
     
     <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://mundi-xu.github.io/2018/10/25/hello-world/"/>
-    <id>https://mundi-xu.github.io/2018/10/25/hello-world/</id>
-    <published>2018-10-25T09:21:30.000Z</published>
-    <updated>2021-11-24T10:19:50.484Z</updated>
-    
-    
-    <summary type="html">Welcome to My Blog !</summary>
-    
-    
-    
-    
-    <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
-    
-    <category term="cve" scheme="https://mundi-xu.github.io/tags/cve/"/>
-    
-    <category term="LibRaw" scheme="https://mundi-xu.github.io/tags/LibRaw/"/>
     
   </entry>
   
