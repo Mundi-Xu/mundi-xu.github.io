@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2021-11-26T13:54:58.992Z</updated>
+  <updated>2021-11-29T08:04:43.855Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -17,11 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【转载】为什么机器学习解决网络安全问题总是失败</title>
+    <link href="https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/"/>
+    <id>https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/</id>
+    <published>2021-11-29T07:30:58.000Z</published>
+    <updated>2021-11-29T08:04:43.855Z</updated>
+    
+    
+    <summary type="html">近年来网络安全从业者纷纷神往机器学习的魔力，加之深度学习在图像、NLP等领域的成功，大家都想在此寻求一发银弹。不过作者在安全业界没有看到太多如虎添翼的机器学习案例，更多的是对生产环境里金玉其外的模型效果的失望。为什么机器学习解决网络安全问题总是失败呢？</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="https://mundi-xu.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>常见漏洞缓解措施</title>
-    <link href="https://mundi-xu.github.io/2021/11/26/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD/"/>
-    <id>https://mundi-xu.github.io/2021/11/26/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%BC%93%E8%A7%A3%E6%8E%AA%E6%96%BD/</id>
+    <link href="https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/"/>
+    <id>https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/</id>
     <published>2021-11-26T13:05:21.000Z</published>
-    <updated>2021-11-26T13:54:58.992Z</updated>
+    <updated>2021-11-29T08:09:02.501Z</updated>
     
     
     <summary type="html">简单整理Windows和Linux下的常见防护机制。</summary>
@@ -37,10 +54,10 @@
   
   <entry>
     <title>Chrome V8基础（三）</title>
-    <link href="https://mundi-xu.github.io/2021/08/15/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>https://mundi-xu.github.io/2021/08/15/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/</id>
+    <link href="https://mundi-xu.github.io/2021/08/15/Basics-of-Chrome-V8-3/"/>
+    <id>https://mundi-xu.github.io/2021/08/15/Basics-of-Chrome-V8-3/</id>
     <published>2021-08-15T12:05:21.000Z</published>
-    <updated>2021-11-25T14:27:54.275Z</updated>
+    <updated>2021-11-29T07:58:37.711Z</updated>
     
     
     <summary type="html">本节介绍了Chrome V8的一些基本数据类型和异常处理，其API均能在文档中找到。</summary>
@@ -60,10 +77,10 @@
   
   <entry>
     <title>Chrome V8基础（二）</title>
-    <link href="https://mundi-xu.github.io/2021/07/29/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>https://mundi-xu.github.io/2021/07/29/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <link href="https://mundi-xu.github.io/2021/07/29/Basics-of-Chrome-V8-2/"/>
+    <id>https://mundi-xu.github.io/2021/07/29/Basics-of-Chrome-V8-2/</id>
     <published>2021-07-29T12:05:21.000Z</published>
-    <updated>2021-07-29T12:16:32.000Z</updated>
+    <updated>2021-11-29T07:58:43.556Z</updated>
     
     
     <summary type="html">本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，希望能对读者理解浏览器安全相关产生帮助。</summary>
@@ -83,10 +100,10 @@
   
   <entry>
     <title>Chrome V8基础（一）</title>
-    <link href="https://mundi-xu.github.io/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>https://mundi-xu.github.io/2021/07/27/Chrome%20V8%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <link href="https://mundi-xu.github.io/2021/07/27/Basics-of-Chrome-V8-1/"/>
+    <id>https://mundi-xu.github.io/2021/07/27/Basics-of-Chrome-V8-1/</id>
     <published>2021-07-27T12:05:21.000Z</published>
-    <updated>2021-08-16T07:03:50.000Z</updated>
+    <updated>2021-11-29T07:58:31.705Z</updated>
     
     
     <summary type="html">本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，本节主要为Chrome V8的一些基础知识，包括它的内存机制是怎样的，以及几个基础数据类型。</summary>
@@ -106,10 +123,10 @@
   
   <entry>
     <title>【转载】攻防启示：Chromium 组件风险剖析与收敛</title>
-    <link href="https://mundi-xu.github.io/2021/07/15/Chromium%20%E7%BB%84%E4%BB%B6%E9%A3%8E%E9%99%A9%E5%89%96%E6%9E%90%E4%B8%8E%E6%94%B6%E6%95%9B/"/>
-    <id>https://mundi-xu.github.io/2021/07/15/Chromium%20%E7%BB%84%E4%BB%B6%E9%A3%8E%E9%99%A9%E5%89%96%E6%9E%90%E4%B8%8E%E6%94%B6%E6%95%9B/</id>
+    <link href="https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/"/>
+    <id>https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/</id>
     <published>2021-07-15T07:30:58.000Z</published>
-    <updated>2021-11-26T13:22:00.327Z</updated>
+    <updated>2021-11-29T08:02:05.987Z</updated>
     
     
     <summary type="html">基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。</summary>
@@ -129,10 +146,10 @@
   
   <entry>
     <title>利用AFL fuzz pdfium</title>
-    <link href="https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/"/>
-    <id>https://mundi-xu.github.io/2021/07/03/%E5%88%A9%E7%94%A8AFL%20fuzz%20pdfium/</id>
+    <link href="https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/"/>
+    <id>https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/</id>
     <published>2021-07-03T04:05:21.000Z</published>
-    <updated>2021-11-25T14:30:40.958Z</updated>
+    <updated>2021-11-29T08:05:09.338Z</updated>
     
     
     <summary type="html">简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。</summary>
@@ -140,13 +157,13 @@
     
     
     
-    <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
-    
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
+    
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
     <category term="pdfium" scheme="https://mundi-xu.github.io/tags/pdfium/"/>
     
@@ -154,10 +171,10 @@
   
   <entry>
     <title>AFL++学习日志（一）开始Fuzz与crashes分析</title>
-    <link href="https://mundi-xu.github.io/2021/03/12/AFL++%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%A7%8BFuzz%E4%B8%8Ecrashes%E5%88%86%E6%9E%90/"/>
-    <id>https://mundi-xu.github.io/2021/03/12/AFL++%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%A7%8BFuzz%E4%B8%8Ecrashes%E5%88%86%E6%9E%90/</id>
+    <link href="https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/"/>
+    <id>https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/</id>
     <published>2021-03-12T08:53:57.000Z</published>
-    <updated>2021-09-17T07:52:58.000Z</updated>
+    <updated>2021-11-29T07:58:01.651Z</updated>
     
     
     <summary type="html">本文主要介绍如何使用AFL++快速开始Fuzz一个样例程序和对大量的Fuzzer-Generated Crashes进行分类以及部分工具的安装与使用</summary>
@@ -167,18 +184,18 @@
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="AFL++" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
     <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="AFL++" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
   </entry>
   
   <entry>
     <title>华为鲲鹏服务器下MySQL8的安装与远程连接配置</title>
-    <link href="https://mundi-xu.github.io/2021/03/10/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8BMySQL8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://mundi-xu.github.io/2021/03/10/%E5%8D%8E%E4%B8%BA%E9%B2%B2%E9%B9%8F%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8BMySQL8%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
+    <link href="https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/"/>
+    <id>https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/</id>
     <published>2021-03-10T15:05:21.000Z</published>
-    <updated>2021-03-12T10:04:46.000Z</updated>
+    <updated>2021-11-29T08:06:32.279Z</updated>
     
     
     <summary type="html">在华为鲲鹏学生机Ubuntu 20.04.2 LTS (GNU/Linux 4.15.0-136-generic aarch64)上配置安装MySQL8</summary>
@@ -196,10 +213,10 @@
   
   <entry>
     <title>利用IPy判断IP地址的合法性</title>
-    <link href="https://mundi-xu.github.io/2021/03/02/%E5%88%A9%E7%94%A8IPy%E5%88%A4%E6%96%ADIP%E5%9C%B0%E5%9D%80%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7/"/>
-    <id>https://mundi-xu.github.io/2021/03/02/%E5%88%A9%E7%94%A8IPy%E5%88%A4%E6%96%ADIP%E5%9C%B0%E5%9D%80%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7/</id>
+    <link href="https://mundi-xu.github.io/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/"/>
+    <id>https://mundi-xu.github.io/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/</id>
     <published>2021-03-02T15:00:11.000Z</published>
-    <updated>2021-03-09T09:36:56.000Z</updated>
+    <updated>2021-11-29T08:05:40.020Z</updated>
     
     
     <summary type="html">利用IPy模块的IP类处理常见格式的IP地址，附IP地址格式规范和IPy源码简析</summary>
@@ -219,10 +236,10 @@
   
   <entry>
     <title>【转载】带你搞懂符号执行的前世今生与最近技术</title>
-    <link href="https://mundi-xu.github.io/2021/02/23/%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%E4%B8%8E%E6%9C%80%E8%BF%91%E6%8A%80%E6%9C%AF/"/>
-    <id>https://mundi-xu.github.io/2021/02/23/%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%E4%B8%8E%E6%9C%80%E8%BF%91%E6%8A%80%E6%9C%AF/</id>
+    <link href="https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/"/>
+    <id>https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/</id>
     <published>2021-02-23T07:30:00.000Z</published>
-    <updated>2021-03-12T09:56:34.000Z</updated>
+    <updated>2021-11-29T08:08:35.571Z</updated>
     
     
     <summary type="html">iddm带你读论文——SymQEMU:Compilation-based symbolic execution for binaries</summary>
@@ -236,10 +253,10 @@
   
   <entry>
     <title>计网学习笔记-Introduction</title>
-    <link href="https://mundi-xu.github.io/2021/01/17/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction/"/>
-    <id>https://mundi-xu.github.io/2021/01/17/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction/</id>
+    <link href="https://mundi-xu.github.io/2021/01/17/Computer-Network-Introduction/"/>
+    <id>https://mundi-xu.github.io/2021/01/17/Computer-Network-Introduction/</id>
     <published>2021-01-17T04:47:31.000Z</published>
-    <updated>2021-07-06T14:01:58.000Z</updated>
+    <updated>2021-11-29T08:10:24.226Z</updated>
     
     
     <summary type="html">计算机网络：自顶向下方法第8版第一章的学习笔记</summary>
@@ -263,10 +280,10 @@
   
   <entry>
     <title>WSL2下AFL的安装与测试</title>
-    <link href="https://mundi-xu.github.io/2021/01/09/WSL2%E4%B8%8BAFL%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E6%B5%8B%E8%AF%95/"/>
-    <id>https://mundi-xu.github.io/2021/01/09/WSL2%E4%B8%8BAFL%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E6%B5%8B%E8%AF%95/</id>
+    <link href="https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/"/>
+    <id>https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/</id>
     <published>2021-01-09T02:05:21.000Z</published>
-    <updated>2021-03-31T03:11:10.000Z</updated>
+    <updated>2021-11-29T08:03:27.066Z</updated>
     
     
     <summary type="html">WSL2下AFL的安装教程并利用Fuzzing技术对CVE-2009-0159进行了复现和原理分析。</summary>
@@ -276,22 +293,22 @@
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
     
     <category term="ntp" scheme="https://mundi-xu.github.io/tags/ntp/"/>
     
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
   </entry>
   
   <entry>
     <title>PayBreak防勒索系统简析</title>
-    <link href="https://mundi-xu.github.io/2021/01/01/PayBreak%E9%98%B2%E5%8B%92%E7%B4%A2%E7%B3%BB%E7%BB%9F%E7%AE%80%E6%9E%90/"/>
-    <id>https://mundi-xu.github.io/2021/01/01/PayBreak%E9%98%B2%E5%8B%92%E7%B4%A2%E7%B3%BB%E7%BB%9F%E7%AE%80%E6%9E%90/</id>
+    <link href="https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/"/>
+    <id>https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/</id>
     <published>2021-01-01T02:05:21.000Z</published>
-    <updated>2021-01-06T05:12:54.000Z</updated>
+    <updated>2021-11-29T08:02:41.633Z</updated>
     
     
     <summary type="html">PayBreak是一种创新开源的保护机制，可以解决大部分基于混合加密的勒索软件的威胁。</summary>
@@ -313,10 +330,10 @@
   
   <entry>
     <title>勒索软件结构与加密模式研究</title>
-    <link href="https://mundi-xu.github.io/2020/12/28/%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8F%E7%A0%94%E7%A9%B6/"/>
-    <id>https://mundi-xu.github.io/2020/12/28/%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6%E7%BB%93%E6%9E%84%E4%B8%8E%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8F%E7%A0%94%E7%A9%B6/</id>
+    <link href="https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/"/>
+    <id>https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/</id>
     <published>2020-12-28T07:14:10.000Z</published>
-    <updated>2021-01-01T14:41:18.000Z</updated>
+    <updated>2021-11-29T08:06:01.555Z</updated>
     
     
     <summary type="html">对常见勒索软件的架构与攻击模式的研究。</summary>
@@ -334,10 +351,10 @@
   
   <entry>
     <title>密码学初探-基于RUST的密码系统与算法简析</title>
-    <link href="https://mundi-xu.github.io/2020/12/27/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%9D%E6%8E%A2-%E5%9F%BA%E4%BA%8ERUST%E7%9A%84%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95%E7%AE%80%E6%9E%90/"/>
-    <id>https://mundi-xu.github.io/2020/12/27/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%88%9D%E6%8E%A2-%E5%9F%BA%E4%BA%8ERUST%E7%9A%84%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95%E7%AE%80%E6%9E%90/</id>
+    <link href="https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/"/>
+    <id>https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/</id>
     <published>2020-12-27T06:05:31.000Z</published>
-    <updated>2020-12-27T10:47:08.000Z</updated>
+    <updated>2021-11-29T08:07:59.872Z</updated>
     
     
     <summary type="html">基于 rust 开发的在线加解密系统与各类加密函数的简析。</summary>
@@ -346,8 +363,6 @@
     
     
     <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
     <category term="rust" scheme="https://mundi-xu.github.io/tags/rust/"/>
     
@@ -359,6 +374,8 @@
     
     <category term="密码协议" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E7%A0%81%E5%8D%8F%E8%AE%AE/"/>
     
+    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
+    
     <category term="RC4" scheme="https://mundi-xu.github.io/tags/RC4/"/>
     
     <category term="des" scheme="https://mundi-xu.github.io/tags/des/"/>
@@ -369,10 +386,10 @@
   
   <entry>
     <title>基于区块链的安全日志系统</title>
-    <link href="https://mundi-xu.github.io/2020/07/01/%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/"/>
-    <id>https://mundi-xu.github.io/2020/07/01/%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%AE%89%E5%85%A8%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</id>
+    <link href="https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/"/>
+    <id>https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/</id>
     <published>2020-07-01T11:00:00.000Z</published>
-    <updated>2020-12-27T10:06:44.000Z</updated>
+    <updated>2021-11-29T08:06:49.643Z</updated>
     
     
     <summary type="html">基于区块链技术设计并实现了安全日志系统，采用链上数据存储模式，将本地日志提取关键字段并上传至区块链中存储，同时提供可视化界面让用户能够使用日志相关的安全分析功能。</summary>
@@ -394,10 +411,10 @@
   
   <entry>
     <title>stl-list实现分析</title>
-    <link href="https://mundi-xu.github.io/2019/11/01/stl-list%E5%AE%9E%E7%8E%B0/"/>
-    <id>https://mundi-xu.github.io/2019/11/01/stl-list%E5%AE%9E%E7%8E%B0/</id>
+    <link href="https://mundi-xu.github.io/2019/11/01/stl-list-implementation/"/>
+    <id>https://mundi-xu.github.io/2019/11/01/stl-list-implementation/</id>
     <published>2019-10-31T18:14:00.000Z</published>
-    <updated>2020-12-23T15:54:14.000Z</updated>
+    <updated>2021-11-29T08:03:01.364Z</updated>
     
     
     <summary type="html">stl_list 介绍与源码分析</summary>
@@ -413,10 +430,10 @@
   
   <entry>
     <title>超星学习通开启自动播放模式</title>
-    <link href="https://mundi-xu.github.io/2019/08/21/%E5%AD%A6%E4%B9%A0%E9%80%9A%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://mundi-xu.github.io/2019/08/21/%E5%AD%A6%E4%B9%A0%E9%80%9A%E8%87%AA%E5%8A%A8%E6%92%AD%E6%94%BE%E6%A8%A1%E5%BC%8F/</id>
+    <link href="https://mundi-xu.github.io/2019/08/21/Learn-through-automatic-play-mode/"/>
+    <id>https://mundi-xu.github.io/2019/08/21/Learn-through-automatic-play-mode/</id>
     <published>2019-08-21T03:11:00.000Z</published>
-    <updated>2020-12-23T15:57:58.000Z</updated>
+    <updated>2021-11-29T08:07:10.761Z</updated>
     
     
     <summary type="html">为便于观看超星学习通课程视频，提高学习效率，特推出自动播放模式，仅供交流学习。</summary>
@@ -434,10 +451,10 @@
   
   <entry>
     <title>线性代数的本质（更新中）</title>
-    <link href="https://mundi-xu.github.io/2019/06/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/"/>
-    <id>https://mundi-xu.github.io/2019/06/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/</id>
+    <link href="https://mundi-xu.github.io/2019/06/30/The-essence-of-linear-algebra/"/>
+    <id>https://mundi-xu.github.io/2019/06/30/The-essence-of-linear-algebra/</id>
     <published>2019-06-30T08:21:00.000Z</published>
-    <updated>2021-03-11T08:13:00.000Z</updated>
+    <updated>2021-11-29T08:09:58.823Z</updated>
     
     
     <summary type="html">将只停留在数值运算和公式的线性代数与可视化几何结合，整理自3Blue1Brown的系列视频。</summary>
@@ -446,27 +463,6 @@
     
     
     <category term="线性代数" scheme="https://mundi-xu.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一种神奇的rsa加密算法</title>
-    <link href="https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
-    <id>https://mundi-xu.github.io/2018/11/29/%E4%B8%80%E7%A7%8D%E7%A5%9E%E5%A5%87%E7%9A%84rsa%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</id>
-    <published>2018-11-29T07:21:00.000Z</published>
-    <updated>2021-09-17T08:36:40.000Z</updated>
-    
-    
-    <summary type="html">新的算法并没有透露 `n`，只给定了两个大整数：`(p*q)^(p+q)` 和 `(p*q)^(p-q)`，其中 `^` 是按位异或运算。</summary>
-    
-    
-    
-    
-    <category term="ctf" scheme="https://mundi-xu.github.io/tags/ctf/"/>
-    
-    <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
   </entry>
   
