@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2021-11-29T08:25:13.311Z</updated>
+  <updated>2021-11-29T16:05:29.048Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/"/>
     <id>https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/</id>
     <published>2021-11-29T07:30:58.000Z</published>
-    <updated>2021-11-29T08:25:13.311Z</updated>
+    <updated>2021-11-29T16:05:29.048Z</updated>
     
     
     <summary type="html">近年来网络安全从业者纷纷神往机器学习的魔力，大家都想在此寻求一发银弹。不过作者在安全业界没有看到太多如虎添翼的机器学习案例,为什么机器学习解决网络安全问题总是失败呢？</summary>
@@ -30,6 +30,8 @@
     
     
     <category term="机器学习" scheme="https://mundi-xu.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="网络安全" scheme="https://mundi-xu.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
