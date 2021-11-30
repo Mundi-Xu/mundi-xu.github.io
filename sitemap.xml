@@ -2,12 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/</loc>
+    
+    <lastmod>2021-11-30</lastmod>
+    
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://mundi-xu.github.io/2021/11/30/Architectural-Support-for-System-Security/</loc>
+    
+    <lastmod>2021-11-30</lastmod>
+    
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
     <loc>https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/</loc>
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -15,8 +33,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -24,17 +42,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/</loc>
-    
-    <lastmod>2021-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -42,8 +51,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -51,8 +60,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -60,8 +69,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -69,8 +78,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -78,8 +87,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -87,8 +96,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -96,8 +105,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -105,8 +114,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -114,8 +123,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -123,8 +132,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -132,8 +141,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -141,8 +150,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -150,8 +159,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -159,8 +168,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -168,8 +177,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -177,8 +186,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -186,8 +195,8 @@
     
     <lastmod>2021-11-29</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -195,8 +204,8 @@
     
     <lastmod>2021-11-24</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <url>
@@ -204,8 +213,8 @@
     
     <lastmod>2021-09-22</lastmod>
     
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
   </url>
   
 

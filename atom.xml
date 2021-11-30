@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2021-11-29T16:05:29.048Z</updated>
+  <updated>2021-11-30T15:01:27.957Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Architectural Support for System Security</title>
+    <link href="https://mundi-xu.github.io/2021/11/30/Architectural-Support-for-System-Security/"/>
+    <id>https://mundi-xu.github.io/2021/11/30/Architectural-Support-for-System-Security/</id>
+    <published>2021-11-30T14:57:21.000Z</published>
+    <updated>2021-11-30T15:01:27.957Z</updated>
+    
+    
+    <summary type="html">Hardware Features, Usage and Scenarios.</summary>
+    
+    
+    
+    
+    <category term="Hardware" scheme="https://mundi-xu.github.io/tags/Hardware/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+  </entry>
   
   <entry>
     <title>【转载】为什么机器学习解决网络安全问题总是失败</title>
@@ -40,13 +59,15 @@
     <link href="https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/"/>
     <id>https://mundi-xu.github.io/2021/11/26/Common-vulnerabilities-mitigation-measures/</id>
     <published>2021-11-26T13:05:21.000Z</published>
-    <updated>2021-11-29T08:09:02.501Z</updated>
+    <updated>2021-11-30T15:06:01.651Z</updated>
     
     
     <summary type="html">简单整理Windows和Linux下的常见防护机制。</summary>
     
     
     
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
     
@@ -448,23 +469,6 @@
     <category term="something useful" scheme="https://mundi-xu.github.io/tags/something-useful/"/>
     
     <category term="超星学习通" scheme="https://mundi-xu.github.io/tags/%E8%B6%85%E6%98%9F%E5%AD%A6%E4%B9%A0%E9%80%9A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>线性代数的本质（更新中）</title>
-    <link href="https://mundi-xu.github.io/2019/06/30/The-essence-of-linear-algebra/"/>
-    <id>https://mundi-xu.github.io/2019/06/30/The-essence-of-linear-algebra/</id>
-    <published>2019-06-30T08:21:00.000Z</published>
-    <updated>2021-11-29T08:19:40.834Z</updated>
-    
-    
-    <summary type="html">将只停留在数值运算和公式的线性代数与可视化几何结合，整理自3Blue1Brown的系列视频。</summary>
-    
-    
-    
-    
-    <category term="线性代数" scheme="https://mundi-xu.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
   </entry>
   
