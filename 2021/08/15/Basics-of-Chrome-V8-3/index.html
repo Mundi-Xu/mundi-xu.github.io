@@ -24,7 +24,7 @@
 <meta property="og:description" content="本节介绍了Chrome V8的一些基本数据类型和异常处理，其API均能在文档中找到。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-15T12:05:21.000Z">
-<meta property="article:modified_time" content="2021-11-29T07:58:37.711Z">
+<meta property="article:modified_time" content="2021-12-30T08:43:00.942Z">
 <meta property="article:author" content="寒雨">
 <meta property="article:tag" content="Chromium">
 <meta property="article:tag" content="Chrome">
@@ -72,7 +72,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -257,7 +257,7 @@
             
               <p class="note note-info">
                 
-                  Last update：a month ago
+                  Last update：5 days ago
                 
               </p>
             
@@ -290,7 +290,7 @@
 <p>现在<code>String::NewFromUtf8</code>长这样：</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">MaybeLocal&lt;String&gt; <span class="hljs-title">String::NewFromUtf8</span><span class="hljs-params">(Isolate* isolate, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* data,</span></span><br><span class="hljs-params"><span class="hljs-function">                                       NewStringType type, <span class="hljs-keyword">int</span> length)</span> </span>&#123;<br>  <span class="hljs-built_in">NEW_STRING</span>(isolate, String, NewFromUtf8, <span class="hljs-keyword">char</span>, data, type, length);<br>  <span class="hljs-keyword">return</span> result;  <br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><code>NEW_STRING</code>宏在<code>src/api/api.cc</code>中可以找到，可以用下述命令查看展开后的样子：</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> g++ -I./out/x64.release_gcc/gen -I./include -I. -E src/api/api.cc &gt; output</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">g++ -I./out/x64.release_gcc/gen -I./include -I. -E src/api/api.cc &gt; output<br></code></pre></div></td></tr></table></figure>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">MaybeLocal&lt;String&gt; <span class="hljs-title">String::NewFromUtf8</span><span class="hljs-params">(Isolate* isolate, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* data,</span></span><br><span class="hljs-params"><span class="hljs-function">                                       NewStringType type, <span class="hljs-keyword">int</span> length)</span> </span>&#123;<br>  MaybeLocal&lt;String&gt; result;<br>  <span class="hljs-keyword">if</span> (length == <span class="hljs-number">0</span>) &#123;<br>    result = String::<span class="hljs-built_in">Empty</span>(isolate);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (length &gt; i::String::kMaxLength) &#123;<br>    result = MaybeLocal&lt;String&gt;();<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    i::Isolate* i_isolate = <span class="hljs-keyword">reinterpret_cast</span>&lt;internal::Isolate*&gt;(isolate);<br>    i::VMState&lt;v8::OTHER&gt; __state__((i_isolate));;<br>    i::RuntimeCallTimerScope _runtime_timer( i_isolate, i::RuntimeCallCounterId::kAPI_String_NewFromUtf8);<br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-keyword">auto</span>&amp;&amp; logger = (i_isolate)-&gt;<span class="hljs-built_in">logger</span>();<br>      <span class="hljs-keyword">if</span> (logger-&gt;<span class="hljs-built_in">is_logging</span>())<br>        logger-&gt;<span class="hljs-built_in">ApiEntryCall</span>(<span class="hljs-string">&quot;v8::&quot;</span> <span class="hljs-string">&quot;String&quot;</span> <span class="hljs-string">&quot;::&quot;</span> <span class="hljs-string">&quot;NewFromUtf8&quot;</span>);<br>    &#125; <span class="hljs-keyword">while</span> (<span class="hljs-literal">false</span>);<br>    <span class="hljs-keyword">if</span> (length &lt; <span class="hljs-number">0</span>)<br>      length = <span class="hljs-built_in">StringLength</span>(data);<br>     i::Handle&lt;i::String&gt; handle_result = <span class="hljs-built_in">NewString</span>(i_isolate-&gt;<span class="hljs-built_in">factory</span>(), type, i::Vector&lt;<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>&gt;(data, length)) .<span class="hljs-built_in">ToHandleChecked</span>();<br>     result = Utils::<span class="hljs-built_in">ToLocal</span>(handle_result);<br>  &#125;;<br>  <span class="hljs-keyword">return</span> result;  <br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>有很多的检查是不需要的，可以移到编译时检查，比如字符串的最大长度：</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">int</span> N&gt;<br><span class="hljs-function"><span class="hljs-keyword">static</span> V8_WARN_UNUSED_RESULT Local&lt;String&gt; <span class="hljs-title">NewFromUtf8Literal</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">    Isolate* isolate, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> (&amp;literal)[N],</span></span><br><span class="hljs-params"><span class="hljs-function">    NewStringType type = NewStringType::kNormal)</span> </span>&#123;<br>  <span class="hljs-built_in"><span class="hljs-keyword">static_assert</span></span>(N &lt;= kMaxLength, <span class="hljs-string">&quot;String is too long&quot;</span>);<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">NewFromUtf8Literal</span>(isolate, literal, type, N - <span class="hljs-number">1</span>);      <br>&#125;<br></code></pre></div></td></tr></table></figure>
@@ -640,58 +640,9 @@
 
 
 
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
-
-  
 
 
 
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({"theme":"default"});
-    }
-  </script>
 
 
 

@@ -24,7 +24,7 @@
 <meta property="og:description" content="本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，本节主要为Chrome V8的一些基础知识，包括它的内存机制是怎样的，以及几个基础数据类型。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-27T12:05:21.000Z">
-<meta property="article:modified_time" content="2021-11-29T07:58:31.705Z">
+<meta property="article:modified_time" content="2021-12-30T08:43:02.569Z">
 <meta property="article:author" content="寒雨">
 <meta property="article:tag" content="Chromium">
 <meta property="article:tag" content="Chrome">
@@ -72,7 +72,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -257,7 +257,7 @@
             
               <p class="note note-info">
                 
-                  Last update：a month ago
+                  Last update：5 days ago
                 
               </p>
             
@@ -375,7 +375,7 @@
 <p>所以一个persistent object是怎么创建的呢？让我们用下述代码来研究研究：</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;gtest/gtest.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;v8.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;v8_test_fixture.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;src/objects/objects.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;src/objects/slots-inl.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;src/api/api-inl.h&quot;</span></span><br><br><span class="hljs-keyword">extern</span> <span class="hljs-keyword">void</span> _v8_internal_Print_Object(<span class="hljs-keyword">void</span>* object);<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersistentTest</span> :</span> <span class="hljs-keyword">public</span> V8TestFixture &#123;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Something</span> &#123;</span><br> <span class="hljs-keyword">public</span>:<br>  <span class="hljs-built_in">Something</span>(v8::Isolate* isolate, v8::Local&lt;v8::Object&gt; obj);<br>  <span class="hljs-function">v8::Persistent&lt;v8::Object&gt;&amp; <span class="hljs-title">persistent</span><span class="hljs-params">()</span></span>;<br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">make_weak</span><span class="hljs-params">()</span></span>;<br><br> <span class="hljs-keyword">private</span>:<br>  v8::Persistent&lt;v8::Object&gt; persistent_handle_;<br>&#125;;<br><br>Something::<span class="hljs-built_in">Something</span>(v8::Isolate* isolate,<br>                     v8::Local&lt;v8::Object&gt; obj) : <span class="hljs-built_in">persistent_handle_</span>(isolate, obj) &#123;<br>&#125;<br><br><span class="hljs-function">v8::Persistent&lt;v8::Object&gt;&amp; <span class="hljs-title">Something::persistent</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> persistent_handle_;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">WeakCallback</span><span class="hljs-params">(<span class="hljs-keyword">const</span> v8::WeakCallbackInfo&lt;Something&gt;&amp; data)</span> </span>&#123;<br>  Something* obj = data.<span class="hljs-built_in">GetParameter</span>();<br>  std::cout &lt;&lt; <span class="hljs-string">&quot;in make weak callback...&quot;</span> &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">WeakCallbackVoid</span><span class="hljs-params">(<span class="hljs-keyword">const</span> v8::WeakCallbackInfo&lt;<span class="hljs-keyword">void</span>&gt;&amp; data)</span> </span>&#123;<br>  Something* obj = <span class="hljs-keyword">reinterpret_cast</span>&lt;Something*&gt;(data.<span class="hljs-built_in">GetParameter</span>());<br>  <span class="hljs-comment">//std::cout &lt;&lt; &quot;in make weak callback...&quot; &lt;&lt; &#x27;\n&#x27;;</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Something::make_weak</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">/*</span><br><span class="hljs-comment">  auto cb = [](const v8::WeakCallbackInfo&lt;Something&gt;&amp; data) &#123;</span><br><span class="hljs-comment">        Something* obj = data.GetParameter();</span><br><span class="hljs-comment">        std::cout &lt;&lt; &quot;in make weak callback...&quot; &lt;&lt; &#x27;\n&#x27;;</span><br><span class="hljs-comment">  &#125;;</span><br><span class="hljs-comment">  */</span><br>  <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> v8::WeakCallbackInfo&lt;Something&gt;::Callback Something_Callback;<br>  Something_Callback something_callback = WeakCallback;<br><br>  <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> v8::WeakCallbackInfo&lt;<span class="hljs-keyword">void</span>&gt;::Callback v8_Callback;<br>  <span class="hljs-comment">//#if defined(__GNUC__) &amp;&amp; !defined(__clang__)</span><br>   <span class="hljs-comment">// #pragma GCC diagnostic push</span><br>    <span class="hljs-comment">//#pragma GCC diagnostic ignored &quot;-Wcast-function-type&quot;</span><br>  <span class="hljs-comment">//#endif</span><br>    v8_Callback cb = <span class="hljs-keyword">reinterpret_cast</span>&lt;v8_Callback&gt;(WeakCallbackVoid);<br>    <span class="hljs-comment">//persistent_handle_.SetWeak(this, WeakCallback, v8::WeakCallbackType::kParameter);</span><br>  <span class="hljs-comment">//#if defined(__GNUC__) &amp;&amp; !defined(__clang__)</span><br>    <span class="hljs-comment">//#pragma GCC diagnostic pop</span><br>  <span class="hljs-comment">//#endif</span><br><br>&#125;<br><br><span class="hljs-built_in">TEST_F</span>(PersistentTest, object) &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">const</span> v8::HandleScope <span class="hljs-title">handle_scope</span><span class="hljs-params">(V8TestFixture::isolate_)</span></span>;<br>  v8::Handle&lt;v8::Context&gt; context = v8::Context::<span class="hljs-built_in">New</span>(isolate_,<br>                                         <span class="hljs-literal">nullptr</span>,<br>                                         v8::Local&lt;v8::ObjectTemplate&gt;());<br>  v8::<span class="hljs-function">Context::Scope <span class="hljs-title">context_scope</span><span class="hljs-params">(context)</span></span>;<br>  v8::Local&lt;v8::Object&gt; object = v8::Object::<span class="hljs-built_in">New</span>(isolate_);<br>  <span class="hljs-function">Something <span class="hljs-title">s</span><span class="hljs-params">(isolate_, object)</span></span>;<br>  s.<span class="hljs-built_in">make_weak</span>();<br>  <span class="hljs-built_in">EXPECT_EQ</span>(<span class="hljs-literal">false</span>, s.<span class="hljs-built_in">persistent</span>().<span class="hljs-built_in">IsEmpty</span>()) &lt;&lt; <span class="hljs-string">&quot;Default constructed Local should be empty&quot;</span>;<br>&#125;<br><br><span class="hljs-built_in">TEST_F</span>(PersistentTest, PrintObject) &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">const</span> v8::HandleScope <span class="hljs-title">handle_scope</span><span class="hljs-params">(isolate_)</span></span>;<br>  v8::<span class="hljs-function">Isolate::Scope <span class="hljs-title">isolate_scope</span><span class="hljs-params">(isolate_)</span></span>;<br>  v8::Handle&lt;v8::Context&gt; context = v8::Context::<span class="hljs-built_in">New</span>(isolate_,<br>                                         <span class="hljs-literal">nullptr</span>,<br>                                         v8::Local&lt;v8::ObjectTemplate&gt;());<br>  v8::<span class="hljs-function">Context::Scope <span class="hljs-title">context_scope</span><span class="hljs-params">(context)</span></span>;<br><br>  v8::Local&lt;v8::Object&gt; obj = v8::Object::<span class="hljs-built_in">New</span>(isolate_);<br>  <span class="hljs-comment">//v8::internal::Object** ppo = ((v8::internal::Object**)(*obj));</span><br>  <span class="hljs-comment">//_v8_internal_Print_Object(*ppo);</span><br>  _v8_internal_Print_Object(*((v8::internal::Object**)*obj));<br><br>  v8::internal::Handle&lt;v8::internal::Object&gt; h = v8::Utils::<span class="hljs-built_in">OpenHandle</span>(*obj); <br>  _v8_internal_Print_Object((v8::internal::Address*)h-&gt;<span class="hljs-built_in">ptr</span>());<br><br>  v8::internal::Object o = *h;<br>  v8::<span class="hljs-function">internal::ObjectSlot <span class="hljs-title">slot</span><span class="hljs-params">(h-&gt;ptr())</span></span>;<br>  v8::internal::Address a = slot.<span class="hljs-built_in">address</span>();<br><br>  _v8_internal_Print_Object((v8::internal::Address*)v8::Utils::<span class="hljs-built_in">OpenHandle</span>(*obj)-&gt;<span class="hljs-built_in">ptr</span>());<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">$ make ./persistent-object_test<br>$ ./persistent-object_test --gtest_filter=PersistentTest.value<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">make ./persistent-object_test<br>./persistent-object_test --gtest_filter=PersistentTest.value<br></code></pre></div></td></tr></table></figure>
 <p>与Local不同的是，持久句柄通常是通过Local升级而成，所以它通常是在构造函数中传入一个本地句柄。持久句柄的构造函数有几种常用的重载。</p>
 <ul>
 <li><code>Persistent()</code> 直接创建一个持久句柄，这种方法获得的持久句柄通常会在后续再调用别的方法对一个本地句柄进行升级。</li>
@@ -657,58 +657,9 @@
 
 
 
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
-
-  
 
 
 
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js" ></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({"theme":"default"});
-    }
-  </script>
 
 
 
