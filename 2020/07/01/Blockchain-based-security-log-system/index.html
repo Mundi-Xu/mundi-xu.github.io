@@ -23,17 +23,6 @@
 <meta property="og:site_name" content="Mundi&#39;s Space">
 <meta property="og:description" content="基于区块链技术设计并实现了安全日志系统，采用链上数据存储模式，将本地日志提取关键字段并上传至区块链中存储，同时提供可视化界面让用户能够使用日志相关的安全分析功能。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/System_design_drawing.jpg">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Hardware_topology_design.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Collection_module_design.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Fabric_v0.6_architecture.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/fabric_v0.6_flowchart.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/On-chain_log_storage_diagram.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Node_active_recovery_flowchart.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/blockchain_working_icon.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Truncated_schematic.png">
 <meta property="article:published_time" content="2020-07-01T11:00:00.000Z">
 <meta property="article:modified_time" content="2021-11-29T08:06:49.643Z">
 <meta property="article:author" content="寒雨">
@@ -43,7 +32,6 @@
 <meta property="article:tag" content="智能合约">
 <meta property="article:tag" content="Fabric v0.6">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/System_design_drawing.jpg">
   
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
@@ -312,43 +300,70 @@
 <h1 id="设计与实现">设计与实现</h1>
 <h2 id="整体设计">整体设计</h2>
 <h3 id="功能设计">功能设计</h3>
-<p>本项目设计并实现了基于区块链的安全日志系统。该系统共有三个模块：<strong>日志收集模块</strong>，<strong>日志存储模块</strong>，<strong>日志分析展示模块</strong>。日志收集模块提供日志过滤，关键字提取和日志发送的功能，支持处理任意格式日志。对于日志存储模块，我们基于fabric v0.6区块链实现日志接收，安全存储与查询功能。同时我们利用grafana数据可视化工具与区块链进行对接，实现日志可视化分析功能。在各个模块的数据传输中，会对数据进行<strong>签名</strong>来进行身份验证，以防日志伪造等问题。</p>
+<p>本项目设计并实现了基于区块链的安全日志系统。该系统共有三个模块：<strong>日志收集模块</strong>，<strong>日志存储模块</strong>，<strong>日志分析展示模块</strong>。日志收集模块提供日志过滤，关键字提取和日志发送的功能，支持处理任意格式日志。对于日志存储模块，我们基于fabric
+v0.6区块链实现日志接收，安全存储与查询功能。同时我们利用grafana数据可视化工具与区块链进行对接，实现日志可视化分析功能。在各个模块的数据传输中，会对数据进行<strong>签名</strong>来进行身份验证，以防日志伪造等问题。</p>
 <p>整个项目的功能设计图如下：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/System_design_drawing.jpg" srcset="/img/loading.gif" lazyload alt="系统功能设计图" /><figcaption aria-hidden="true">系统功能设计图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/System_design_drawing.jpg" srcset="/img/loading.gif" lazyload
+alt="系统功能设计图" />
+<figcaption aria-hidden="true">系统功能设计图</figcaption>
 </figure>
 <h3 id="硬件拓扑设计">硬件拓扑设计</h3>
 <p>本项目的整体框架是在各个产生日志的web服务器上部署日志收集模块来获取日志，将日志发送到区块链，各节点进行共识后存储。然后grafana从区块链中读取日志数据，进行可视化分析与展示。整个系统的硬件拓扑图如下：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Hardware_topology_design.png" srcset="/img/loading.gif" lazyload alt="项目硬件拓扑设计图" /><figcaption aria-hidden="true">项目硬件拓扑设计图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Hardware_topology_design.png" srcset="/img/loading.gif" lazyload
+alt="项目硬件拓扑设计图" />
+<figcaption aria-hidden="true">项目硬件拓扑设计图</figcaption>
 </figure>
 <h3 id="具体流程设计">具体流程设计</h3>
 <h4 id="日志收集模块设计">日志收集模块设计</h4>
-<p>日志收集模块安装于各个产生日志的服务器上，运维人员通过<strong>HTTP API</strong>的方式进行日志收集任务管理、更新，脱离配置文件。日志收集模块接收到任务后，对指定的日志文件进行按行读取，等待读取至100条（默认值，可自定义修改）时，将日志打包根据任务内容进行过滤与关键字段提取，最后发送至区块链。</p>
+<p>日志收集模块安装于各个产生日志的服务器上，运维人员通过<strong>HTTP
+API</strong>的方式进行日志收集任务管理、更新，脱离配置文件。日志收集模块接收到任务后，对指定的日志文件进行按行读取，等待读取至100条（默认值，可自定义修改）时，将日志打包根据任务内容进行过滤与关键字段提取，最后发送至区块链。</p>
 <p>工作流程如下：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Collection_module_design.png" srcset="/img/loading.gif" lazyload alt="日志收集模块设计流程图" /><figcaption aria-hidden="true">日志收集模块设计流程图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Collection_module_design.png" srcset="/img/loading.gif" lazyload
+alt="日志收集模块设计流程图" />
+<figcaption aria-hidden="true">日志收集模块设计流程图</figcaption>
 </figure>
 <h4 id="区块链存储模块设计">区块链存储模块设计</h4>
-<p>区块链存储模块是在 hyperledger fabricv0.6 的基础上改写智能合约实现的，提供 RESTFUL API 进行日志接收，查询日志功能。</p>
-<p>在Fabric v0.6版本中，主要分为Membership、Consensus、Chaincode、Ledger、P2P、Event Stream等核心模块。</p>
+<p>区块链存储模块是在 hyperledger fabricv0.6
+的基础上改写智能合约实现的，提供 RESTFUL API
+进行日志接收，查询日志功能。</p>
+<p>在Fabric
+v0.6版本中，主要分为Membership、Consensus、Chaincode、Ledger、P2P、Event
+Stream等核心模块。</p>
 <ul>
-<li>Membership：负责签发相应的E-cert、T-cert、TLS-cert等证书。会员注册、⾝身份保护、 内容保密、交易审计功 能，以保证平台访问的安全性。</li>
+<li>Membership：负责签发相应的E-cert、T-cert、TLS-cert等证书。会员注册、⾝身份保护、
+内容保密、交易审计功 能，以保证平台访问的安全性。</li>
 <li>Consensus：负责整个区块链的共识，统一交易顺序，保证区块链的一致性。</li>
 <li>Chaincode：即链码（Fabric中的智能合约），用于执行区块链网络中的交易。</li>
 <li>Ledger：用于存储Transaction log以及交易中的Key-Value。</li>
 <li>P2P：基于Google的Grpc框架的底层网络通信层。</li>
-<li>Event Stream：事件订阅发布组建，用于接收交易及区块事件。贯穿于其他各个组件中间，为各个组件间的异步通信提供了技术实现</li>
-<li>区块服务（Blockchain Services）：负责节点间的共识管理、账本的分布式计算、账本的存储以及节 点间的P2P协议功能的实现，是区块链的核⼼心组成部分，为区块 链的主体功能提供了底层⽀撑。</li>
+<li>Event
+Stream：事件订阅发布组建，用于接收交易及区块事件。贯穿于其他各个组件中间，为各个组件间的异步通信提供了技术实现</li>
+<li>区块服务（Blockchain
+Services）：负责节点间的共识管理、账本的分布式计算、账本的存储以及节
+点间的P2P协议功能的实现，是区块链的核⼼心组成部分，为区块
+链的主体功能提供了底层⽀撑。</li>
 </ul>
 <p>Fabric v0.6版本的架构图如下：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Fabric_v0.6_architecture.png" srcset="/img/loading.gif" lazyload alt="Fabric v0.6架构图" /><figcaption aria-hidden="true">Fabric v0.6架构图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Fabric_v0.6_architecture.png" srcset="/img/loading.gif" lazyload
+alt="Fabric v0.6架构图" />
+<figcaption aria-hidden="true">Fabric v0.6架构图</figcaption>
 </figure>
-<p>hyperledger fabricv0.6使用pbft (Practical Byzantine Fault Tolerance,实用拜占庭容错算法)作为共识算法，可以在信任程度较低的场景下避免拜占庭问题。在3f+1个共识节点中能忍受f个节点出错且依然能实现正确共识，提高现实使用中的容错率，增强实用性。</p>
+<p>hyperledger fabricv0.6使用pbft (Practical Byzantine Fault
+Tolerance,实用拜占庭容错算法)作为共识算法，可以在信任程度较低的场景下避免拜占庭问题。在3f+1个共识节点中能忍受f个节点出错且依然能实现正确共识，提高现实使用中的容错率，增强实用性。</p>
 <p>下图为Fabric v0.6的运行流程图：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/fabric_v0.6_flowchart.png" srcset="/img/loading.gif" lazyload alt="Fabric v0.6运行流程图" /><figcaption aria-hidden="true">Fabric v0.6运行流程图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/fabric_v0.6_flowchart.png" srcset="/img/loading.gif" lazyload
+alt="Fabric v0.6运行流程图" />
+<figcaption aria-hidden="true">Fabric v0.6运行流程图</figcaption>
 </figure>
 <p>日志收集模块需要先向Membership申请E-cert，通过E-cert去申请T-cert，由T-cert对应的私钥进行签名日志发送至VP节点进行三阶段共识，完成之后各个节点会通过Chaincode按顺序执行区块中的交易，并更新账本。</p>
 <h4 id="可视化分析模块设计">可视化分析模块设计</h4>
@@ -371,16 +386,25 @@
 <h4 id="extractor">extractor</h4>
 <p>在日志收集任务部署时指定日志分隔符用于将该行日志分成若干段，并根据指定的对应关键字段名称及字段位置，提取出关键字段，同时将其余日志字段丢弃。也可通过不指定分隔符和关键字段名称，位置来不进行关键字段提取，这时返回整行日志。为了使日志在区块链中按时间顺序储存，在extract过程中判断有无timestamp字段，若无，则把当前时间添加到timestam字段。</p>
 <h4 id="sender">sender</h4>
-<p>在日志收集任务部署时指定目标区块链各节点的url，并以当前日志任务名作为日志包索引，将已经过滤和提取关键字段的日志利用fabric v0.6的restful api进行日志发送。在发送时，根据任务配置中的区块链节点，每次随机选取其中一个节点作为pbft共识的主节点，进行日志发送，从而每个区块链节点都作为主节点进行共识，提高共识并行性。</p>
+<p>在日志收集任务部署时指定目标区块链各节点的url，并以当前日志任务名作为日志包索引，将已经过滤和提取关键字段的日志利用fabric
+v0.6的restful
+api进行日志发送。在发送时，根据任务配置中的区块链节点，每次随机选取其中一个节点作为pbft共识的主节点，进行日志发送，从而每个区块链节点都作为主节点进行共识，提高共识并行性。</p>
 <h3 id="区块链存储模块">区块链存储模块</h3>
 <h4 id="接收并存储日志">接收并存储日志</h4>
-<p>当区块链节点接收到日志收集模块发送的chaincode invoke请求时，chaincode通过一个事务请求来执行对账本的当前状态数据库操作。chaincode执行会生成一组读写集，将接收到的第一个参数，即日志文件路径作为ID，这组读写集将被提交到状态数据库储存，并转发给其他共识节点进行pbft共识。</p>
+<p>当区块链节点接收到日志收集模块发送的chaincode
+invoke请求时，chaincode通过一个事务请求来执行对账本的当前状态数据库操作。chaincode执行会生成一组读写集，将接收到的第一个参数，即日志文件路径作为ID，这组读写集将被提交到状态数据库储存，并转发给其他共识节点进行pbft共识。</p>
 <p>下图为pbft执行过程：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart1.png" srcset="/img/loading.gif" lazyload alt="pbft运行流程图1" /><figcaption aria-hidden="true">pbft运行流程图1</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart1.png" srcset="/img/loading.gif" lazyload
+alt="pbft运行流程图1" />
+<figcaption aria-hidden="true">pbft运行流程图1</figcaption>
 </figure>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart2.png" srcset="/img/loading.gif" lazyload alt="pbft运行流程图2" /><figcaption aria-hidden="true">pbft运行流程图2</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/pbft_flowchart2.png" srcset="/img/loading.gif" lazyload
+alt="pbft运行流程图2" />
+<figcaption aria-hidden="true">pbft运行流程图2</figcaption>
 </figure>
 <p>假设系统要求每次产生区块的时间间隔为𝑡，则在一切正常的情况下，算法按照以下流程执行：</p>
 <ol type="1">
@@ -391,7 +415,8 @@
 <li>任意节点在收到至少𝑛−𝑓个〈𝑏𝑙𝑜𝑐𝑘〉𝜎𝑖后，共识达成并发布完整的区块</li>
 <li>任意节点在收到完整区块后，将包含的日志从内存中删除，并开始下一轮共识</li>
 </ol>
-<p>该算法要求参与共识的节点中，至少有𝑛−𝑓个节点具有相同的初始状态：即对于所有的节点𝑖，具有相同的区块高度ℎ和视图编号𝑣。而这个要求很容易达成：通过区块同步来达到ℎ的一致性，通过视图更换来达到𝑣的一致性。节点在监听全网交易以及在收到提案后，需要对交易进行合法性验证。如果发现非法交易，则不能将其写入内存池；如果非法交易包含在提案中，则放弃本次共识并立即开始视图更换。 交易的验证流程如下：</p>
+<p>该算法要求参与共识的节点中，至少有𝑛−𝑓个节点具有相同的初始状态：即对于所有的节点𝑖，具有相同的区块高度ℎ和视图编号𝑣。而这个要求很容易达成：通过区块同步来达到ℎ的一致性，通过视图更换来达到𝑣的一致性。节点在监听全网交易以及在收到提案后，需要对交易进行合法性验证。如果发现非法交易，则不能将其写入内存池；如果非法交易包含在提案中，则放弃本次共识并立即开始视图更换。
+交易的验证流程如下：</p>
 <ol type="1">
 <li>交易的数据格式是否符合系统规则，如果不符合则判定为非法；</li>
 <li>交易在区块链中是否已经存在，如果存在则判定为非法；</li>
@@ -403,54 +428,92 @@
 <ol type="1">
 <li>令𝑘 = 1，𝑣𝑘 = 𝑣 + 𝑘；</li>
 <li>节点𝑖发出视图更换请求〈𝐶ℎ𝑎𝑛𝑔𝑒𝑉𝑖𝑒𝑤,ℎ,𝑣,𝑖,𝑣𝑘〉；</li>
-<li>任意节点收到至少𝑛 − 𝑓个来自不同𝑖的相同𝑣𝑘后，视图更换达成，令𝑣 = 𝑣𝑘并开始共识；</li>
+<li>任意节点收到至少𝑛 − 𝑓个来自不同𝑖的相同𝑣𝑘后，视图更换达成，令𝑣 =
+𝑣𝑘并开始共识；</li>
 <li>如果在经过2𝑣𝑘+1.𝑡的时间间隔后，视图更换仍未达成，则𝑘递增并回到第2步；</li>
 </ol>
-<p>随着𝑘的增加，超时的等待时间也会呈指数级增加，可以避免频繁的视图更换操作，并使各节点尽快对𝑣达成一致。 而在视图更换达成之前，原来的视图𝑣依然有效，由此避免了因偶然性的网络延迟超时而导致不必要的视图更换。</p>
+<p>随着𝑘的增加，超时的等待时间也会呈指数级增加，可以避免频繁的视图更换操作，并使各节点尽快对𝑣达成一致。
+而在视图更换达成之前，原来的视图𝑣依然有效，由此避免了因偶然性的网络延迟超时而导致不必要的视图更换。</p>
 <p>最终日志在链上储存如下：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/On-chain_log_storage_diagram.png" srcset="/img/loading.gif" lazyload alt="链上日志储存图" /><figcaption aria-hidden="true">链上日志储存图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/On-chain_log_storage_diagram.png" srcset="/img/loading.gif" lazyload
+alt="链上日志储存图" />
+<figcaption aria-hidden="true">链上日志储存图</figcaption>
 </figure>
 <h4 id="节点主动恢复的功能">节点主动恢复的功能</h4>
 <p>区块链网络在运行过程中，可能出现网络抖动、磁盘故障等原因，可能会导致部分节点的执行速度落后大多数节点，因此需要添加主动恢复的功能才能参与后续的共识流程，为了解决这类问题，就需要通过主动索取共识网络中所有节点的视图，最新的区块高度等信息才能更新自身的数据状态，最终与系统的数据保持一致。</p>
-<p>在节点启动、节点状态异常或者多次发起 viewchange 却不被其他节点接受的时候，节点就应该发起主动恢复数据的请求，同步区块高度、共识网络视图等信息。</p>
-<p>主动恢复的流程主要分为 2 步： + NegotiateView 同步当前的视图信息和路由信息； + 同步全网最新区块信息。</p>
+<p>在节点启动、节点状态异常或者多次发起 viewchange
+却不被其他节点接受的时候，节点就应该发起主动恢复数据的请求，同步区块高度、共识网络视图等信息。</p>
+<p>主动恢复的流程主要分为 2 步： + NegotiateView
+同步当前的视图信息和路由信息； + 同步全网最新区块信息。</p>
 <p>以下为具体流程：</p>
 <ol type="1">
-<li>待恢复节点首先广播 QueryView 消息，获取网络中所有节点的当前视图信息和路由信息</li>
-<li>其余正常节点收到 QueryView 消息后，返回当前节点的当前视图信息 view，当前节点名称 ReplicaId 和路由信息 N（节点总数）</li>
-<li>待恢复节点如果收到 quorum 个（2f+1）包含相同的 N 和 view 的QueryViewResonse 消息，或者收到 2f 个包含相同 N 和 view 的报文且报文的 view 不等于当前待恢复节点的 view，则将本节点的视图 view 同步成全成网络的 view 和 N</li>
-<li>待恢复节点广播 RevoeryToCheckpoint 消息到网络所有节点，请求其余节点的检查点 checkpoint 信息和 pset、qset 和 cset 的信息（即 PBFT 算法中 pre-prepare阶段、prepare 阶段和 commit 阶段的数据）</li>
-<li>正常节点收到 RevoeryToCheckpoint 消息和 RecoveryToPQC 信息后，将自身的检查点信息和 PQC 信息返回给待恢复节点</li>
-<li>待恢复节点收到 quorum 个 RevoeryToCheckpointResponse 消息后，找到待恢复的稳定的 chekpoin 点，调用 stateUpdate 更新至 chekpoin 点状态，更新完毕后如果发现自身的 checkpoint 仍然落后，则发送 RecoveryToPQC 消息，获取 PQC 消息更新自身的 pset、qset 和 cset 集合。</li>
+<li>待恢复节点首先广播 QueryView
+消息，获取网络中所有节点的当前视图信息和路由信息</li>
+<li>其余正常节点收到 QueryView 消息后，返回当前节点的当前视图信息
+view，当前节点名称 ReplicaId 和路由信息 N（节点总数）</li>
+<li>待恢复节点如果收到 quorum 个（2f+1）包含相同的 N 和 view
+的QueryViewResonse 消息，或者收到 2f 个包含相同 N 和 view 的报文且报文的
+view 不等于当前待恢复节点的 view，则将本节点的视图 view 同步成全成网络的
+view 和 N</li>
+<li>待恢复节点广播 RevoeryToCheckpoint
+消息到网络所有节点，请求其余节点的检查点 checkpoint 信息和 pset、qset 和
+cset 的信息（即 PBFT 算法中 pre-prepare阶段、prepare 阶段和 commit
+阶段的数据）</li>
+<li>正常节点收到 RevoeryToCheckpoint 消息和 RecoveryToPQC
+信息后，将自身的检查点信息和 PQC 信息返回给待恢复节点</li>
+<li>待恢复节点收到 quorum 个 RevoeryToCheckpointResponse
+消息后，找到待恢复的稳定的 chekpoin 点，调用 stateUpdate 更新至 chekpoin
+点状态，更新完毕后如果发现自身的 checkpoint 仍然落后，则发送
+RecoveryToPQC 消息，获取 PQC 消息更新自身的 pset、qset 和 cset
+集合。</li>
 </ol>
 <p>当坏节点主动恢复时流程如下图：</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Node_active_recovery_flowchart.png" srcset="/img/loading.gif" lazyload alt="节点主动恢复流程图" /><figcaption aria-hidden="true">节点主动恢复流程图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Node_active_recovery_flowchart.png" srcset="/img/loading.gif" lazyload
+alt="节点主动恢复流程图" />
+<figcaption aria-hidden="true">节点主动恢复流程图</figcaption>
 </figure>
 <h4 id="查询日志">查询日志</h4>
-<p>通过写 query chaincode,在其中调用 <code>ChaincodeStubInterface</code> 接口的 <code>GetHistoryForKey()</code>方法来查询指定 ID 的历史日志。外界可利用 fabric 的 <code>http api</code> 调用 query chaincode。</p>
+<p>通过写 query chaincode,在其中调用 <code>ChaincodeStubInterface</code>
+接口的 <code>GetHistoryForKey()</code>方法来查询指定 ID
+的历史日志。外界可利用 fabric 的 <code>http api</code> 调用 query
+chaincode。</p>
 <h4 id="chaincode智能合约">chaincode智能合约</h4>
 <h5 id="init">init</h5>
-<p>Init方法会在chaincode接收到instantiate（实例化）或者upgrade(升级)交易时被调用，进而使得chaincode顺利执行必要的初始化操作。在init参数中需给出当前日志任务名和其关键字名，创建一个空 <code>[]map[string]interface&#123;&#125;</code>，用于以后存储日志。同时将关键字名存储在<code>[]string</code>中，用于grafana查询。并初始化日志条数为0。</p>
+<p>Init方法会在chaincode接收到instantiate（实例化）或者upgrade(升级)交易时被调用，进而使得chaincode顺利执行必要的初始化操作。在init参数中需给出当前日志任务名和其关键字名，创建一个空
+<code>[]map[string]interface&#123;&#125;</code>，用于以后存储日志。同时将关键字名存储在<code>[]string</code>中，用于grafana查询。并初始化日志条数为0。</p>
 <h5 id="invoke">invoke</h5>
 <p>日志收集模块触发invoke来进行日志存储。将sender发过来的日志切片进行Unmarshal反序列化后，append到已有的日志切片中，并按时间戳进行排序，保证按时间顺序存储。</p>
 <h5 id="query">query</h5>
-<p>Query chiancode设计了<code>search_keywords</code>，<code>get_num</code>，<code>get_logs</code>，<code>get_delete_info</code>四种方法供grafana查询。<code>search_keywords</code>用于查询有哪些关键字，返回<code>[]string</code>；<code>get_num</code>用于查询该任务在区块链中存了多少条日志，返回<code>[]byte(int64)</code>; <code>get_logs</code>返回每条日志的要查询的关键字段，返回<code>map[string][]interface&#123;&#125;</code>,即<code>map[关键字名称][content1,content2,...]</code>；<code>get_delete_info</code>查询历史delete操作信息，包括删除操作的时间，所删除的日志数。</p>
+<p>Query
+chiancode设计了<code>search_keywords</code>，<code>get_num</code>，<code>get_logs</code>，<code>get_delete_info</code>四种方法供grafana查询。<code>search_keywords</code>用于查询有哪些关键字，返回<code>[]string</code>；<code>get_num</code>用于查询该任务在区块链中存了多少条日志，返回<code>[]byte(int64)</code>;
+<code>get_logs</code>返回每条日志的要查询的关键字段，返回<code>map[string][]interface&#123;&#125;</code>,即<code>map[关键字名称][content1,content2,...]</code>；<code>get_delete_info</code>查询历史delete操作信息，包括删除操作的时间，所删除的日志数。</p>
 <h5 id="delete">delete</h5>
 <p>用于对chaincode中所设定的时间以前的日志数据进行删除。触发<code>delete chaincode</code>，首先对所有日志按时间顺序进行遍历，并删除所有规定时间前的数据，最后记录本次删除操作的时间和删除日志数。</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/blockchain_working_icon.png" srcset="/img/loading.gif" lazyload alt="区块链工作图示" /><figcaption aria-hidden="true">区块链工作图示</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/blockchain_working_icon.png" srcset="/img/loading.gif" lazyload
+alt="区块链工作图示" />
+<figcaption aria-hidden="true">区块链工作图示</figcaption>
 </figure>
 <h4 id="定期清理日志">定期清理日志</h4>
-<p>为降低存储成本，我们考虑对区块链中存储的日志区块进行定期截断。当前考虑对区块链中半年前（时间可自定义，但是固定在chiancode中的，部署之后不可修改）的日志区块进行删除。我们在<code>init</code>,<code>invoke</code>,<code>query chaincode</code>的基础上添加<code>delete chaincode</code>，用于执行区块删除操作。在peer节点启动时开启一个线程去每天触发一次delete交易，这样该delete交易通过pbft共识到达所有peer节点后，执行delete chaincode去清理半年前的日志区块。</p>
+<p>为降低存储成本，我们考虑对区块链中存储的日志区块进行定期截断。当前考虑对区块链中半年前（时间可自定义，但是固定在chiancode中的，部署之后不可修改）的日志区块进行删除。我们在<code>init</code>,<code>invoke</code>,<code>query chaincode</code>的基础上添加<code>delete chaincode</code>，用于执行区块删除操作。在peer节点启动时开启一个线程去每天触发一次delete交易，这样该delete交易通过pbft共识到达所有peer节点后，执行delete
+chaincode去清理半年前的日志区块。</p>
 <p>为不破坏区块链结构，我们保留一个半年前的区块，作为被截断后的区块链的创世区块，使得截断后的区块链能够通过hash校验，保证安全性。</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Truncated_schematic.png" srcset="/img/loading.gif" lazyload alt="日志区块链截断示意图" /><figcaption aria-hidden="true">日志区块链截断示意图</figcaption>
+<img
+src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/基于区块链的安全日志系统/Truncated_schematic.png" srcset="/img/loading.gif" lazyload
+alt="日志区块链截断示意图" />
+<figcaption aria-hidden="true">日志区块链截断示意图</figcaption>
 </figure>
 <h3 id="可视化分析模块">可视化分析模块</h3>
 <p>Grafana作为最火热的开源数据可视化工具，最大的特点就是支持多种数据源以及丰富的插件库。SimpleJson是Grafana开源社区提供的数据源，它本身并不依赖某种特定的后端存储，只需要后端能实现Grafana报表的几个查询接口就行。SimpleJson是Grafana众多数据源插件中的一种，但它又不像其他插件配置好数据库信息就能用，开发者需要自己实现一部分数据源插件的功能来使SimpleJson插件能够使用。</p>
-<p>我们基于SimpleJson编写grafana datasource插件，使grafana 可以通过 fabric的 http api 调用 query chaincode 读取储存在区块链中的日志数据。</p>
+<p>我们基于SimpleJson编写grafana datasource插件，使grafana 可以通过
+fabric的 http api 调用 query chaincode
+读取储存在区块链中的日志数据。</p>
 <h1 id="系统分析">系统分析</h1>
 <p>本项目通过以区块链存储技术为支撑，设计并实现了一套为企业和个人用户存储日志的安全系统。相比于市面上已有的产品，具有较高的安全性，能有效防止日志遭到篡改或删除。同时提供了查询与可视化功能，方便用户针对日志进行分析，能及时有效了解服务器运行状况。</p>
 <p>本项目的安全性分析如下：</p>
@@ -462,7 +525,9 @@
 <li><p>多方签名防止日志、请求伪造</p>
 <p>在系统部署时，区块链CA会对日志收集模块，区块链各节点和grafana插件发放证书，之后发送日志请求时，数据在分布式系统的节点间传播之前，均在本节点对数据进行一次摘要处理（Hash），并使用节点私钥对摘要实施非对称加密（签名），之后将数据与签名打包成消息传输给目标节点。在目标节点处对传输数据再实施一次摘要处理（Hash），并用原始节点的公钥解密签名后，将解密结果与摘要对比，验证一致方认为消息内容没有被篡改。从而可以防止非法用户对区块链调用chaincode，造成破坏。同时对与正常请求可根据签名追溯日志发送者，方便日后取证。</p></li>
 <li><p>防止重复delete攻击</p>
-<p>本系统新设置了delete chaincode方法用于定期截断区块链，删除设定时间之前的区块。如果黑客成功通过签名验证，为防止该chaincode被黑客利用去删除其他区块，我们将设定时间设为const变量，写死在chaincode中，一旦部署chaincode就不能更改，使得黑客即使重复调用delete chaincode也不能删除设定时间内的区块；同时，chaincode由go语言编写，利用go语言的安全性质，很难出现缓冲区溢出等漏洞去篡改时间变量。</p></li>
+<p>本系统新设置了delete
+chaincode方法用于定期截断区块链，删除设定时间之前的区块。如果黑客成功通过签名验证，为防止该chaincode被黑客利用去删除其他区块，我们将设定时间设为const变量，写死在chaincode中，一旦部署chaincode就不能更改，使得黑客即使重复调用delete
+chaincode也不能删除设定时间内的区块；同时，chaincode由go语言编写，利用go语言的安全性质，很难出现缓冲区溢出等漏洞去篡改时间变量。</p></li>
 <li><p>日志多副本存储实现灾备</p>
 <p>用区块链多节点共识存储的特性，使日志实现多副本存储，大大减小了因硬盘损坏等问题导致日志丢失的可能性。</p></li>
 </ol>
@@ -477,10 +542,14 @@
 </ol>
 <p>目前的工作只是简单地实现了一个基于区块链的安全日志系统，接下来还需要对系统的提速，提高存储空间利用率进行更深一步研究，同时对于区块链在其他场景里的应用也可以做进一步的探索。</p>
 <h1 id="参考文献">参考文献</h1>
-<p>[1] 费禹，宁静，胡青.基于区块链的日志存储系统 [J] .网络空间安全，2018, Vol. 9(6): 80-85.</p>
-<p>[2] 韩菊茹，纪兆轩，李一鸣.基于区块链的可信日志存储与验证系统 [J] .计算机工程，2019, Vol. 45(5): 13-17.</p>
-<p>[3] 徐治理，封化民，刘飙.一种基于信用的改进PBFT高效共识机制[J/OL].2019,36(10).[2018-06-09]</p>
-<p>[4] 刘忆宁, 周元健, 蓝如师,等. 基于区块链的云数据删除验证协议[J]. 计算机研究与发展, 2018, 55(10):107-115.</p>
+<p>[1] 费禹，宁静，胡青.基于区块链的日志存储系统 [J]
+.网络空间安全，2018, Vol. 9(6): 80-85.</p>
+<p>[2] 韩菊茹，纪兆轩，李一鸣.基于区块链的可信日志存储与验证系统 [J]
+.计算机工程，2019, Vol. 45(5): 13-17.</p>
+<p>[3]
+徐治理，封化民，刘飙.一种基于信用的改进PBFT高效共识机制[J/OL].2019,36(10).[2018-06-09]</p>
+<p>[4] 刘忆宁, 周元健, 蓝如师,等. 基于区块链的云数据删除验证协议[J].
+计算机研究与发展, 2018, 55(10):107-115.</p>
 
             </div>
             <hr>
