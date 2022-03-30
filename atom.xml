@@ -172,7 +172,7 @@
     <link href="https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/"/>
     <id>https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/</id>
     <published>2021-07-03T04:05:21.000Z</published>
-    <updated>2022-01-29T06:32:04.248Z</updated>
+    <updated>2022-03-11T02:38:36.389Z</updated>
     
     
     <summary type="html">简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。</summary>
