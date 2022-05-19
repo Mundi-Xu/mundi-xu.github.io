@@ -94,7 +94,7 @@
   }
 
   function addCount(Counter) {
-    var enableIncr = CONFIG.web_analytics.enable && validHost();
+    var enableIncr = CONFIG.web_analytics.enable && !Fluid.ctx.dnt && validHost();
     var getterArr = [];
     var incrArr = [];
 
@@ -155,6 +155,13 @@
   var appKey = CONFIG.web_analytics.leancloud.app_key;
   var serverUrl = CONFIG.web_analytics.leancloud.server_url;
 
+  if (!appId) {
+    throw new Error('LeanCloud appId is empty');
+  }
+  if (!appKey) {
+    throw new Error('LeanCloud appKey is empty');
+  }
+
   function fetchData(api_server) {
     var Counter = (method, url, data) => {
       return fetch(`${api_server}/1.1${url}`, {
@@ -171,7 +178,7 @@
     addCount(Counter);
   }
 
-  var apiServer = appId.slice(-9) !== '-MdYXbMMI' ? serverUrl : `https://${appId.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
+  var apiServer = serverUrl || `https://${appId.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
 
   if (apiServer) {
     fetchData(apiServer);

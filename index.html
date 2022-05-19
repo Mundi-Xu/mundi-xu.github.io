@@ -25,6 +25,9 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
   
   <title>Mundi&#39;s Space</title>
@@ -33,9 +36,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,22 +50,41 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
 </head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Mundi&#39;s Space</strong>
@@ -153,6 +178,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -165,34 +191,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Be wise and fool.">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Be wise and fool."></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -213,12 +245,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2018/10/25/hello-world/" target="_self">
+      <a class="index-excerpt" href="/2018/10/25/hello-world/" target="_self">
+        <div>
           
           Welcome to My Blog !
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -234,11 +266,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chrome/">Chrome</a>
+              <a href="/tags/Chrome/">#Chrome</a>
             
-              <a href="/tags/cve/">cve</a>
+              <a href="/tags/cve/">#cve</a>
             
-              <a href="/tags/LibRaw/">LibRaw</a>
+              <a href="/tags/LibRaw/">#LibRaw</a>
             
           </div>
         
@@ -257,12 +289,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/30/Architectural-Support-for-System-Security/" target="_self">
+      <a class="index-excerpt" href="/2021/11/30/Architectural-Support-for-System-Security/" target="_self">
+        <div>
           
           Hardware Features, Usage and Scenarios.
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -278,9 +310,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Hardware/">Hardware</a>
+              <a href="/tags/Hardware/">#Hardware</a>
             
-              <a href="/tags/Security/">Security</a>
+              <a href="/tags/Security/">#Security</a>
             
           </div>
         
@@ -299,12 +331,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/29/why-ml-fails-security/" target="_self">
+      <a class="index-excerpt" href="/2021/11/29/why-ml-fails-security/" target="_self">
+        <div>
           
           近年来网络安全从业者纷纷神往机器学习的魔力，大家都想在此寻求一发银弹。不过作者在安全业界没有看到太多如虎添翼的机器学习案例,为什么机器学习解决网络安全问题总是失败呢？
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -320,9 +352,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
             
-              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">#网络安全</a>
             
           </div>
         
@@ -341,12 +373,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/26/Common-vulnerabilities-mitigation-measures/" target="_self">
+      <a class="index-excerpt" href="/2021/11/26/Common-vulnerabilities-mitigation-measures/" target="_self">
+        <div>
           
           简单整理Windows和Linux下的常见防护机制。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -362,11 +394,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Security/">Security</a>
+              <a href="/tags/Security/">#Security</a>
             
-              <a href="/tags/Windows/">Windows</a>
+              <a href="/tags/Windows/">#Windows</a>
             
-              <a href="/tags/Linux/">Linux</a>
+              <a href="/tags/Linux/">#Linux</a>
             
           </div>
         
@@ -385,12 +417,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/08/15/Basics-of-Chrome-V8-3/" target="_self">
+      <a class="index-excerpt" href="/2021/08/15/Basics-of-Chrome-V8-3/" target="_self">
+        <div>
           
           本节介绍了Chrome V8的一些基本数据类型和异常处理，其API均能在文档中找到。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -406,13 +438,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chromium/">Chromium</a>
+              <a href="/tags/Chromium/">#Chromium</a>
             
-              <a href="/tags/Chrome/">Chrome</a>
+              <a href="/tags/Chrome/">#Chrome</a>
             
-              <a href="/tags/V8/">V8</a>
+              <a href="/tags/V8/">#V8</a>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
+              <a href="/tags/JavaScript/">#JavaScript</a>
             
           </div>
         
@@ -431,12 +463,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/07/29/Basics-of-Chrome-V8-2/" target="_self">
+      <a class="index-excerpt" href="/2021/07/29/Basics-of-Chrome-V8-2/" target="_self">
+        <div>
           
           本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，希望能对读者理解浏览器安全相关产生帮助。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -452,13 +484,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chromium/">Chromium</a>
+              <a href="/tags/Chromium/">#Chromium</a>
             
-              <a href="/tags/Chrome/">Chrome</a>
+              <a href="/tags/Chrome/">#Chrome</a>
             
-              <a href="/tags/V8/">V8</a>
+              <a href="/tags/V8/">#V8</a>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
+              <a href="/tags/JavaScript/">#JavaScript</a>
             
           </div>
         
@@ -477,12 +509,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/07/27/Basics-of-Chrome-V8-1/" target="_self">
+      <a class="index-excerpt" href="/2021/07/27/Basics-of-Chrome-V8-1/" target="_self">
+        <div>
           
           本系列文章笔者将简单介绍Chrome V8的整体模型与其主要概念和数据结构，本节主要为Chrome V8的一些基础知识，包括它的内存机制是怎样的，以及几个基础数据类型。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -498,13 +530,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chromium/">Chromium</a>
+              <a href="/tags/Chromium/">#Chromium</a>
             
-              <a href="/tags/Chrome/">Chrome</a>
+              <a href="/tags/Chrome/">#Chrome</a>
             
-              <a href="/tags/V8/">V8</a>
+              <a href="/tags/V8/">#V8</a>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
+              <a href="/tags/JavaScript/">#JavaScript</a>
             
           </div>
         
@@ -523,12 +555,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/07/15/Chromium-component-risk-analysis/" target="_self">
+      <a class="index-excerpt" href="/2021/07/15/Chromium-component-risk-analysis/" target="_self">
+        <div>
           
           基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -544,13 +576,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chromium/">Chromium</a>
+              <a href="/tags/Chromium/">#Chromium</a>
             
-              <a href="/tags/Chrome/">Chrome</a>
+              <a href="/tags/Chrome/">#Chrome</a>
             
-              <a href="/tags/V8/">V8</a>
+              <a href="/tags/V8/">#V8</a>
             
-              <a href="/tags/JavaScript/">JavaScript</a>
+              <a href="/tags/JavaScript/">#JavaScript</a>
             
           </div>
         
@@ -569,12 +601,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/07/03/Use-AFL-fuzz-pdfium/" target="_self">
+      <a class="index-excerpt" href="/2021/07/03/Use-AFL-fuzz-pdfium/" target="_self">
+        <div>
           
           简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -590,15 +622,15 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Chromium/">Chromium</a>
+              <a href="/tags/Chromium/">#Chromium</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
-              <a href="/tags/AFL/">AFL</a>
+              <a href="/tags/AFL/">#AFL</a>
             
-              <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">模糊测试</a>
+              <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">#模糊测试</a>
             
-              <a href="/tags/pdfium/">pdfium</a>
+              <a href="/tags/pdfium/">#pdfium</a>
             
           </div>
         
@@ -617,12 +649,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/03/12/Start-Fuzzing-and-crashes-analysis/" target="_self">
+      <a class="index-excerpt" href="/2021/03/12/Start-Fuzzing-and-crashes-analysis/" target="_self">
+        <div>
           
           本文主要介绍如何使用AFL++快速开始Fuzz一个样例程序和对大量的Fuzzer-Generated Crashes进行分类以及部分工具的安装与使用
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -638,11 +670,11 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
-              <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">模糊测试</a>
+              <a href="/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/">#模糊测试</a>
             
-              <a href="/tags/AFL/">AFL++</a>
+              <a href="/tags/AFL/">#AFL++</a>
             
           </div>
         
@@ -687,56 +719,58 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
@@ -755,37 +789,18 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -795,18 +810,30 @@
 
 
 
+  
+    
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>

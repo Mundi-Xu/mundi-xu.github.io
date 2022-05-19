@@ -10,6 +10,9 @@ Fluid.events = {
 
   registerNavbarEvent: function() {
     var navbar = jQuery('#navbar');
+    if (navbar.length === 0) {
+      return;
+    }
     var submenu = jQuery('#navbar .dropdown-menu');
     if (navbar.offset().top > 0) {
       navbar.removeClass('navbar-dark');
@@ -33,8 +36,8 @@ Fluid.events = {
   },
 
   registerParallaxEvent: function() {
-    var bg = jQuery('#banner[parallax="true"]');
-    if (bg.length === 0) {
+    var ph = jQuery('#banner[parallax="true"]');
+    if (ph.length === 0) {
       return;
     }
     var board = jQuery('#board');
@@ -42,22 +45,19 @@ Fluid.events = {
       return;
     }
     var parallax = function() {
-      var oVal = jQuery(window).scrollTop() / 5;
-      var offset = parseInt(board.css('margin-top'), 0);
+      var pxv = jQuery(window).scrollTop() / 5;
+      var offset = parseInt(board.css('margin-top'), 10);
       var max = 96 + offset;
-      if (oVal > max) {
-        oVal = max;
+      if (pxv > max) {
+        pxv = max;
       }
-      bg.css({
-        transform          : 'translate3d(0,' + oVal + 'px,0)',
-        '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-        '-ms-transform'    : 'translate3d(0,' + oVal + 'px,0)',
-        '-o-transform'     : 'translate3d(0,' + oVal + 'px,0)'
+      ph.css({
+        transform: 'translate3d(0,' + pxv + 'px,0)'
       });
-      var toc = jQuery('#toc');
-      if (toc) {
-        jQuery('#toc-ctn').css({
-          'padding-top': oVal + 'px'
+      var sideCol = jQuery('.side-col');
+      if (sideCol) {
+        sideCol.css({
+          'padding-top': pxv + 'px'
         });
       }
     };

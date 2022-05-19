@@ -25,6 +25,9 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
   
   <title>Archives - Mundi&#39;s Space</title>
@@ -33,9 +36,12 @@
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,22 +50,41 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
+
+  
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
 </head>
 
 
 <body>
-  <header style="height: 60vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Mundi&#39;s Space</strong>
@@ -153,6 +178,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -165,29 +191,35 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Archive">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/links/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Archives"></span>
           
         </div>
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
+        <div id="board"
           >
           
           <div class="container">
@@ -196,7 +228,7 @@
                 
 
 <div class="list-group">
-  <p class="h4">24 posts in total.</p>
+  <p class="h4">24 posts in total</p>
   <hr>
   
   
@@ -205,32 +237,32 @@
       <p class="h5">2021</p>
     
     <a href="/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">利用IPy判断IP地址的合法性</span>
-      <time style="float: right;">03-02</time>
+      <time>03-02</time>
+      <div class="list-group-item-title">利用IPy判断IP地址的合法性</div>
     </a>
   
     
     <a href="/2021/02/23/recent-technology-of-symbolic-execution/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">【转载】带你搞懂符号执行的前世今生与最近技术</span>
-      <time style="float: right;">02-23</time>
+      <time>02-23</time>
+      <div class="list-group-item-title">【转载】带你搞懂符号执行的前世今生与最近技术</div>
     </a>
   
     
     <a href="/2021/01/17/Computer-Network-Introduction/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">计网学习笔记-Introduction</span>
-      <time style="float: right;">01-17</time>
+      <time>01-17</time>
+      <div class="list-group-item-title">计网学习笔记-Introduction</div>
     </a>
   
     
     <a href="/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">WSL2下AFL的安装与测试</span>
-      <time style="float: right;">01-09</time>
+      <time>01-09</time>
+      <div class="list-group-item-title">WSL2下AFL的安装与测试</div>
     </a>
   
     
     <a href="/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">PayBreak防勒索系统简析</span>
-      <time style="float: right;">01-01</time>
+      <time>01-01</time>
+      <div class="list-group-item-title">PayBreak防勒索系统简析</div>
     </a>
   
     
@@ -238,20 +270,20 @@
       <p class="h5">2020</p>
     
     <a href="/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">勒索软件结构与加密模式研究</span>
-      <time style="float: right;">12-28</time>
+      <time>12-28</time>
+      <div class="list-group-item-title">勒索软件结构与加密模式研究</div>
     </a>
   
     
     <a href="/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">密码学初探-基于RUST的密码系统与算法简析</span>
-      <time style="float: right;">12-27</time>
+      <time>12-27</time>
+      <div class="list-group-item-title">密码学初探-基于RUST的密码系统与算法简析</div>
     </a>
   
     
     <a href="/2020/07/01/Blockchain-based-security-log-system/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">基于区块链的安全日志系统</span>
-      <time style="float: right;">07-01</time>
+      <time>07-01</time>
+      <div class="list-group-item-title">基于区块链的安全日志系统</div>
     </a>
   
     
@@ -259,14 +291,14 @@
       <p class="h5">2019</p>
     
     <a href="/2019/11/01/stl-list-implementation/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">stl-list实现分析</span>
-      <time style="float: right;">11-01</time>
+      <time>11-01</time>
+      <div class="list-group-item-title">stl-list实现分析</div>
     </a>
   
     
     <a href="/2019/08/21/Learn-through-automatic-play-mode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">超星学习通开启自动播放模式</span>
-      <time style="float: right;">08-21</time>
+      <time>08-21</time>
+      <div class="list-group-item-title">超星学习通开启自动播放模式</div>
     </a>
   
 </div>
@@ -308,56 +340,58 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
@@ -376,37 +410,18 @@
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
 
   <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -416,18 +431,30 @@
 
 
 
+  
+    
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
 </body>
 </html>
