@@ -24,7 +24,7 @@
 <meta property="og:description" content="Hardware Features, Usage and Scenarios.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-30T14:57:21.000Z">
-<meta property="article:modified_time" content="2021-11-30T15:01:27.957Z">
+<meta property="article:modified_time" content="2022-05-23T08:11:06.209Z">
 <meta property="article:author" content="寒雨">
 <meta property="article:tag" content="Hardware">
 <meta property="article:tag" content="Security">
@@ -248,7 +248,7 @@
         
         
           <!-- compatible with older versions-->
-          220 分钟
+          221 分钟
         
       </span>
     
@@ -292,223 +292,157 @@
                 
                   
                     <!-- compatible with older versions-->
-                    Last update：6 months ago
+                    Last update：a few seconds ago
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h1 id="architectural-support-for-system-security">Architectural Support
-for System Security</h1>
-<p>Hardware Features, Usage and Scenarios</p>
+              <h1 id="Architectural-Support-for-System-Security"><a href="#Architectural-Support-for-System-Security" class="headerlink" title="Architectural Support for System Security"></a>Architectural Support for System Security</h1><p>Hardware Features, Usage and Scenarios</p>
 <p>performance counter性能监视器用来做安全</p>
-<h2 id="security-why-hardware">Security: Why Hardware?</h2>
-<p>Security is a negative goal</p>
+<h2 id="Security-Why-Hardware"><a href="#Security-Why-Hardware" class="headerlink" title="Security: Why Hardware?"></a>Security: Why Hardware?</h2><p>Security is a negative goal</p>
 <ul>
 <li>how to make a program not do something?</li>
-<li>not execute any code from user, not leak some secret from memory,
-etc</li>
+<li>not execute any code from user, not leak some secret from memory, etc</li>
 </ul>
 <p>Hardware features based security:</p>
 <ul>
 <li>fixed and robust(hopefully)健壮</li>
-<li>more efficient(most of the
-time)比较好地提高并行能力，减少CPU的开销</li>
+<li>more efficient(most of the time)比较好地提高并行能力，减少CPU的开销</li>
 </ul>
-<h2 id="features-designed-for-security">Features designed for
-Security</h2>
-<h3 id="smep-smap">SMEP &amp; SMAP</h3>
-<h4 id="return-to-user-attack">Return-to-user Attack</h4>
-<p>利用了用户空间进程不能访问内核空间，但内核空间能访问用户空间这个特性来定向内核代码或数据流指向用户软件，以ring
-0特权执行用户空间代码完成提升权限</p>
-<h4 id="smep">SMEP</h4>
-<p>Supervisor Mode Execution Prevention</p>
+<h2 id="Features-designed-for-Security"><a href="#Features-designed-for-Security" class="headerlink" title="Features designed for Security"></a>Features designed for Security</h2><h3 id="SMEP-amp-SMAP"><a href="#SMEP-amp-SMAP" class="headerlink" title="SMEP &amp; SMAP"></a>SMEP &amp; SMAP</h3><h4 id="Return-to-user-Attack"><a href="#Return-to-user-Attack" class="headerlink" title="Return-to-user Attack"></a>Return-to-user Attack</h4><p>利用了用户空间进程不能访问内核空间，但内核空间能访问用户空间这个特性来定向内核代码或数据流指向用户软件，以ring 0特权执行用户空间代码完成提升权限</p>
+<h4 id="SMEP"><a href="#SMEP" class="headerlink" title="SMEP"></a>SMEP</h4><p>Supervisor Mode Execution Prevention</p>
 <ul>
-<li>allows pages to be protected from supervisor-mode instruction
-fetches</li>
-<li>if SMEP = 1, OS cannot fetch instructions from applications</li>
+<li>allows pages to be protected from supervisor-mode instruction fetches</li>
+<li>if SMEP &#x3D; 1, OS cannot fetch instructions from applications</li>
 </ul>
 <p>保护页面免受supervisor模式提取指令</p>
-<p>Prevent Return-to-user Attack: the CPU will prevent the OS from
-executing user-level instructions</p>
-<h4 id="smap">SMAP</h4>
-<p>supervisor mode access prevention</p>
+<p>Prevent Return-to-user Attack: the CPU will prevent the OS from executing user-level instructions </p>
+<h4 id="SMAP"><a href="#SMAP" class="headerlink" title="SMAP"></a>SMAP</h4><p>supervisor mode access prevention</p>
 <ul>
 <li>allows pages to be protected from supervisor-mode data accesses</li>
-<li>if SMAP = 1, OS cannot access data at linear addresses of
-application</li>
+<li>if SMAP &#x3D; 1, OS cannot access data at linear addresses of application</li>
 </ul>
 <p>早期内核和用户态是一张页表，防止内核去访问用户态内存</p>
-<h4 id="ret2dir-attacks">ret2dir Attacks</h4>
-<p>return-to-direct-mapped memory
-attack简单来说，通过利用一个核心区域，直接映射系统部分或者全部物理内存(用户空间内存映射到physmap,内核可以直接访问physmap)允许攻击者在内核地址空间访问用户数据</p>
-<p>physmap在0xffff888000000000 -
-0xfffc87fffffffff这一段，大小为64TB,物理内存直接映射在该区域某地址处</p>
+<h4 id="ret2dir-Attacks"><a href="#ret2dir-Attacks" class="headerlink" title="ret2dir Attacks"></a>ret2dir Attacks</h4><p>return-to-direct-mapped memory attack简单来说，通过利用一个核心区域，直接映射系统部分或者全部物理内存(用户空间内存映射到physmap,内核可以直接访问physmap)允许攻击者在内核地址空间访问用户数据</p>
+<p>physmap在0xffff888000000000 - 0xfffc87fffffffff这一段，大小为64TB,物理内存直接映射在该区域某地址处</p>
 <p>内存分配主要有kmalloc和vmalloc两种方式：</p>
 <ul>
-<li>vmalloc请求page
-size倍数大小的内存，要求虚拟地址连续，物理地址不需要连续</li>
+<li>vmalloc请求page size倍数大小的内存，要求虚拟地址连续，物理地址不需要连续</li>
 <li>kmalloc请求字节级内存分配，虚拟地址和物理地址都必须是连续的，可以在physmap上做内存分配操作</li>
 </ul>
 <p>physmap和RAM是直接映射关系，可以通过kmalloc分配的内存地址找到physmap的基址。</p>
-<h4 id="arms-similar-functionalities">ARM's Similar Functionalities</h4>
-<ul>
+<h4 id="ARM’s-Similar-Functionalities"><a href="#ARM’s-Similar-Functionalities" class="headerlink" title="ARM’s Similar Functionalities"></a>ARM’s Similar Functionalities</h4><ul>
 <li>PAN: Privileged Access Never</li>
 <li>PXN: Privileged execute Never</li>
 <li>UAO: User Access Only</li>
 </ul>
-<h4 id="using-smap-for-intra-process-isolation">Using SMAP for
-Intra-process Isolation</h4>
-<ul>
+<h4 id="Using-SMAP-for-Intra-process-Isolation"><a href="#Using-SMAP-for-Intra-process-Isolation" class="headerlink" title="Using SMAP for Intra-process Isolation"></a>Using SMAP for Intra-process Isolation</h4><ul>
 <li>Scenario: information hiding</li>
-<li>Observation: SMAP prevents kernel access user's memory</li>
+<li>Observation: SMAP prevents kernel access user’s memory</li>
 <li>Idea: use SMAP to hide data from the rest of the process</li>
-<li>Solution: put critical part in ring-3 and rest of the process in
-ring-0</li>
+<li>Solution: put critical part in ring-3 and rest of the process in ring-0</li>
 <li>Challenge: how to securely run user code in ring-0?</li>
 </ul>
-<h3 id="mpx-mpk">MPX &amp; MPK</h3>
-<p>Bounds Error of Software: C/C++ programs are prone to bounds
-errors.</p>
+<h3 id="MPX-amp-MPK"><a href="#MPX-amp-MPK" class="headerlink" title="MPX &amp; MPK"></a>MPX &amp; MPK</h3><p>Bounds Error of Software: C&#x2F;C++ programs are prone to bounds errors. </p>
 <ul>
 <li>not type-safe language</li>
 <li>buffer overflow bugs</li>
 </ul>
-<h4 id="mpx">MPX</h4>
-<p>memory protection extensions</p>
+<h4 id="MPX"><a href="#MPX" class="headerlink" title="MPX"></a>MPX</h4><p>memory protection extensions</p>
 <p>Intel introduces MPX since Skylake</p>
 <p>Programmer can create and enforce bounds</p>
 <ul>
-<li>specified by two 64-bit addresses specifying the beginning and the
-end of a range</li>
-<li>New instructions are introduced to efficiently compare a given value
-against the bounds, raising an exception when the value does not fall
-within the permitted range</li>
+<li>specified by two 64-bit addresses specifying the beginning and the end of a range</li>
+<li>New instructions are introduced to efficiently compare a given value against the bounds, raising an exception when the value does not fall within the permitted range</li>
 </ul>
 <p>Instructions:</p>
 <ul>
-<li>bndmov: Fetch the bounds information (upper and lower)out of memory
-and put it in a bounds register.(有专门的寄存器来储存边界值)</li>
+<li>bndmov: Fetch the bounds information (upper and lower)out of memory and put it in a bounds register.(有专门的寄存器来储存边界值)</li>
 <li>bndcl: Check the lower bounds against an argument(%rax)</li>
-<li>bndcu: Check the upper bounds against an argument (%rax)</li>
-<li>bnd retq: Not a "true" Intel MPX instruction
-<ul>
+<li>bndcu: Check the upper bounds against an argument (%rax) </li>
+<li>bnd retq: Not a “true” Intel MPX instruction <ul>
 <li>The bnd here is a prefix to a normal retq instruction</li>
-<li>It just lets the processor know that this is Intel MPX-instrumented
-code</li>
-</ul></li>
+<li>It just lets the processor know that this is Intel MPX-instrumented code</li>
 </ul>
-<p>Bounds Tables For efficiency, four bounds can be stored into
-dedicated registers</p>
+</li>
+</ul>
+<p>Bounds Tables<br>For efficiency, four bounds can be stored into dedicated registers</p>
 <ul>
 <li>Registers: bnd0 to bnd3</li>
-<li>When more bounds are required, they are stored in memory, and the
-bound registers serve as a caching mechanism</li>
-<li>Bounds tables are a two-level radix tree, indexed by the virtual
-address of the pointer for which you want to load/store the bounds</li>
-<li>The BNDLDX/BNDSTX instructions essentially take a pointer value and
-move the bounds information between a bounds register &amp; bounds
-tables</li>
+<li>When more bounds are required, they are stored in memory, and the bound registers serve as a caching mechanism</li>
+<li>Bounds tables are a two-level radix tree, indexed by the virtual address of the pointer for which you want to load&#x2F;store the bounds</li>
+<li>The BNDLDX&#x2F;BNDSTX instructions essentially take a pointer value and move the bounds information between a bounds register &amp; bounds tables</li>
 </ul>
 <p>最坏情况下内存overhead 500%，开销很大</p>
 <p>大量指针同时进行 bound check使性能变差</p>
 <p>在编译的时候设置一些flags来使用</p>
-<h4 id="mpk">MPK</h4>
-<p>memory protection keys</p>
+<h4 id="MPK"><a href="#MPK" class="headerlink" title="MPK"></a>MPK</h4><p>memory protection keys</p>
 <ul>
-<li>with MPK, every page belongs to one of 16 domains, a domain is
-determined by 4 bits in every page-table entry(referred to as the
-protection key)</li>
-<li>for every domain, there are two bits in a special register(pkru)
-denotes whether pages associated with that key can be read or
-written</li>
-<li>kernel and application
-<ul>
+<li>with MPK, every page belongs to one of 16 domains, a domain is determined by 4 bits in every page-table entry(referred to as the protection key)</li>
+<li>for every domain, there are two bits in a special register(pkru) denotes whether pages associated with that key can be read or written </li>
+<li>kernel and application<ul>
 <li>only the kernel can change the key of a page</li>
-<li>Application can read and write the pkru register using the rdpkru
-and wrpkru instructions respectively</li>
-</ul></li>
+<li>Application can read and write the pkru register using the rdpkru and wrpkru instructions respectively</li>
+</ul>
+</li>
 </ul>
 <p>整个内存区域被分为16个domain，有对应ID,写进页表里，通过pkru控制这些domain读写权限</p>
 <p>初衷是在进程内做细粒度的内存权限管理</p>
 <ul>
-<li>Isolation can be enabled using MPK by placing the sensitive data in
-pages that have a particular protection key, forming the sensitive
-domain .</li>
-<li>An appropriate instrumentation enables reads and/or writes to the
-data by setting the access disable and write-disable bits, respectively,
-using wrpkru
-<ul>
-<li>As long as these bits are unset, the sensitive domain is
-accessible</li>
-<li>By setting the bits back, the sensitive domain is disabled, making
-only the non- sensitive domain available</li>
-</ul></li>
+<li>Isolation can be enabled using MPK by placing the sensitive data in pages that have a particular protection key, forming the sensitive domain .</li>
+<li>An appropriate instrumentation enables reads and&#x2F;or writes to the data by setting the access disable and write-disable bits, respectively, using wrpkru<ul>
+<li>As long as these bits are unset, the sensitive domain is accessible</li>
+<li>By setting the bits back, the sensitive domain is disabled, making only the non- sensitive domain available</li>
 </ul>
-<p>软件有mproject方法与之相似，application can already change the
-permission of pages. MPK的优势在于mproject是一个system
-call,有性能损失，改内存权限要改页表和刷TLB，一个核改了其他核也要中断刷TLB，下一次访存会TLB
-miss而使用MPK只需要执行几条指令，开销更小</p>
+</li>
+</ul>
+<p>软件有mproject方法与之相似，application can already change the permission of pages. MPK的优势在于mproject是一个system call,有性能损失，改内存权限要改页表和刷TLB，一个核改了其他核也要中断刷TLB，下一次访存会TLB miss而使用MPK只需要执行几条指令，开销更小</p>
 <p>应用场景：</p>
 <ul>
-<li>use case 1: protect critical data with one address space
-<ul>
+<li>use case 1: protect critical data with one address space<ul>
 <li>Handling of sensitive cryptographic data</li>
 <li>Only enable access to private key during encryption</li>
-</ul></li>
-<li>use case 2: prevent data corruption
-<ul>
+</ul>
+</li>
+<li>use case 2: prevent data corruption<ul>
 <li>In-memory database prevents writes most of the time</li>
 <li>Only enable changing data when needs to change</li>
 <li>Changing protection on gigabytes using mprotect() is too slow</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>保护关键数据，只有特定代码可以访问，或特定数据不会被corruption:大部分新的数据都在内存里，而不在磁盘里。所有人都可以访问容易导致错误。把MPK用在微内核。微内核性能差，用户态之间调用性能很差</p>
-<h3 id="arm-pointer-authentication">ARM Pointer Authentication</h3>
-<p>如何保证指针没有被修改？</p>
+<h3 id="ARM-Pointer-Authentication"><a href="#ARM-Pointer-Authentication" class="headerlink" title="ARM Pointer Authentication"></a>ARM Pointer Authentication</h3><p>如何保证指针没有被修改？</p>
 <p>ARM64 only use 40 bits out of 64 bits</p>
 <ul>
-<li>On an ARM64 Linux system using three-level page tables, only the
-bottom 40 bits are used, while the remaining 24 are equal to the highest
-significant bit</li>
+<li>On an ARM64 Linux system using three-level page tables, only the bottom 40 bits are used, while the remaining 24 are equal to the highest significant bit</li>
 <li>the 40-bit address is sign-extended to 64 bits</li>
-<li>those uppermost bits could be put to other uses, including holding
-an authentication code</li>
+<li>those uppermost bits could be put to other uses, including holding an authentication code</li>
 </ul>
 <p>use the 24 bits for security!</p>
 <p>把指针加一个tag，和一个密钥一起算出密文，存在前24个bits中</p>
-<h4 id="key-management">Key Management</h4>
-<p>PA defines five keys: Four keys for PAC* and AUT*
-instructions(combination of instruction/data and A/B keys), one key for
-use with the general purpose PACGA instruction</p>
+<h4 id="Key-Management"><a href="#Key-Management" class="headerlink" title="Key Management"></a>Key Management</h4><p>PA defines five keys: Four keys for PAC* and AUT* instructions(combination of instruction&#x2F;data and A&#x2F;B keys), one key for use with the general purpose PACGA instruction</p>
 <p>Key storage:</p>
 <ul>
-<li>Stored in internal registers and are not accessible by EL0(user
-mode)</li>
-<li>The software(EL1, EL2 and EK3) is required to witch keys between
-exception levels</li>
-<li>Higher privilege levels control the keys for the lower privilege
-level</li>
+<li>Stored in internal registers and are not accessible by EL0(user mode)</li>
+<li>The software(EL1, EL2 and EK3) is required to witch keys between exception levels</li>
+<li>Higher privilege levels control the keys for the lower privilege level</li>
 </ul>
 <p>指针加密，加密值存在前24个bits，加一条指令保护栈</p>
-<h4 id="new-instructions">New instructions</h4>
-<p>PAC value creation:</p>
+<h4 id="New-instructions"><a href="#New-instructions" class="headerlink" title="New instructions"></a>New instructions</h4><p>PAC value creation:</p>
 <ul>
-<li>Writee the value to the uppermost bits in a destination register
-alongside and address pointer value</li>
+<li>Writee the value to the uppermost bits in a destination register alongside and address pointer value</li>
 </ul>
 <p>Authentication:</p>
 <ul>
-<li>Validate a PAC and update the destination register with a correct or
-corrupt address pointer</li>
-<li>if the authentication fails, an indirect branch or load that uses
-the authenticated, and corrupt, address will cause an exception</li>
+<li>Validate a PAC and update the destination register with a correct or corrupt address pointer</li>
+<li>if the authentication fails, an indirect branch or load that uses the authenticated, and corrupt, address will cause an exception</li>
 </ul>
 <p>remove a PAC value from the specified register</p>
 <p>软件方法保护栈是在栈帧和栈帧之间插入一个随机数，return之前检查随机数看看有没有被篡改过，而用硬件的方法只需要在开头和结尾分别加一个PAC和AUT即可，提高性能</p>
-<h4 id="target-memory-safety">Target: Memory Safety</h4>
-<p>Memory safety violation dominates:</p>
+<h4 id="Target-Memory-Safety"><a href="#Target-Memory-Safety" class="headerlink" title="Target: Memory Safety"></a>Target: Memory Safety</h4><p>Memory safety violation dominates:</p>
 <ul>
 <li>Microsoft, Google,etc</li>
 </ul>
@@ -519,40 +453,27 @@ the authenticated, and corrupt, address will cause an exception</li>
 <li>Cons: costly</li>
 </ul>
 <p>Hardware solution: tagged memory</p>
-<h4 id="arm-mte">ARM MTE</h4>
-<p>memory test extension</p>
-<p>memory safety
-空间错误(访存越界)&amp;时间错误(访问一个已经free的指针)</p>
+<h4 id="ARM-MTE"><a href="#ARM-MTE" class="headerlink" title="ARM MTE"></a>ARM MTE</h4><p>memory test extension</p>
+<p>memory safety 空间错误(访存越界)&amp;时间错误(访问一个已经free的指针)</p>
 <p>A new memory type: Normal Tagged Memory</p>
-<p>loads and stores to this new memory type perform an access where the
-tag present in the top byte of the address register is compared with the
-tag stored in memory</p>
-<p>A mismatch between the tag in the address and the tag memory can be
-configured to cause a synchronous exception or to be asynchronously
-reported</p>
-<p>每16 bytes对应一个 1 byte tag 指针加一个tag 要求相邻的space
-tag要不一致, malloc/free的时候要注意更新tag,
-这样malloc开销会变大，因为要初始化所有的tag(虽然可以异步执行)</p>
-<h4 id="combining-mte-and-pa">Combining MTE and PA</h4>
-<p>MTE和PA都用了24个闲置bits，</p>
+<p>loads and stores to this new memory type perform an access where the tag present in the top byte of the address register is compared with the tag stored in memory</p>
+<p>A mismatch between the tag in the address and the tag memory can be configured to cause a synchronous exception or to be asynchronously reported</p>
+<p>每16 bytes对应一个 1 byte tag 指针加一个tag 要求相邻的space tag要不一致, malloc&#x2F;free的时候要注意更新tag, 这样malloc开销会变大，因为要初始化所有的tag(虽然可以异步执行)</p>
+<h4 id="Combining-MTE-and-PA"><a href="#Combining-MTE-and-PA" class="headerlink" title="Combining MTE and PA"></a>Combining MTE and PA</h4><p>MTE和PA都用了24个闲置bits，</p>
 <ul>
 <li>a tag for memory tagging</li>
 <li>a PAC for pointer authentication</li>
 </ul>
-<p>可以同时使用，PAC的大小是可变的，取决于virtual address
-space大小。同时使用的时候PA安全性会降低一点</p>
+<p>可以同时使用，PAC的大小是可变的，取决于virtual address space大小。同时使用的时候PA安全性会降低一点</p>
 <p>这24个bit还能怎么用？Pump为每个memory设置等长的tag,每个memory对应的tag也可以是一个指针</p>
-<p>###Intel CET</p>
-<p>control-flow Enforcement Technology</p>
+<h3 id="Intel-CET"><a href="#Intel-CET" class="headerlink" title="Intel CET"></a>Intel CET</h3><p>control-flow Enforcement Technology</p>
 <p>Two major techs:</p>
 <ul>
 <li>Shadow stack</li>
 <li>Indirect branch tracking</li>
 </ul>
 <p>核心思想是改变代码的控制流，包括两种方式，</p>
-<h4 id="code-injection-attacks">code injection attacks</h4>
-<p>即在内存中注入一段恶意代码，试着将return address
-覆盖掉，并跳转到恶意代码段</p>
+<h4 id="code-injection-attacks"><a href="#code-injection-attacks" class="headerlink" title="code injection  attacks"></a>code injection  attacks</h4><p>即在内存中注入一段恶意代码，试着将return address 覆盖掉，并跳转到恶意代码段</p>
 <ul>
 <li>inject malicious code in buffer</li>
 <li>Overwrite return address to buffer</li>
@@ -567,15 +488,12 @@ space大小。同时使用的时候PA安全性会降低一点</p>
 <ul>
 <li>return-to-libc &amp; return-oriented programming</li>
 </ul>
-<h4 id="code-reuse-attack">Code Reuse Attack</h4>
-<p>不需要注入新的代码，而是跳转到已有代码，找到若干个代码片段，在return
-address里压入若干个地址把这些片段串起来</p>
+<h4 id="Code-Reuse-Attack"><a href="#Code-Reuse-Attack" class="headerlink" title="Code Reuse Attack"></a>Code Reuse Attack</h4><p>不需要注入新的代码，而是跳转到已有代码，找到若干个代码片段，在return address里压入若干个地址把这些片段串起来</p>
 <p>Return-oriented Programming</p>
 <ul>
 <li>Find code gadgets in existed code base</li>
-<li>push address of gadgets on stack</li>
-<li>leverage 'ret ' at the end of gadget to connect each code
-gadgets</li>
+<li>push address of  gadgets on stack</li>
+<li>leverage ‘ret ‘ at the end of gadget to connect each code gadgets</li>
 <li>No code injection</li>
 </ul>
 <p>Solutions:</p>
@@ -587,108 +505,75 @@ gadgets</li>
 <ul>
 <li>Use gadget as dispatcher</li>
 </ul>
-<h4 id="cfi">CFI</h4>
-<p>control-flow integrity</p>
+<h4 id="CFI"><a href="#CFI" class="headerlink" title="CFI"></a>CFI</h4><p>control-flow integrity</p>
 <p>General Solution to enforce CFI</p>
 <ul>
 <li>Some need binary re-writing or source re-compiling</li>
-<li>Some need application/OS/Hardware re-designing</li>
+<li>Some need application&#x2F;OS&#x2F;Hardware re-designing</li>
 <li>Some have large overhead</li>
 </ul>
-<p>Challenges:</p>
+<p>Challenges: </p>
 <ul>
 <li>Non-instrusive general attack detection</li>
 <li>Apply to existing applications on commodity hardware</li>
 </ul>
-<p>####shadow stack</p>
-<p>A shadow stack is a second stack for the program</p>
+<h4 id="shadow-stack"><a href="#shadow-stack" class="headerlink" title="shadow stack"></a>shadow stack</h4><p>A shadow stack is a second stack for the program</p>
 <ul>
 <li>Used exclusively for control transfer operations</li>
 <li>Is separate from the data stack</li>
-<li>Can be enabled for operation individually in user mode or supervisor
-mode</li>
+<li>Can be enabled for operation individually in user mode or supervisor mode</li>
 </ul>
-<p>给程序加一个shadow stack，只记录调用trace，和数据分开，stack
-overflow就无法攻击</p>
-<h4 id="shadow-stack-mode">Shadow Stack Mode</h4>
-<p>CALL instruction</p>
+<p>给程序加一个shadow stack，只记录调用trace，和数据分开，stack overflow就无法攻击</p>
+<h4 id="Shadow-Stack-Mode"><a href="#Shadow-Stack-Mode" class="headerlink" title="Shadow Stack Mode"></a>Shadow Stack Mode</h4><p>CALL instruction</p>
 <ul>
 <li>Pushes the return address on both the data and shadow stack</li>
 </ul>
 <p>RET instruction</p>
 <ul>
 <li>Pops the return address from both stacks and compare them</li>
-<li>If the return addresses from two stacks do not match, the processor
-signals a control protection exception</li>
+<li>If the return addresses from two stacks do not match, the processor signals a control protection exception</li>
 </ul>
-<p>Note that the shadow stack only holds the return addresses and not
-parameters passed to the call instruction</p>
-<p>这样软件需要维护两个栈，开销比较大，可以用用户态维护也可以由内核态维护，用户态维护的话每次call
-和return之前都要去另外的地方记录一下，内核态维护可以把shadow
-stack放到内核态，比较安全但是每次call和return都需要system
-call，考虑用硬件来做</p>
-<h4 id="protecting-the-shadow-stack">Protecting the Shadow Stack</h4>
-<p>The shadow stack is protected by page table</p>
+<p>Note that the shadow stack only holds the return addresses and not parameters passed to the call instruction</p>
+<p>这样软件需要维护两个栈，开销比较大，可以用用户态维护也可以由内核态维护，用户态维护的话每次call 和return之前都要去另外的地方记录一下，内核态维护可以把shadow stack放到内核态，比较安全但是每次call和return都需要system call，考虑用硬件来做</p>
+<h4 id="Protecting-the-Shadow-Stack"><a href="#Protecting-the-Shadow-Stack" class="headerlink" title="Protecting the Shadow Stack"></a>Protecting the Shadow Stack</h4><p>The shadow stack is protected by page table</p>
 <ul>
-<li>Page tables support a new attribute: mark page as "Shadow Stack"
-pages依然属于用户态，但是不能被一般指令访问</li>
+<li>Page tables support a new attribute: mark page as “Shadow Stack” pages依然属于用户态，但是不能被一般指令访问</li>
 </ul>
-<p>Control transfers are allowed to store return addresses to the shadow
-stack</p>
+<p>Control transfers are allowed to store return addresses to the shadow stack</p>
 <ul>
-<li>Like near call, far call, call to interrupt/exception handlers,
-etc.</li>
-<li>However stores from instructions like MOV, XSAVE, etc. will not be
-allowed</li>
+<li>Like near call, far call, call to interrupt&#x2F;exception handlers, etc.</li>
+<li>However stores from instructions like MOV, XSAVE, etc. will not be allowed</li>
 </ul>
-<p>When control transfer instructions attempt to read from the shadow
-stack</p>
+<p>When control transfer instructions attempt to read from the shadow stack</p>
 <ul>
-<li>Access will fault if the underlying page is not marked as a "Shadow
-Stack" page</li>
+<li>Access will fault if the underlying page is not marked as a “Shadow Stack” page</li>
 </ul>
-<p>Detects and prevents conditions that cause an overflow or underflow
-of the shadow stack or any malicious attempts to redirect the processor
-to consume data from addresses that are not shadow stack addresses</p>
-<h4 id="indirect-branch-tracking">Indirect Branch Tracking</h4>
-<p>new instruction: ENDBRANCH在jump的时候检查</p>
+<p>Detects and prevents conditions that cause an overflow or underflow of the shadow stack or any malicious attempts to redirect the processor to consume data from addresses that are not shadow stack addresses</p>
+<h4 id="Indirect-Branch-Tracking"><a href="#Indirect-Branch-Tracking" class="headerlink" title="Indirect Branch Tracking"></a>Indirect Branch Tracking</h4><p>new instruction: ENDBRANCH在jump的时候检查</p>
 <ul>
-<li>mark valid indirect call/jmp targets in the program
-jmp地址必须是一个ENDBRANCH</li>
-<li>Becomes a NOP on legacy
-processor，在不支持这一指令的CPU上会变成NOP指令，保证兼容性</li>
-<li>On processors that suport CET the ENDBRANCH is still a NOP and is
-primarily pipeline to detect control flow violations</li>
+<li>mark valid indirect call&#x2F;jmp targets in the program jmp地址必须是一个ENDBRANCH</li>
+<li>Becomes a NOP on legacy processor，在不支持这一指令的CPU上会变成NOP指令，保证兼容性</li>
+<li>On processors that suport CET the ENDBRANCH is still a NOP and is primarily pipeline to detect control flow violations</li>
 </ul>
-<h4 id="wait_-for_-endbranch-state">WAIT_ FOR_ ENDBRANCH State</h4>
-<p>The CPU implements a state machine that tracks indirect jimp and
-call</p>
+<h4 id="WAIT-FOR-ENDBRANCH-State"><a href="#WAIT-FOR-ENDBRANCH-State" class="headerlink" title="WAIT_ FOR_ ENDBRANCH State"></a>WAIT_ FOR_ ENDBRANCH State</h4><p>The CPU implements a state machine that tracks indirect jimp and call</p>
 <ul>
-<li><p>When one of these instructions is seen, the state machine moves
-from IDLE to WAIT_ FOR_ ENDBRANCH state</p></li>
-<li><p>In WAIT_ FOR_ _ENDBRANCH state the next instruction in the
-program stream must be an ENDBRANCH</p></li>
-<li><p>If an ENDBRANCH is not seen the processor causes a control
-protection fault else the state machine moves back to IDLE
-state</p></li>
+<li><p>When one of these instructions is seen, the state machine moves from IDLE to WAIT_ FOR_ ENDBRANCH state</p>
+</li>
+<li><p>In WAIT_ FOR_ _ENDBRANCH state the next instruction in the program stream must be an ENDBRANCH </p>
+</li>
+<li><p>If an ENDBRANCH is not seen the processor causes a control protection fault else the state machine moves back to IDLE state</p>
+</li>
 </ul>
-<p>为了这个指令加入一个WAIT_FOR_ENDBRANCH
-State，进入jmp指令的时候进入这个状态。如果jmp一半发生中断，中断恢复的时候要注意保存状态</p>
-<p>ARM上有类似的指令BTI(Branch Target Instructions)BR----&gt; jmp to
-BTI，指定了落脚点。缺点是BTI依然很多，但正确的只有一个，需要更细粒度的CFI，这部分软件实现起来比较方便</p>
-<h3 id="isolated-execution-environment">Isolated Execution
-Environment</h3>
-<p>能不能把bug带来的影响降到最低</p>
-<h4 id="background-heartbleed-attack">Background: HeartBleed Attack</h4>
-<p>In-application memory disclosure attack</p>
+<p>为了这个指令加入一个WAIT_FOR_ENDBRANCH State，进入jmp指令的时候进入这个状态。如果jmp一半发生中断，中断恢复的时候要注意保存状态</p>
+<p>ARM上有类似的指令BTI(Branch Target Instructions)BR—-&gt; jmp to BTI，指定了落脚点。缺点是BTI依然很多，但正确的只有一个，需要更细粒度的CFI，这部分软件实现起来比较方便</p>
+<h3 id="Isolated-Execution-Environment"><a href="#Isolated-Execution-Environment" class="headerlink" title="Isolated Execution Environment"></a>Isolated Execution Environment</h3><p>能不能把bug带来的影响降到最低</p>
+<h4 id="Background-HeartBleed-Attack"><a href="#Background-HeartBleed-Attack" class="headerlink" title="Background: HeartBleed Attack"></a>Background: HeartBleed Attack</h4><p>In-application memory disclosure attack</p>
 <ul>
 <li>one over-read bug discloses the whole memory data</li>
 </ul>
-<p>在实现TLS心跳协议时没有对输入进行适当验证，缺少边界检查，读取的数据比应该允许读取的还多。连接的一段可以发一个特定类型的heart
-beat请求包给对方，里面携带最长64kb的数据，对方收到后把数据原样返回，完成检测，发送请求的客户端可以故意声明自己携带了很长的数据而实际上不带任何数据，服务器不会检查请求中声明的数据和实际数据大小，而是直接按照这个长度用memcpy从请求数据中复制，也就是实际复制的是内存中紧跟在请求数据后面的这一段空间的数据。</p>
+<p>在实现TLS心跳协议时没有对输入进行适当验证，缺少边界检查，读取的数据比应该允许读取的还多。连接的一段可以发一个特定类型的heart beat请求包给对方，里面携带最长64kb的数据，对方收到后把数据原样返回，完成检测，发送请求的客户端可以故意声明自己携带了很长的数据而实际上不带任何数据，服务器不会检查请求中声明的数据和实际数据大小，而是直接按照这个长度用memcpy从请求数据中复制，也就是实际复制的是内存中紧跟在请求数据后面的这一段空间的数据。</p>
 <p>解决思路：把应用程序代码放到两台虚拟机中执行，一台执行普通代码一台执行加密代码</p>
-<h3 id="virtual-machine">Virtual Machine</h3>
-<p>虚拟化有VMX root/VMX non-root mode, 切换通过VM entry和VM exit实现</p>
+<h3 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h3><p>虚拟化有VMX root&#x2F;VMX non-root mode, 切换通过VM entry和VM exit实现</p>
 <p>VM Entry:</p>
 <ul>
 <li>Transition from VMM to Guest</li>
@@ -706,79 +591,63 @@ beat请求包给对方，里面携带最长64kb的数据，对方收到后把数
 </ul>
 <p>在这一过程中使用的页表多了一个Extended Page Table(EPT)</p>
 <ul>
-<li><p>Translate guest physical addr to host physical addr, the
-two-level translation are all done by hardware</p>
-<p>Guest Virtual Address(GVA)---Guest page table---&gt;Guest Physical
-Address(GPA) ---EPT---&gt;Host Physical Address(HPA)</p></li>
+<li><p>Translate guest physical addr to host physical addr, the two-level translation are all done by hardware</p>
+<p>Guest Virtual Address(GVA)—Guest page table—&gt;Guest Physical Address(GPA) —EPT—&gt;Host Physical Address(HPA)</p>
+</li>
 <li><p>EPT is manipulated and maintained by hypervisor</p>
 <ul>
 <li>Hypervisor controls how guest accesses physical addresss</li>
 <li>any EPT violation triggers VMExit to hypervisor</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>所以其实有两个CR3，一个指向guest page table,一个指向EPT</p>
-<p>如何通过两个虚拟机跑一个进程的两段代码？在一台虚拟机上维护两张页表
-Main EPT和Secret EPT</p>
-<h4 id="memory-isolation-using-ept-mechanism">Memory Isolation using EPT
-Mechanism</h4>
-<p>Leverage EPT mechanism to shadow secret memory</p>
+<p>如何通过两个虚拟机跑一个进程的两段代码？在一台虚拟机上维护两张页表 Main EPT和Secret EPT</p>
+<h4 id="Memory-Isolation-using-EPT-Mechanism"><a href="#Memory-Isolation-using-EPT-Mechanism" class="headerlink" title="Memory Isolation using EPT Mechanism"></a>Memory Isolation using EPT Mechanism</h4><p>Leverage EPT mechanism to shadow secret memory</p>
 <ul>
 <li>Data segment: secret memory is removed from main EPT</li>
 <li>Code segment: sensitive functions only exist in secret EPT</li>
 </ul>
-<p>关键数据和代码都只在secret
-EPT里映射，问题转化为如何高效地做页表切换</p>
-<p>问题：context switch开销很大:</p>
+<p>关键数据和代码都只在secret EPT里映射，问题转化为如何高效地做页表切换</p>
+<p>问题：context switch开销很大: </p>
 <ul>
 <li>Every EPT switch is intervened by hypervisor</li>
 <li>VMExit takes much more time than function call</li>
 </ul>
 <p>使用VMFUNC特性，不需要hypervisor切换页表</p>
-<h4 id="vm-functionvmfunc101">VM Function(VMFUNC)101</h4>
-<p>允许一个虚拟机配置若干个EPT并在non-root情况下切换</p>
+<h4 id="VM-Function-VMFUNC-101"><a href="#VM-Function-VMFUNC-101" class="headerlink" title="VM Function(VMFUNC)101"></a>VM Function(VMFUNC)101</h4><p>允许一个虚拟机配置若干个EPT并在non-root情况下切换</p>
 <p>VM Functions: Intel virtualization extension</p>
 <ul>
-<li>Non-root guest VMs can directly invoke some functions without
-VMExit</li>
+<li>Non-root guest VMs can directly invoke some functions without VMExit</li>
 </ul>
 <p>VM Function 0: EPTP Switching</p>
 <ul>
 <li>Software in guest VM can directly load a new EPT pointer</li>
 </ul>
-<p>VMFUNC can provide the hypervosor-level function at the cost of
-system calls</p>
-<h4 id="using-vmfunc-for-efficiency">Using VMFUNC for Efficiency</h4>
-<p>Separate control plane from data plane</p>
+<p>VMFUNC can provide the hypervosor-level function at the cost of system calls</p>
+<h4 id="Using-VMFUNC-for-Efficiency"><a href="#Using-VMFUNC-for-Efficiency" class="headerlink" title="Using VMFUNC for Efficiency"></a>Using VMFUNC for Efficiency</h4><p>Separate control plane from data plane</p>
 <ul>
-<li>control plane: hypervisor pre-configure the EPT used by different
-compartments</li>
-<li>data plane: application can directly switch EPT without yhypervisor
-intervention</li>
+<li>control plane: hypervisor pre-configure the EPT used by different compartments</li>
+<li>data plane: application can directly switch EPT without yhypervisor intervention</li>
 </ul>
-<p>EPTP switching invocation: VMFUNC opcode (EAX=0, ECX=EPTP_index)</p>
+<p>EPTP switching invocation: VMFUNC opcode (EAX&#x3D;0, ECX&#x3D;EPTP_index)</p>
 <p>一个虚拟机切换了页表后hypervisor并不知道切换了页表，可能导致错误，需要补足信息缺失，同时，由于VMFUNC可以在用户态运行，因此要防止恶意攻击者随意调用VMFUNC</p>
-<h4 id="security-problem-of-vmfunc">Security Problem of VMFUNC</h4>
-<p>What if attackers directly switch EPT?</p>
+<h4 id="Security-Problem-of-VMFUNC"><a href="#Security-Problem-of-VMFUNC" class="headerlink" title="Security Problem of VMFUNC"></a>Security Problem of VMFUNC</h4><p>What if attackers directly switch EPT?</p>
 <ul>
 <li>Since EPT switching is not checked by hypervisor</li>
 </ul>
 <p>Recall: the code segment of the secret compartment</p>
 <ul>
 <li>It only contains trusted sensitive functions</li>
-<li>The legal entrances to the secret compartment are
-fixed合法入口是固定的，只有这个地方可以调用VMFUNC</li>
+<li>The legal entrances to the secret compartment are fixed合法入口是固定的，只有这个地方可以调用VMFUNC</li>
 <li>Invalid VMFUNC invocation causes EPT violation</li>
 </ul>
-<h4 id="secret-compartment-is-not-self-contained">Secret Compartment is
-not self-contained</h4>
-<ul>
+<h4 id="Secret-Compartment-is-not-self-contained"><a href="#Secret-Compartment-is-not-self-contained" class="headerlink" title="Secret Compartment is not self-contained"></a>Secret Compartment is not self-contained</h4><ul>
 <li>main compartment may invoke sensitive functions</li>
 <li>Secret compartment may invoke normal functions</li>
 <li>Different compartments have different context</li>
-<li>main compartment通过Trampoline切换为secret
-compartment执行敏感代码再切换回去</li>
-<li>secret compartment通过springboard切换为main
-compartment调用lib_call再切换回去</li>
+<li>main compartment通过Trampoline切换为secret compartment执行敏感代码再切换回去</li>
+<li>secret compartment通过springboard切换为main compartment调用lib_call再切换回去</li>
 <li>Context switch is done using VMFUNC</li>
 </ul>
 <p>Application Decomposition in SeCage</p>
@@ -786,35 +655,27 @@ compartment调用lib_call再切换回去</li>
 <ul>
 <li>Dynamic approach to extracting the secret closure</li>
 <li>Automatic decomposition during compilation time</li>
-<li>Static approach to getting the complete potential secret data
-functions, used to avoid corner case during runtime</li>
+<li>Static approach to getting the complete potential secret data functions, used to avoid corner case during runtime</li>
 </ul>
-<p>##Features for Isolation</p>
-<h3 id="arm-trustzone">ARM Trustzone</h3>
-<p>Two Modes</p>
+<h2 id="Features-for-Isolation"><a href="#Features-for-Isolation" class="headerlink" title="Features for Isolation"></a>Features for Isolation</h2><h3 id="ARM-Trustzone"><a href="#ARM-Trustzone" class="headerlink" title="ARM Trustzone"></a>ARM Trustzone</h3><p>Two Modes</p>
 <ul>
-<li>Normal world(REE, rich execution environment) and secure world(TEE,
-trusted execution environment)</li>
+<li>Normal world(REE, rich execution environment) and secure world(TEE, trusted execution environment)</li>
 <li>isolated with each other</li>
 <li>SMC instruction to switch</li>
 </ul>
 <p>可以把trustzone看成两个虚拟机，区别在于smc的功能并不像thypervisor那么多，逻辑比较简单</p>
-<h4 id="different-levels-of-trust">Different levels of trust</h4>
-<ul>
-<li>Secure Domain(Tamper-proof, isolated) High security, limited
-funcs</li>
+<h4 id="Different-levels-of-trust"><a href="#Different-levels-of-trust" class="headerlink" title="Different levels of trust"></a>Different levels of trust</h4><ul>
+<li>Secure Domain(Tamper-proof, isolated) High security, limited funcs</li>
 <li>Trusted Domain(TrustZone and TEE)</li>
 <li>Protected Domain(Hypervisor) Secure, but more complex</li>
 <li>Rich Domain(Android or Linux) Not secure,but flexible</li>
 </ul>
-<h4 id="trustzone-usage-in-phones">TrustZone Usage: in Phones</h4>
-<p>TEE has become standard for biometric</p>
+<h4 id="TrustZone-Usage-in-Phones"><a href="#TrustZone-Usage-in-Phones" class="headerlink" title="TrustZone Usage: in Phones"></a>TrustZone Usage: in Phones</h4><p>TEE has become standard for biometric</p>
 <ul>
 <li>TEE for fingerprint registration, storage and attestation</li>
 <li>Keep secure even if the phone is rooted</li>
 </ul>
-<h4 id="trustzone-usage-in-vehicle">TrustZone Usage: in Vehicle</h4>
-<p>Secure Authentication:</p>
+<h4 id="TrustZone-Usage-in-Vehicle"><a href="#TrustZone-Usage-in-Vehicle" class="headerlink" title="TrustZone Usage: in Vehicle"></a>TrustZone Usage: in Vehicle</h4><p>Secure Authentication:</p>
 <ul>
 <li>start through fingerprint</li>
 <li>secure payment for digital content,oil,etc</li>
@@ -828,21 +689,18 @@ funcs</li>
 <ul>
 <li>Use TEE for secure authentication and connection</li>
 </ul>
-<h4 id="trustzone-usage-in-drones">TrustZone Usage: in Drones</h4>
-<p>Secure Control Policies</p>
+<h4 id="TrustZone-Usage-in-Drones"><a href="#TrustZone-Usage-in-Drones" class="headerlink" title="TrustZone Usage: in Drones"></a>TrustZone Usage: in Drones</h4><p>Secure Control Policies</p>
 <ul>
 <li>No-fly zone: using GPS to restrict fly zone through TEE</li>
 <li>Owner authentication: using biometrics on remote controller</li>
-<li>Other fly-policies: return to specific spot under certain
-conditions</li>
+<li>Other fly-policies: return to specific spot under certain conditions</li>
 </ul>
 <p>Secure Enforcement</p>
 <ul>
-<li>Enforce policies through secure boot/secure storage</li>
+<li>Enforce policies through secure boot&#x2F;secure storage</li>
 <li>Tamper-resistant even under physical attacks</li>
 </ul>
-<h4 id="current-eco-system-of-tee">Current Eco-system of TEE</h4>
-<p>Fragmentation of TEE</p>
+<h4 id="Current-Eco-system-of-TEE"><a href="#Current-Eco-system-of-TEE" class="headerlink" title="Current Eco-system of TEE"></a>Current Eco-system of TEE</h4><p>Fragmentation of TEE</p>
 <ul>
 <li>From chip venders: QualComm, Spetrum</li>
 <li>From phone venders: Apple, Huawei</li>
@@ -854,9 +712,7 @@ conditions</li>
 <li>must be ported to each TEE OS</li>
 <li>have to trust the underlying TEE OS</li>
 </ul>
-<h4 id="trustzone-based-real-time-kernel-protection">TrustZone-based
-Real-time Kernel Protection</h4>
-<p>Event-driven monitor</p>
+<h4 id="TrustZone-based-Real-time-Kernel-Protection"><a href="#TrustZone-based-Real-time-Kernel-Protection" class="headerlink" title="TrustZone-based Real-time Kernel Protection"></a>TrustZone-based Real-time Kernel Protection</h4><p>Event-driven monitor</p>
 <ul>
 <li>Monitor the normal world critical events</li>
 </ul>
@@ -869,22 +725,18 @@ Real-time Kernel Protection</h4>
 <li>Prevent unauthorized privileged code on the target system</li>
 <li>Prevent kernel data access by user level processes</li>
 </ul>
-<h3 id="intel-sgx">Intel SGX</h3>
-<h4 id="why-intel-sgx">Why Intel SGX?</h4>
-<p>Motivation: untrusted privileged software</p>
+<h3 id="Intel-SGX"><a href="#Intel-SGX" class="headerlink" title="Intel SGX"></a>Intel SGX</h3><h4 id="Why-Intel-SGX"><a href="#Why-Intel-SGX" class="headerlink" title="Why Intel SGX?"></a>Why Intel SGX?</h4><p>Motivation: untrusted privileged software</p>
 <ul>
 <li>protect application from untrusted OS</li>
 </ul>
-<p>What if the OS direct accesses application's memory?</p>
+<p>What if the OS direct accesses application’s memory?</p>
 <ul>
 <li>Data are encrypted in memory</li>
 <li>Data can only be accessed by the app within CPU boundary</li>
 <li>The TCB contains only the CPU app, no OS</li>
 </ul>
 <p>首次在商用处理器上引入内存加密，攻击者通过物理手段偷取数据很难(嗅探内存总线，拔下NVRAM读数据)需要直接读取CPU才能得到数据</p>
-<h4 id="how-can-memory-always-be-encrypted">How can Memory Always be
-Encrypted?</h4>
-<p>Question: data will eventually be decrypted when using</p>
+<h4 id="How-can-Memory-Always-be-Encrypted"><a href="#How-can-Memory-Always-be-Encrypted" class="headerlink" title="How can Memory Always be Encrypted?"></a>How can Memory Always be Encrypted?</h4><p>Question: data will eventually be decrypted when using</p>
 <ul>
 <li>Then, what if an attacker steal data when it is being used</li>
 </ul>
@@ -892,19 +744,11 @@ Encrypted?</h4>
 <ul>
 <li>The attacker now has to steal data directly from CPU</li>
 </ul>
-<h4 id="counter-mode-encryption">Counter-mode Encryption</h4>
-<p>有两个cache,分别是data cache和counter
-cache不直接对数据做加解密，而是对counter做。每个cache
-line对应一个counter，数据加密其实是对数据对应的counter做加密。VM-key对counter做加密，生成一个PAD。这个PAD再和data做一次XOR运算作为最终密文,
-因为XOR比较快</p>
+<h4 id="Counter-mode-Encryption"><a href="#Counter-mode-Encryption" class="headerlink" title="Counter-mode Encryption"></a>Counter-mode Encryption</h4><p>有两个cache,分别是data cache和counter cache不直接对数据做加解密，而是对counter做。每个cache line对应一个counter，数据加密其实是对数据对应的counter做加密。VM-key对counter做加密，生成一个PAD。这个PAD再和data做一次XOR运算作为最终密文, 因为XOR比较快</p>
 <p>为什么是安全的？因为counter值是随机的，而且每次写内存counter都会+1,一直是变化的</p>
-<h4 id="merkel-tree-for-data-integrity">Merkel Tree for Data
-Integrity</h4>
-<p>对所有的data和counter做一个哈希，对哈希值再次哈希，一路往上变成一个root
-of hash tree放在CPU里，攻击者无法修改</p>
-<p>性能比较差，写一次要多次哈希，哈希树不能太深，内存不能太大。128MB--&gt;改善后256MB</p>
-<h4 id="process-view">Process View</h4>
-<ul>
+<h4 id="Merkel-Tree-for-Data-Integrity"><a href="#Merkel-Tree-for-Data-Integrity" class="headerlink" title="Merkel Tree for Data Integrity"></a>Merkel Tree for Data Integrity</h4><p>对所有的data和counter做一个哈希，对哈希值再次哈希，一路往上变成一个root of hash tree放在CPU里，攻击者无法修改</p>
+<p>性能比较差，写一次要多次哈希，哈希树不能太深，内存不能太大。128MB–&gt;改善后256MB</p>
+<h4 id="Process-View"><a href="#Process-View" class="headerlink" title="Process View"></a>Process View</h4><ul>
 <li>With its own code and data</li>
 <li>Providing Confidentiality &amp; Integrity</li>
 <li>Controlled entry points</li>
@@ -912,60 +756,40 @@ of hash tree放在CPU里，攻击者无法修改</p>
 <li>Full access to app memory and processor performance</li>
 </ul>
 <p>protected execution environment embedded in a process</p>
-<h4 id="sgx-execution-flow">SGX Execution Flow</h4>
-<ul>
+<h4 id="SGX-Execution-Flow"><a href="#SGX-Execution-Flow" class="headerlink" title="SGX Execution Flow"></a>SGX Execution Flow</h4><ul>
 <li>App built with trusted and untrusted parts</li>
-<li>App runs &amp; creates the enclaves which is placed in trusted
-memory</li>
-<li>Trusted function is called, execution transitioned to the
-enclave此时call的时候要必须通过call gate限制跳转范围</li>
-<li>Enclave sees all process data in clear; external access to enclave
-data is denied</li>
-<li>Trusted function returns; enclave data remains in trusted
-memory</li>
+<li>App runs &amp; creates the enclaves which is placed in trusted memory</li>
+<li>Trusted function is called, execution transitioned to the enclave此时call的时候要必须通过call gate限制跳转范围</li>
+<li>Enclave sees all process data in clear; external access to enclave data is denied</li>
+<li>Trusted function returns; enclave data remains in trusted memory</li>
 <li>Application continues normal execution</li>
 </ul>
 <p>怎么使用？</p>
-<h4 id="software-architectures-of-sgx">Software Architectures of
-SGX</h4>
-<ul>
+<h4 id="Software-Architectures-of-SGX"><a href="#Software-Architectures-of-SGX" class="headerlink" title="Software Architectures of SGX"></a>Software Architectures of SGX</h4><ul>
 <li>Code Snippet只把APP trusted part放进enclaves</li>
-<li>Application 把整个app和LibC
-interface放进SGX，好处是app不需要修改，缺点是不能很好保证安全性，libC向外传参是明文还是密文？</li>
-<li>Container把LibC也加进来，system
-call才出去，但如果OS也是恶意的呢？</li>
-<li>LibOS 把LibOS也放进来，把常用system
-call封装成一个OS放进来，外面是virtual machine级别</li>
+<li>Application 把整个app和LibC interface放进SGX，好处是app不需要修改，缺点是不能很好保证安全性，libC向外传参是明文还是密文？</li>
+<li>Container把LibC也加进来，system call才出去，但如果OS也是恶意的呢？</li>
+<li>LibOS 把LibOS也放进来，把常用system call封装成一个OS放进来，外面是virtual machine级别</li>
 </ul>
-<h3 id="amd-sme-intel-tme">AMD SME &amp; INTEL TME</h3>
-<h4 id="amd-x86-memory-encryption-technologies">AMD x86 Memory
-Encryption Technologies</h4>
-<p>Two Technologies:</p>
+<h3 id="AMD-SME-amp-INTEL-TME"><a href="#AMD-SME-amp-INTEL-TME" class="headerlink" title="AMD SME &amp; INTEL TME"></a>AMD SME &amp; INTEL TME</h3><h4 id="AMD-x86-Memory-Encryption-Technologies"><a href="#AMD-x86-Memory-Encryption-Technologies" class="headerlink" title="AMD x86 Memory Encryption Technologies"></a>AMD x86 Memory Encryption Technologies</h4><p>Two Technologies:</p>
 <ul>
 <li>AMD Secure Memory Encryption(SME)</li>
 <li>AMD Secure Encrypted Virtualization(SEV)</li>
 </ul>
 <p>Features</p>
 <ul>
-<li>Hardware AES engine located in the memory controller performs inline
-encryption and decryption of DRAM</li>
-<li>Minimal performance impact: Extra latency only taken for encrypted
-pages</li>
+<li>Hardware AES engine located in the memory controller performs inline encryption and decryption of DRAM</li>
+<li>Minimal performance impact: Extra latency only taken for encrypted pages</li>
 <li>No application changes required</li>
-<li>Encryption keys are managed by the AMD Secure Processor and are
-hardware isolated. Not known to any software on the CPU</li>
+<li>Encryption keys are managed by the AMD Secure Processor and are hardware isolated. Not known to any software on the CPU</li>
 </ul>
 <p>页表第47位设为0不加密，设为1为加密，对软件完全透明。依赖于OS,防硬件不防软件</p>
-<h4 id="comparing-with-intel-sgx">Comparing with Intel SGX</h4>
-<p>The SME approach is different - It will not protect memory from an
-attacker who has compromised the kernel - It is intended to protect
-against cold- boot attacks, snooping on the memory bus, and the
-disclosure of transient data stored in persistent-memory arrays</p>
-<h4 id="intel-mktme-multi-key-tme">Intel MKTME: Multi-Key TME</h4>
-<p>配置多个key,既可以从hard generated临时的key,也可以用 software
-provided
-key，适用于NVRAM重启后仍然想知道里面的数据(SGX这样纯硬件生成的重启后就不知道Key了，无法解密)
-Multi-Key Total Memory Encryption (MKTME)</p>
+<h4 id="Comparing-with-Intel-SGX"><a href="#Comparing-with-Intel-SGX" class="headerlink" title="Comparing with Intel SGX"></a>Comparing with Intel SGX</h4><p>The SME approach is different</p>
+<ul>
+<li>It will not protect memory from an attacker who has<br>compromised the kernel</li>
+<li>It is intended to protect against cold- boot attacks, snooping on the memory bus, and the disclosure of<br>transient data stored in persistent-memory arrays</li>
+</ul>
+<h4 id="Intel-MKTME-Multi-Key-TME"><a href="#Intel-MKTME-Multi-Key-TME" class="headerlink" title="Intel MKTME: Multi-Key TME"></a>Intel MKTME: Multi-Key TME</h4><p>配置多个key,既可以从hard generated临时的key,也可以用 software provided key，适用于NVRAM重启后仍然想知道里面的数据(SGX这样纯硬件生成的重启后就不知道Key了，无法解密)<br>Multi-Key Total Memory Encryption (MKTME)</p>
 <ul>
 <li>A fixed number of encryption keys are supported</li>
 <li>This functionality is available on a per-page basis</li>
@@ -976,18 +800,13 @@ Multi-Key Total Memory Encryption (MKTME)</p>
 </ul>
 <p>MKTME also supports software-provided keys</p>
 <ul>
-<li>E.g.. a hypervisor can manage the keys to transparently provide
-memory encryption support for legacy OSes</li>
-<li>OS can also use MKTME to provide support in native and virtualized
-environment</li>
+<li>E.g.. a hypervisor can manage the keys to transparently provide memory encryption support for legacy OSes</li>
+<li>OS can also use MKTME to provide support in native and virtualized environment</li>
 </ul>
 <p>不同的VM可以有多个KeyID的内存区域，通过具有相同keyID的内存区域进行交互</p>
-<h3 id="amd-sev">AMD SEV</h3>
-<h4 id="threat-model-of-public-cloud">Threat Model of Public Cloud</h4>
-<p>Isolation between co-resident VMs provided by hypervisor sometimes
-breaks down:</p>
+<h3 id="AMD-SEV"><a href="#AMD-SEV" class="headerlink" title="AMD SEV"></a>AMD SEV</h3><h4 id="Threat-Model-of-Public-Cloud"><a href="#Threat-Model-of-Public-Cloud" class="headerlink" title="Threat Model of Public Cloud"></a>Threat Model of Public Cloud</h4><p>Isolation between co-resident VMs provided by hypervisor sometimes breaks down: </p>
 <ul>
-<li>QEMU "VENOM", VirtualBox bug, etc.</li>
+<li>QEMU “VENOM”, VirtualBox bug, etc.</li>
 </ul>
 <p>Cloud vendors and hypervisor they provide can not be trusted</p>
 <ul>
@@ -995,17 +814,14 @@ breaks down:</p>
 <li>Not ideal for cloud users</li>
 </ul>
 <p>AMD SEV assumes no side channel attacks or integrity compromise</p>
-<h4 id="design-of-sev">Design of SEV</h4>
-<p>SEV adds an encryption engine in memory controller for encryption</p>
+<h4 id="Design-of-SEV"><a href="#Design-of-SEV" class="headerlink" title="Design of SEV"></a>Design of SEV</h4><p>SEV adds an encryption engine in memory controller for encryption</p>
 <ul>
 <li>Encryption engine encrypts data using corresponding key</li>
 <li>Encryption key is selected by secure processor</li>
 </ul>
 <p>SEV adds a secure processor for key management</p>
-<p>DRAM里面是加密的，靠SOC里的Key进行保护，guest owner把自己的VM加密之后
-VM只能运行在SEV里面并且以加密方式运行。hypervisor只能偷到密文</p>
-<h4 id="limitation-of-amd-sme">Limitation of AMD SME</h4>
-<p>Vulnerable to side channel attacks</p>
+<p>DRAM里面是加密的，靠SOC里的Key进行保护，guest owner把自己的VM加密之后 VM只能运行在SEV里面并且以加密方式运行。hypervisor只能偷到密文</p>
+<h4 id="Limitation-of-AMD-SME"><a href="#Limitation-of-AMD-SME" class="headerlink" title="Limitation of AMD SME"></a>Limitation of AMD SME</h4><p>Vulnerable to side channel attacks</p>
 <ul>
 <li>Cache side channel, TLB side channel, etc.</li>
 </ul>
@@ -1019,199 +835,159 @@ VM只能运行在SEV里面并且以加密方式运行。hypervisor只能偷到�
 <li>Encryption key is associated with ASID</li>
 <li>Number of ASID is limited in secure processor</li>
 </ul>
-<p>encryption
-key数量有限，能起的虚拟机数量有限。为了解决这个问题提出SMP，其中一个很重要的数据结构是RMP</p>
-<h4 id="rmp-reverse-map-table">RMP: Reverse Map Table</h4>
-<p>Memory integrity is enforced using a new DRAM structure called the
-Reverse Map Table (RMP)</p>
-<p>There is 1 RMP for the entire system, it is created by software
-during boot</p>
+<p>encryption key数量有限，能起的虚拟机数量有限。为了解决这个问题提出SMP，其中一个很重要的数据结构是RMP</p>
+<h4 id="RMP-Reverse-Map-Table"><a href="#RMP-Reverse-Map-Table" class="headerlink" title="RMP: Reverse Map Table"></a>RMP: Reverse Map Table</h4><p>Memory integrity is enforced using a new DRAM structure called the Reverse Map Table (RMP)</p>
+<p>There is 1 RMP for the entire system, it is created by software during boot</p>
 <p>Basic properties:</p>
 <ul>
-<li>RMP contains 1 entry for every 4k of assignable memory Hypervisor
-page</li>
+<li>RMP contains 1 entry for every 4k of assignable memory Hypervisor page</li>
 <li>RMP is indexed by System Physical Address (SPA)</li>
 <li>RMP entries may only be manipulated via new x86 instructions</li>
 </ul>
-<p>The RMP indicates page ownership and dictates write-ability.
-Examples:</p>
+<p>The RMP indicates page ownership and dictates write-ability. Examples:</p>
 <ul>
 <li>A page assigned to a guest is only writeable by that guest</li>
-<li>A page assigned to the hypervisor cannot be used as a private
-(encrypted) guest page</li>
-<li>A page used by AMD firmware cannot be written by any x86
-software</li>
+<li>A page assigned to the hypervisor cannot be used as a private (encrypted) guest page</li>
+<li>A page used by AMD firmware cannot be written by any x86 software</li>
 </ul>
-<p>RMP记录的是physical memory到virtual memory之间的映射关系，又叫page
-ownership</p>
+<p>RMP记录的是physical memory到virtual memory之间的映射关系，又叫page ownership</p>
 <p>加了一条新指令PVALIDATE，guest可以对每个加到自己地址空间里的内存做VALIDATE操作，加进来之后会写RMP。guest执行PVALIDATE，硬件会把RMP设置好。如果hypervisor把mapping改了，此时guest并不知情，再去访问这块内存就会报错，可以保证hypervisor对页表的监控</p>
-<h4 id="why-tee-virtualization">Why TEE Virtualization?</h4>
-<p>能否对TrustZone做虚拟化，使得里面可以跑多个Trust OS和对应的App?</p>
+<h4 id="Why-TEE-Virtualization"><a href="#Why-TEE-Virtualization" class="headerlink" title="Why TEE Virtualization?"></a>Why TEE Virtualization?</h4><p>能否对TrustZone做虚拟化，使得里面可以跑多个Trust OS和对应的App?</p>
 <ul>
 <li>before 2021: A fixed piece of code by venders</li>
 <li>2012-2017: Some pre-installed trusted apps(TAs) by venders</li>
 <li>2017-now: Support dynamic installation of third party TAs</li>
 </ul>
-<h4 id="why-multiple-isolated-tees-are-needed">Why multiple isolated
-TEEs are needed?</h4>
-<ul>
+<h4 id="Why-multiple-isolated-TEEs-are-needed"><a href="#Why-multiple-isolated-TEEs-are-needed" class="headerlink" title="Why multiple isolated TEEs are needed?"></a>Why multiple isolated TEEs are needed?</h4><ul>
 <li>More and more CVEs of TEE OS and TAs are disclosed</li>
 <li>A compromised TEE may breach the entire system</li>
-<li>APP vendors(e.g.,mobile payment) may compensate users for the faults
-of TEE OS, thuus they prefer to run on TEEs the trust</li>
+<li>APP vendors(e.g.,mobile payment) may compensate users for the faults of TEE OS, thuus they prefer to run on TEEs the trust</li>
 </ul>
-<h4 id="cve-example-the-boomerang-attack">CVE Example: The Boomerang
-Attack</h4>
-<p>A time service running in the secure world.</p>
+<h4 id="CVE-Example-The-Boomerang-Attack"><a href="#CVE-Example-The-Boomerang-Attack" class="headerlink" title="CVE Example: The Boomerang Attack"></a>CVE Example: The Boomerang Attack</h4><p>A time service running in the secure world.</p>
 <ul>
 <li>Writing current time to a memory address (as parameter)</li>
 </ul>
 <p>The bug: no check on the address→arbitrary memory writes to REE</p>
 <ul>
 <li>Recall that TEE has higher privilege than REE</li>
-<li>Similar bugs exist in QualComm, Trustonic, SierrawareTEE, Huawei,
-OP-TEE</li>
+<li>Similar bugs exist in QualComm, Trustonic, SierrawareTEE, Huawei, OP-TEE</li>
 </ul>
 <p>降低TEE权限</p>
-<h4 id="teev-enabling-multiple-virtualized-tees">TEEv: Enabling Multiple
-Virtualized TEEs</h4>
-<p>在一个CPU内运行多个TEE,这些vTEE可以是不同厂商的</p>
-<p>interaction between vTEEs &amp; vTEE/REE</p>
+<h4 id="TEEv-Enabling-Multiple-Virtualized-TEEs"><a href="#TEEv-Enabling-Multiple-Virtualized-TEEs" class="headerlink" title="TEEv: Enabling Multiple Virtualized TEEs"></a>TEEv: Enabling Multiple Virtualized TEEs</h4><p>在一个CPU内运行多个TEE,这些vTEE可以是不同厂商的</p>
+<p>interaction between vTEEs &amp; vTEE&#x2F;REE</p>
 <ul>
-<li>secure communication channel by TEE-visor
-<ul>
-<li>TEE-visor manages the shared memry pages between vTEEs and
-vTEE/REE</li>
+<li>secure communication channel by TEE-visor<ul>
+<li>TEE-visor manages the shared memry pages between vTEEs and vTEE&#x2F;REE</li>
 <li>Memory pages in one context need to be explicitly other context</li>
-</ul></li>
+</ul>
+</li>
 <li>Defend Boomerang attack</li>
 </ul>
-<h3 id="pmp">PMP</h3>
-<h4 id="hardware-property-pmp">Hardware Property: PMP</h4>
-<p>RISC-V平台的隔离技术，physical memory protection</p>
+<h3 id="PMP"><a href="#PMP" class="headerlink" title="PMP"></a>PMP</h3><h4 id="Hardware-Property-PMP"><a href="#Hardware-Property-PMP" class="headerlink" title="Hardware Property: PMP"></a>Hardware Property: PMP</h4><p>RISC-V平台的隔离技术，physical memory protection</p>
 <p>Secure monitor only ensure memory isolation when creating enclave</p>
 <ul>
 <li>Keystone use PMP to ensure memory isolation during execution</li>
 </ul>
 <p>N (typically 8) groups of PMP registers</p>
 <ul>
-<li>Each group configures access permission to a specific piece of
-continuous physical memory</li>
+<li>Each group configures access permission to a specific piece of continuous physical memory</li>
 </ul>
 <p>Hardware check during memory access</p>
 <ul>
-<li><p>Hardware will look up the first PMP register group whose memory
-region contains destination address (from0 to N)</p></li>
-<li><p>Check access permission according to first found PMP
-register</p></li>
+<li><p>Hardware will look up the first PMP register group whose memory region contains destination address (from0 to N)</p>
+</li>
+<li><p>Check access permission according to first found PMP register</p>
+</li>
 </ul>
-<p>Each enclave will be assigned a group of PMP registers, indicates
-memory region allocated to enclave</p>
-<p>pmpN is assigned to OS by secure monitor in default, so OS can only
-access memory after the address passes the check of all enclave's
-check</p>
-<p>After enclave creation, the physical memory is divided into several
-independent memory region, each belongs to one enclave</p>
-<p>total number of enclaves is limited, because the number of PMP
-register is limited</p>
-<h4 id="limitations-of-pmp">Limitations of PMP</h4>
-<p>Vulnerable to physical attacks</p>
+<p>Each enclave will be assigned a group of PMP registers, indicates memory region allocated to enclave</p>
+<p>pmpN is assigned to OS by secure monitor in default, so OS can only access memory after the address passes the check of all enclave’s check</p>
+<p>After enclave creation, the physical memory is divided into several independent memory region, each belongs to one enclave</p>
+<p>total number of enclaves is limited, because the number of PMP register is limited</p>
+<h4 id="Limitations-of-PMP"><a href="#Limitations-of-PMP" class="headerlink" title="Limitations of PMP"></a>Limitations of PMP</h4><p>Vulnerable to physical attacks</p>
 <ul>
 <li>Bus snooping, cold boot attack, etc.</li>
 </ul>
 <p>Not support dynamically allocating new memory for enclave</p>
 <ul>
-<li><p>Enclave's memory region can only be set during enclave
-creation</p></li>
-<li><p>This is limited by hardware PMP's design</p></li>
+<li><p>Enclave’s memory region can only be set during enclave creation</p>
+</li>
+<li><p>This is limited by hardware PMP’s design</p>
+</li>
 </ul>
 <p>Limited number of enclave supported simultaneously</p>
-<h4 id="motivation-of-spmp">Motivation of sPMP</h4>
-<p>For loT devices(MMU-less). It is desirable to enable S-mode OS to
-limit the physical addresses accessible by U-mode software</p>
+<h4 id="Motivation-of-sPMP"><a href="#Motivation-of-sPMP" class="headerlink" title="Motivation of sPMP"></a>Motivation of sPMP</h4><p>For loT devices(MMU-less). It is desirable to enable S-mode OS to limit the physical addresses accessible by U-mode software</p>
 <p>之前的PMP是monitor mode,是 RISC-V平台特有的权限，非常底层</p>
-<p>M-mode PMP virtualization is non-secure, S-mode virtualization for
-scalable enclaves</p>
-<h4 id="penglai">Penglai</h4>
-<p>在machine mode里做了一个secure monitor，负责Enclave
-management，包括创建enclave等，user态有enclave APP, Enclave
-service如FS等 ，主要工作在于secure communnication channel</p>
-<h4 id="fine-grained-memory-isolation">Fine-grained Memory
-Isolation</h4>
-<p>Naive way</p>
+<p>M-mode PMP virtualization is non-secure, S-mode virtualization for scalable enclaves</p>
+<h4 id="Penglai"><a href="#Penglai" class="headerlink" title="Penglai"></a>Penglai</h4><p>在machine mode里做了一个secure monitor，负责Enclave management，包括创建enclave等，user态有enclave APP, Enclave service如FS等 ，主要工作在于secure communnication channel</p>
+<h4 id="Fine-grained-Memory-Isolation"><a href="#Fine-grained-Memory-Isolation" class="headerlink" title="Fine-grained Memory Isolation"></a>Fine-grained Memory Isolation</h4><p>Naive way</p>
 <p>1-bit tag for memory isolation</p>
 <ul>
-<li><p>Secure monitor reserves a bitmap in DRAM and protects it via
-PMP</p></li>
-<li><p>Each bit in bitmap corresponds to one physical page and indicate
-whether the page is enclave page</p></li>
-<li><p>CPU checks corresponding bit in bitmap before accessing certain
-physical page to prohibit kernel from accessing enclave memory</p></li>
+<li><p>Secure monitor reserves a bitmap in DRAM and protects it via PMP</p>
+</li>
+<li><p>Each bit in bitmap corresponds to one physical page and indicate whether the page is enclave page</p>
+</li>
+<li><p>CPU checks corresponding bit in bitmap before accessing certain physical page to prohibit kernel from accessing enclave memory</p>
+</li>
 </ul>
-<p>对性能影响和硬件改动比较大 Cons:</p>
+<p>对性能影响和硬件改动比较大<br>Cons:</p>
 <ul>
-<li><p>Too much modification to hardware</p></li>
-<li><p>CPU extension introduces one extra memory access for querying
-bitmap</p></li>
-<li><p>Overhead can be alleviated via tag cache but can not be mitigated
-and introduces more modification</p></li>
+<li><p>Too much modification to hardware</p>
+</li>
+<li><p>CPU extension introduces one extra memory access for querying bitmap</p>
+</li>
+<li><p>Overhead can be alleviated via tag cache but can not be mitigated and introduces more modification</p>
+</li>
 </ul>
 <p>Hardware Solution</p>
 <ul>
-<li><p>All unsecure page tables are stored in a reserved memory region
-(PT_ AREA). New hardware feature is added in page table walker
-(PTW)</p></li>
-<li><p>PT_ AREA is isolated from kernel by PMP</p></li>
-<li><p>Kernel is still in charge of memory mappings but can not write
-PT_ AREA directly</p></li>
-<li><p>Secure monitor helps kernel set page table entry and check
-malicious mappings</p></li>
-<li><p>Minor modification to hardware (only some comparing logic in page
-table walker)</p></li>
-<li><p>No extra memory access overhead during application
-execution</p></li>
+<li><p>All unsecure page tables are stored in a reserved memory region (PT_ AREA). New hardware feature is added in page table walker (PTW)</p>
+</li>
+<li><p>PT_ AREA is isolated from kernel by PMP</p>
+</li>
+<li><p>Kernel is still in charge of memory mappings but can not write PT_ AREA directly</p>
+</li>
+<li><p>Secure monitor helps kernel set page table entry and check malicious mappings</p>
+</li>
+<li><p>Minor modification to hardware (only some comparing logic in page table walker)</p>
+</li>
+<li><p>No extra memory access overhead during application execution</p>
+</li>
 </ul>
 <p>It achieves:</p>
 <ul>
 <li>G1: Non-enclaves cannot access secure pages</li>
 <li>G2: Fine-grained memory isolation without static partitioning</li>
 </ul>
-<h4 id="temporally-cache-partition">Temporally Cache Partition</h4>
-<p>Penglai uses cache partition mechanism to alleviate side channel</p>
+<h4 id="Temporally-Cache-Partition"><a href="#Temporally-Cache-Partition" class="headerlink" title="Temporally Cache Partition"></a>Temporally Cache Partition</h4><p>Penglai uses cache partition mechanism to alleviate side channel</p>
 <p>Partition cache when current CPU issues certain instruction</p>
 <ul>
-<li>CPU can still read/write all cache lines but can only evict cache
-lines allocated to it</li>
+<li>CPU can still read&#x2F;write all cache lines but can only evict cache lines allocated to it</li>
 </ul>
 <p>Cancel the partition via certain instruction</p>
 <p>Most of time the whole cache is shared among CPUs</p>
-<h4 id="fast-ipc">Fast IPC</h4>
-<ul>
-<li><p>Secure monitor allows an enclave to register itself as a server
-with certain name</p></li>
-<li><p>Then secure monitor will bind the server enclave with its
-name</p></li>
-<li><p>Other enclaves can request secure monitor for handle of server
-enclave with certain name</p></li>
-<li><p>Then it can call server enclave with the handle</p></li>
-<li><p>Penglai supports both host- enclave IPC and enclave - enclave
-IPC</p></li>
-<li><p>Penglai supports fast ownership transfer between host and enclave
-via unmapping pages in PT AREA, marking enclave pages and remapping them
-in enclave's page table</p></li>
-<li><p>Penglai supports fast ownership transfer between enclaves and
-enclave via unmapping and remapping pages in each enclave's page
-table</p></li>
-<li><p>When enclave call is finished, pages' owner- ship transfer can
-also happen in the opposite direction</p></li>
+<h4 id="Fast-IPC"><a href="#Fast-IPC" class="headerlink" title="Fast IPC"></a>Fast IPC</h4><ul>
+<li><p>Secure monitor allows an enclave to register itself as a server with certain name</p>
+</li>
+<li><p>Then secure monitor will bind the server enclave with its name</p>
+</li>
+<li><p>Other enclaves can request secure monitor for handle of server enclave with certain name</p>
+</li>
+<li><p>Then it can call server enclave with the handle</p>
+</li>
+<li><p>Penglai supports both host- enclave IPC and enclave - enclave IPC</p>
+</li>
+<li><p>Penglai supports fast ownership transfer between host and enclave via unmapping pages in PT AREA, marking enclave pages and remapping them in enclave’s page table</p>
+</li>
+<li><p>Penglai supports fast ownership transfer between enclaves and enclave via unmapping and remapping pages in each enclave’s page table</p>
+</li>
+<li><p>When enclave call is finished, pages’ owner- ship transfer can also happen in the opposite direction</p>
+</li>
 </ul>
-<h2 id="features-not-for-security">Features NOT for Security</h2>
-<h4 id="transactional-memory-101">Transactional Memory 101</h4>
-<p>本来是给数据库和其他并发软件用的</p>
+<h2 id="Features-NOT-for-Security"><a href="#Features-NOT-for-Security" class="headerlink" title="Features NOT for Security"></a>Features NOT for Security</h2><h4 id="Transactional-Memory-101"><a href="#Transactional-Memory-101" class="headerlink" title="Transactional Memory 101"></a>Transactional Memory 101</h4><p>本来是给数据库和其他并发软件用的</p>
 <p>Hardware TM to mass market</p>
 <ul>
-<li>Intel's restricted transactional memory (RTM)</li>
-<li>IBM's IBM Blue Gene/Q</li>
+<li>Intel’s restricted transactional memory (RTM)</li>
+<li>IBM’s IBM Blue Gene&#x2F;Q</li>
 <li>AMD advanced synchronization family (ASF proposal)</li>
 </ul>
 <p>Generally provides:</p>
@@ -1222,55 +998,39 @@ also happen in the opposite direction</p></li>
 </ul>
 <p>Real-world best - effort TM</p>
 <ul>
-<li>Limited read/write set</li>
+<li>Limited read&#x2F;write set</li>
 <li>System events may abort an TX</li>
 </ul>
-<h4 id="using-htm-for-data-protection">Using HTM for Data
-Protection</h4>
-<p>Idea: leverage the strong atomicity guarantee provided by HTM to
-defeat illegal concurrent accesses to the memory space that contains
-sensitive data</p>
+<h4 id="Using-HTM-for-Data-Protection"><a href="#Using-HTM-for-Data-Protection" class="headerlink" title="Using HTM for Data Protection"></a>Using HTM for Data Protection</h4><p>Idea: leverage the strong atomicity guarantee provided by HTM to defeat illegal concurrent accesses to the memory space that contains sensitive data</p>
 <ul>
-<li>Each private- key computation is performed as an atomic
-transaction</li>
+<li>Each private- key computation is performed as an atomic transaction</li>
 </ul>
 <p>During the transaction</p>
 <ul>
 <li>Private key is first decrypted into plaintext,</li>
 <li>Use to decrypt or sign messages</li>
-<li>If the transaction is interrupted, the abort handler clears all
-updated but uncommitted data in the transaction</li>
-<li>Before committing the computation result, all sensitive data are
-carefully cleared</li>
+<li>If the transaction is interrupted, the abort handler clears all updated but uncommitted data in the transaction</li>
+<li>Before committing the computation result, all sensitive data are carefully cleared</li>
 </ul>
-<h3 id="intel-cat">Intel CAT</h3>
-<h4 id="the-noisy-neighbor-problem">The Noisy Neighbor Problem</h4>
-<p>"noisy neighbor" on core zero over-utilizes shared resources in the
-platform, causing performance inversion</p>
-<p>Though the priority app on core one is higher priority, it runs
-slower than expected</p>
-<p>####Software Controlled Cache Allocation The basic mechanisms of CAT
-include:</p>
+<h3 id="Intel-CAT"><a href="#Intel-CAT" class="headerlink" title="Intel CAT"></a>Intel CAT</h3><h4 id="The-Noisy-Neighbor-Problem"><a href="#The-Noisy-Neighbor-Problem" class="headerlink" title="The Noisy Neighbor Problem"></a>The Noisy Neighbor Problem</h4><p>“noisy neighbor” on core zero over-utilizes shared resources in the platform, causing performance inversion </p>
+<p>Though the priority app on core one is higher priority, it runs slower than expected</p>
+<h4 id="Software-Controlled-Cache-Allocation"><a href="#Software-Controlled-Cache-Allocation" class="headerlink" title="Software Controlled Cache Allocation"></a>Software Controlled Cache Allocation</h4><p>The basic mechanisms of CAT include:</p>
 <ul>
-<li>The ability to enumerate the CAT capability and the associated LLC
-allocation support via CPUID</li>
-<li>Interfaces for the OS/hypervisor to group applications into classes
-of service (CLOS) and indicate the amount of last-level cache available
-to each CLOS</li>
+<li>The ability to enumerate the CAT capability and the associated LLC allocation support via CPUID</li>
+<li>Interfaces for the OS&#x2F;hypervisor to group applications into classes of service (CLOS) and indicate the amount of last-level cache available to each CLOS </li>
 <li>These interfaces are based on MSRs: Model- Specific Registers</li>
 </ul>
-<h3 id="pmu">PMU</h3>
-<h4 id="monitor-control-flow-by-existing-pmu">Monitor Control Flow by
-Existing PMU</h4>
-<p>PEBS: Precise Performance Counter</p>
+<h3 id="PMU"><a href="#PMU" class="headerlink" title="PMU"></a>PMU</h3><h4 id="Monitor-Control-Flow-by-Existing-PMU"><a href="#Monitor-Control-Flow-by-Existing-PMU" class="headerlink" title="Monitor Control Flow by Existing PMU"></a>Monitor Control Flow by Existing PMU</h4><p>PEBS: Precise Performance Counter</p>
 <ul>
 <li>Save samples in memory region for batching</li>
 <li>Atomic-freeze: record exact IP address precisely</li>
 </ul>
 <p>BTS: Branch Trace Store</p>
 <ul>
-<li><p>Capture all control transfer events</p></li>
-<li><p>Also save exact IP in memory region</p></li>
+<li><p>Capture all control transfer events</p>
+</li>
+<li><p>Also save exact IP in memory region</p>
+</li>
 </ul>
 <p>LBR: Last Branch Record</p>
 <ul>
@@ -1278,28 +1038,26 @@ Existing PMU</h4>
 </ul>
 <p>Event Filtering</p>
 <ul>
-<li>E.g. "do not capture near return branches"</li>
+<li>E.g. “do not capture near return branches”</li>
 <li>Only available in LBR, not BTS</li>
 </ul>
 <p>Conditional Counting</p>
 <ul>
-<li>E.g. "only counting when at user mode"</li>
+<li>E.g. “only counting when at user mode”</li>
 </ul>
-<h4 id="main-idea">Main idea</h4>
-<p>Leverage PMU for CFI Monitoring</p>
+<h4 id="Main-idea"><a href="#Main-idea" class="headerlink" title="Main idea"></a>Main idea</h4><p>Leverage PMU for CFI Monitoring</p>
 <ul>
 <li>Using already existing hardware</li>
 <li>No need to modify software</li>
 </ul>
 <p>Two Phases</p>
 <ul>
-<li><p>Offline phase: Get all the legal targets for each branch
-source</p></li>
-<li><p>Online phase: Monitor all branches and detect malicious
-ones</p></li>
+<li><p>Offline phase: Get all the legal targets for each branch source</p>
+</li>
+<li><p>Online phase: Monitor all branches and detect malicious ones</p>
+</li>
 </ul>
-<h4 id="branch-types">Branch Types</h4>
-<p>Direct Branches</p>
+<h4 id="Branch-Types"><a href="#Branch-Types" class="headerlink" title="Branch Types"></a>Branch Types</h4><p>Direct Branches</p>
 <ul>
 <li>Direct call</li>
 <li>Direct jump</li>
@@ -1310,16 +1068,13 @@ ones</p></li>
 <li>indirect call</li>
 <li>indirect jump</li>
 </ul>
-<h4 id="target-address-sets">Target Address Sets:</h4>
-<p>Target Sets for indirect branches</p>
+<h4 id="Target-Address-Sets"><a href="#Target-Address-Sets" class="headerlink" title="Target Address Sets:"></a>Target Address Sets:</h4><p>Target Sets for indirect branches</p>
 <ul>
 <li>ret_set: all the addresses next to a call</li>
 <li>call_set: all the first addresses of a function</li>
 <li>train_sets: all the target addresses that once happened</li>
 </ul>
-<h3 id="intel-pt">INTEL PT</h3>
-<h4 id="intel-processor-tracing-ipt">Intel Processor Tracing (IPT)</h4>
-<p>Privileged agent configures IPT per core</p>
+<h3 id="INTEL-PT"><a href="#INTEL-PT" class="headerlink" title="INTEL PT"></a>INTEL PT</h3><h4 id="Intel-Processor-Tracing-IPT"><a href="#Intel-Processor-Tracing-IPT" class="headerlink" title="Intel Processor Tracing (IPT)"></a>Intel Processor Tracing (IPT)</h4><p>Privileged agent configures IPT per core</p>
 <ul>
 <li>Define memory location and size for tracing</li>
 <li>3 filtering mechanisms: CPL, CR3, IP range</li>
@@ -1329,10 +1084,8 @@ ones</p></li>
 <li>Control flow, timing, mode change, etc.</li>
 </ul>
 <p>Challenges: Fast Trace VS. Slow Decode</p>
-<p>Performance overhead is shifted from tracing to decoding, decoding is
-several orders of magnitude slower than tracing</p>
-<h4 id="flowguard">FlowGuard</h4>
-<p>FlowGuard: transparent, efficient and precise CFI</p>
+<p>Performance overhead is shifted from tracing to decoding, decoding is several orders of magnitude slower than tracing</p>
+<h4 id="FlowGuard"><a href="#FlowGuard" class="headerlink" title="FlowGuard"></a>FlowGuard</h4><p>FlowGuard: transparent, efficient and precise CFI</p>
 <ul>
 <li>Transparent: no source code needed, no hardware change</li>
 <li>Precise: enforce fine-grained CFI with dynamic information</li>
@@ -1344,17 +1097,21 @@ several orders of magnitude slower than tracing</p>
 <li>Prevent a various of real code reuse attacks</li>
 <li>Less than 8% performance overhead for normal use cases</li>
 </ul>
-<h4 id="usage-of-microcode">Usage of Microcode</h4>
-<ul>
-<li><p>Customizable RDTSC Precision</p></li>
-<li><p>Microcode- Assisted Address Sanitizer</p></li>
-<li><p>Microcoded Instruction Set Randomization</p></li>
-<li><p>Microcode- Assisted Instrumentation</p></li>
-<li><p>Authenticated Microcode Updates</p></li>
-<li><p>μEnclave</p></li>
+<h4 id="Usage-of-Microcode"><a href="#Usage-of-Microcode" class="headerlink" title="Usage of Microcode"></a>Usage of Microcode</h4><ul>
+<li><p>Customizable RDTSC Precision</p>
+</li>
+<li><p>Microcode- Assisted Address Sanitizer</p>
+</li>
+<li><p>Microcoded Instruction Set Randomization</p>
+</li>
+<li><p>Microcode- Assisted Instrumentation</p>
+</li>
+<li><p>Authenticated Microcode Updates</p>
+</li>
+<li><p>μEnclave</p>
+</li>
 </ul>
-<h2 id="conclusion">Conclusion</h2>
-<ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><ul>
 <li>Hardware VS. software</li>
 <li>User-mode VS. kernel- mode</li>
 <li>Integrity VS. privacy</li>
