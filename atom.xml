@@ -40,13 +40,15 @@
     <link href="https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/"/>
     <id>https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/</id>
     <published>2021-11-29T07:30:58.000Z</published>
-    <updated>2021-11-29T16:05:29.048Z</updated>
+    <updated>2022-05-19T15:43:46.051Z</updated>
     
     
     <summary type="html">近年来网络安全从业者纷纷神往机器学习的魔力，大家都想在此寻求一发银弹。不过作者在安全业界没有看到太多如虎添翼的机器学习案例,为什么机器学习解决网络安全问题总是失败呢？</summary>
     
     
     
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="机器学习" scheme="https://mundi-xu.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
@@ -149,7 +151,7 @@
     <link href="https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/"/>
     <id>https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/</id>
     <published>2021-07-15T07:30:58.000Z</published>
-    <updated>2021-11-29T08:02:05.987Z</updated>
+    <updated>2022-05-19T15:42:15.956Z</updated>
     
     
     <summary type="html">基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。</summary>
@@ -165,14 +167,16 @@
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
     
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
   </entry>
   
   <entry>
-    <title>利用AFL fuzz pdfium</title>
+    <title>利用AFL fuzz PDFium</title>
     <link href="https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/"/>
     <id>https://mundi-xu.github.io/2021/07/03/Use-AFL-fuzz-pdfium/</id>
     <published>2021-07-03T04:05:21.000Z</published>
-    <updated>2022-03-11T02:38:36.389Z</updated>
+    <updated>2022-05-19T15:43:34.074Z</updated>
     
     
     <summary type="html">简单介绍PDF渲染引擎PDFium及其组件的下载编译与如何利用AFL开始模糊测试。</summary>
@@ -182,13 +186,15 @@
     
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
-    <category term="pdfium" scheme="https://mundi-xu.github.io/tags/pdfium/"/>
+    <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
     
   </entry>
   
@@ -197,13 +203,15 @@
     <link href="https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/"/>
     <id>https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/</id>
     <published>2021-03-12T08:53:57.000Z</published>
-    <updated>2021-11-29T07:58:01.651Z</updated>
+    <updated>2022-05-19T15:43:19.889Z</updated>
     
     
     <summary type="html">本文主要介绍如何使用AFL++快速开始Fuzz一个样例程序和对大量的Fuzzer-Generated Crashes进行分类以及部分工具的安装与使用</summary>
     
     
     
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
@@ -262,13 +270,15 @@
     <link href="https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/"/>
     <id>https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/</id>
     <published>2021-02-23T07:30:00.000Z</published>
-    <updated>2021-11-29T08:08:35.571Z</updated>
+    <updated>2022-05-19T15:42:49.079Z</updated>
     
     
     <summary type="html">iddm带你读论文——SymQEMU:Compilation-based symbolic execution for binaries</summary>
     
     
     
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="符号执行" scheme="https://mundi-xu.github.io/tags/%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C/"/>
     
@@ -306,13 +316,15 @@
     <link href="https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/"/>
     <id>https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/</id>
     <published>2021-01-09T02:05:21.000Z</published>
-    <updated>2021-11-29T08:03:27.066Z</updated>
+    <updated>2022-05-19T15:42:28.424Z</updated>
     
     
     <summary type="html">WSL2下AFL的安装教程并利用Fuzzing技术对CVE-2009-0159进行了复现和原理分析。</summary>
     
     
     
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
@@ -356,7 +368,7 @@
     <link href="https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/"/>
     <id>https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/</id>
     <published>2020-12-28T07:14:10.000Z</published>
-    <updated>2021-11-29T08:06:01.555Z</updated>
+    <updated>2022-05-19T15:43:03.666Z</updated>
     
     
     <summary type="html">对常见勒索软件的架构与攻击模式的研究。</summary>
@@ -369,6 +381,8 @@
     <category term="恶意软件" scheme="https://mundi-xu.github.io/tags/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/"/>
     
     <category term="Hybrid Cryptosystem" scheme="https://mundi-xu.github.io/tags/Hybrid-Cryptosystem/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -387,6 +401,8 @@
     
     <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
     
+    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
+    
     <category term="rust" scheme="https://mundi-xu.github.io/tags/rust/"/>
     
     <category term="仿射密码" scheme="https://mundi-xu.github.io/tags/%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81/"/>
@@ -396,8 +412,6 @@
     <category term="分组密码" scheme="https://mundi-xu.github.io/tags/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/"/>
     
     <category term="密码协议" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E7%A0%81%E5%8D%8F%E8%AE%AE/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
     <category term="RC4" scheme="https://mundi-xu.github.io/tags/RC4/"/>
     

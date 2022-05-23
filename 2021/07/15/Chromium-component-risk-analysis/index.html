@@ -24,12 +24,13 @@
 <meta property="og:description" content="基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-15T07:30:58.000Z">
-<meta property="article:modified_time" content="2021-11-29T08:02:05.987Z">
+<meta property="article:modified_time" content="2022-05-19T15:42:15.956Z">
 <meta property="article:author" content="寒雨">
 <meta property="article:tag" content="Chromium">
 <meta property="article:tag" content="Chrome">
 <meta property="article:tag" content="V8">
 <meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -294,7 +295,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    Last update：6 months ago
+                    Last update：4 days ago
                   
                 
               </p>
@@ -769,7 +770,7 @@ Chrome Sandbox，其实就是使用 Chrome
 <p>此处根据不同场景和需求，存在三种不同的修复方案：</p>
 <p><strong>方案 1. 启用 Sandbox</strong></p>
 <p>1.启动 Chrome 时切勿使用 --no-sandbox 参数，错误的例子如：</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli"><span class="hljs-string">./bin/chrome</span> <span class="hljs-params">--remote-debugging-address=0</span>.0.0.0 <span class="hljs-params">--remote-debugging-port=9222</span> <span class="hljs-params">--disable-setuid-sandbox</span> <span class="hljs-params">--no-sandbox</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">./bin/chrome</span> <span class="hljs-params">--remote-debugging-address=0</span>.0.0.0 <span class="hljs-params">--remote-debugging-port=9222</span> <span class="hljs-params">--disable-setuid-sandbox</span> <span class="hljs-params">--no-sandbox</span><br></code></pre></td></tr></table></figure>
 <p>2.使用普通用户而非 root 用户启动 chrome headless 进程</p>
 <p><strong>方案 2. 更新 Chromium
 内核版本（后续维护成本极高）</strong></p>
@@ -800,7 +801,7 @@ https://chromium.googlesource.com/chromium/src/+/master/docs/linux/sandboxing.md
 <p>Chrome 运行时会寻找 chrome-sandbox 文件，一般下载 Chrome 的 Release
 时，Chrome 程序目录下都包含了 Sandbox 程序，若无法寻找到 chrome-sandbox
 文件可能会产生下述 Error 信息：</p>
-<figure class="highlight awk"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs awk">_[<span class="hljs-number">0418</span>/<span class="hljs-number">214027.785590</span>:FATAL:__zygote_host_impl_linux.cc__(<span class="hljs-number">116</span>)] No usable sandbox! Update your kernel or see_ <br><br>_https:<span class="hljs-regexp">//</span>chromium.googlesource.com<span class="hljs-regexp">/chromium/</span>src<span class="hljs-regexp">/+/m</span>aster<span class="hljs-regexp">/docs/</span>linux/suid_sandbox_development.md_ _for more information on developing with the SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox._  <br></code></pre></div></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">_[<span class="hljs-number">0418</span>/<span class="hljs-number">214027.785590</span>:FATAL:__zygote_host_impl_linux.cc__(<span class="hljs-number">116</span>)] No usable sandbox! Update your kernel or see_ <br><br>_https:<span class="hljs-regexp">//</span>chromium.googlesource.com<span class="hljs-regexp">/chromium/</span>src<span class="hljs-regexp">/+/m</span>aster<span class="hljs-regexp">/docs/</span>linux/suid_sandbox_development.md_ _for more information on developing with the SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox._  <br></code></pre></td></tr></table></figure>
 <p>可参考以下链接进行配置</p>
 <p>https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#alternative-setup-setuid-sandbox</p>
 <p>若服务器的 Chrome 目录下包含了 chrome-sandbox
@@ -842,12 +843,12 @@ target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MjM5NzE1NjA
 K8s 容器集群安全管理的规范和能力，在集群内新建带有 privileged 权限或
 SYS_ADMIN 权限的应用容器是会被集群管理员明确拒绝的，Seccomp
 是一个安全且可管理的方案。</p>
-<p>你可以参考下述方式启动一个带有 seccomp 配置的容器： <figure class="highlight jboss-cli"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jboss-cli">docker run -it <span class="hljs-params">--security-opt</span> seccomp<span class="hljs-function">:.</span><span class="hljs-string">/chrome.json</span> chrome-sandbox-hub-image-near <span class="hljs-params">--headless</span> <span class="hljs-params">--dump-dom</span> https:<span class="hljs-string">//github.com/neargle</span><br></code></pre></div></td></tr></table></figure>
+<p>你可以参考下述方式启动一个带有 seccomp 配置的容器： <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">docker run -it <span class="hljs-params">--security-opt</span> seccomp<span class="hljs-function">:.</span><span class="hljs-string">/chrome.json</span> chrome-sandbox-hub-image-near <span class="hljs-params">--headless</span> <span class="hljs-params">--dump-dom</span> https:<span class="hljs-string">//github.com/neargle</span><br></code></pre></td></tr></table></figure>
 实际上 seccomp 配置文件规定了一个可管理的 syscall
 白名单，我们的配置文件就是需要把 Sandbox
 所需的系统权限用白名单方式赋予给容器，使得容器可以调用多个原本默认禁止的
 syscall。可以使用下列命令来检测当前的操作系统是否支持 seccomp:
-<figure class="highlight arcade"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs arcade">grep CONFIG_SECCOMP= <span class="hljs-regexp">/boot/</span>config-$(uname -r)<br>CONFIG_SECCOMP=y<br></code></pre></div></td></tr></table></figure> 如果你的容器使用 K8s 进行部署，那你可以在
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">grep CONFIG_SECCOMP= <span class="hljs-regexp">/boot/</span>config-$(uname -r)<br>CONFIG_SECCOMP=y<br></code></pre></td></tr></table></figure> 如果你的容器使用 K8s 进行部署，那你可以在
 spec.securityContext.seccompProfile 中配置上述 chrome.json 文件。</p>
 <p><img
 src="https://cdn.jsdelivr.net/gh/Mundi-Xu/picture_resource@master/picture/Chromium组件风险剖析与收敛/30.png" srcset="/img/loading.gif" lazyload /></p>
@@ -916,6 +917,8 @@ Webview UXSS 漏洞攻防</a></p>
       
         <a href="/tags/JavaScript/">#JavaScript</a>
       
+        <a href="/tags/Security/">#Security</a>
+      
     </div>
   
 </div>
@@ -979,8 +982,8 @@ Webview UXSS 漏洞攻防</a></p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/03/Use-AFL-fuzz-pdfium/" title="利用AFL fuzz pdfium">
-                        <span class="hidden-mobile">利用AFL fuzz pdfium</span>
+                      <a href="/2021/07/03/Use-AFL-fuzz-pdfium/" title="利用AFL fuzz PDFium">
+                        <span class="hidden-mobile">利用AFL fuzz PDFium</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
