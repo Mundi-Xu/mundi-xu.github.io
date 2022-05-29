@@ -39,15 +39,15 @@
   
   <title>一种神奇的rsa加密算法 - Mundi&#39;s Space</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -58,7 +58,7 @@
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
@@ -237,7 +237,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          1.5k 字
         
       </span>
     
@@ -248,8 +248,7 @@
         
         
         
-          <!-- compatible with older versions-->
-          12 分钟
+          9 mins
         
       </span>
     
@@ -292,53 +291,28 @@
               <p class="note note-info">
                 
                   
-                    <!-- compatible with older versions-->
-                    Last update：6 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <hr />
-<p><strong>新的算法并没有透露
-<code>n</code>，只给定了两个大整数：<code>(p*q)^(p+q)</code> 和
-<code>(p*q)^(p-q)</code>，其中 <code>^</code>
-是按位异或运算。</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
-class="hint--top hint--rounded" aria-label="hackergame2018-RSA_of_Z
+              <hr>
+<p><strong>新的算法并没有透露 <code>n</code>，只给定了两个大整数：<code>(p*q)^(p+q)</code> 和 <code>(p*q)^(p-q)</code>，其中 <code>^</code> 是按位异或运算。</strong><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label=" hackergame2018-RSA_of_Z
 ">[1]</span></a></sup></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sympy<br><br>p = sympy.randprime(<span class="hljs-number">2</span> ** <span class="hljs-number">1023</span>, <span class="hljs-number">2</span> ** <span class="hljs-number">1024</span>)<br>q = sympy.randprime(<span class="hljs-number">2</span> ** <span class="hljs-number">1023</span>, <span class="hljs-number">2</span> ** <span class="hljs-number">1024</span>)<br><br>a = (p * q) ^ (p + q)<br>b = (p * q) ^ (p - q)<br><br>flag = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;flag.txt&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>).read()<br>m = <span class="hljs-built_in">int</span>.from_bytes(flag, <span class="hljs-string">&#x27;big&#x27;</span>)<br><br><span class="hljs-built_in">print</span>(a, b, <span class="hljs-built_in">pow</span>(m, <span class="hljs-number">65537</span>, p * q))<br><br></code></pre></td></tr></table></figure>
-<hr />
-<h2 id="年12月20日更新">2018年12月20日更新</h2>
-<p>我们定义 $ f_1(x,y) = (x y)^{(x+y)} 和 f_2(x,y) = (x y)^{(x-y)} $
-，我们发现这两个函数都有一个共同的性质，就是函数值的最低 n
-个二进制位只和 x、y 的最低 n 个二进制位有关。也就是说，我们可以用 a 和 b
-的最低 n 位来判断 p 和 q 的最低 n 位是否可能正确。如果它们的最低 n
-位满足 $ f_1 $和 <span class="math inline">\(f_2\)</span>
-函数，那么它们就是 p 和 q
-低位的候选答案；如果不满足，它们就根本不可能是真正 p 和 q
-的低位。所以我们可以从一个二进制位（n=1）开始，每次增加一位。每增加一位时，我们把原来满足条件的
-p 和 q 低位的每种可能情况分别在前面加上 0 或 1，这样每种情况就变成了 4
-种新的情况，然后对所有新的情况用 $ f_1 $ 和 $ f_2 $
-函数提供的约束条件进行过滤，只保留满足条件的情况。当跑到 1024
-位的时候，就只会剩下真正满足条件的 p 和 q 了。然后，我们根据 RSA
-的原理，在 mod (p-1)*(q-1) 的意义下对 e 求逆元，得到私钥 d，计算 pow(c,
-d, p*q)即可得到 flag 的大整数表示。</p>
+
+
+
+<hr>
+<h2 id="2018年12月20日更新"><a href="#2018年12月20日更新" class="headerlink" title="2018年12月20日更新"></a>2018年12月20日更新</h2><p>我们定义 $ f_1(x,y) &#x3D; (x \ast y)^{(x+y)} 和 f_2(x,y) &#x3D; (x \ast y)^{(x-y)} $ ，我们发现这两个函数都有一个共同的性质，就是函数值的最低 n 个二进制位只和 x、y 的最低 n 个二进制位有关。也就是说，我们可以用 a 和 b 的最低 n 位来判断 p 和 q 的最低 n 位是否可能正确。如果它们的最低 n 位满足 $ f_1 $和 $f_2$ 函数，那么它们就是 p 和 q 低位的候选答案；如果不满足，它们就根本不可能是真正 p 和 q 的低位。所以我们可以从一个二进制位（n&#x3D;1）开始，每次增加一位。每增加一位时，我们把原来满足条件的 p 和 q 低位的每种可能情况分别在前面加上 0 或 1，这样每种情况就变成了 4 种新的情况，然后对所有新的情况用 $ f_1 $ 和 $ f_2 $ 函数提供的约束条件进行过滤，只保留满足条件的情况。当跑到 1024 位的时候，就只会剩下真正满足条件的 p 和 q 了。然后，我们根据 RSA 的原理，在 mod (p-1)*(q-1) 的意义下对 e 求逆元，得到私钥 d，计算 pow(c, d, p*q)即可得到 flag 的大整数表示。</p>
 <p><strong>求解脚本如下</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> gmpy2<br><br>a, b, c = [<span class="hljs-built_in">int</span>(s) <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;output.txt&#x27;</span>).read().split()]<br><span class="hljs-comment">#假设已将加密内容保存到 output.txt 文件中</span><br><br>f1 = <span class="hljs-keyword">lambda</span> p, q: (p * q) ^ (p + q)<br>f2 = <span class="hljs-keyword">lambda</span> p, q: (p * q) ^ (p - q)<br><br>candidates = &#123;(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)&#125;<br><br><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1025</span>):<br>    <span class="hljs-built_in">print</span>(m, <span class="hljs-built_in">len</span>(candidates))<br>    candidates_ = <span class="hljs-built_in">set</span>()<br>    mask = (<span class="hljs-number">2</span> &lt;&lt; m) - <span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> x, y <span class="hljs-keyword">in</span> candidates:<br>        <span class="hljs-keyword">if</span> f1(x, y) == a <span class="hljs-keyword">and</span> f2(x, y) == b:<br>            p, q = x, y<br>            d = gmpy2.invert(<span class="hljs-number">65537</span>, (p - <span class="hljs-number">1</span>) * (q - <span class="hljs-number">1</span>))<br>            m = <span class="hljs-built_in">pow</span>(c, d, p * q)<br>            <span class="hljs-built_in">print</span>(<span class="hljs-built_in">bytes</span>.fromhex(<span class="hljs-built_in">hex</span>(m)[<span class="hljs-number">2</span>:]))<br>            exit()<br>        <span class="hljs-keyword">for</span> bx <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>):<br>            <span class="hljs-keyword">for</span> by <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>):<br>                xx = x + (bx &lt;&lt; m)<br>                yy = y + (by &lt;&lt; m)<br>                <span class="hljs-keyword">if</span> f1(xx, yy) &amp; mask != a &amp; mask:<br>                    <span class="hljs-keyword">continue</span><br>                <span class="hljs-keyword">if</span> f2(xx, yy) &amp; mask != b &amp; mask:<br>                    <span class="hljs-keyword">continue</span><br>                candidates_.add((xx, yy))<br>candidates = candidates_<br><br></code></pre></td></tr></table></figure>
-<p><strong>有几个人做出来了呢（坏笑:）</strong></p>
-<section class="footnotes">
-<div class="footnote-list">
-<ol>
-<li>
-<span id="fn:1" class="footnote-text"><span>hackergame2018-RSA_of_Z
-<a href="#fnref:1" rev="footnote" class="footnote-backref">
-↩︎</a></span></span>
-</li>
-</ol>
-</div>
-</section>
 
+<p><strong>有几个人做出来了呢（坏笑:）</strong></p>
+<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>hackergame2018-RSA_of_Z
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
               
             </div>
             <hr/>
@@ -388,9 +362,21 @@ d, p*q)即可得到 flag 的大整数表示。</p>
           
             
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
               <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                 <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
+                <i class="iconfont icon-nc"></i>
+              </span>
+              </a>
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
+                <i class="iconfont icon-sa"></i>
               </span>
               </a>
             
@@ -436,7 +422,7 @@ d, p*q)即可得到 flag 的大整数表示。</p>
   <script type="text/javascript">
     Fluid.utils.loadComments('#gitalk-container', function() {
       Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.7.2/gitalk.min.js', function() {
         var options = Object.assign(
           {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"en","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
           {
@@ -574,8 +560,8 @@ d, p*q)即可得到 flag 的大整数表示。</p>
 
   <!-- Scripts -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -586,13 +572,13 @@ d, p*q)即可得到 flag 的大整数表示。</p>
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
@@ -666,7 +652,7 @@ d, p*q)即可得到 flag 的大整数表示。</p>
         getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
 
       if (enableCopy) {
-        Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js', function() {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
           var clipboard = new window.ClipboardJS('.copy-btn', {
             target: function(trigger) {
               var nodes = trigger.parentNode.childNodes;
@@ -693,7 +679,7 @@ d, p*q)即可得到 flag 的大整数表示。</p>
 
   
 <script>
-  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
       visible  : CONFIG.anchorjs.visible
@@ -716,7 +702,7 @@ d, p*q)即可得到 flag 的大整数表示。</p>
 
   
 <script>
-  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
     Fluid.plugins.fancyBox();
   });
 </script>
@@ -760,7 +746,7 @@ d, p*q)即可得到 flag 的大整数表示。</p>
       </script>
     
 
-  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" ></script>
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
