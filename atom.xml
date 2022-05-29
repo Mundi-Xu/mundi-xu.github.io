@@ -40,7 +40,7 @@
     <link href="https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/"/>
     <id>https://mundi-xu.github.io/2021/11/29/why-ml-fails-security/</id>
     <published>2021-11-29T07:30:58.000Z</published>
-    <updated>2022-05-19T15:43:46.051Z</updated>
+    <updated>2022-05-29T10:59:34.177Z</updated>
     
     
     <summary type="html">近年来网络安全从业者纷纷神往机器学习的魔力，大家都想在此寻求一发银弹。不过作者在安全业界没有看到太多如虎添翼的机器学习案例,为什么机器学习解决网络安全问题总是失败呢？</summary>
@@ -151,7 +151,7 @@
     <link href="https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/"/>
     <id>https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/</id>
     <published>2021-07-15T07:30:58.000Z</published>
-    <updated>2022-05-29T08:46:36.505Z</updated>
+    <updated>2022-05-29T10:58:02.279Z</updated>
     
     
     <summary type="html">基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。</summary>
@@ -247,7 +247,7 @@
     <link href="https://mundi-xu.github.io/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/"/>
     <id>https://mundi-xu.github.io/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/</id>
     <published>2021-03-02T15:00:11.000Z</published>
-    <updated>2021-11-29T08:05:40.020Z</updated>
+    <updated>2022-05-29T10:56:24.773Z</updated>
     
     
     <summary type="html">利用IPy模块的IP类处理常见格式的IP地址，附IP地址格式规范和IPy源码简析</summary>
@@ -270,7 +270,7 @@
     <link href="https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/"/>
     <id>https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/</id>
     <published>2021-02-23T07:30:00.000Z</published>
-    <updated>2022-05-19T15:42:49.079Z</updated>
+    <updated>2022-05-29T10:58:53.858Z</updated>
     
     
     <summary type="html">iddm带你读论文——SymQEMU:Compilation-based symbolic execution for binaries</summary>
