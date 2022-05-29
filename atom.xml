@@ -151,7 +151,7 @@
     <link href="https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/"/>
     <id>https://mundi-xu.github.io/2021/07/15/Chromium-component-risk-analysis/</id>
     <published>2021-07-15T07:30:58.000Z</published>
-    <updated>2022-05-19T15:42:15.956Z</updated>
+    <updated>2022-05-29T08:46:36.505Z</updated>
     
     
     <summary type="html">基于对实战经历的复盘，本文将从Chromium架构及安全机制概况入手，剖析Chromium组件在多场景下给企业带来的安全风险并一探收敛方案。</summary>
@@ -203,7 +203,7 @@
     <link href="https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/"/>
     <id>https://mundi-xu.github.io/2021/03/12/Start-Fuzzing-and-crashes-analysis/</id>
     <published>2021-03-12T08:53:57.000Z</published>
-    <updated>2022-05-19T15:43:19.889Z</updated>
+    <updated>2022-05-29T08:48:43.831Z</updated>
     
     
     <summary type="html">本文主要介绍如何使用AFL++快速开始Fuzz一个样例程序和对大量的Fuzzer-Generated Crashes进行分类以及部分工具的安装与使用</summary>
@@ -289,7 +289,7 @@
     <link href="https://mundi-xu.github.io/2021/01/17/Computer-Network-Introduction/"/>
     <id>https://mundi-xu.github.io/2021/01/17/Computer-Network-Introduction/</id>
     <published>2021-01-17T04:47:31.000Z</published>
-    <updated>2021-11-29T08:10:24.226Z</updated>
+    <updated>2022-05-29T08:50:04.895Z</updated>
     
     
     <summary type="html">计算机网络：自顶向下方法第8版第一章的学习笔记</summary>
@@ -316,7 +316,7 @@
     <link href="https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/"/>
     <id>https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/</id>
     <published>2021-01-09T02:05:21.000Z</published>
-    <updated>2022-05-19T15:42:28.424Z</updated>
+    <updated>2022-05-29T08:47:36.075Z</updated>
     
     
     <summary type="html">WSL2下AFL的安装教程并利用Fuzzing技术对CVE-2009-0159进行了复现和原理分析。</summary>
@@ -343,7 +343,7 @@
     <link href="https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/"/>
     <id>https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/</id>
     <published>2021-01-01T02:05:21.000Z</published>
-    <updated>2021-11-29T08:02:41.633Z</updated>
+    <updated>2022-05-29T08:45:31.349Z</updated>
     
     
     <summary type="html">PayBreak是一种创新开源的保护机制，可以解决大部分基于混合加密的勒索软件的威胁。</summary>
@@ -368,7 +368,7 @@
     <link href="https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/"/>
     <id>https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/</id>
     <published>2020-12-28T07:14:10.000Z</published>
-    <updated>2022-05-19T15:43:03.666Z</updated>
+    <updated>2022-05-29T08:48:14.902Z</updated>
     
     
     <summary type="html">对常见勒索软件的架构与攻击模式的研究。</summary>
@@ -391,7 +391,7 @@
     <link href="https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/"/>
     <id>https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/</id>
     <published>2020-12-27T06:05:31.000Z</published>
-    <updated>2021-11-29T08:07:59.872Z</updated>
+    <updated>2022-05-29T08:45:13.745Z</updated>
     
     
     <summary type="html">基于 rust 开发的在线加解密系统与各类加密函数的简析。</summary>
@@ -400,8 +400,6 @@
     
     
     <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
     <category term="rust" scheme="https://mundi-xu.github.io/tags/rust/"/>
     
@@ -412,6 +410,8 @@
     <category term="分组密码" scheme="https://mundi-xu.github.io/tags/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/"/>
     
     <category term="密码协议" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E7%A0%81%E5%8D%8F%E8%AE%AE/"/>
+    
+    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
     <category term="RC4" scheme="https://mundi-xu.github.io/tags/RC4/"/>
     
@@ -426,7 +426,7 @@
     <link href="https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/"/>
     <id>https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/</id>
     <published>2020-07-01T11:00:00.000Z</published>
-    <updated>2021-11-29T08:06:49.643Z</updated>
+    <updated>2022-05-29T08:46:16.754Z</updated>
     
     
     <summary type="html">基于区块链技术设计并实现了安全日志系统，采用链上数据存储模式，将本地日志提取关键字段并上传至区块链中存储，同时提供可视化界面让用户能够使用日志相关的安全分析功能。</summary>
