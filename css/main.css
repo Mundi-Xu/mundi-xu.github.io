@@ -586,8 +586,9 @@ sup > a::before,
 .pagination .space {
   align-self: flex-end;
 }
-.pagination a,
-.pagination .current {
+.pagination .page-number,
+.pagination .current,
+.pagination .extend {
   outline: 0;
   border: 0;
   background-color: transparent;
@@ -595,10 +596,13 @@ sup > a::before,
   padding: 0.5rem 0.75rem;
   line-height: 1.25;
   border-radius: 0.125rem;
-  transition: background-color 0.2s ease-in-out;
 }
-.pagination a:hover,
+.pagination .page-number {
+  margin: 0 0.05rem;
+}
+.pagination .page-number:hover,
 .pagination .current {
+  transition: background-color 0.2s ease-in-out;
   background-color: var(--link-hover-bg-color);
 }
 .qr-trigger {
@@ -1176,7 +1180,6 @@ i.iconfont {
   height: calc(1.4rem * 3);
   overflow: hidden;
   display: flex;
-  align-items: center;
 }
 .index-excerpt > div {
   width: 100%;
@@ -1185,6 +1188,10 @@ i.iconfont {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+.index-excerpt__noimg {
+  height: auto;
+  max-height: calc(1.4rem * 3);
 }
 @media (max-width: 767px) {
   .index-info {
@@ -1242,6 +1249,7 @@ i.iconfont {
   padding-top: 1.45rem;
   padding-bottom: 1.45rem;
   padding-right: 1rem;
+  line-height: 1.5;
 }
 .markdown-body .code-wrapper {
   position: relative;
