@@ -156,8 +156,6 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Chromium</tag>
       
       <tag>Chrome</tag>
@@ -165,6 +163,8 @@
       <tag>V8</tag>
       
       <tag>JavaScript</tag>
+      
+      <tag>Security</tag>
       
     </tags>
     
@@ -183,9 +183,9 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Chromium</tag>
+      
+      <tag>Security</tag>
       
       <tag>Fuzzing</tag>
       
@@ -418,6 +418,8 @@
       
       <tag>crypto</tag>
       
+      <tag>rsa</tag>
+      
       <tag>rust</tag>
       
       <tag>仿射密码</tag>
@@ -427,8 +429,6 @@
       <tag>分组密码</tag>
       
       <tag>密码协议</tag>
-      
-      <tag>rsa</tag>
       
       <tag>RC4</tag>
       
@@ -543,11 +543,11 @@
     
     <tags>
       
+      <tag>ctf</tag>
+      
       <tag>crypto</tag>
       
       <tag>rsa</tag>
-      
-      <tag>ctf</tag>
       
     </tags>
     
@@ -560,7 +560,7 @@
     <link href="/2018/10/25/hello-world/"/>
     <url>/2018/10/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Focused on Fuzzing, Vulnerability Research, Reversing &amp; Binaryanalysis.</p><hr /><p>Following are list of vulnerabilities which i found and reported tovendors:</p><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>issues 411</strong> : heap-buffer-overflow inraw2image.cpp</li><li><strong>issues 412</strong> : heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>北京数科网维技术有限责任公司 OFD 版式阅读器:</strong></p><ul><li><strong>CNVD-2021-102082, CNNVD-202111-2224,CNNVD-202111-2225</strong> : Integer Overflow to Buffer Overflow inpdfdom.dll</li><li><strong>CNVD-2022-00039, CNVD-2022-00040, CNVD-2022-00041,CNVD-2022-00042, CNVD-2022-00043, CNVD-2022-00044, CNVD-2022-00045,CNVD-2022-00046, CNVD-2022-00047, CNVD-2022-00048</strong> UncontrolledResource Consumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary Address Access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>Issue 1314658</strong> : heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</li></ul><p><imgsrc="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" srcset="/img/loading.gif" lazyload /></p>]]></content>
+    <content type="html"><![CDATA[<p>Focused on Fuzzing, Vulnerability Research, Reversing &amp; Binaryanalysis.</p><hr /><p>Following are list of vulnerabilities which i found and reported tovendors:</p><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>issues 411</strong> : heap-buffer-overflow inraw2image.cpp</li><li><strong>issues 412</strong> : heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>北京数科网维技术有限责任公司 OFD 版式阅读器:</strong></p><ul><li><strong>CNVD-2021-102082, CNNVD-202111-2224,CNNVD-202111-2225</strong> : Integer Overflow to Buffer Overflow inpdfdom.dll</li><li><strong>CNVD-2022-00039, CNVD-2022-00040, CNVD-2022-00041,CNVD-2022-00042, CNVD-2022-00043, CNVD-2022-00044, CNVD-2022-00045,CNVD-2022-00046, CNVD-2022-00047, CNVD-2022-00048</strong> UncontrolledResource Consumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary Address Access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><p><strong>Issue 1312736, Issue 1327884</strong> : null-dereferencein PDFium</p></li><li><p><strong>Issue 1314658</strong> : heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</p></li></ul><p><imgsrc="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" srcset="/img/loading.gif" lazyload /></p>]]></content>
     
     
     
