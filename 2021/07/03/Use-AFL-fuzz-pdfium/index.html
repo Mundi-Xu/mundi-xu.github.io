@@ -78,7 +78,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -87,6 +87,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
@@ -294,14 +296,15 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 23 days ago
+                    Last updated on a month ago
                   
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <h1 id="下载源码">下载源码</h1>
+            
+              <div class="markdown-body">
+                
+                <h1 id="下载源码">下载源码</h1>
 <p>安装depot-tools后下载源码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装depot-tools</span><br>git <span class="hljs-built_in">clone</span> https://chromium.googlesource.com/chromium/tools/depot_tools.git<br><span class="hljs-built_in">export</span> PATH=`<span class="hljs-built_in">pwd</span>`/depot_tools:<span class="hljs-string">&quot;<span class="hljs-variable">$PATH</span>&quot;</span><br><span class="hljs-comment"># 下载pdfium</span><br><span class="hljs-built_in">mkdir</span> repo<br><span class="hljs-built_in">cd</span> repo<br>gclient config --unmanaged https://pdfium.googlesource.com/pdfium.git<br>gclient <span class="hljs-built_in">sync</span><br><span class="hljs-built_in">cd</span> pdfium<br></code></pre></td></tr></table></figure>
 <h1 id="编译">编译</h1>
@@ -342,8 +345,9 @@ project与AFLplusplus的适配</h1>
 将编译好的AFLplusplus文件夹拷贝到src中，重命名afl-cc为afl-clang和afl-clang++</p>
 <figure class="highlight patch"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><code class="hljs patch"><br><span class="hljs-comment">--- BUILD.gn.bak	2022-03-11 09:57:06.393190381 +0800</span><br><span class="hljs-comment">+++ BUILD.gn	2022-03-09 10:57:43.640532334 +0800</span><br><span class="hljs-meta">@@ -2,13 +2,10 @@</span><br> # Use of this source code is governed by a BSD-style license that can be<br> # found in the LICENSE file.<br> <br><span class="hljs-addition">+# Modified by Hanyu to fit AFLplusplus.</span><br><span class="hljs-addition">+</span><br> group(&quot;afl&quot;) &#123;<br>   deps = [<br><span class="hljs-deletion">-    &quot;:afl-cmin&quot;,</span><br><span class="hljs-deletion">-    &quot;:afl-fuzz&quot;,</span><br><span class="hljs-deletion">-    &quot;:afl-showmap&quot;,</span><br><span class="hljs-deletion">-    &quot;:afl-tmin&quot;,</span><br><span class="hljs-deletion">-    &quot;:afl_docs&quot;,</span><br>     &quot;:afl_runtime&quot;,<br>   ]<br> &#125;<br><span class="hljs-meta">@@ -32,19 +29,11 @@</span> source_set(&quot;afl_runtime&quot;) &#123;<br>     &quot;//build/config/gcc:symbol_visibility_hidden&quot;,<br>   ]<br> <br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/llvm_mode/afl-llvm-rt.o.c&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-addition">+  sources = [ &quot;src/afl-llvm-rt-lto.o&quot;,</span><br><span class="hljs-addition">+              &quot;src/afl-llvm-rt-64.o&quot;,</span><br><span class="hljs-addition">+            ]</span><br> &#125;<br> <br><span class="hljs-deletion">-afl_headers = [</span><br><span class="hljs-deletion">-  &quot;src/alloc-inl.h&quot;,</span><br><span class="hljs-deletion">-  &quot;src/config.h&quot;,</span><br><span class="hljs-deletion">-  &quot;src/debug.h&quot;,</span><br><span class="hljs-deletion">-  &quot;src/types.h&quot;,</span><br><span class="hljs-deletion">-  &quot;src/hash.h&quot;,</span><br><span class="hljs-deletion">-]</span><br><span class="hljs-deletion">-</span><br> config(&quot;afl-tool&quot;) &#123;<br>   cflags = [<br>     # Include flags from afl&#x27;s Makefile.<br><span class="hljs-meta">@@ -63,60 +52,4 @@</span> config(&quot;afl-tool&quot;) &#123;<br>     # we do not use. Therefore its value is unimportant.<br>     &quot;-DBIN_PATH=\&quot;$root_build_dir\&quot;&quot;,<br>   ]<br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-copy(&quot;afl-cmin&quot;) &#123;</span><br><span class="hljs-deletion">-  # afl-cmin is a bash script used to minimize the corpus, therefore we can just</span><br><span class="hljs-deletion">-  # copy it over.</span><br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/afl-cmin&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  outputs = [</span><br><span class="hljs-deletion">-    &quot;$root_build_dir/&#123;&#123;source_file_part&#125;&#125;&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  deps = [</span><br><span class="hljs-deletion">-    &quot;:afl-showmap&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-copy(&quot;afl_docs&quot;) &#123;</span><br><span class="hljs-deletion">-  # Copy the docs folder. This is so that we can use a real value for for</span><br><span class="hljs-deletion">-  # -DDOC_PATH when compiling.</span><br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/docs&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  outputs = [</span><br><span class="hljs-deletion">-    &quot;$root_build_dir/afl/&#123;&#123;source_file_part&#125;&#125;&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-executable(&quot;afl-fuzz&quot;) &#123;</span><br><span class="hljs-deletion">-  # Used to fuzz programs.</span><br><span class="hljs-deletion">-  configs -= [ &quot;//build/config/sanitizers:default_sanitizer_flags&quot; ]</span><br><span class="hljs-deletion">-  configs += [ &quot;:afl-tool&quot; ]</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/afl-fuzz.c&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  sources += afl_headers</span><br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-executable(&quot;afl-tmin&quot;) &#123;</span><br><span class="hljs-deletion">-  configs -= [ &quot;//build/config/sanitizers:default_sanitizer_flags&quot; ]</span><br><span class="hljs-deletion">-  configs += [ &quot;:afl-tool&quot; ]</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/afl-tmin.c&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  sources += afl_headers</span><br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-executable(&quot;afl-showmap&quot;) &#123;</span><br><span class="hljs-deletion">-  configs -= [ &quot;//build/config/sanitizers:default_sanitizer_flags&quot; ]</span><br><span class="hljs-deletion">-  configs += [ &quot;:afl-tool&quot; ]</span><br><span class="hljs-deletion">-</span><br><span class="hljs-deletion">-  sources = [</span><br><span class="hljs-deletion">-    &quot;src/afl-showmap.c&quot;,</span><br><span class="hljs-deletion">-  ]</span><br><span class="hljs-deletion">-  sources += afl_headers</span><br><span class="hljs-deletion">-&#125;</span><br><span class="hljs-addition">+&#125;</span><br><br></code></pre></td></tr></table></figure>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -524,6 +528,7 @@ project与AFLplusplus的适配</h1>
 
 
 
+
     
 
     
@@ -635,8 +640,6 @@ project与AFLplusplus的适配</h1>
 
 
 
-
-
   
     
       <script  src="/js/img-lazyload.js" ></script>
@@ -674,74 +677,9 @@ project与AFLplusplus的适配</h1>
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   

@@ -74,7 +74,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":"UA-146906922-1","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -83,6 +83,8 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Mundi's Space" type="application/atom+xml">
@@ -290,14 +292,15 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 6 months ago
+                    Last updated on 7 months ago
                   
                 
               </p>
             
-            <div class="markdown-body">
-              
-              <h1 id="stl_list-介绍">stl_list 介绍</h1>
+            
+              <div class="markdown-body">
+                
+                <h1 id="stl_list-介绍">stl_list 介绍</h1>
 <p>今天我们来总结一下stl_List,
 与单链表比较而言，stl_list无非就是链表结构不一样，至于其中的增删改查的细节实现本质是一样的，都是处理指针偏移。<strong>相比于vector，stl_List在插入和删除的时候可以达到O(1)的时间复杂度</strong>。</p>
 <p>stl_list是一个<strong>双向循环链表</strong>，相对单链表来说查找效率高，无论是插入时的前插和后插，还是从后往前查找某个元素等。既然查找效率高了，自然添加，删除和修改元素时效率也就更高。唯一一个可以称为不足的就是每个节点需要耗费4字节指针来保存前一个节点的地址，因此如果遇到对内存要求比较苛刻的场景，而且一些操作单链表即可满足，那么可以考虑使用标准库中的<strong>forward_list</strong>（单链表）。</p>
@@ -330,8 +333,9 @@ _M_impl中间变量，由该类_M_impl来保存节点，并对节点做基本处
 <h2 id="def.h">Def.h</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">define</span> __MUNDI_BEGIN namespace Mundi &#123;</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> __MUNDI_END &#125;</span><br><br><br><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> _T_STD_NOEXCEPT</span><br><span class="hljs-meta"># <span class="hljs-keyword">if</span> __cplusplus &gt;= 201103L</span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_NOEXCEPT noexcept</span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_USE_NOEXCEPT noexcept</span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_THROW(_EXC)</span><br><span class="hljs-meta"># <span class="hljs-keyword">else</span></span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_NOEXCEPT</span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_USE_NOEXCEPT throw()</span><br><span class="hljs-meta">#  <span class="hljs-keyword">define</span> _T_STD_THROW(_EXC) throw(_EXC)</span><br><span class="hljs-meta"># <span class="hljs-keyword">endif</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -504,6 +508,7 @@ _M_impl中间变量，由该类_M_impl来保存节点，并对节点做基本处
 
 
 
+
     
 
     
@@ -615,8 +620,6 @@ _M_impl中间变量，由该类_M_impl来保存节点，并对节点做基本处
 
 
 
-
-
   
     
       <script  src="/js/img-lazyload.js" ></script>
@@ -654,74 +657,9 @@ _M_impl中间变量，由该类_M_impl来保存节点，并对节点做基本处
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
