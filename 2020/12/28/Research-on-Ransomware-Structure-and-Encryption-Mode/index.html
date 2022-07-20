@@ -336,8 +336,7 @@ process</figcaption>
 <p>我们的第一个反应肯定是对文件使用对称加密，但这是错误的，并且任何一个正常的勒索软件都会出于一个重要原因而避免这样做。当勒索软件正在加密受害者的文件时，加密密钥将需要出现在某个地方。如果使用对称加密，则用于加密的加密密钥也可以用于解密。这意味着合格的取证专家可以恢复感染期间用于加密的密钥，然后使用它来解密文件。当使用非对称加密时，我们使用不同的密钥进行加密和解密，因此，只要确保解密密钥的安全，即使在受害者计算机中存储加密密钥也不是什么大问题。</p>
 <p>我们需要考虑的另一件重要事情是，作为攻击者，我们需要拥有密钥，以便受害者决定支付赎金时解密文件。使用对称加密时，我们需要在二进制代码上对密钥进行硬编码（而这有多种方法可以逆转），或者即时生成它，然后使用某种方式将其传输到攻击者的服务器（这也是一个坏主意，因为它可能在传输过程中被截获，并且如果目标计算机断网，因为没有密钥，我们将无法为受害者解密文件。）像这样的方案曾在CryptoDefense的第一代产品中使用，并允许受害者自行解密文件<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://www.computerworld.com/article/2489311/cryptodefense-ransomware-leaves-decryption-key-accessible.html
-">[1]</span></a></sup>。因为密钥既在生成后传输到服务器，缺又意外的留在了本地文件系统中。</p>
+aria-label="https://www.computerworld.com/article/2489311/cryptodefense-ransomware-leaves-decryption-key-accessible.html">[1]</span></a></sup>。因为密钥既在生成后传输到服务器，缺又意外的留在了本地文件系统中。</p>
 <p>而这就意味着我们必须使用非对称加密来加密受害者文件吗？我们可以生成一个密钥对，在代码上对公共密钥进行硬编码，然后用该密钥对所有内容进行加密（将私有密钥妥善保存）？不，我们不能。</p>
 <p>当您尝试这么干时，一个显而易见的原因就是非对称加密比对称加密要慢几个数量级。当您加密受害者的硬盘时，您需要尽快加密所有内容。如果完全加密文件需要要花费几分钟以上，那么受害者可能会注意到其文件已被加密，而这时只需简单的关闭计算机即可。这将使他能够从硬盘驱动器中保护剩余的文件。</p>
 <p>那么我们应该使用什么呢？</p>
@@ -354,8 +353,7 @@ alt="小孩子才做选择,( )" />
 <p><a
 target="_blank" rel="noopener" href="https://simple.wikipedia.org/wiki/Chosen-plaintext_attack">选择明文攻击</a>：攻击者在开始攻击时可以选择一些明文，并获取加密后的密文。如果攻击者在攻击中途可以根据已经获取的信息选择新的明文并获取对应的密文，则称为适应性选择明文攻击。其是一种加密攻击，其中，攻击者在加密之前就知道了明文，并给出了足够大的加密文件样本，从理论上讲，密钥可以从加密结果中得出。大多数文件的header（具有已知格式）都可能发生这种情况。如果我们在给定条件的情况下对所有文件使用相同的密钥，则理论上可以恢复该密钥。这实际上正是DirCrypt发生的事情<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://blog.checkpoint.com/2014/08/27/hacking-the-hacker/
-">[2]</span></a></sup>。其由于不合适的密码实现和密钥复用，加密过程被逆转了。</p>
+aria-label="https://blog.checkpoint.com/2014/08/27/hacking-the-hacker/">[2]</span></a></sup>。其由于不合适的密码实现和密钥复用，加密过程被逆转了。</p>
 <p>我们可以通过为每个文件使用不同的密钥来解决此问题。我们可以为每个文件生成对称密钥来对文件进行加密，同时使用payload中的公共密钥加密密钥，将加密的对称密钥写入某个位置，然后删除明文对称密钥。</p>
 <p>许多勒索软件都使用这种方法，在这种加密模式中，它们生成一个文本文件，其中包含每个加密的文件名和与其关联的加密的公共密钥。使用解密工具时，它将读取文本文件，使用私钥解密每个密钥，然后使用解密后的密钥解密文本文件。但我们将使用一些不同的东西。</p>
 <blockquote>
@@ -397,8 +395,7 @@ alt="python" />
 </figure>
 <p>在选择python库时，我们可能会导入多种看上去功能相同的库，这是为了选择其中最有效的一个，特别是在密码学这种不断变化的领域。毕竟，过时的加密库或者自建的加密方案可能会导致软件的漏洞<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://blog.malwarebytes.com/threat-analysis/2018/04/lockcrypt-ransomware/
-">[3]</span></a></sup>。我们将使用两个知名的python库：<a
+aria-label="https://blog.malwarebytes.com/threat-analysis/2018/04/lockcrypt-ransomware/">[3]</span></a></sup>。我们将使用两个知名的python库：<a
 target="_blank" rel="noopener" href="https://pypi.org/project/pycryptodome/">pycryptodome</a>和<a
 target="_blank" rel="noopener" href="https://docs.python.org/3/library/secrets.html">secrets</a>。</p>
 <blockquote>
@@ -480,14 +477,12 @@ IV和加密密钥，因此我们不需要任何带有每个加密文件索引的
 <p>目前还存在其他类型的勒索软件，例如某些勒索软件感染了驱动器的<a
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Master_boot_record">主启动记录</a>，而payload将加密文件系统的NTFS文件表，从而使磁盘无法使用。由于这类勒索软件只需要加密一小部分数据，因此这种方法非常快<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://en.wikipedia.org/wiki/Petya_(malware)
-">[5]</span></a></sup>。Petya勒索软件就是这种设计的一个很好的例子。但它有三个主要缺点：</p>
+aria-label="https://en.wikipedia.org/wiki/Petya_(malware)">[5]</span></a></sup>。Petya勒索软件就是这种设计的一个很好的例子。但它有三个主要缺点：</p>
 <ol type="1">
 <li>即使操作系统无法启动，我们仍然可以通过取证分析来恢复文件。它们并不会被删除，只是在文件表中被取消引用。即使恶意软件在重新启动计算机后启动了原始数据的加密例程，只要受害者立即关闭计算机并取出磁盘，文件也有很大可能可以通过取证分析得到恢复。</li>
 <li>大多数现代操作系统已迁移到GPT（GUID分区表），不再使用MBR<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
-">[6]</span></a></sup>。</li>
+aria-label="https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/">[6]</span></a></sup>。</li>
 <li>它严重依赖于文件系统，并且需要对其进行修改以考虑其他区别于NTFS的文件系统类型（如EXT3/EXT4，ZFS等）。</li>
 </ol>
 <p>这种方法需要了解更多的底层技术知识，另外，这种方法也不是最常用的方法，本文的主要目的是更好地理解<strong>常见</strong>的勒索软件。</p>

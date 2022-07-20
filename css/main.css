@@ -869,7 +869,7 @@ i.iconfont {
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: #46647e;
-    --highlight-bg-color: #2d333b;
+    --highlight-bg-color: #303030;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
   }
   :root:not([data-user-color-scheme]) img {
@@ -904,7 +904,7 @@ i.iconfont {
   --scrollbar-hover-color: #9da8b3;
   --button-bg-color: transparent;
   --button-hover-bg-color: #46647e;
-  --highlight-bg-color: #2d333b;
+  --highlight-bg-color: #303030;
   --inlinecode-bg-color: rgba(99,110,123,0.4);
 }
 [data-user-color-scheme="dark"] img {
@@ -1314,11 +1314,11 @@ figure.highlight td.code > pre {
   margin-bottom: 2rem;
   color: var(--post-text-color);
 }
-.markdown-body h1,
+.markdown-body > h1,
 .markdown-body h2 {
   border-bottom-color: var(--line-color);
 }
-.markdown-body h1,
+.markdown-body > h1,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4,
@@ -1330,7 +1330,20 @@ figure.highlight td.code > pre {
   margin-bottom: 0.75em;
   margin-top: 2em;
 }
-.markdown-body h1:focus,
+.markdown-body > h1::before,
+.markdown-body h2::before,
+.markdown-body h3::before,
+.markdown-body h4::before,
+.markdown-body h5::before,
+.markdown-body h6::before {
+  display: block;
+  content: "";
+  margin-top: -5rem;
+  height: 5rem;
+  width: 1px;
+  visibility: hidden;
+}
+.markdown-body > h1:focus,
 .markdown-body h2:focus,
 .markdown-body h3:focus,
 .markdown-body h4:focus,
@@ -1434,19 +1447,6 @@ post-custom {
   .anchorjs-link-left {
     opacity: 0 !important;
   }
-}
-.post-content h1::before,
-.post-content h2::before,
-.post-content h3::before,
-.post-content h4::before,
-.post-content h5::before,
-.post-content h6::before {
-  display: block;
-  content: "";
-  margin-top: -5rem;
-  height: 5rem;
-  width: 1px;
-  visibility: hidden;
 }
 .page-content strong,
 .post-content strong {

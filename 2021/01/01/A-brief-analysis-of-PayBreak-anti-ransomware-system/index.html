@@ -241,7 +241,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          18k 字
+          17k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          98 mins
+          97 mins
         
       </span>
     
@@ -334,10 +334,9 @@ PayBreak检测到这些密钥的使用，将它们保存在托管中，因此可
 <h2 id="practical-considerations-for-ransomware">Practical
 considerations for ransomware</h2>
 <p>勒索软件的目标是阻止受害者访问其数据并勒索赎金。现代勒索软件借鉴了完善的良性密码套件（例如OpenPGP或S/MIME）中的技术，并采用了所谓的混合密码系统。</p>
-<p>在混合密码系统中，发送者为每个消息（例如，为每个需要加密的文件）选择一个随机对称密钥，并在该密钥下加密每个消息（或文件）。该一次对称密钥通常称为会话密钥。随后，混合密码系统将使用接收者的（非对称）公钥对对称消息专用密钥进行加密。因此，无论加密内容的大小如何，仅需要高性能的非对称对称加密操作即可加密小的对称密钥。然后，将加密的对称密钥与加密的内容组合并发送到服务器。为了解密数据，接收者首先使用其私钥解密加密的对称密钥。有了对称密钥，接收者便可以简单地将数据的密文解密为原始的纯文本。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote">&lt;span
-class="hint--top hint--rounded" aria-label="<a
-href="https://mundi-xu.github.io/2020/12/28/勒索软件结构与加密模式研究/">勒索软件结构与加密模式研究
-"&gt;[1]</span></a></sup></p>
+<p>在混合密码系统中，发送者为每个消息（例如，为每个需要加密的文件）选择一个随机对称密钥，并在该密钥下加密每个消息（或文件）。该一次对称密钥通常称为会话密钥。随后，混合密码系统将使用接收者的（非对称）公钥对对称消息专用密钥进行加密。因此，无论加密内容的大小如何，仅需要高性能的非对称对称加密操作即可加密小的对称密钥。然后，将加密的对称密钥与加密的内容组合并发送到服务器。为了解密数据，接收者首先使用其私钥解密加密的对称密钥。有了对称密钥，接收者便可以简单地将数据的密文解密为原始的纯文本。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="[勒索软件结构与加密模式研究](https://mundi-xu.github.io/2020/12/28/勒索软件结构与加密模式研究/)">[1]</span></a></sup></p>
 <p>在勒索软件攻击中，攻击者在其攻击服务器上生成了非对称密钥对。
 在受害者的机器上，恶意软件会为每个加密的文件生成唯一的对称会话密钥。
 会话密钥使用攻击者的公共密钥加密，并与加密的文件内容一起存储。
@@ -402,12 +401,7 @@ fuzzy function signatures
 来标识静态链接的库函数。这种方法类似于IDA的快速库识别和识别技术（FLIRT）。</p>
 <p>签名由已知加密过程的前32个字节组成，当在内存中连续识别到这32个字节且超过阈值百分比时，系统将标识该进程。因为通常恶意软件会被加壳，所以PayBreak会扫描所有已执行进程的可执行内存，以查找函数签名。我们的原型系统将在每个进程第一次调用NtReadFile之后执行扫描，因为恶意软件必须先读取数据才能加密用户文件。识别到函数签名后，通过使用Detours去hook并导出会话密钥和加密算法的详细信息。尽管我们当前的原型系统可以有效抵御当代勒索软件，但高级加壳技术和混淆仍然可以绕过保护系统。可以利用对加密功能的语义检测加强对勒索软件的识别<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="P. Lestringant, F. Guih´ery, and P.-A. Fouque. Automated
-identification of cryptographic primitives in binary code with data flow
-graph isomorphism. In Proceedings of the 10th ACM Symposium on
-Information, Computer and Communications Security, ASIA CCS ’15,
-2015.
-">[2]</span></a></sup>。</p>
+aria-label="P. Lestringant, F. Guih´ery, and P.-A. Fouque. Automated identification of cryptographic primitives in binary code with data flow graph isomorphism. In Proceedings of the 10th ACM Symposium on Information, Computer and Communications Security, ASIA CCS ’15, 2015.">[2]</span></a></sup>。</p>
 <p>我们的原型系统实现带有Crypto++静态链接库的签名，由Crypto++的SetKey，CipherModeBase和SymmetricCipherBase类方法的前32个字节组成，并通过CryptoAPI的CryptExport
 API函数导出Crypto++会话密钥和算法详细信息。</p>
 <h2 id="key-vault-1">Key Vault</h2>
@@ -415,17 +409,15 @@ API函数导出Crypto++会话密钥和算法详细信息。</p>
 CryptoAPI和Crypto++使用的对称密钥和有关对称加密方案的详细信息使用安全的方法存储，只有在必要时才能由勒索软件的受害者访问。我们可以发现PayBreak的密钥库系统的设计与勒索软件部署的混合密码系统极其相似，都使用系统安装过程中生成的用户公共密钥（pku）对会话密钥进行加密和导出。我们的实现为此步骤使用的是2048位RSA密钥，可确保对小于或等于密钥大小的数据进行安全的加密-对于一般的256位对称密钥而言已经足够。</p>
 <p>如前一节所述，CryptExcrypt函数的行为增加了对CryptEncrypt的调用。CryptExport调用会将传递给CryptEncrypt函数的会话密钥的句柄以及我们系统的交换密钥（即用户的pku）作为参数以安全地导出会话密钥，同时CryptEncrypt也会导出使用密钥的算法（即AES，3DES，RC4等）信息。</p>
 <p>此外，为了重建勒索软件感染所使用的对称加密配置，我们必须保存算法参数，例如初始化向量（IV）和使用的分组密码模式等，这些信息都是从hook中提取的。Hook对传递给CryptAcquireContext和CryptSetKeyParam函数的参数进行记录。与加密消息语法<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
-class="hint--top hint--rounded" aria-label="Cryptographic Message
-Syntax (CMS)
-">[3]</span></a></sup>相似，因为它们的公开不会影响现代密码系统的安全性，所以这些参数以明文形式连接到会话密钥信息。此串联的“blob”被附加到PayBreak的密钥库中。此外，如前所述，我们的原型实现将传递给Crypto++函数的加密密钥信息（简单字节数组）存储到密钥库中。系统还存储从CryptGenRandom函数调用的可用于逆向勒索软件以重新创建用于加密文件的会话密钥输出的随机字节。</p>
+class="hint--top hint--rounded"
+aria-label="[Cryptographic Message Syntax (CMS)](https://www.ietf.org/rfc/rfc5652.txt)">[3]</span></a></sup>相似，因为它们的公开不会影响现代密码系统的安全性，所以这些参数以明文形式连接到会话密钥信息。此串联的“blob”被附加到PayBreak的密钥库中。此外，如前所述，我们的原型实现将传递给Crypto++函数的加密密钥信息（简单字节数组）存储到密钥库中。系统还存储从CryptGenRandom函数调用的可用于逆向勒索软件以重新创建用于加密文件的会话密钥输出的随机字节。</p>
 <p>为安全起见，防止文件库本身被勒索软件加密，文件库配置为append-only，并且仅允许Windows
 Administrator组进行所有其他访问。如果密钥库需要访问，则使用在安装PayBreak期间设置的私钥（sku）来解密存储的密钥材料，从而访问各个会话密钥和加密方案的参数。</p>
 <h2 id="file-recovery-1">File Recovery</h2>
 <p>PayBreak的最后一个组成部分是勒索软件感染期间加密的文件的恢复。文件恢复分三个阶段进行。首先使用存放的私钥访问密钥库，然后将保管库中的数据解析为对称密钥和相应的加密方案参数，例如块密码模式和初始化向量，最后把检索到的会话密钥用于解密受害者的文件。通常，由勒索软件加密的每个文件都与元数据（例如勒索软件版本和加密文件的原始大小）连接在一起。由于这种元数据，实际的加密文件数据通常会在为赎金而保留的文件中发生偏移。在不了解每个勒索软件的单独元数据结构的情况下，我们的系统被迫对保存在勒索文件中的每个可能偏移量进行测试。我们的系统利用动态编译来降低后续文件解密所需的工作量，一旦找到成功的偏移量，以后将在先前成功的偏移量处尝试文件解密。</p>
 <p>PayBreak迭代尝试使用每个托管密钥和每个偏移量解密文件，直到达到解密状态（libmagic<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
-class="hint--top hint--rounded" aria-label="Fine Free File
-Command
-">[4]</span></a></sup>未将其识别为“data”）为止。
+class="hint--top hint--rounded"
+aria-label="[Fine Free File Command](http://www.darwinsys.com/file/)">[4]</span></a></sup>未将其识别为“data”）为止。
 一旦将解密状态标识为常见的Office文档文件类型，例如Microsoft
 Word文档，JPEG图像或PDF文件，该状态将另存为实际的解密文件。
 当然，如果生成的文件被错误地标记为已解密，则用户可以指示系统继续搜索，直到标识了正确的键和偏移量为止。此外，尽管我们可以改进这种未优化的暴力破解方法，但至少它成功地恢复了测试的加密用户文件，<del>有用就行不是吗</del>。</p>
@@ -474,13 +466,7 @@ files”（蜜罐）。</p>
 files的真实内容，因此，如果类型更改为数据，则样本必须已对其进行了修改。</p>
 <p>为了确定勒索软件的家族，我们对AV标签进行了多数表决（即采用与Kharraz等人相同的方法<sup id="fnref:5" class="footnote-ref"><a href="#fn:5" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="A. Kharraz, W. Robertson, D. Balzarotti, L. Bilge, and E. Kirda.
-Cutting the Gordian Knot: A Look Under the Hood of Ransomware Attacks.
-In Proceedings of the International Conference on Detection of
-Intrusions and Malware, and Vulnerability Assessment (DIMVA), volume
-9148 of Lecture Notes in Computer Science, Milan, Italy, July 2015.
-Springer International Publishing.
-">[5]</span></a></sup>）。我们让RADDAR运行了4个月，以收集和生成有关1,691个恶意软件样本的报告，其中713个与AV公司使用的勒索软件标签匹配。
+aria-label="A. Kharraz, W. Robertson, D. Balzarotti, L. Bilge, and E. Kirda. Cutting the Gordian Knot: A Look Under the Hood of Ransomware Attacks. In Proceedings of the International Conference on Detection of Intrusions and Malware, and Vulnerability Assessment (DIMVA), volume 9148 of Lecture Notes in Computer Science, Milan, Italy, July 2015. Springer International Publishing.">[5]</span></a></sup>）。我们让RADDAR运行了4个月，以收集和生成有关1,691个恶意软件样本的报告，其中713个与AV公司使用的勒索软件标签匹配。
 下图给出了该分析的详细分类。</p>
 <figure>
 <img
@@ -572,16 +558,13 @@ CryptGenRandom。通过动态hooking并记录该系统功能，PayBreak可以利
 我们认为，对于常规的勒索软件受害者而言，与可恢复加密文件的速度相比，重新获得对加密数据的访问更为重要。</p>
 <p>我们承认，与大部分实用的在线保护系统一样，混淆和加壳可以破坏PayBreak提供的保护。但是，混淆只是静态链接到加密库的恶意软件的关注点。由于使用PayBreak会在未混淆的系统DLL中挂钩API函数的实现，因此不会受到使用系统提供的CryptoAPI的恶意软件的绕过。此外，正如我们的评估所示，PayBreak完全能够保护用户免受静态链接加密库的恶意软件的侵害，只要该恶意软件被现代加壳程序所混淆即可。实际上，所有用于评估的恶意软件样本都已加壳，而且来自Tox家族的样本静态链接了Crypto++库。多年来，学术文献和商业资源已提供了高级混淆器。但是，这些先进技术并未在整个恶意软件生态系统中广泛使用。例如，Sun<sup id="fnref:6" class="footnote-ref"><a href="#fn:6" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="L. Sun. Reform: A framework for malware packer analysis using
-information theory and statistical methods, 2010.
-">[6]</span></a></sup>报告说，在103,392个分析的样本中，有91％仅使用简单的加壳软件（例如UPX或ASPack），这些壳不会绕过PayBreak提供的保护。不幸的是，我们不知道阻止恶意软件作者广泛使用更高级的混淆技术的原因，因此，PayBreak提高了恶意软件作者的门槛，并迫使他们使用迄今为止他们一直拒绝采用的绕过技术。</p>
+aria-label="L. Sun. Reform: A framework for malware packer analysis using information theory and statistical methods, 2010.">[6]</span></a></sup>报告说，在103,392个分析的样本中，有91％仅使用简单的加壳软件（例如UPX或ASPack），这些壳不会绕过PayBreak提供的保护。不幸的是，我们不知道阻止恶意软件作者广泛使用更高级的混淆技术的原因，因此，PayBreak提高了恶意软件作者的门槛，并迫使他们使用迄今为止他们一直拒绝采用的绕过技术。</p>
 <p>恶意软件可以实施的另一种绕过PayBreak的方法即检测到受害者的计算机中是否正在运行PayBreak，并因此跳过插入的hook。但是，没有理由PayBreak必须在目标加密功能的开头安装hook。只要相关数据结构（例如密钥和加密方案参数）仍在使用范围内，我们可以修改PayBreak以将hook插入函数中的任意点。与混淆情形类似，PayBreak无法提供针对专门旨在绕过PayBreak的恶意软件的保证，但是PayBreak可以大大减少攻击者成功的几率。</p>
 <p>最后，发现PayBreak存在的勒索软件可以通过破坏用于在保管库中保管数据的公钥或简单地用无意义的信息填充保管库来发起DOS攻击。可以将PayBreak修改为具有附加到Vault的特权（如以SYSTEM身份运行）进程，从而保护公钥的完整性。在对受害者的文件进行加密之前，使文件库充满垃圾的攻击只能增加恢复加密文件所需的时间，上面提到的特权进程也可以检测到这种攻击的进行，并向用户发出警报，或者终止有问题的过程。即使这种攻击没有引起警报，请回想一下，感染勒索软件是一种罕见的情况，而识别正确的密钥和加密偏移量则很尴尬。因此，即使使用大型保管库（一个1TB的保管库可以容纳大约170亿个条目），恢复也只会被延迟，而不能阻止。</p>
 <h1 id="总结">总结</h1>
-<p>PayBreak是一种创新的保护机制，可以解决基于加密的勒索软件的威胁。早期的勒索软件系列由于未正确配置加密模式而失败，因而成功的软件转而使用正确的加密方法——混合加密。我们研究确定了大部分的勒索软件都必须在受害者的主机上使用对称会话密钥来执行文件加密，因此PayBreak实现了密钥托管机制，将会话密钥存储在密钥库中并使用用户的公共密钥加密，只有用户的私钥才能解锁该密钥库。与政府强制的密钥托管系统相反，PayBreak确保只有合法用户才能访问托管的密钥。我们对107个勒索软件样本进行了测试，并证明PayBreak可以成功地从十二种不同勒索软件系列所造成的损害中恢复，同时其运行时开销远远低于人类的感知阈值，因此可以在日常工作环境钟使用PayBreak。最后，PayBreak将作为一个公开可用的开源项目发布<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote">&lt;span
-class="hint--top hint--rounded" aria-label="<a
-target="_blank" rel="noopener" href="https://github.com/BUseclab/paybreak">https://github.com/BUseclab/paybreak
-"&gt;[7]</span></a></sup>。</p>
+<p>PayBreak是一种创新的保护机制，可以解决基于加密的勒索软件的威胁。早期的勒索软件系列由于未正确配置加密模式而失败，因而成功的软件转而使用正确的加密方法——混合加密。我们研究确定了大部分的勒索软件都必须在受害者的主机上使用对称会话密钥来执行文件加密，因此PayBreak实现了密钥托管机制，将会话密钥存储在密钥库中并使用用户的公共密钥加密，只有用户的私钥才能解锁该密钥库。与政府强制的密钥托管系统相反，PayBreak确保只有合法用户才能访问托管的密钥。我们对107个勒索软件样本进行了测试，并证明PayBreak可以成功地从十二种不同勒索软件系列所造成的损害中恢复，同时其运行时开销远远低于人类的感知阈值，因此可以在日常工作环境钟使用PayBreak。最后，PayBreak将作为一个公开可用的开源项目发布<sup id="fnref:7" class="footnote-ref"><a href="#fn:7" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="[https://github.com/BUseclab/paybreak](https://github.com/BUseclab/paybreak)">[7]</span></a></sup>。</p>
 <h1 id="参考">参考</h1>
 <section class="footnotes">
 <div class="footnote-list">

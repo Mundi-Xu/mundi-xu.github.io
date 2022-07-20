@@ -321,16 +321,14 @@ angr(Symbolic Execution)技术。</p>
 <h1 id="afl下载与安装">AFL下载与安装</h1>
 <p>AFL可以对有源码和无源码的程序进行fuzz。对有源码的程序Fuzz的原理简单来说就是在程序编译时，向汇编代码中插入自己的指令，从而在程序运行时，计算覆盖率。当把样本喂给程序来Fuzz时，如果AFL发现程序执行了新的路径，就把当前的样本保存在Queue中，基于这个新的样本来继续Fuzz。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://lcamtuf.coredump.cx/afl/QuickStartGuide.txt
-">[1]</span></a></sup></p>
+aria-label="https://lcamtuf.coredump.cx/afl/QuickStartGuide.txt">[1]</span></a></sup></p>
 <p>与其他基于插桩技术的fuzzers相比，afl-fuzz具有较低的性能消耗，有各种高效的fuzzing策略和tricks最小化技巧，不需要先行复杂的配置，能无缝处理复杂的现实中的程序。当然AFL也可以直接对没有源码的二进制程序进行测试，但需要QEMU的支持。</p>
 <h2 id="本体安装与测试">本体安装与测试</h2>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz<br>tar -xvf afl-latest.tgz<br>cd afl-2.52b<br>make &amp;&amp; sudo make install<br></code></pre></td></tr></table></figure>
 <p><code>which afl-fuzz</code>有回显即安装成功</p>
 <p>推荐去Github<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://github.com/google/AFL/releases
-">[2]</span></a></sup>上下载，一直在维护，安装过程相同。(截止发文，最新版为v2.57b)</p>
+aria-label="https://github.com/google/AFL/releases">[2]</span></a></sup>上下载，一直在维护，安装过程相同。(截止发文，最新版为v2.57b)</p>
 <p>Ps. Kali的源中包含afl，可以直接尝试
 <code>apt install afl</code>。</p>
 <h3 id="测试">测试</h3>
@@ -415,8 +413,7 @@ llvm-config<code></code>),然后在afl/llvm_mode/文件夹下执行make，会在
 或 <code>sudo apt-get install libtool*</code> (libtool)。</p>
 <p>当出现util/memfd.c错误时，可参照以下方法<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1643066.html
-">[3]</span></a></sup>（2.57b版本已修复）</p>
+aria-label="https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg1643066.html">[3]</span></a></sup>（2.57b版本已修复）</p>
 <p>创建一个名为“memfd_create.diff”的文件，然后将下列代码粘贴进去:</p>
 <figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs diff">diff -ru qemu-2.10.0-clean/util/memfd.c qemu-2.10.0/util/memfd.c<br><span class="hljs-comment">--- qemu-2.10.0-clean/util/memfd.c      2018-11-20 18:11:00.170271506 +0100</span><br><span class="hljs-comment">+++ qemu-2.10.0/util/memfd.c    2018-11-20 18:11:13.398423613 +0100</span><br><span class="hljs-meta">@@ -37,7 +37,7 @@</span><br> #include &lt;sys/syscall.h&gt;<br> #include &lt;asm/unistd.h&gt;<br><br><span class="hljs-deletion">-static int memfd_create(const char *name, unsigned int flags)</span><br><span class="hljs-addition">+int memfd_create(const char *name, unsigned int flags)</span><br> &#123;<br> #ifdef __NR_memfd_create<br>     return syscall(__NR_memfd_create, name, flags);<br></code></pre></td></tr></table></figure>
 <p>将memfd_create.diff放在patches/目录下后修改build_qemu_support.sh</p>
@@ -426,8 +423,7 @@ aria-label="https://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg16
 <h1 id="ntp-4.2.2-测试">ntp-4.2.2 测试</h1>
 <p>NTP是一种旨在通过网络同步计算机时钟的协议。我们将使用afl对其部件ntpq进行白盒测试以尝试复现CVE-2009-0159<sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://nvd.nist.gov/vuln/detail/CVE-2009-0159
-">[4]</span></a></sup>，测试版本为v4.2.2，可<a
+aria-label="https://nvd.nist.gov/vuln/detail/CVE-2009-0159">[4]</span></a></sup>，测试版本为v4.2.2，可<a
 target="_blank" rel="noopener" href="https://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-4.2.2.tar.gz">点击此处</a>下载。</p>
 <blockquote>
 <p>ntpq is a utility included as part of the NTP Reference

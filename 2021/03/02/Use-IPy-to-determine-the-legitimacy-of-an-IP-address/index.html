@@ -305,8 +305,8 @@
                 <h1 id="ip地址格式规范">ip地址格式规范</h1>
 <h2 id="ipv4">ipv4</h2>
 <p>在CIDR表示法中，前缀显示为4个八位字节，就像传统的IPv4地址一样，后跟"/"斜杠和一个0～32之间的十进制值来描述有效位数。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
-class="hint--top hint--rounded" aria-label="RFC 791; RFC 4632
-">[1]</span></a></sup></p>
+class="hint--top hint--rounded"
+aria-label="RFC 791; RFC 4632">[1]</span></a></sup></p>
 <blockquote>
 <p>For example, the legacy "Class B" network 172.16.0.0, with an implied
 network mask of 255.255.0.0, is defined as the prefix 172.16.0.0/16, the
@@ -321,8 +321,8 @@ the least significant 8 bits are zeros.</p>
 <p>There are three conventional forms for representing IPv6 addresses as
 text strings:
 <sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
-class="hint--top hint--rounded" aria-label="RFC 2373
-">[2]</span></a></sup></p>
+class="hint--top hint--rounded"
+aria-label="RFC 2373">[2]</span></a></sup></p>
 <ol type="1">
 <li><p>The preferred form is <code>x:x:x:x:x:x:x:x</code>, where the
 'x's are the hexadecimal values of the eight 16-bit pieces of the
@@ -368,8 +368,7 @@ IPv6地址/有效位数</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install IPy<br></code></pre></td></tr></table></figure>
 <p>IPy模块包含IP类，使用它可以处理绝大部分格式的IPv4或IPv6地址<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://pypi.org/project/IPy/#description
-">[3]</span></a></sup>。</p>
+aria-label="https://pypi.org/project/IPy/#description">[3]</span></a></sup>。</p>
 <blockquote>
 <p>It can detect about a dozen different ways of expressing IP addresses
 and networks, parse them and distinguish between IPv4 and IPv6
@@ -391,8 +390,7 @@ networks.</p>
 <p>源码版本为1.01 <code>__version__ = '1.01'</code>
 <sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
 class="hint--top hint--rounded"
-aria-label="https://github.com/autocracy/python-ipy
-">[4]</span></a></sup></p>
+aria-label="https://github.com/autocracy/python-ipy">[4]</span></a></sup></p>
 <h2 id="ipversion">ipversion</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(data, INT_TYPES):<br>    self.ip = <span class="hljs-built_in">int</span>(data)<br>    <span class="hljs-keyword">if</span> ipversion == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">if</span> self.ip &lt;= MAX_IPV4_ADDRESS:<br>            ipversion = <span class="hljs-number">4</span><br>        <span class="hljs-keyword">else</span>:<br>            ipversion = <span class="hljs-number">6</span><br>    <span class="hljs-keyword">if</span> ipversion == <span class="hljs-number">4</span>:<br>        <span class="hljs-keyword">if</span> self.ip &gt; MAX_IPV4_ADDRESS:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;IPv4 Address can&#x27;t be larger than %x: %x&quot;</span> % (MAX_IPV4_ADDRESS, self.ip))<br>        prefixlen = <span class="hljs-number">32</span><br>    <span class="hljs-keyword">elif</span> ipversion == <span class="hljs-number">6</span>:<br>        <span class="hljs-keyword">if</span> self.ip &gt; MAX_IPV6_ADDRESS:<br>            <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;IPv6 Address can&#x27;t be larger than %x: %x&quot;</span> % (MAX_IPV6_ADDRESS, self.ip))<br>        prefixlen = <span class="hljs-number">128</span><br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;only IPv4 and IPv6 supported&quot;</span>)<br></code></pre></td></tr></table></figure>
 <p>根据处理后的ip长度判断类型，其中<code>MAX_IPV4_ADDRESS = 0xffffffff, MAX_IPV6_ADDRESS = 0xffffffffffffffffffffffffffffffff</code></p>
