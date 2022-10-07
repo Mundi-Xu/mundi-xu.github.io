@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2022-05-23T08:11:06.209Z</updated>
+  <updated>2022-10-07T16:39:00.455Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DirtyCred漏洞分析</title>
+    <link href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
+    <id>https://mundi-xu.github.io/2022/10/08/DirtyCred/</id>
+    <published>2022-10-07T16:05:21.000Z</published>
+    <updated>2022-10-07T16:39:00.455Z</updated>
+    
+    
+    <summary type="html">DirtyCred is a kernel exploitation concept that swaps unprivileged kernel credentials with privileged ones to escalate privilege.（还没写完</summary>
+    
+    
+    
+    
+    <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
+    
+    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    
+    <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
+    
+    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
+    
+  </entry>
   
   <entry>
     <title>Architectural Support for System Security</title>
@@ -71,9 +94,9 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
-    
     <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    
+    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
     
   </entry>
   
@@ -159,8 +182,6 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
@@ -168,6 +189,8 @@
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -184,9 +207,9 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
@@ -326,11 +349,11 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
+    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
+    
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
-    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
     
     <category term="ntp" scheme="https://mundi-xu.github.io/tags/ntp/"/>
     
@@ -401,6 +424,8 @@
     
     <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
     
+    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
+    
     <category term="rust" scheme="https://mundi-xu.github.io/tags/rust/"/>
     
     <category term="仿射密码" scheme="https://mundi-xu.github.io/tags/%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81/"/>
@@ -410,8 +435,6 @@
     <category term="分组密码" scheme="https://mundi-xu.github.io/tags/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/"/>
     
     <category term="密码协议" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E7%A0%81%E5%8D%8F%E8%AE%AE/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
     
     <category term="RC4" scheme="https://mundi-xu.github.io/tags/RC4/"/>
     
@@ -462,27 +485,6 @@
     <category term="C++" scheme="https://mundi-xu.github.io/tags/C/"/>
     
     <category term="list" scheme="https://mundi-xu.github.io/tags/list/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>超星学习通开启自动播放模式</title>
-    <link href="https://mundi-xu.github.io/2019/08/21/Learn-through-automatic-play-mode/"/>
-    <id>https://mundi-xu.github.io/2019/08/21/Learn-through-automatic-play-mode/</id>
-    <published>2019-08-21T03:11:00.000Z</published>
-    <updated>2021-11-29T08:07:10.761Z</updated>
-    
-    
-    <summary type="html">为便于观看超星学习通课程视频，提高学习效率，特推出自动播放模式，仅供交流学习。</summary>
-    
-    
-    
-    
-    <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
-    
-    <category term="something useful" scheme="https://mundi-xu.github.io/tags/something-useful/"/>
-    
-    <category term="超星学习通" scheme="https://mundi-xu.github.io/tags/%E8%B6%85%E6%98%9F%E5%AD%A6%E4%B9%A0%E9%80%9A/"/>
     
   </entry>
   
