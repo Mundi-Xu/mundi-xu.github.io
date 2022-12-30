@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2022-10-07T16:39:00.455Z</updated>
+  <updated>2022-12-29T12:24:56.845Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
     <id>https://mundi-xu.github.io/2022/10/08/DirtyCred/</id>
     <published>2022-10-07T16:05:21.000Z</published>
-    <updated>2022-10-07T16:39:00.455Z</updated>
+    <updated>2022-12-29T12:24:56.845Z</updated>
     
     
-    <summary type="html">DirtyCred is a kernel exploitation concept that swaps unprivileged kernel credentials with privileged ones to escalate privilege.（还没写完</summary>
+    <summary type="html">DirtyCred is a kernel exploitation concept that swaps unprivileged kernel credentials with privileged ones to escalate privilege.（懒得写了，有空再补</summary>
     
     
     
