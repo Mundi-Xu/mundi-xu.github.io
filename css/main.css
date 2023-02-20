@@ -310,6 +310,9 @@ sup > a::before,
 .navbar .nav-item .nav-link i {
   font-size: 0.875rem;
 }
+.navbar .nav-item .nav-link i:only-child {
+  margin: 0 0.2rem;
+}
 .navbar .navbar-toggler {
   border-width: 0;
   outline: 0;
@@ -442,6 +445,9 @@ sup > a::before,
   max-width: calc(960px - 6rem);
   width: 80%;
   overflow-wrap: break-word;
+}
+.banner-text .typed-cursor {
+  margin: 0 0.2rem;
 }
 @media (max-width: 767px) {
   #subtitle,

@@ -26,9 +26,9 @@
 <meta property="article:published_time" content="2021-11-26T13:05:21.000Z">
 <meta property="article:modified_time" content="2021-11-30T15:06:01.651Z">
 <meta property="article:author" content="寒雨">
-<meta property="article:tag" content="Security">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Security">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -302,24 +302,51 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><h2 id="Stack-Cookie"><a href="#Stack-Cookie" class="headerlink" title="Stack Cookie"></a>Stack Cookie</h2><h2 id="DEP（数据执行保护）"><a href="#DEP（数据执行保护）" class="headerlink" title="DEP（数据执行保护）"></a>DEP（数据执行保护）</h2><p>Data Execution Prevention </p>
-<h2 id="CFG（控制流保护）"><a href="#CFG（控制流保护）" class="headerlink" title="CFG（控制流保护）"></a>CFG（控制流保护）</h2><p>每次间接调用前都对函数指针进行检查，在函数指针被修改到非法地址时终止程序。</p>
-<h2 id="SEHOP、SafeSEH"><a href="#SEHOP、SafeSEH" class="headerlink" title="SEHOP、SafeSEH"></a>SEHOP、SafeSEH</h2><p>SEHOP会检测SEH单链表的末尾是不是指向一个固定的SEH Handler。 SafeSEH会检测当前使用的 SEH Handler是否指向当前模块的一个有效地址。</p>
-<h2 id="Heap-Randomization-LFH随机化堆分配地址"><a href="#Heap-Randomization-LFH随机化堆分配地址" class="headerlink" title="Heap Randomization (LFH随机化堆分配地址)"></a>Heap Randomization (LFH随机化堆分配地址)</h2><h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="NX-（-DEP-in-Windows）"><a href="#NX-（-DEP-in-Windows）" class="headerlink" title="NX （ DEP in Windows）"></a>NX （ DEP in Windows）</h2><p>NX通过现代操作系统的<strong>内存保护单元（Memory ProtectUint， MPU）</strong>机制对程序内存按页的粒度进行权限设置，其基本规则为可写与可执行权限互斥。</p>
+                <h1 id="windows">Windows</h1>
+<h2 id="stack-cookie">Stack Cookie</h2>
+<h2 id="dep数据执行保护">DEP（数据执行保护）</h2>
+<p>Data Execution Prevention</p>
+<h2 id="cfg控制流保护">CFG（控制流保护）</h2>
+<p>每次间接调用前都对函数指针进行检查，在函数指针被修改到非法地址时终止程序。</p>
+<h2 id="sehopsafeseh">SEHOP、SafeSEH</h2>
+<p>SEHOP会检测SEH单链表的末尾是不是指向一个固定的SEH Handler。
+SafeSEH会检测当前使用的 SEH Handler是否指向当前模块的一个有效地址。</p>
+<h2 id="heap-randomization-lfh随机化堆分配地址">Heap Randomization
+(LFH随机化堆分配地址)</h2>
+<h1 id="linux">Linux</h1>
+<h2 id="nx-dep-in-windows">NX （ DEP in Windows）</h2>
+<p>NX通过现代操作系统的<strong>内存保护单元（Memory ProtectUint，
+MPU）</strong>机制对程序内存按页的粒度进行权限设置，其基本规则为可写与可执行权限互斥。</p>
 <p>GCC默认开启，关闭在编译时加入<code>-z execstack</code></p>
-<h2 id="Stack-Canary"><a href="#Stack-Canary" class="headerlink" title="Stack Canary"></a>Stack Canary</h2><p>GCC默认开启，关闭在编译是加入<code>-fno-stack-protector</code></p>
-<h2 id="ASLR（Address-Space-Layout-Randomization）"><a href="#ASLR（Address-Space-Layout-Randomization）" class="headerlink" title="ASLR（Address Space Layout Randomization）"></a>ASLR（Address Space Layout Randomization）</h2><p>ASLR(Address space layout randomization，地址空间布局随机化)通过随机放置数据区域的地址空间来防止攻击者跳转到内存的特定位置。</p>
-<p>在Linux系统中ASLR被分为0，1，2三个等级，可以通过 <code>sudo bash -c &quot;echo 2 &gt; /proc/sys/kernel/randomize_va_space&quot; </code>设置。</p>
+<h2 id="stack-canary">Stack Canary</h2>
+<p>GCC默认开启，关闭在编译是加入<code>-fno-stack-protector</code></p>
+<h2 id="aslraddress-space-layout-randomization">ASLR（Address Space
+Layout Randomization）</h2>
+<p>ASLR(Address space layout
+randomization，地址空间布局随机化)通过随机放置数据区域的地址空间来防止攻击者跳转到内存的特定位置。</p>
+<p>在Linux系统中ASLR被分为0，1，2三个等级，可以通过
+<code>sudo bash -c "echo 2 &gt; /proc/sys/kernel/randomize_va_space"</code>设置。</p>
 <blockquote>
 <p>0）没有随机化。即关闭ASLR。</p>
 <p>1）保留的随机化。共享库、栈、mmap()分配的内存空间以及VDSO将被随机化。</p>
-<p>2）完全的随机化。在1的基础上，通过 brk()分配的内存空间也将被随机化。</p>
+<p>2）完全的随机化。在1的基础上，通过
+brk()分配的内存空间也将被随机化。</p>
 </blockquote>
-<h2 id="PIE"><a href="#PIE" class="headerlink" title="PIE"></a>PIE</h2><p>与ASLR相似，PIE保护的目的是让可执行程序ELF的地址进行随机化加载。</p>
-<h2 id="Full-Relro"><a href="#Full-Relro" class="headerlink" title="Full Relro"></a>Full Relro</h2><p>RELRO(RELocation Read-Only，只读重定位)让加载器将重定位表中加载时解析的符号标记为只读，这减少了GOT覆写攻击的面积。</p>
-<p>RELRO可以分为Partial RELRO(部分RELRO)和 Full RELRO (完整RELRO)。开启Partial RELRO的话GOT表是可写的；开启 FULL RELRO 的话GOT表是只读的。</p>
-<p>Full RELRO 保护与Linux下的Lazy Binding机制有关。其主要作用是禁止.GOT .PLT表和其他一些相关内存的读写。</p>
-<h2 id="SMAP-x2F-SMEP"><a href="#SMAP-x2F-SMEP" class="headerlink" title="SMAP&#x2F;SMEP"></a><strong>SMAP&#x2F;SMEP</strong></h2><p>SMAP(Supervisor Mode Access Prevention，管理模式访问保护)和SMEP(Supervisor Mode Execution Prevention，管理模式执行保护)的作用分别是禁止内核访问用户空间的数据和禁止内核执行用户空间的代码。arm里面叫 PXN(Privilege Execute Never) 和PAN(Privileged Access Never)。</p>
+<h2 id="pie">PIE</h2>
+<p>与ASLR相似，PIE保护的目的是让可执行程序ELF的地址进行随机化加载。</p>
+<h2 id="full-relro">Full Relro</h2>
+<p>RELRO(RELocation
+Read-Only，只读重定位)让加载器将重定位表中加载时解析的符号标记为只读，这减少了GOT覆写攻击的面积。</p>
+<p>RELRO可以分为Partial RELRO(部分RELRO)和 Full RELRO
+(完整RELRO)。开启Partial RELRO的话GOT表是可写的；开启 FULL RELRO
+的话GOT表是只读的。</p>
+<p>Full RELRO 保护与Linux下的Lazy Binding机制有关。其主要作用是禁止.GOT
+.PLT表和其他一些相关内存的读写。</p>
+<h2 id="smapsmep"><strong>SMAP/SMEP</strong></h2>
+<p>SMAP(Supervisor Mode Access
+Prevention，管理模式访问保护)和SMEP(Supervisor Mode Execution
+Prevention，管理模式执行保护)的作用分别是禁止内核访问用户空间的数据和禁止内核执行用户空间的代码。arm里面叫
+PXN(Privilege Execute Never) 和PAN(Privileged Access Never)。</p>
 
                 
               </div>
@@ -332,11 +359,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Security/">#Security</a>
-      
         <a href="/tags/Windows/">#Windows</a>
       
         <a href="/tags/Linux/">#Linux</a>
+      
+        <a href="/tags/Security/">#Security</a>
       
     </div>
   
