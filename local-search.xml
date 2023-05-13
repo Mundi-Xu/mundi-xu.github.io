@@ -39,9 +39,9 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Hardware</tag>
+      
+      <tag>Security</tag>
       
     </tags>
     
@@ -83,11 +83,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Windows</tag>
       
       <tag>Linux</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -181,6 +181,8 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Chromium</tag>
       
       <tag>Chrome</tag>
@@ -188,8 +190,6 @@
       <tag>V8</tag>
       
       <tag>JavaScript</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -208,9 +208,9 @@
     
     <tags>
       
-      <tag>Chromium</tag>
-      
       <tag>Security</tag>
+      
+      <tag>Chromium</tag>
       
       <tag>Fuzzing</tag>
       
@@ -443,8 +443,6 @@
       
       <tag>crypto</tag>
       
-      <tag>rsa</tag>
-      
       <tag>rust</tag>
       
       <tag>仿射密码</tag>
@@ -454,6 +452,8 @@
       <tag>分组密码</tag>
       
       <tag>密码协议</tag>
+      
+      <tag>rsa</tag>
       
       <tag>RC4</tag>
       
@@ -568,11 +568,11 @@
     
     <tags>
       
-      <tag>ctf</tag>
-      
       <tag>crypto</tag>
       
       <tag>rsa</tag>
+      
+      <tag>ctf</tag>
       
     </tags>
     
