@@ -893,39 +893,46 @@ i.iconfont {
     transition: background-color 0.2s ease-in-out;
   }
 }
-[data-user-color-scheme="dark"] {
-  --body-bg-color: #181c27;
-  --board-bg-color: #252d38;
-  --text-color: #c4c6c9;
-  --sec-text-color: #a7a9ad;
-  --post-text-color: #c4c6c9;
-  --post-heading-color: #c4c6c9;
-  --post-link-color: #1589e9;
-  --link-hover-color: #30a9de;
-  --link-hover-bg-color: #364151;
-  --line-color: #435266;
-  --navbar-bg-color: #1f3144;
-  --navbar-text-color: #d0d0d0;
-  --subtitle-color: #d0d0d0;
-  --scrollbar-color: #687582;
-  --scrollbar-hover-color: #9da8b3;
-  --button-bg-color: transparent;
-  --button-hover-bg-color: #46647e;
-  --highlight-bg-color: #303030;
-  --inlinecode-bg-color: rgba(99,110,123,0.4);
+@media not print {
+  [data-user-color-scheme="dark"] {
+    --body-bg-color: #181c27;
+    --board-bg-color: #252d38;
+    --text-color: #c4c6c9;
+    --sec-text-color: #a7a9ad;
+    --post-text-color: #c4c6c9;
+    --post-heading-color: #c4c6c9;
+    --post-link-color: #1589e9;
+    --link-hover-color: #30a9de;
+    --link-hover-bg-color: #364151;
+    --line-color: #435266;
+    --navbar-bg-color: #1f3144;
+    --navbar-text-color: #d0d0d0;
+    --subtitle-color: #d0d0d0;
+    --scrollbar-color: #687582;
+    --scrollbar-hover-color: #9da8b3;
+    --button-bg-color: transparent;
+    --button-hover-bg-color: #46647e;
+    --highlight-bg-color: #303030;
+    --inlinecode-bg-color: rgba(99,110,123,0.4);
+  }
+  [data-user-color-scheme="dark"] img {
+    -webkit-filter: brightness(0.9);
+    filter: brightness(0.9);
+    transition: filter 0.2s ease-in-out;
+  }
+  [data-user-color-scheme="dark"] .license-box {
+    background-color: rgba(62,75,94,0.35);
+    transition: background-color 0.2s ease-in-out;
+  }
+  [data-user-color-scheme="dark"] .gt-comment-admin .gt-comment-content {
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+  }
 }
-[data-user-color-scheme="dark"] img {
-  -webkit-filter: brightness(0.9);
-  filter: brightness(0.9);
-  transition: filter 0.2s ease-in-out;
-}
-[data-user-color-scheme="dark"] .license-box {
-  background-color: rgba(62,75,94,0.35);
-  transition: background-color 0.2s ease-in-out;
-}
-[data-user-color-scheme="dark"] .gt-comment-admin .gt-comment-content {
-  background-color: transparent;
-  transition: background-color 0.2s ease-in-out;
+@media print {
+  :root {
+    --color-mode: "light";
+  }
 }
 .fade-in-up {
   -webkit-animation-name: fade-in-up;
@@ -1139,6 +1146,61 @@ i.iconfont {
   100% {
     -webkit-transform: translateY(0);
     transform: translateY(0);
+  }
+}
+@media print {
+  header,
+  footer,
+  .side-col,
+  #scroll-top-button,
+  .post-prevnext,
+  #comments {
+    display: none !important;
+  }
+  .markdown-body a:not([href^='#']):not([href^='javascript:']):not(.print-no-link)::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8rem;
+    color: var(--post-text-color);
+    opacity: 0.8;
+  }
+  .markdown-body > h1,
+  .markdown-body h2 {
+    border-bottom-color: transparent !important;
+  }
+  .markdown-body > h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    margin-top: 1.25em !important;
+    margin-bottom: 0.25em !important;
+  }
+  .markdown-body [data-anchorjs-icon]::after {
+    display: none;
+  }
+  .markdown-body figure.highlight table,
+  .markdown-body figure.highlight tbody,
+  .markdown-body figure.highlight tr,
+  .markdown-body figure.highlight td.code,
+  .markdown-body figure.highlight td.code pre {
+    width: 100% !important;
+    display: block !important;
+  }
+  .markdown-body figure.highlight pre > code {
+    white-space: pre-wrap;
+  }
+  .markdown-body figure.highlight .gutter,
+  .markdown-body figure.highlight .code-widget {
+    display: none !important;
+  }
+  .post-metas a {
+    text-decoration: none;
+  }
+}
+@media not print {
+  #seo-header {
+    display: none;
   }
 }
 .index-card {
@@ -1556,6 +1618,16 @@ post-custom {
 }
 .post-prevnext .fa-chevron-right {
   margin-left: 0.5rem;
+}
+#seo-header {
+  color: var(--post-heading-color);
+  font-weight: bold;
+  margin-top: 0.5em;
+  margin-bottom: 0.75em;
+  border-bottom-color: var(--line-color);
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  line-height: 1.5;
 }
 .custom,
 #comments {

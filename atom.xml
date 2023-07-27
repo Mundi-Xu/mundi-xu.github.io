@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Mundi&#39;s Space</title>
+  <title>Hanyin&#39;s Space</title>
   <icon>https://mundi-xu.github.io/icon.png</icon>
   <subtitle>Be wise and fool.</subtitle>
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2023-05-13T04:50:02.260Z</updated>
+  <updated>2023-07-27T15:46:33.740Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MindSpore风险剖析与测试指南</title>
+    <link href="https://mundi-xu.github.io/2023/07/26/Security-Risk-Analysis-of-Huawei-Mindspore/"/>
+    <id>https://mundi-xu.github.io/2023/07/26/Security-Risk-Analysis-of-Huawei-Mindspore/</id>
+    <published>2023-07-26T14:05:21.000Z</published>
+    <updated>2023-07-27T15:46:33.740Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="MindSpore" scheme="https://mundi-xu.github.io/tags/MindSpore/"/>
+    
+    <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
+    
+  </entry>
   
   <entry>
     <title>DirtyCred漏洞分析</title>
@@ -466,25 +491,6 @@
     <category term="智能合约" scheme="https://mundi-xu.github.io/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
     
     <category term="Fabric v0.6" scheme="https://mundi-xu.github.io/tags/Fabric-v0-6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>stl-list实现分析</title>
-    <link href="https://mundi-xu.github.io/2019/11/01/stl-list-implementation/"/>
-    <id>https://mundi-xu.github.io/2019/11/01/stl-list-implementation/</id>
-    <published>2019-10-31T18:14:00.000Z</published>
-    <updated>2021-11-29T08:03:01.364Z</updated>
-    
-    
-    <summary type="html">stl_list 介绍与源码分析</summary>
-    
-    
-    
-    
-    <category term="C++" scheme="https://mundi-xu.github.io/tags/C/"/>
-    
-    <category term="list" scheme="https://mundi-xu.github.io/tags/list/"/>
     
   </entry>
   
