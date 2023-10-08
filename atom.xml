@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2023-07-27T17:58:45.026Z</updated>
+  <updated>2023-10-07T13:55:19.676Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="https://mundi-xu.github.io/2023/07/26/Security-Risk-Analysis-of-Huawei-Mindspore/"/>
     <id>https://mundi-xu.github.io/2023/07/26/Security-Risk-Analysis-of-Huawei-Mindspore/</id>
     <published>2023-07-26T14:05:21.000Z</published>
-    <updated>2023-07-27T17:58:45.026Z</updated>
+    <updated>2023-10-07T13:55:19.676Z</updated>
     
     
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    <summary type="html">MindSpore是面向“端-边-云”全场景设计的AI框架，旨在弥合AI算法研究与生产部署之间的鸿沟。本文介绍了如何利用模糊测试技术对AI框架进行安全测试。</summary>
     
     
     
