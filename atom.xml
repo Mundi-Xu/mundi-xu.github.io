@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2023-10-07T13:55:19.676Z</updated>
+  <updated>2024-04-01T15:09:10.247Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>雅思学习笔记</title>
+    <link href="https://mundi-xu.github.io/2024/03/25/IELTS/"/>
+    <id>https://mundi-xu.github.io/2024/03/25/IELTS/</id>
+    <published>2024-03-25T09:21:30.000Z</published>
+    <updated>2024-04-01T15:09:10.247Z</updated>
+    
+    
+    <summary type="html">Salvation Lies within IELTS.</summary>
+    
+    
+    
+    
+    <category term="IELTS" scheme="https://mundi-xu.github.io/tags/IELTS/"/>
+    
+    <category term="English" scheme="https://mundi-xu.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CVE-2022-3901：利用DirtyCred进行容器逃逸</title>
+    <link href="https://mundi-xu.github.io/2023/10/08/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/"/>
+    <id>https://mundi-xu.github.io/2023/10/08/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/</id>
+    <published>2023-10-07T16:05:21.000Z</published>
+    <updated>2024-04-01T15:02:01.936Z</updated>
+    
+    
+    <summary type="html">本文详细探讨了Linux内核中的CVE-2022-3910漏洞以及DirtyCred技术在提权和容器逃逸场景中的应用。</summary>
+    
+    
+    
+    
+    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    
+    <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
+    
+    <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
+    
+    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
+    
+  </entry>
   
   <entry>
     <title>MindSpore风险剖析与测试指南</title>
@@ -42,11 +84,11 @@
   </entry>
   
   <entry>
-    <title>DirtyCred漏洞分析</title>
+    <title>DirtyCred与CVE-2021-4154漏洞分析</title>
     <link href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
     <id>https://mundi-xu.github.io/2022/10/08/DirtyCred/</id>
     <published>2022-10-07T16:05:21.000Z</published>
-    <updated>2023-05-13T04:50:02.260Z</updated>
+    <updated>2024-04-01T15:05:20.820Z</updated>
     
     
     <summary type="html">DirtyCred利用堆破坏内核漏洞交换进程或文件的非特权和特权凭据，从而达到越权执行或写入。该方法可以绕过KASLR、CFI、SMEP/SMAP和KPTI 等内核保护和漏洞缓解措施。 （懒得写了，有空再补</summary>
@@ -431,66 +473,6 @@
     <category term="Hybrid Cryptosystem" scheme="https://mundi-xu.github.io/tags/Hybrid-Cryptosystem/"/>
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>密码学初探-基于RUST的密码系统与算法简析</title>
-    <link href="https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/"/>
-    <id>https://mundi-xu.github.io/2020/12/27/A-Brief-Analysis-of-Cryptographic-Algorithm-RUST/</id>
-    <published>2020-12-27T06:05:31.000Z</published>
-    <updated>2022-05-29T08:45:13.745Z</updated>
-    
-    
-    <summary type="html">基于 rust 开发的在线加解密系统与各类加密函数的简析。</summary>
-    
-    
-    
-    
-    <category term="crypto" scheme="https://mundi-xu.github.io/tags/crypto/"/>
-    
-    <category term="rust" scheme="https://mundi-xu.github.io/tags/rust/"/>
-    
-    <category term="仿射密码" scheme="https://mundi-xu.github.io/tags/%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81/"/>
-    
-    <category term="流密码" scheme="https://mundi-xu.github.io/tags/%E6%B5%81%E5%AF%86%E7%A0%81/"/>
-    
-    <category term="分组密码" scheme="https://mundi-xu.github.io/tags/%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81/"/>
-    
-    <category term="密码协议" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E7%A0%81%E5%8D%8F%E8%AE%AE/"/>
-    
-    <category term="rsa" scheme="https://mundi-xu.github.io/tags/rsa/"/>
-    
-    <category term="RC4" scheme="https://mundi-xu.github.io/tags/RC4/"/>
-    
-    <category term="des" scheme="https://mundi-xu.github.io/tags/des/"/>
-    
-    <category term="aes" scheme="https://mundi-xu.github.io/tags/aes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于区块链的安全日志系统</title>
-    <link href="https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/"/>
-    <id>https://mundi-xu.github.io/2020/07/01/Blockchain-based-security-log-system/</id>
-    <published>2020-07-01T11:00:00.000Z</published>
-    <updated>2022-05-29T08:46:16.754Z</updated>
-    
-    
-    <summary type="html">基于区块链技术设计并实现了安全日志系统，采用链上数据存储模式，将本地日志提取关键字段并上传至区块链中存储，同时提供可视化界面让用户能够使用日志相关的安全分析功能。</summary>
-    
-    
-    
-    
-    <category term="区块链" scheme="https://mundi-xu.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    <category term="云存储" scheme="https://mundi-xu.github.io/tags/%E4%BA%91%E5%AD%98%E5%82%A8/"/>
-    
-    <category term="日志系统" scheme="https://mundi-xu.github.io/tags/%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/"/>
-    
-    <category term="智能合约" scheme="https://mundi-xu.github.io/tags/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/"/>
-    
-    <category term="Fabric v0.6" scheme="https://mundi-xu.github.io/tags/Fabric-v0-6/"/>
     
   </entry>
   

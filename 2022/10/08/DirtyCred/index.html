@@ -18,13 +18,13 @@
   
     <meta name="description" content="DirtyCred利用堆破坏内核漏洞交换进程或文件的非特权和特权凭据，从而达到越权执行或写入。该方法可以绕过KASLR、CFI、SMEP&#x2F;SMAP和KPTI 等内核保护和漏洞缓解措施。 （懒得写了，有空再补">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DirtyCred漏洞分析">
+<meta property="og:title" content="DirtyCred与CVE-2021-4154漏洞分析">
 <meta property="og:url" content="https://mundi-xu.github.io/2022/10/08/DirtyCred/index.html">
 <meta property="og:site_name" content="Hanyin&#39;s Space">
 <meta property="og:description" content="DirtyCred利用堆破坏内核漏洞交换进程或文件的非特权和特权凭据，从而达到越权执行或写入。该方法可以绕过KASLR、CFI、SMEP&#x2F;SMAP和KPTI 等内核保护和漏洞缓解措施。 （懒得写了，有空再补">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-07T16:05:21.000Z">
-<meta property="article:modified_time" content="2023-05-13T04:50:02.260Z">
+<meta property="article:modified_time" content="2024-04-01T15:05:20.820Z">
 <meta property="article:author" content="寒雨">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="DirtyCred">
@@ -38,7 +38,7 @@
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
   
-  <title>DirtyCred漏洞分析 - Hanyin&#39;s Space</title>
+  <title>DirtyCred与CVE-2021-4154漏洞分析 - Hanyin&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="DirtyCred漏洞分析"></span>
+            <span id="subtitle" data-typed-text="DirtyCred与CVE-2021-4154漏洞分析"></span>
           
         </div>
 
@@ -289,12 +289,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">DirtyCred漏洞分析</h1>
+            <h1 id="seo-header">DirtyCred与CVE-2021-4154漏洞分析</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    Last updated on 2023-05-13T12:50:02+08:00
+                    Last updated on 2024-04-01T23:05:20+08:00
                   
                   
 
@@ -514,6 +514,60 @@ alt="image-20220928212832142" />
 
 
               
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DirtyCred与CVE-2021-4154漏洞分析</div>
+      <div>https://mundi-xu.github.io/2022/10/08/DirtyCred/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>寒雨</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 8, 2022</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
 
 
               
@@ -543,6 +597,32 @@ alt="image-20220928212832142" />
             </div>
 
             
+  
+  
+    <article id="comments">
+      
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"en","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
+          {
+            id: 'c2fb59e71dde979bc02ebaf59ba1e48d'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
 
           </article>
         </div>
