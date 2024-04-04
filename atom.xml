@@ -37,10 +37,10 @@
   
   <entry>
     <title>CVE-2022-3901：利用DirtyCred进行容器逃逸</title>
-    <link href="https://mundi-xu.github.io/2023/10/08/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/"/>
-    <id>https://mundi-xu.github.io/2023/10/08/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/</id>
-    <published>2023-10-07T16:05:21.000Z</published>
-    <updated>2024-04-01T15:02:01.936Z</updated>
+    <link href="https://mundi-xu.github.io/2023/08/03/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/"/>
+    <id>https://mundi-xu.github.io/2023/08/03/CVE-2022-3901-Container-Escape-via-File-based-DirtyCred/</id>
+    <published>2023-08-02T16:05:21.000Z</published>
+    <updated>2024-04-04T11:22:51.296Z</updated>
     
     
     <summary type="html">本文详细探讨了Linux内核中的CVE-2022-3910漏洞以及DirtyCred技术在提权和容器逃逸场景中的应用。</summary>
@@ -88,10 +88,10 @@
     <link href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
     <id>https://mundi-xu.github.io/2022/10/08/DirtyCred/</id>
     <published>2022-10-07T16:05:21.000Z</published>
-    <updated>2024-04-01T15:05:20.820Z</updated>
+    <updated>2024-04-04T12:11:07.858Z</updated>
     
     
-    <summary type="html">DirtyCred利用堆破坏内核漏洞交换进程或文件的非特权和特权凭据，从而达到越权执行或写入。该方法可以绕过KASLR、CFI、SMEP/SMAP和KPTI 等内核保护和漏洞缓解措施。 （懒得写了，有空再补</summary>
+    <summary type="html">DirtyCred is a kernel exploitation concept that swaps unprivileged kernel credentials with privileged ones to escalate privilege.</summary>
     
     
     
