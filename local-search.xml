@@ -62,11 +62,11 @@
       
       <tag>Security</tag>
       
+      <tag>MindSpore</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>MindSpore</tag>
       
       <tag>AI</tag>
       
@@ -287,9 +287,9 @@
       
       <tag>Fuzzing</tag>
       
-      <tag>AFL</tag>
-      
       <tag>模糊测试</tag>
+      
+      <tag>AFL</tag>
       
       <tag>PDFium</tag>
       
@@ -439,11 +439,11 @@
       
       <tag>Fuzzing</tag>
       
+      <tag>模糊测试</tag>
+      
       <tag>AFL</tag>
       
       <tag>ntp</tag>
-      
-      <tag>模糊测试</tag>
       
     </tags>
     
