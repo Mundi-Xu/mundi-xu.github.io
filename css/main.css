@@ -309,6 +309,7 @@ sup > a::before,
 }
 .navbar .nav-item .nav-link i {
   font-size: 0.875rem;
+  line-height: inherit;
 }
 .navbar .nav-item .nav-link i:only-child {
   margin: 0 0.2rem;
@@ -1519,12 +1520,20 @@ post-custom {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+  .page-content,
+  .post-content {
+    overflow: hidden;
+  }
 }
 @media (max-width: 424px) {
   .post-content,
   post-custom {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  .page-content,
+  .post-content {
+    overflow: hidden;
   }
   .anchorjs-link-left {
     opacity: 0 !important;
@@ -1542,12 +1551,6 @@ post-custom {
 .post-content img {
   object-fit: cover;
   max-width: 100%;
-}
-@media (max-width: 767px) {
-  .page-content,
-  .post-content {
-    overflow-x: hidden;
-  }
 }
 .post-metas {
   display: flex;

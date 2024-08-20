@@ -73,11 +73,11 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="MindSpore" scheme="https://mundi-xu.github.io/tags/MindSpore/"/>
-    
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
     <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="MindSpore" scheme="https://mundi-xu.github.io/tags/MindSpore/"/>
     
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
@@ -249,8 +249,6 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
@@ -258,6 +256,8 @@
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -274,15 +274,15 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
     <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
     
@@ -420,11 +420,11 @@
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="ntp" scheme="https://mundi-xu.github.io/tags/ntp/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
