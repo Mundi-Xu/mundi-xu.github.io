@@ -249,6 +249,8 @@
     
     
     
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
@@ -256,8 +258,6 @@
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -274,9 +274,9 @@
     
     
     
-    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
-    
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
