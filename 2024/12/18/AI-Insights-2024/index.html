@@ -19,22 +19,27 @@
   <meta name="author" content="寒雨">
   <meta name="keywords" content="">
   
-    <meta name="description" content="随着人工智能技术在各行业的广泛应用，AI系统的安全性成为全球关注的关键问题，涉及数据隐私、算法偏见、模型滥用和对抗性攻击等多方面挑战。">
+    <meta name="description" content="随着人工智能在各行业中的广泛应用，AI安全面临的风险和挑战愈加复杂，从数据隐私泄露到模型滥用、对抗性攻击等问题不断涌现。确保AI系统的安全性不仅关乎技术的持续创新，还直接影响到用户的信任和社会的稳定。针对这些问题，需在模型行为、数据保护、供应链安全等多个方面实施综合控制策略，以保障AI系统在实际应用中的可靠性和安全性。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AI安全风险洞察">
+<meta property="og:title" content="AI安全风险洞察：2024">
 <meta property="og:url" content="https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/index.html">
 <meta property="og:site_name" content="Hanyin&#39;s Space">
-<meta property="og:description" content="随着人工智能技术在各行业的广泛应用，AI系统的安全性成为全球关注的关键问题，涉及数据隐私、算法偏见、模型滥用和对抗性攻击等多方面挑战。">
+<meta property="og:description" content="随着人工智能在各行业中的广泛应用，AI安全面临的风险和挑战愈加复杂，从数据隐私泄露到模型滥用、对抗性攻击等问题不断涌现。确保AI系统的安全性不仅关乎技术的持续创新，还直接影响到用户的信任和社会的稳定。针对这些问题，需在模型行为、数据保护、供应链安全等多个方面实施综合控制策略，以保障AI系统在实际应用中的可靠性和安全性。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/LLMThreatModeling.png">
-<meta property="og:image" content="https://owaspai.org/images/threatscontrols.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/AIModel.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/CoreAttackSurface.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/ModelJailbreakAttack.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/Cot.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/Security.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/LLMSupplyChainComponent.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/LLMSupplyChainAgenda.png">
 <meta property="article:published_time" content="2024-12-18T04:05:21.000Z">
-<meta property="article:modified_time" content="2024-12-18T05:33:40.288Z">
+<meta property="article:modified_time" content="2024-12-18T10:50:28.155Z">
 <meta property="article:author" content="寒雨">
+<meta property="article:tag" content="Security">
 <meta property="article:tag" content="AI">
+<meta property="article:tag" content="LLM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/LLMThreatModeling.png">
   
@@ -44,7 +49,7 @@
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
   
-  <title>AI安全风险洞察 - Hanyin&#39;s Space</title>
+  <title>AI安全风险洞察：2024 - Hanyin&#39;s Space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -223,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="AI安全风险洞察"></span>
+            <span id="subtitle" data-typed-text="AI安全风险洞察：2024"></span>
           
         </div>
 
@@ -295,12 +300,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">AI安全风险洞察</h1>
+            <h1 id="seo-header">AI安全风险洞察：2024</h1>
             
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    Last updated on 2024-12-18T13:33:40+08:00
+                    Last updated on 2024-12-18T18:50:28+08:00
                   
                   
 
@@ -374,15 +379,15 @@
 </li>
 </ul>
 <p>这些威胁通过不同的攻击面产生影响。例如：训练数据的机密性可以通过开发阶段黑客攻击数据库被破坏，也可以通过会员推断攻击泄露，即通过将某个人的数据输入模型，并查看模型输出的细节，来判断该人是否在训练数据中。</p>
-<p><img src="https://owaspai.org/images/threatscontrols.png" srcset="/img/loading.gif" lazyload alt="AI Model"></p>
+<p><img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/AIModel.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="安全威胁分类"><a href="#安全威胁分类" class="headerlink" title="安全威胁分类"></a>安全威胁分类</h2><h3 id="开发态安全威胁"><a href="#开发态安全威胁" class="headerlink" title="开发态安全威胁"></a>开发态安全威胁</h3><ul>
-<li><p>训练数据</p>
+<li><p><strong>训练数据</strong></p>
 </li>
 <li><p>数据泄露</p>
 </li>
 <li><p>数据投毒</p>
 </li>
-<li><p>模型安全</p>
+<li><p><strong>模型安全</strong></p>
 </li>
 <li><p>模型窃取</p>
 </li>
@@ -406,21 +411,21 @@
 </li>
 </ul>
 <h3 id="运行态安全威胁"><a href="#运行态安全威胁" class="headerlink" title="运行态安全威胁"></a>运行态安全威胁</h3><ul>
-<li><p>模型安全</p>
+<li><p><strong>模型安全</strong></p>
 </li>
 <li><p>模型窃取</p>
 </li>
 <li><p>模型安全</p>
 </li>
-<li><p>输入数据</p>
+<li><p><strong>输入数据</strong></p>
 </li>
 <li><p>数据泄露</p>
 </li>
-<li><p>输出数据</p>
+<li><p><strong>输出数据</strong></p>
 </li>
 <li><p>不安全处理</p>
 </li>
-<li><p>应用框架</p>
+<li><p><strong>应用框架</strong></p>
 </li>
 <li><p>插件安全、权限控制</p>
 </li>
@@ -428,119 +433,119 @@
 <h2 id="表格整理"><a href="#表格整理" class="headerlink" title="表格整理"></a>表格整理</h2><table>
 <thead>
 <tr>
-<th><strong>资产与影响</strong></th>
-<th><strong>攻击面与生命周期</strong></th>
-<th><strong>威胁&#x2F;风险类别</strong></th>
-<th><strong>控制措施</strong></th>
+<th>资产与影响</th>
+<th>攻击面与生命周期</th>
+<th>威胁&#x2F;风险类别</th>
+<th>控制措施</th>
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>模型行为的完整性</strong></td>
-<td><strong>运行时 - 模型使用</strong></td>
-<td><strong>直接提示注入</strong></td>
-<td>限制不希望的行为，输入验证，进一步的控制措施在模型本身中实施</td>
+<td>模型行为的完整性</td>
+<td>运行时 - 模型使用（提供输入&#x2F;读取输出）</td>
+<td>直接提示注入</td>
+<td>限制不希望的行为，输入验证，进一步的控制措施由模型本身实现</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>间接提示注入</strong></td>
+<td>间接提示注入</td>
 <td>限制不希望的行为，输入验证，输入隔离</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>规避（例如对抗性样本）</strong></td>
-<td>限制不希望的行为，监控，速率限制，模型访问控制，并附加：</td>
+<td>规避（例如对抗样本）</td>
+<td>限制不希望的行为，监控，速率限制，模型访问控制，附加措施包括：检测异常输入，检测对抗输入，对抗鲁棒模型，训练对抗样本，输入扰动，鲁棒蒸馏</td>
 </tr>
 <tr>
 <td></td>
-<td></td>
-<td></td>
-<td>检测异常输入，检测对抗性输入，对抗性稳健模型，训练对抗性样本，输入扰动</td>
-</tr>
-<tr>
-<td><strong>运行时 - 突破部署模型</strong></td>
-<td><strong>模型中毒运行时（重编程）</strong></td>
-<td><strong>模型中毒运行时</strong></td>
+<td>运行时 - 突破部署模型</td>
+<td>模型中毒（运行时重编程）</td>
 <td>限制不希望的行为，运行时模型完整性，运行时模型输入&#x2F;输出完整性</td>
 </tr>
 <tr>
-<td><strong>开发阶段 - 工程环境</strong></td>
-<td><strong>开发环境模型中毒</strong></td>
-<td><strong>开发环境模型中毒</strong></td>
-<td>限制不希望的行为，开发环境安全，数据隔离，联邦学习，供应链管理，并附加：模型集成</td>
+<td></td>
+<td>开发阶段 - 工程环境</td>
+<td>开发环境中的模型中毒</td>
+<td>限制不希望的行为，开发环境安全，数据隔离，联邦学习，供应链管理，附加措施包括：模型集成</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>训练&#x2F;微调数据中毒</strong></td>
-<td>限制不希望的行为，开发环境安全，数据隔离，联邦学习，供应链管理，并附加：更多训练数据，数据质量控制，训练数据扰动，抗中毒模型</td>
+<td>训练&#x2F;微调数据中毒</td>
+<td>限制不希望的行为，开发环境安全，数据隔离，联邦学习，供应链管理，附加措施包括：更多训练数据，数据质量控制，训练数据扰动，抗中毒模型</td>
 </tr>
 <tr>
-<td><strong>开发阶段 - 供应链</strong></td>
-<td><strong>供应链模型中毒</strong></td>
-<td><strong>供应链模型中毒</strong></td>
-<td>限制不希望的行为，供应商：开发环境安全，数据隔离，联邦学习，生产商：供应链管理，并附加：模型集成</td>
+<td></td>
+<td>开发阶段 - 供应链</td>
+<td>供应链中的模型中毒</td>
+<td>限制不希望的行为，供应商：开发环境安全，数据隔离，联邦学习；生产商：供应链管理，附加措施包括：模型集成</td>
 </tr>
 <tr>
-<td><strong>训练数据的机密性</strong></td>
-<td><strong>运行时 - 模型使用</strong></td>
-<td><strong>模型输出中的数据泄露</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：监控，速率限制，模型访问控制，并附加：过滤敏感的模型输出</td>
+<td>训练数据的机密性</td>
+<td>运行时 - 模型使用</td>
+<td>模型输出中的数据泄露</td>
+<td>限制敏感数据（数据最小化，短期保留，训练数据模糊化），附加措施包括：监控，速率限制，模型访问控制，附加措施包括：过滤敏感模型输出</td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td><strong>模型反演 &#x2F; 会员推断</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：监控，速率限制，模型访问控制，并附加：模糊化置信度，小模型</td>
+<td>模型反演&#x2F;成员推断</td>
+<td>限制敏感数据（数据最小化，短期保留，训练数据模糊化），附加措施包括：监控，速率限制，模型访问控制，附加措施包括：模糊置信度，小模型</td>
 </tr>
 <tr>
-<td><strong>开发阶段 - 工程环境</strong></td>
-<td><strong>训练数据泄露</strong></td>
-<td><strong>训练数据泄露</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：开发环境安全，数据隔离，联邦学习</td>
+<td></td>
+<td>开发阶段 - 工程环境</td>
+<td>训练数据泄露</td>
+<td>限制敏感数据（数据最小化，短期保留，训练数据模糊化），附加措施包括：开发环境安全，数据隔离，联邦学习</td>
 </tr>
 <tr>
-<td><strong>模型机密性</strong></td>
-<td><strong>运行时 - 模型使用</strong></td>
-<td><strong>通过使用窃取模型（输入输出收集）</strong></td>
+<td>模型机密性</td>
+<td>运行时 - 模型使用</td>
+<td>通过模型使用窃取（输入输出收集）</td>
 <td>监控，速率限制，模型访问控制</td>
 </tr>
 <tr>
 <td></td>
-<td><strong>运行时 - 突破部署模型</strong></td>
-<td><strong>直接模型窃取运行时</strong></td>
+<td>运行时 - 突破部署模型</td>
+<td>直接模型窃取（运行时）</td>
 <td>运行时模型机密性，模型模糊化</td>
 </tr>
 <tr>
-<td><strong>开发阶段 - 工程环境</strong></td>
-<td><strong>模型窃取开发阶段</strong></td>
-<td><strong>模型窃取开发阶段</strong></td>
+<td></td>
+<td>开发阶段 - 工程环境</td>
+<td>开发阶段的模型窃取</td>
 <td>开发环境安全，数据隔离，联邦学习</td>
 </tr>
 <tr>
-<td><strong>模型行为的可用性</strong></td>
-<td><strong>模型使用</strong></td>
-<td><strong>模型拒绝服务</strong></td>
-<td>限制不希望的行为，速率限制，模型访问控制，监控，抗干扰技术</td>
+<td>模型行为的可用性</td>
+<td>模型使用</td>
+<td>模型服务拒绝（模型资源消耗）</td>
+<td>监控，速率限制，模型访问控制，附加措施包括：DoS输入验证，限制资源</td>
 </tr>
 <tr>
-<td><strong>运行时 - 模型使用</strong></td>
-<td><strong>输入数据</strong></td>
-<td><strong>输入数据的机密性泄露</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：监控，速率限制，模型访问控制，数据隔离</td>
+<td>模型输入数据的机密性</td>
+<td>运行时 - 所有IT</td>
+<td>模型输入泄漏</td>
+<td>模型输入机密性</td>
 </tr>
 <tr>
-<td></td>
-<td><strong>输出数据</strong></td>
-<td><strong>输出数据的机密性泄露</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：监控，速率限制，模型访问控制，数据隔离</td>
+<td>任意资产，CIA</td>
+<td>运行时 - 所有IT</td>
+<td>模型输出包含注入</td>
+<td>编码模型输出</td>
 </tr>
 <tr>
-<td><strong>开发阶段 - 工程环境</strong></td>
-<td><strong>数据泄露</strong></td>
-<td><strong>数据泄露</strong></td>
-<td>限制敏感数据（数据最小化，短期保留，模糊化训练数据），并附加：开发环境安全，数据隔离，联邦学习</td>
+<td>任意资产，CIA</td>
+<td>运行时 - 所有IT</td>
+<td>常规的运行时安全攻击（对传统资产的攻击）</td>
+<td>常规的运行时安全控制</td>
+</tr>
+<tr>
+<td>任意资产，CIA</td>
+<td>运行时 - 所有IT</td>
+<td>常规攻击（对传统供应链的攻击）</td>
+<td>常规的供应链管理控制</td>
 </tr>
 </tbody></table>
 <h1 id="技术洞察"><a href="#技术洞察" class="headerlink" title="技术洞察"></a>技术洞察</h1><h2 id="KCON：安全之眼大模型时代下的攻与防"><a href="#KCON：安全之眼大模型时代下的攻与防" class="headerlink" title="KCON：安全之眼大模型时代下的攻与防"></a>KCON：安全之眼大模型时代下的攻与防</h2><blockquote>
@@ -572,9 +577,12 @@
 <td>AI大模型自身访问与权限控制、AI大模型环境各类组件框架访问控制与权限控制、AI大模型应用环境下各种Agent调度权限</td>
 </tr>
 </tbody></table>
-<h3 id="LLM安全典型攻击手段"><a href="#LLM安全典型攻击手段" class="headerlink" title="LLM安全典型攻击手段"></a>LLM安全典型攻击手段</h3><h4 id="模型越狱攻击（Model-Jailbreaking-Attack）"><a href="#模型越狱攻击（Model-Jailbreaking-Attack）" class="headerlink" title="模型越狱攻击（Model Jailbreaking Attack）"></a>模型越狱攻击（Model Jailbreaking Attack）</h4><p>模型越狱攻击（Model Jailbreaking Attack）是一种针对模型应用的常见攻击技术。这种攻击通常通过精心构造的输入（称为“越狱提示词”）来实现攻击，目的是绕过或者干扰模型自身安全与价值观的对齐限制，进一步诱导模型输出训练数据、隐私数据等敏感信息，以及恶意操作的执行</p>
+<h3 id="LLM安全典型攻击手段"><a href="#LLM安全典型攻击手段" class="headerlink" title="LLM安全典型攻击手段"></a>LLM安全典型攻击手段</h3><h4 id="模型越狱攻击（Model-Jailbreaking-Attack）"><a href="#模型越狱攻击（Model-Jailbreaking-Attack）" class="headerlink" title="模型越狱攻击（Model Jailbreaking Attack）"></a>模型越狱攻击（Model Jailbreaking Attack）</h4><p>模型越狱攻击（Model Jailbreaking Attack）是一种针对模型应用的常见攻击技术。这种攻击通常通过精心构造的输入（称为“越狱提示词”）来实现攻击，目的是绕过或者干扰模型自身安全与价值观的对齐限制，进一步诱导模型输出训练数据、隐私数据等敏感信息，以及恶意操作的执行。</p>
+<p><img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/ModelJailbreakAttack.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="CoT注入攻击——思维链操纵注入"><a href="#CoT注入攻击——思维链操纵注入" class="headerlink" title="CoT注入攻击——思维链操纵注入"></a>CoT注入攻击——思维链操纵注入</h4><p>通过观察CoT的调度过程，直接或利用对抗攻击手段构造恶意输入，实现对CoT过程的操纵，使模型跳过预置的CoT过程，直接调度敏感的Agent。</p>
-<h3 id="LLM安全防御手段"><a href="#LLM安全防御手段" class="headerlink" title="LLM安全防御手段"></a>LLM安全防御手段</h3><p>模型安全防御：自然语言的交互模式，让每个思路新奇的人都有了成为“黑客”的可能。为了更好系统安全，可以将安全防御进行前移，在模型训练、模型部署阶段，更早的保障引入安全防御措施。比如在模型训练阶段对数据进行清洗，对数据来源进行审核等措施，可以有效的抵抗数据投毒攻击。</p>
+<p><img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/Cot.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="LLM安全防御手段"><a href="#LLM安全防御手段" class="headerlink" title="LLM安全防御手段"></a>LLM安全防御手段</h3><p>模型安全防御：自然语言的交互模式，让每个思路新奇的人都有了成为“黑客”的可能。为了更好系统安全，<strong>可以将安全防御进行前移</strong>，在模型训练、模型部署阶段，更早的保障引入安全防御措施。比如在模型训练阶段对数据进行清洗，对数据来源进行审核等措施，可以有效的抵抗数据投毒攻击。</p>
+<p><img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/AI2024/Security.png" srcset="/img/loading.gif" lazyload></p>
 <p>针对传统应用业务与大模型组合场景，可以通过Prompt内容强化&#x2F;结构强化等方式进行防御。</p>
 <table>
 <thead>
@@ -683,12 +691,12 @@
 <td>Ray是开源分布式计算框架，为并行处理提供计算层，用于扩展AI与Python应用程序。<br>CVE-2023-48022，ShadowRay访问Dashboard的API接口提交任务，导致远程代码执行。</td>
 </tr>
 </tbody></table>
-<h2 id="BlackHat议题"><a href="#BlackHat议题" class="headerlink" title="BlackHat议题"></a>BlackHat议题</h2><p>[BlackhatUSA’24] 实战LLM安全：一年来的实战经验</p>
-<p>[BlackhatUSA’24] 隔离还是幻觉？为乐趣和权重攻击AI基础设施提供商</p>
-<p>[BlackhatUSA’24] 从MLOps到MLOops - 揭示机器学习平台的攻击面</p>
-<p>[BlackhatASIA’24] LLM4Shell：发现并利用真实世界中LLM集成框架和应用中的RCE漏洞</p>
-<p>[BlackhatASIA’24] 迷惑学习：通过机器学习模型进行供应链攻击</p>
-<p>[BlackhatASIA’24] 如何让Hugging Face拥抱蠕虫：发现并利用不安全的Pickle.loads在预训练大型模型中心的漏洞</p>
+<h2 id="BlackHat议题"><a href="#BlackHat议题" class="headerlink" title="BlackHat议题"></a>BlackHat议题</h2><p>- <strong>[BlackhatUSA’24]</strong> 实战LLM安全：一年来的实战经验 <a target="_blank" rel="noopener" href="https://www.blackhat.com/us-24/briefings/schedule/#practical-llm-security-takeaways-from-a-year-in-the-trenches-39468">[链接]</a> <a target="_blank" rel="noopener" href="https://i.blackhat.com/BH-US-24/Presentations/US24-Harang-Practical-LLM-Security-Takeaways-From-Wednesday.pdf?_gl=1*7acwri*_gcl_au*MjEyNjc0MzYwNC4xNzMxMTM3MDA2*_ga*MTM5MTcwNjc4OS4xNzMxMTM3MDA2*_ga_K4JK67TFYV*MTczMTEzNzAwNi4xLjAuMTczMTEzNzAwNi4wLjAuMA..&_ga=2.180973351.1863731842.1731137007-1391706789.1731137006">[幻灯片]</a></p>
+<p>- <strong>[BlackhatUSA’24]</strong> 隔离还是幻觉？为乐趣和权重攻击AI基础设施提供商 <a target="_blank" rel="noopener" href="https://www.blackhat.com/us-24/briefings/schedule/#isolation-or-hallucination-hacking-ai-infrastructure-providers-for-fun-and-weights-40569">[链接]</a></p>
+<p>- <strong>[BlackhatUSA’24]</strong> 从MLOps到MLOops - 揭示机器学习平台的攻击面 <a target="_blank" rel="noopener" href="https://www.blackhat.com/us-24/briefings/schedule/#from-mlops-to-mloops---exposing-the-attack-surface-of-machine-learning-platforms-39309">[链接]</a> <a target="_blank" rel="noopener" href="https://i.blackhat.com/BH-US-24/Presentations/US24-Menashe-From-MLOps-To-MLOops.pdf?_gl=1*1vixzrp*_gcl_au*MjEyNjc0MzYwNC4xNzMxMTM3MDA2*_ga*MTM5MTcwNjc4OS4xNzMxMTM3MDA2*_ga_K4JK67TFYV*MTczMTEzNzAwNi4xLjEuMTczMTEzNzI1MS4wLjAuMA..&_ga=2.140149939.1863731842.1731137007-1391706789.1731137006">[幻灯片]</a></p>
+<p>- <strong>[BlackhatASIA’24]</strong> LLM4Shell: 发现并利用在真实世界中LLM集成框架和应用中的RCE漏洞 <a target="_blank" rel="noopener" href="https://www.blackhat.com/asia-24/briefings/schedule/index.html#llmshell-discovering-and-exploiting-rce-vulnerabilities-in-real-world-llm-integrated-frameworks-and-apps-37215">[链接]</a> <a target="_blank" rel="noopener" href="https://i.blackhat.com/Asia-24/Presentations/bh-asia-2024-llm4shell.pdf?_gl=1*lfjimg*_gcl_au*MjEyNjc0MzYwNC4xNzMxMTM3MDA2*_ga*MTM5MTcwNjc4OS4xNzMxMTM3MDA2*_ga_K4JK67TFYV*MTczMTEzNzAwNi4xLjEuMTczMTEzNzg4OS4wLjAuMA..&_ga=2.89155611.1863731842.1731137007-1391706789.1731137006">[幻灯片]</a></p>
+<p>- <strong>[BlackhatASIA’24]</strong> 混淆学习：通过机器学习模型进行供应链攻击 <a target="_blank" rel="noopener" href="https://www.blackhat.com/asia-24/briefings/schedule/index.html#confused-learning-supply-chain-attacks-through-machine-learning-models-37794">[链接]</a> <a target="_blank" rel="noopener" href="https://i.blackhat.com/Asia-24/Presentations/Asia-24-Wood-Confused-Learning.pdf?_gl=1*xwt703*_gcl_au*MjEyNjc0MzYwNC4xNzMxMTM3MDA2*_ga*MTM5MTcwNjc4OS4xNzMxMTM3MDA2*_ga_K4JK67TFYV*MTczMTEzNzAwNi4xLjEuMTczMTEzODExMy4wLjAuMA..&_ga=2.160178365.1863731842.1731137007-1391706789.1731137006">[幻灯片]</a></p>
+<p>- <strong>[BlackhatASIA’24]</strong> 如何让Hugging Face拥抱蠕虫：发现并利用不安全的Pickle.loads在预训练的大型模型库中的漏洞 <a target="_blank" rel="noopener" href="https://www.blackhat.com/asia-24/briefings/schedule/index.html#how-to-make-hugging-face-to-hug-worms-discovering-and-exploiting-unsafe-pickleloads-over-pre-trained-large-model-hubs-36261">[链接]</a> <a target="_blank" rel="noopener" href="https://i.blackhat.com/Asia-24/Presentations/Asia-24-Zhou-HowtoMakeHuggingFace.pdf?_gl=1*ymvfd9*_gcl_au*MjEyNjc0MzYwNC4xNzMxMTM3MDA2*_ga*MTM5MTcwNjc4OS4xNzMxMTM3MDA2*_ga_K4JK67TFYV*MTczMTEzNzAwNi4xLjEuMTczMTEzODIzNi4wLjAuMA..&_ga=2.51586089.1863731842.1731137007-1391706789.1731137006">[幻灯片]</a></p>
 <h1 id="洞察总结"><a href="#洞察总结" class="headerlink" title="洞察总结"></a>洞察总结</h1><p>从业界技术洞察可以看到，大模型的攻击越狱手段不断增加，对内容安全有较好的攻击及自动化攻击思路，其他的RCE攻击模式，主要还是<strong>依赖传统的安全漏洞与大模型特有的Prompt相结合</strong>。</p>
 <p>针对建设蓝队的正向安全能力，可以根据AI系统的各个组件进行分类，包括数据组件、算法模型、AI框架组件和基础设施组件，进而总结出AI系统的核心资产：原始数据、预处理数据、已标注数据、训练数据、增强数据、验证数据、测试数据、用户输入数据、RAG数据、推理数据、数据预处理算法、模型超参数、训练算法、模型参数、已训练模型、已部署模型、已下线模型、生成AI模型所需的工具和平台、系统部署所用的工具和平台、训练设施以及部署设施等。根据这些资产的类型，可以构建相应的威胁模型。</p>
 <p>以已部署模型为例，这些模型已经完成了训练和测试，并被集成到实际应用或生产环境中，能够处理真实世界的数据并提供预测或决策支持，如回归分析、预测和异常检测等任务。部署是机器学习生命周期中的关键环节，涉及将模型从开发环境迁移到生产环境。</p>
@@ -741,7 +749,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/Security/" class="print-no-link">#Security</a>
+      
         <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/LLM/" class="print-no-link">#LLM</a>
       
     </div>
   
@@ -753,7 +765,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>AI安全风险洞察</div>
+      <div>AI安全风险洞察：2024</div>
       <div>https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/</div>
     </div>
     <div class="license-meta">
