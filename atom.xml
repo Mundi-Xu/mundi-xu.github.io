@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2024-04-01T15:09:10.247Z</updated>
+  <updated>2024-12-18T05:33:40.288Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AI安全风险洞察</title>
+    <link href="https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/"/>
+    <id>https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/</id>
+    <published>2024-12-18T04:05:21.000Z</published>
+    <updated>2024-12-18T05:33:40.288Z</updated>
+    
+    
+    <summary type="html">随着人工智能技术在各行业的广泛应用，AI系统的安全性成为全球关注的关键问题，涉及数据隐私、算法偏见、模型滥用和对抗性攻击等多方面挑战。</summary>
+    
+    
+    
+    
+    <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
+    
+  </entry>
   
   <entry>
     <title>雅思学习笔记</title>
@@ -450,29 +467,6 @@
     <category term="Hybrid Cryptosystem" scheme="https://mundi-xu.github.io/tags/Hybrid-Cryptosystem/"/>
     
     <category term="Windows Hooking" scheme="https://mundi-xu.github.io/tags/Windows-Hooking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>勒索软件结构与加密模式研究</title>
-    <link href="https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/"/>
-    <id>https://mundi-xu.github.io/2020/12/28/Research-on-Ransomware-Structure-and-Encryption-Mode/</id>
-    <published>2020-12-28T07:14:10.000Z</published>
-    <updated>2022-05-29T08:48:14.902Z</updated>
-    
-    
-    <summary type="html">对常见勒索软件的架构与攻击模式的研究。</summary>
-    
-    
-    
-    
-    <category term="勒索软件" scheme="https://mundi-xu.github.io/tags/%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6/"/>
-    
-    <category term="恶意软件" scheme="https://mundi-xu.github.io/tags/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/"/>
-    
-    <category term="Hybrid Cryptosystem" scheme="https://mundi-xu.github.io/tags/Hybrid-Cryptosystem/"/>
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
