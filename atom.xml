@@ -109,10 +109,10 @@
     <link href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
     <id>https://mundi-xu.github.io/2022/10/08/DirtyCred/</id>
     <published>2022-10-07T16:05:21.000Z</published>
-    <updated>2024-04-04T12:11:07.858Z</updated>
+    <updated>2024-12-18T17:23:00.872Z</updated>
     
     
-    <summary type="html">DirtyCred is a kernel exploitation concept that swaps unprivileged kernel credentials with privileged ones to escalate privilege.</summary>
+    <summary type="html">DirtyCred通过利用堆破坏内核漏洞交换进程或文件的凭据，绕过多种内核保护机制，实现越权执行和写入操作，并通过精确控制时间窗口和结合内核特性，确保漏洞利用的稳定性和高效性。</summary>
     
     
     
@@ -164,6 +164,27 @@
     <category term="机器学习" scheme="https://mundi-xu.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     <category term="网络安全" scheme="https://mundi-xu.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>APICraft：Fuzz Driver Generation for Closed-source SDK Libraries</title>
+    <link href="https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/"/>
+    <id>https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/</id>
+    <published>2021-11-28T06:05:31.000Z</published>
+    <updated>2024-12-20T14:37:57.788Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
   </entry>
   
@@ -301,9 +322,9 @@
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
     <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
     
@@ -437,40 +458,15 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
-    
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
     
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="ntp" scheme="https://mundi-xu.github.io/tags/ntp/"/>
-    
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PayBreak防勒索系统简析</title>
-    <link href="https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/"/>
-    <id>https://mundi-xu.github.io/2021/01/01/A-brief-analysis-of-PayBreak-anti-ransomware-system/</id>
-    <published>2021-01-01T02:05:21.000Z</published>
-    <updated>2022-05-29T08:45:31.349Z</updated>
-    
-    
-    <summary type="html">PayBreak是一种创新开源的保护机制，可以解决大部分基于混合加密的勒索软件的威胁。</summary>
-    
-    
-    
-    
-    <category term="勒索软件" scheme="https://mundi-xu.github.io/tags/%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6/"/>
-    
-    <category term="恶意软件" scheme="https://mundi-xu.github.io/tags/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6/"/>
-    
-    <category term="密钥存储库" scheme="https://mundi-xu.github.io/tags/%E5%AF%86%E9%92%A5%E5%AD%98%E5%82%A8%E5%BA%93/"/>
-    
-    <category term="Hybrid Cryptosystem" scheme="https://mundi-xu.github.io/tags/Hybrid-Cryptosystem/"/>
-    
-    <category term="Windows Hooking" scheme="https://mundi-xu.github.io/tags/Windows-Hooking/"/>
     
   </entry>
   
