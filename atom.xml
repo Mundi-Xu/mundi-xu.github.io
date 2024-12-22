@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2024-12-18T04:05:21.000Z</updated>
+  <updated>2024-12-19T04:05:21.000Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/"/>
     <id>https://mundi-xu.github.io/2024/12/18/AI-Insights-2024/</id>
     <published>2024-12-18T04:05:21.000Z</published>
-    <updated>2024-12-18T04:05:21.000Z</updated>
+    <updated>2024-12-19T04:05:21.000Z</updated>
     
     
     <summary type="html">随着人工智能在各行业中的广泛应用，AI安全面临的风险和挑战愈加复杂，从数据隐私泄露到模型滥用、对抗性攻击等问题不断涌现。确保AI系统的安全性不仅关乎技术的持续创新，还直接影响到用户的信任和社会的稳定。针对这些问题，需在模型行为、数据保护、供应链安全等多个方面实施综合控制策略，以保障AI系统在实际应用中的可靠性和安全性。</summary>
@@ -172,7 +172,7 @@
     <link href="https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/"/>
     <id>https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/</id>
     <published>2021-11-28T06:05:31.000Z</published>
-    <updated>2021-11-28T06:05:31.000Z</updated>
+    <updated>2022-11-28T06:05:31.000Z</updated>
     
     
     <summary type="html">本文提出了一种自动化方法来生成高质量的fuzz driver，以提升闭源SDK在fuzzing过程中的覆盖率和漏洞触发率。</summary>
