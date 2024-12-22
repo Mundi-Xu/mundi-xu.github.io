@@ -29,11 +29,11 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
     <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -92,9 +92,9 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
@@ -140,9 +140,9 @@
     
     
     
-    <category term="Hardware" scheme="https://mundi-xu.github.io/tags/Hardware/"/>
-    
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Hardware" scheme="https://mundi-xu.github.io/tags/Hardware/"/>
     
   </entry>
   
@@ -172,10 +172,10 @@
     <link href="https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/"/>
     <id>https://mundi-xu.github.io/2021/11/28/APICraft-Fuzz-Driver-Generation-for-Closed-source-SDK-Libraries/</id>
     <published>2021-11-28T06:05:31.000Z</published>
-    <updated>2024-12-20T14:37:57.788Z</updated>
+    <updated>2024-12-22T06:23:58.975Z</updated>
     
     
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    <summary type="html">本文提出了一种自动化方法来生成高质量的fuzz driver，以提升闭源SDK在fuzzing过程中的覆盖率和漏洞触发率。</summary>
     
     
     
@@ -291,6 +291,8 @@
     
     
     
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Chrome" scheme="https://mundi-xu.github.io/tags/Chrome/"/>
@@ -298,8 +300,6 @@
     <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
     
     <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -316,9 +316,9 @@
     
     
     
-    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
-    
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
