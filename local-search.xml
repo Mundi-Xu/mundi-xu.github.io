@@ -14,11 +14,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>AI</tag>
       
       <tag>LLM</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -83,9 +83,9 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
       <tag>Security</tag>
+      
+      <tag>AI</tag>
       
       <tag>Fuzzing</tag>
       
@@ -135,9 +135,9 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Hardware</tag>
+      
+      <tag>Security</tag>
       
     </tags>
     
@@ -704,7 +704,7 @@
     <link href="/2018/10/25/hello-world/"/>
     <url>/2018/10/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Specializing in security validation, vulnerability research, andtesting with a focus on AI large model security and operating system(TEE) security, along with expertise in distributed databases, compilersand programming languages, cloud distributed software, and networkmiddleware, among other areas.</p><hr /><p>Below is a list of vulnerabilities that I have identified andreported to vendors:</p><blockquote><p>Please note that, in accordance with Huawei company policy, recordsof vulnerabilities discovered after August 2022 will not be updated.</p></blockquote><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>CVE-2021-38236</strong> : heap-buffer-overflow inraw2image.cpp</li><li><strong>CVE-2021-38235</strong> : heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>北京数科网维技术有限责任公司 OFD 版式阅读器:</strong></p><ul><li><strong>CNVD-2021-102082, CNNVD-202111-2224,CNNVD-202111-2225</strong> : Integer Overflow to Buffer Overflow inpdfdom.dll</li><li><strong>CNVD-2022-00039, CNVD-2022-00040, CNVD-2022-00041,CNVD-2022-00042, CNVD-2022-00043, CNVD-2022-00044, CNVD-2022-00045,CNVD-2022-00046, CNVD-2022-00047, CNVD-2022-00048</strong> UncontrolledResource Consumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary Address Access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><p><strong>Issue 1312736, Issue 1327884</strong> : null-dereferencein PDFium</p></li><li><p><strong>Issue 1314658</strong> : heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</p></li></ul><hr /><p><imgsrc="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" srcset="/img/loading.gif" lazyload /></p>]]></content>
+    <content type="html"><![CDATA[<p>Dedicated to vulnerability research and security assessment with afocus on LLM security and system security, alongside expertise indistributed databases, compilers and programming languages, clouddistributed software, and network middleware, among other areas.</p><hr /><p>Below is a list of vulnerabilities that I have identified andreported to vendors:</p><blockquote><p>Please note that, in accordance with Huawei company policy, recordsof vulnerabilities discovered after August 2022 will not be updated.</p></blockquote><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out of bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>CVE-2021-38236</strong> : heap-buffer-overflow inraw2image.cpp</li><li><strong>CVE-2021-38235</strong> : heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>北京数科网维技术有限责任公司 OFD 版式阅读器:</strong></p><ul><li><strong>CNVD-2021-102082, CNNVD-202111-2224,CNNVD-202111-2225</strong> : Integer Overflow to Buffer Overflow inpdfdom.dll</li><li><strong>CNVD-2022-00039, CNVD-2022-00040, CNVD-2022-00041,CNVD-2022-00042, CNVD-2022-00043, CNVD-2022-00044, CNVD-2022-00045,CNVD-2022-00046, CNVD-2022-00047, CNVD-2022-00048</strong> UncontrolledResource Consumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary Address Access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><p><strong>Issue 1312736, Issue 1327884</strong> : null-dereferencein PDFium</p></li><li><p><strong>Issue 1314658</strong> : heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</p></li></ul><hr /><p><imgsrc="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" srcset="/img/loading.gif" lazyload /></p>]]></content>
     
     
     
