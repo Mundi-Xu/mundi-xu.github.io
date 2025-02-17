@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2024-12-19T04:05:21.000Z</updated>
+  <updated>2025-02-16T13:05:10.000Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DeepSeek技术原理解读及模型安全风险分析</title>
+    <link href="https://mundi-xu.github.io/2025/02/14/Deepseek-Technical-Principle-Explanation-and-Model-Security-Risk-Assessment/"/>
+    <id>https://mundi-xu.github.io/2025/02/14/Deepseek-Technical-Principle-Explanation-and-Model-Security-Risk-Assessment/</id>
+    <published>2025-02-14T12:05:21.000Z</published>
+    <updated>2025-02-16T13:05:10.000Z</updated>
+    
+    
+    <summary type="html">DeepSeek V3通过MLA优化长文本推理、改进MoE架构，结合MTP、DualPipe以及FP8混合精度训练等技术降低训练和推理成本，提升模型性能，在基准测试中表现出色，训练计算量大幅减少。DeepSeek R1基于V3强化学习提升推理能力，在多领域及内生安全方面表现良好，但同时引入了新的攻击面，存在标签伪造劫持、海绵样本等安全风险。</summary>
+    
+    
+    
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="DeepSeek" scheme="https://mundi-xu.github.io/tags/DeepSeek/"/>
+    
+    <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
+    
+    <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
+    
+  </entry>
   
   <entry>
     <title>AI安全风险洞察：2024</title>
@@ -322,9 +345,9 @@
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
     <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
+    
+    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
     
     <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
     
@@ -440,33 +463,6 @@
     <category term="OSI Model" scheme="https://mundi-xu.github.io/tags/OSI-Model/"/>
     
     <category term="TCP/IP Model" scheme="https://mundi-xu.github.io/tags/TCP-IP-Model/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>WSL2下AFL的安装与测试</title>
-    <link href="https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/"/>
-    <id>https://mundi-xu.github.io/2021/01/09/Installation-and-testing-of-AFL-under-WSL2/</id>
-    <published>2021-01-09T02:05:21.000Z</published>
-    <updated>2022-05-29T08:47:36.075Z</updated>
-    
-    
-    <summary type="html">WSL2下AFL的安装教程并利用Fuzzing技术对CVE-2009-0159进行了复现和原理分析。</summary>
-    
-    
-    
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
-    <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
-    
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
-    <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
-    
-    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
-    <category term="ntp" scheme="https://mundi-xu.github.io/tags/ntp/"/>
     
   </entry>
   

@@ -393,7 +393,7 @@
 </ol>
 <h2 id="3-2-Dependency-Combination"><a href="#3-2-Dependency-Combination" class="headerlink" title="3.2 Dependency Combination"></a><strong>3.2 Dependency Combination</strong></h2><p>APICraft将收集并解析完成的data dependency以及control denpendency进行Combination，再通过多目标优化遗传算法进行变异演化。</p>
 <h3 id="3-2-1-问题建模"><a href="#3-2-1-问题建模" class="headerlink" title="3.2.1 问题建模"></a><strong>3.2.1 问题建模</strong></h3><p>APICraft将fuzz driver⽣成问题抽象成⼀个数学问题，利用多目标优化遗传算法（Multi-Objective Genetic Algorithm）进行求解。</p>
-<p>具体而言，以GUI应用程序（调用相应 SDK提供的 API）的API函数使用方式为初始种群，对这些种群进⾏变异演化生成fuzz driver，通过判断生成的fuzz driver的优劣，将优越fuzz driver保留下来继续变异，最后生成满足要求的fuzz driver 用于fuzzing。我们认为<strong>⼀个高质量的fuzz driver需要满足三个⽬标</strong>：</p>
+<p>具体而言，以GUI应用程序（调用相应 SDK提供的 API）的API函数使用方式为初始种群，对这些种群进⾏变异演化生成fuzz driver，通过判断生成的fuzz driver的优劣，将优越fuzz driver保留下来继续变异，最后生成满足要求的fuzz driver 用于fuzzing。我们认为**⼀个高质量的fuzz driver需要满足三个⽬标**：</p>
 <ol>
 <li><strong>多样性（Diversity）</strong>：多样性（Diversity）指的是fuzz driver能够调⽤⾜够多样的API使fuzz driver程序行为更丰富。即为了让生成出来的fuzz driver有更多不同的data dependencies，如果data dependencies能够组成loop，每条loop都会给这个目标加分数。图7所示的多样性（Diversity）的公式是生成的fuzz driver的有向多边图的边（即单个data dependency）的数量，加上这个图的圈复杂度。总体是要表征data dependency图（或者说fuzz driver的API调⽤）的多样性。</li>
 </ol>
@@ -406,7 +406,7 @@
 </ol>
 <p>紧凑性（Compactness）指标⽬的是为了让fuzz driver去除冗余API调⽤，冗余API调用就是跟以接收input file API为起点的data dependency 图无关的API调用，即存在于non-core dependency图中的API调用。所以在core dependency的data dependency分数会高，non-core dependency中的data dependency分数会低。图8是Compactness的具体公式。</p>
 <p><img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/APICraft/8.png" srcset="/img/loading.gif" lazyload alt="图 8：Compactness公式"></p>
-<h3 id="3-2-2-多⽬标优化遗传算法-（Multi-Objective-Genetic-Algorithm）"><a href="#3-2-2-多⽬标优化遗传算法-（Multi-Objective-Genetic-Algorithm）" class="headerlink" title="3.2.2 多⽬标优化遗传算法****（Multi-Objective Genetic Algorithm）"></a><strong>3.2.2 多⽬标优化遗传算法****（Multi-Objective Genetic Algorithm）</strong></h3><p>APICraft采用了NSGA-II算法来对Diversity、Effectiveness、Compactness这三个目标进行多目标优化的遗传算法演进。</p>
+<h3 id="3-2-2-多⽬标优化遗传算法（Multi-Objective-Genetic-Algorithm）"><a href="#3-2-2-多⽬标优化遗传算法（Multi-Objective-Genetic-Algorithm）" class="headerlink" title="3.2.2 多⽬标优化遗传算法（Multi-Objective Genetic Algorithm）"></a><strong>3.2.2 多⽬标优化遗传算法</strong><strong>（Multi-Objective Genetic Algorithm）</strong></h3><p>APICraft采用了NSGA-II算法来对Diversity、Effectiveness、Compactness这三个目标进行多目标优化的遗传算法演进。</p>
 <p>图9是整体的APICraft的多目标优化遗传算法，输入data dependency集合，输出是⼀系列的fuzz driver集合：</p>
 <ol>
 <li><p>25-31行即传统的遗传算法，先生成初始的种子集，选取初始种子集，然后开始变异，再选择存活下来的个体，继续变异，往复。直到到了我们限定的变异轮数。28行进行变异，29行选取最优个体；</p>
