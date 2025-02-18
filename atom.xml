@@ -6,7 +6,7 @@
   <link href="https://mundi-xu.github.io/atom.xml" rel="self"/>
   
   <link href="https://mundi-xu.github.io/"/>
-  <updated>2025-02-16T13:05:10.000Z</updated>
+  <updated>2025-02-17T13:05:10.000Z</updated>
   <id>https://mundi-xu.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://mundi-xu.github.io/2025/02/14/Deepseek-Technical-Principle-Explanation-and-Model-Security-Risk-Assessment/"/>
     <id>https://mundi-xu.github.io/2025/02/14/Deepseek-Technical-Principle-Explanation-and-Model-Security-Risk-Assessment/</id>
     <published>2025-02-14T12:05:21.000Z</published>
-    <updated>2025-02-16T13:05:10.000Z</updated>
+    <updated>2025-02-17T13:05:10.000Z</updated>
     
     
     <summary type="html">DeepSeek V3通过MLA优化长文本推理、改进MoE架构，结合MTP、DualPipe以及FP8混合精度训练等技术降低训练和推理成本，提升模型性能，在基准测试中表现出色，训练计算量大幅减少。DeepSeek R1基于V3强化学习提升推理能力，在多领域及内生安全方面表现良好，但同时引入了新的攻击面，存在标签伪造劫持、海绵样本等安全风险。</summary>
