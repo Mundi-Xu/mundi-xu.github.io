@@ -29,13 +29,13 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
-    <category term="DeepSeek" scheme="https://mundi-xu.github.io/tags/DeepSeek/"/>
-    
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
     <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="DeepSeek" scheme="https://mundi-xu.github.io/tags/DeepSeek/"/>
     
   </entry>
   
@@ -52,11 +52,11 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
     <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -115,9 +115,9 @@
     
     
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
@@ -163,9 +163,9 @@
     
     
     
-    <category term="Hardware" scheme="https://mundi-xu.github.io/tags/Hardware/"/>
-    
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    
+    <category term="Hardware" scheme="https://mundi-xu.github.io/tags/Hardware/"/>
     
   </entry>
   
@@ -341,13 +341,13 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
-    
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
     <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
+    
+    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
     
     <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
     
