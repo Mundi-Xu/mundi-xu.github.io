@@ -11,12 +11,14 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
+    <link rel="canonical" href="https://mundi-xu.github.io/2022/10/08/DirtyCred/"/>
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="寒雨">
+  <meta name="author" content="煊宇">
   <meta name="keywords" content="">
   
     <meta name="description" content="DirtyCred通过利用堆破坏内核漏洞交换进程或文件的凭据，绕过多种内核保护机制，实现越权执行和写入操作，并通过精确控制时间窗口和结合内核特性，确保漏洞利用的稳定性和高效性。">
@@ -28,15 +30,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-07T16:05:21.000Z">
 <meta property="article:modified_time" content="2024-12-18T17:23:00.872Z">
-<meta property="article:author" content="寒雨">
+<meta property="article:author" content="煊宇">
 <meta property="article:tag" content="DirtyCred">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Kernel">
 <meta property="article:tag" content="CVE">
 <meta name="twitter:card" content="summary_large_image">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -193,7 +193,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               <i class="iconfont icon-search"></i>
             </a>
           </li>
@@ -201,7 +201,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
               <i class="iconfont icon-dark" id="color-toggle-icon"></i>
             </a>
           </li>
@@ -337,7 +337,7 @@ Management</h2>
 target="_blank" rel="noopener" href="https://lwn.net/Articles/569635/">KASLR</a>, <a
 target="_blank" rel="noopener" href="https://lwn.net/Articles/517475/">SMAP</a>, <a
 target="_blank" rel="noopener" href="https://j00ru.vexillium.org/2011/06/smep-what-is-it-and-how-to-beat-it-on-windows/">SMEP</a>,
-<a target="_blank" rel="noopener" href="https://lwn.net/Articles/810077/">CFI</a>, <a
+<a target="_blank" rel="noopener external nofollow noreferrer" href="https://lwn.net/Articles/810077/">CFI</a>, <a
 target="_blank" rel="noopener" href="https://lwn.net/Articles/741878/">KPTI</a>等。在这种情况下，内核地址空间是随机化的，内核执行期间不能直接访问用户空间内存，且其控制流完整性得到保证。</p>
 <h1 id="dirtycred利用">DirtyCred利用</h1>
 <p>以CVE-2021-4154为例，演示了DirtyCred如何被实际利用。</p>
@@ -544,7 +544,7 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>寒雨</div>
+          <div>煊宇</div>
         </div>
       
       
@@ -561,19 +561,19 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
                     <i class="iconfont icon-cc-nc"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
                     <i class="iconfont icon-cc-sa"></i>
                   </span>
@@ -620,23 +620,40 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
-          {
-            id: 'c2fb59e71dde979bc02ebaf59ba1e48d'
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Mundi-Xu/gitment-blog","repo-id":"MDEwOlJlcG9zaXRvcnkxNjA1NDIyODU=","category":"Announcements","category-id":"DIC_kwDOCZGuTc4Cpu7C","theme-light":"light","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN","strict":0};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -735,35 +752,9 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>mundi.xu@gmail.com</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
-        <span id="busuanzi_value_site_pv"></span>
-        
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
-        <span id="busuanzi_value_site_uv"></span>
-        
-      </span>
-    
-    
-
-  
-
-</div>
-
   
   
 </div>
@@ -938,8 +929,6 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

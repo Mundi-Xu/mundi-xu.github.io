@@ -11,12 +11,14 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
+    <link rel="canonical" href="https://mundi-xu.github.io/2021/03/02/Use-IPy-to-determine-the-legitimacy-of-an-IP-address/"/>
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="寒雨">
+  <meta name="author" content="煊宇">
   <meta name="keywords" content="">
   
     <meta name="description" content="利用IPy模块的IP类处理常见格式的IP地址，附IP地址格式规范和IPy源码简析">
@@ -28,15 +30,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-02T15:00:11.000Z">
 <meta property="article:modified_time" content="2022-05-29T10:56:24.773Z">
-<meta property="article:author" content="寒雨">
+<meta property="article:author" content="煊宇">
 <meta property="article:tag" content="IPy">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="lab">
 <meta property="article:tag" content="ip">
 <meta name="twitter:card" content="summary_large_image">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -193,7 +193,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               <i class="iconfont icon-search"></i>
             </a>
           </li>
@@ -201,7 +201,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
               <i class="iconfont icon-dark" id="color-toggle-icon"></i>
             </a>
           </li>
@@ -308,16 +308,16 @@
                 
                 <h1 id="ip地址格式规范">ip地址格式规范</h1>
 <h2 id="ipv4">ipv4</h2>
-<p>在CIDR表示法中，前缀显示为4个八位字节，就像传统的IPv4地址一样，后跟"/"斜杠和一个0～32之间的十进制值来描述有效位数。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+<p>在CIDR表示法中，前缀显示为4个八位字节，就像传统的IPv4地址一样，后跟”/“斜杠和一个0～32之间的十进制值来描述有效位数。<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
 class="hint--top hint--rounded"
 aria-label="RFC 791; RFC 4632">[1]</span></a></sup></p>
 <blockquote>
-<p>For example, the legacy "Class B" network 172.16.0.0, with an implied
+<p>For example, the legacy “Class B” network 172.16.0.0, with an implied
 network mask of 255.255.0.0, is defined as the prefix 172.16.0.0/16, the
-"/16" indicating that the mask to extract the network portion of the
+“/16” indicating that the mask to extract the network portion of the
 prefix is a 32-bit value where the most significant 16 bits are ones and
 the least significant 16 bits are zeros.<br />
-Similarly, the legacy "Class C" network number 192.168.99.0 is defined
+Similarly, the legacy “Class C” network number 192.168.99.0 is defined
 as the prefix 192.168.99.0/24; the most significant 24 bits are ones and
 the least significant 8 bits are zeros.</p>
 </blockquote>
@@ -329,7 +329,7 @@ class="hint--top hint--rounded"
 aria-label="RFC 2373">[2]</span></a></sup></p>
 <ol type="1">
 <li><p>The preferred form is <code>x:x:x:x:x:x:x:x</code>, where the
-'x's are the hexadecimal values of the eight 16-bit pieces of the
+’x’s are the hexadecimal values of the eight 16-bit pieces of the
 address. Examples:</p>
 <p><code>FEDC:BA98:7654:3210:FEDC:BA98:7654:3210</code></p>
 <p><code>1080:0:0:0:8:800:200C:417A</code></p>
@@ -340,8 +340,8 @@ individual field, but there must be at least one numeral in every field
 addresses, it will be common for addresses to contain long strings of
 zero bits. In order to make writing addresses containing zero bits
 easier a special syntax is available to compress the zeros. The use of
-"::" indicates multiple groups of 16-bits of zeros. The "::" can only
-appear once in an address. The "::" can also be used to compress the
+“::” indicates multiple groups of 16-bits of zeros. The “::” can only
+appear once in an address. The “::” can also be used to compress the
 leading and/or trailing zeros in an address. For example the following
 addresses:</p>
 <p><code>1080:0:0:0:8:800:200C:417A</code> a unicast address</p>
@@ -355,8 +355,8 @@ addresses:</p>
 <p><code>::</code> the unspecified addresses</p></li>
 <li><p>An alternative form that is sometimes more convenient when
 dealing with a mixed environment of IPv4 and IPv6 nodes is
-<code>x:x:x:x:x:x:d.d.d.d</code>, where the 'x's are the hexadecimal
-values of the six high-order 16-bit pieces of the address, and the 'd's
+<code>x:x:x:x:x:x:d.d.d.d</code>, where the ’x’s are the hexadecimal
+values of the six high-order 16-bit pieces of the address, and the ’d’s
 are the decimal values of the four low-order 8-bit pieces of the address
 (standard IPv4 representation). Examples:</p>
 <p><code>0:0:0:0:0:0:13.1.68.3</code></p>
@@ -480,7 +480,7 @@ class="footnote-text"><span>https://github.com/autocracy/python-ipy
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>寒雨</div>
+          <div>煊宇</div>
         </div>
       
       
@@ -497,19 +497,19 @@ class="footnote-text"><span>https://github.com/autocracy/python-ipy
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
                     <i class="iconfont icon-cc-nc"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
                     <i class="iconfont icon-cc-sa"></i>
                   </span>
@@ -556,23 +556,40 @@ class="footnote-text"><span>https://github.com/autocracy/python-ipy
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
-          {
-            id: 'c88436c102d79004a41503a9da05c6f2'
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Mundi-Xu/gitment-blog","repo-id":"MDEwOlJlcG9zaXRvcnkxNjA1NDIyODU=","category":"Announcements","category-id":"DIC_kwDOCZGuTc4Cpu7C","theme-light":"light","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN","strict":0};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -671,35 +688,9 @@ class="footnote-text"><span>https://github.com/autocracy/python-ipy
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>mundi.xu@gmail.com</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
-        <span id="busuanzi_value_site_pv"></span>
-        
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
-        <span id="busuanzi_value_site_uv"></span>
-        
-      </span>
-    
-    
-
-  
-
-</div>
-
   
   
 </div>
@@ -874,8 +865,6 @@ class="footnote-text"><span>https://github.com/autocracy/python-ipy
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

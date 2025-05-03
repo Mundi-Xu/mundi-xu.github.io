@@ -11,12 +11,14 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
+    <link rel="canonical" href="https://mundi-xu.github.io/2021/01/17/Computer-Network-Introduction/"/>
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="寒雨">
+  <meta name="author" content="煊宇">
   <meta name="keywords" content="">
   
     <meta name="description" content="计算机网络：自顶向下方法第8版第一章的学习笔记">
@@ -51,7 +53,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction/Hybrid-model.jpg">
 <meta property="article:published_time" content="2021-01-17T04:47:31.000Z">
 <meta property="article:modified_time" content="2022-05-29T08:50:04.895Z">
-<meta property="article:author" content="寒雨">
+<meta property="article:author" content="煊宇">
 <meta property="article:tag" content="Computer Networking">
 <meta property="article:tag" content="A Top-Down Approach">
 <meta property="article:tag" content="notes">
@@ -61,8 +63,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/%E8%AE%A1%E7%BD%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Introduction/the-internet.gif">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
@@ -105,7 +105,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -219,7 +219,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               <i class="iconfont icon-search"></i>
             </a>
           </li>
@@ -227,7 +227,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
               <i class="iconfont icon-dark" id="color-toggle-icon"></i>
             </a>
           </li>
@@ -377,11 +377,11 @@ Internet</strong>?</h1>
 protocol?</p>
 </blockquote>
 <p align="center">
-<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=iDbyYGrswtg">
+<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.youtube.com/watch?v=iDbyYGrswtg">
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/the-internet.gif" srcset="/img/loading.gif" lazyload alt="the-internet"/>
 </a>
 </p>
-<p>它是网络中的网络。 <strong>"network of networks"</strong></p>
+<p>它是网络中的网络。 <strong>“network of networks”</strong></p>
 <p>There are several ways to answer this question. First, we can
 describe the basic hardware and software components that make up the
 Internet. Secondly, we can define the internet as a network
@@ -392,7 +392,7 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
 alt="nuts-and-bolts-view" />
 <figcaption aria-hidden="true">nuts-and-bolts-view</figcaption>
 </figure>
-<p>Let's start with the basic building blocks of the internet.</p>
+<p>Let’s start with the basic building blocks of the internet.</p>
 <h2 id="basic-building-blocks-of-the-internet">Basic building blocks of
 the Internet</h2>
 <blockquote>
@@ -437,7 +437,7 @@ Request for comments</a></li>
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force">IETF:
 Internet engineering task force</a>(According to Xiao seniors ——
 disciple of the author of this book, they voted by the loudness of the
-hen, which I still can't believe.)</li>
+hen, which I still can’t believe.)</li>
 </ul>
 <p>Why are these standards?</p>
 <p>Working in line with the middle paths determined when working with
@@ -458,7 +458,7 @@ realizing it; <strong><code>Asking time protocol</code>!</strong></p>
 <li><code>A:</code> Hello</li>
 <li><strong>B:</strong> <strong><em>Hello</em></strong></li>
 <li><code>A:</code> What time is it?</li>
-<li><strong>B:</strong> <strong><em>It's 17:21</em></strong></li>
+<li><strong>B:</strong> <strong><em>It’s 17:21</em></strong></li>
 <li><code>A:</code> Thank you</li>
 </ul>
 <p>This is an example of a normal double talk (dialog).</p>
@@ -495,11 +495,11 @@ the transmission and/or receipt of a message or other event.</p>
 <blockquote>
 <p>The Network Edge</p>
 </blockquote>
-<p>Let's take a closer look at the Internet structure ..</p>
+<p>Let’s take a closer look at the Internet structure ..</p>
 <h2 id="a.-network-edge-edge-device">a. Network Edge (Edge device)</h2>
 <p>We can consider any device that connects to the Internet as a
 <strong>network edge</strong>. What are these; computers, servers,
-mobile devices, cars, fridges ....</p>
+mobile devices, cars, fridges ….</p>
 <ul>
 <li><p>hosts: clients and servers</p></li>
 <li><p>servers often in data centers</p></li>
@@ -515,7 +515,7 @@ packages. These can be wired or wireless.</p>
 </ul>
 <p><img
 src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/access-networks.png" srcset="/img/loading.gif" lazyload /></p>
-<h2 id="c.-network-core-isp">c. Network Core ISP</h2>
+<h2 id="c.-network-core-isp">c. Network Core ISP</h2>
 <p>The units that logically or physically combine these above mentioned
 units are also called ISP.</p>
 <ul>
@@ -535,7 +535,7 @@ connects to ISP. The ISP may also be connecting to the server.
 at a <strong><em>coffee shop</em></strong>. <strong>“institutional
 access networks (school, company)”</strong></li>
 <li>Apart from these, you can connect <strong><em>directly</em></strong>
-with the phone's <strong>4G / 5G</strong> or <strong>wifi</strong>.
+with the phone’s <strong>4G / 5G</strong> or <strong>wifi</strong>.
 <strong>“mobile access networks (WiFi, 4G/5G)”</strong></li>
 </ul>
 <h2 id="access-networks-cable-based-access">Access networks: cable-based
@@ -553,7 +553,7 @@ Multiplexing)</h3>
 <p>frequency-dependent partitioning</p>
 </blockquote>
 <p>In this approach, we carry the data in a single cable at different
-frenx intervals. <strong>Pink Floyd</strong> 's <a
+frenx intervals. <strong>Pink Floyd</strong> ’s <a
 target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=HW-lXjOyUWo&amp;list=PL3PhWT10BW3Urh8ZXXpuU9h526ChwgWKy&amp;index=1"><strong>the
 dark side of the moon</strong></a> colors stored in different frequency
 ranges within the album cover -Light prizması- in white light is a good
@@ -569,7 +569,7 @@ Multiplexing)</h3>
 <p>In this approach, the data is sent in a sequence, not divided into
 frequency ranges.</p>
 <p>First the data of <strong>device A</strong> is sent, then data of
-<strong>device B,</strong> and then <strong>device C</strong> ...</p>
+<strong>device B,</strong> and then <strong>device C</strong> …</p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/TDM-and-FDM-example.png" srcset="/img/loading.gif" lazyload alt="TDM-and-FDM-example" style="zoom:80%;" />
 </p>
@@ -593,7 +593,7 @@ network, while the logical topology specifies how the data is processed
 in the network independently.</p>
 <p><strong>[<a
 target="_blank" rel="noopener" href="https://mail.ecomputernotes.com/computernetworkingnotes/computer-network/what-is-lan-topologies-explain-each-topology">Network
-topologies]</a> -</strong> <em>Bus, star etc ...</em></p>
+topologies]</a> -</strong> <em>Bus, star etc …</em></p>
 </blockquote>
 <p>There are certain devices that are used to prevent confusion of data
 sent from these different places.</p>
@@ -731,7 +731,7 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
 alt="Host" />
 <figcaption aria-hidden="true">Host</figcaption>
 </figure>
-<p>We talked about how data was sent from a host. This time, we're going
+<p>We talked about how data was sent from a host. This time, we’re going
 to tackle an engineering problem.<strong>Data Delay</strong></p>
 <figure>
 <img
@@ -742,7 +742,7 @@ alt="packet-delay" />
 <h2 id="data-delay">Data delay</h2>
 <p>Data lag is the most common problem we will face in data transfer.
 Our connection may slow down (lag) while playing games, packets may be
-delayed while watching live broadcast ...</p>
+delayed while watching live broadcast …</p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/delay-packge.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" />
 </p>
@@ -751,8 +751,8 @@ destination. We need to adjust these delays for service quality.</p>
 <p><strong><em>So why are these delays caused?</em></strong></p>
 <p>Simply put, you have L bits of data to transmit, but you can only
 transmit R bits of data per second.</p>
-<p><span class="math display">\[\text {packet transmission delay} =
-\frac{L \text { (bits)}}{R \text { (bits/sec)}} \]</span></p>
+<p><span class="math display">$$\text {packet transmission delay} =
+\frac{L \text { (bits)}}{R \text { (bits/sec)}} $$</span></p>
 <p><strong>L</strong> = package size</p>
 <p><strong>R</strong> = link transmission rate</p>
 <h2 id="links-physical-media">Links: Physical media</h2>
@@ -795,7 +795,7 @@ receiver</li>
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/Coaxial-cable.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" />
 </p>
 <h2 id="fiber-optic-cable">Fiber optic cable</h2>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0MwMkBET_5I"><em>How do
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.youtube.com/watch?v=0MwMkBET_5I"><em>How do
 fiber optic cables work?</em></a></p>
 <ul>
 <li>glass fiber carrying light pulses, each pulse a bit</li>
@@ -924,7 +924,7 @@ communicate between two fronts.</p>
 <p><strong>We can think of circuit switching as creating a direct
 channel between two end devices.</strong></p>
 <p><strong>The biggest difference between circuit switching and packet
-switching is that circuit users can't share bandwidth.</strong></p>
+switching is that circuit users can’t share bandwidth.</strong></p>
 </blockquote>
 <p>end-end resources allocated to, reserved for “call” between source
 and destination</p>
@@ -969,8 +969,8 @@ connect them together?</strong></p>
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/network1.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 </p>
 <p>Trying to connect all ISPs together is not a connection that can
-scale: O(<span class="math inline">\(N^2\)</span>) connections. So how
-do we go about it?</p>
+scale: O(<span class="math inline"><em>N</em><sup>2</sup></span>)
+connections. So how do we go about it?</p>
 <p align="center">
 <img src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/network2.png" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
 </p>
@@ -1042,7 +1042,7 @@ package, tagged the package, I learned where it will go after I read it,
 and I directed it)?!</li>
 <li><strong>Propagation Delay</strong>: Transmission delay experienced
 during transmission from an endpoint to an endpoint. The propagation
-rate depends on the physical environment of the connection (i.e. fiber
+rate depends on the physical environment of the connection (i.e. fiber
 optic, twisted pair copper wire, etc.)</li>
 </ul>
 <blockquote>
@@ -1100,7 +1100,7 @@ will get an answer.</li>
 </ul>
 <p>For more information <a
 target="_blank" rel="noopener" href="http://www.traceroute.org/">www.traceroute.org</a>. You can view
-the demo <a target="_blank" rel="noopener" href="http://tool.chinaz.com/Tracert/">here</a>.</p>
+the demo <a target="_blank" rel="noopener external nofollow noreferrer" href="http://tool.chinaz.com/Tracert/">here</a>.</p>
 <h2 id="packet-loss">Packet loss</h2>
 <p>When the queue with limited capacity (we call it buffer) is full, the
 incoming packets will be lost.</p>
@@ -1124,8 +1124,8 @@ bits per second (Mbps), and gigabits per second
 (Gbps).<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
 class="hint--top hint--rounded"
 aria-label="https://www.differencebetween.com/difference-between-throughput-and-vs-bandwidth/">[3]</span></a></sup></p>
-<p>Let's say you get a 100Mbps internet connection from your ISP. An
-internet connection at this speed is very satisfactory in today's
+<p>Let’s say you get a 100Mbps internet connection from your ISP. An
+internet connection at this speed is very satisfactory in today’s
 standards for a single use. But even if other individuals living at home
 or your next-door neighbor or even people in the coffee shop downstairs
 are not strong enough, will you be able to get the same appointment from
@@ -1137,7 +1137,7 @@ speed, which was 100Mbps at first, may decrease to 10Mbps or even lower
 as the number of users increases.</p>
 <blockquote>
 <p><em>So why? How does my internet connection, which is 100Mbps, fall
-below this? Wasn't my speed 100Mbps?</em>
+below this? Wasn’t my speed 100Mbps?</em>
 <sup id="fnref:4" class="footnote-ref"><a href="#fn:4" rel="footnote"><span
 class="hint--top hint--rounded"
 aria-label="[Speed vs Bandwidth Explained - Arvig](https://www.youtube.com/watch?v=A_-L-kn9biw)">[4]</span></a></sup></p>
@@ -1196,8 +1196,8 @@ various media + applications + protocols + hardware, software</p>
 <p>Approach to designing/discussing complex systems: + explicit
 structure allows identification, relationship of system’s pieces +
 layered reference model for discussion + modularization eases
-maintenance, updating of system + change in layer's service
-implementation: transparent to rest of system + e.g. , change in gate
+maintenance, updating of system + change in layer’s service
+implementation: transparent to rest of system + e.g. , change in gate
 procedure doesn’t affect rest of system</p>
 </blockquote>
 <h2 id="layers-of-osi-model">Layers of OSI Model</h2>
@@ -1277,10 +1277,10 @@ synchronization:</strong> The physical layer provides the
 synchronization of the bits by providing a clock. This clock controls
 both sender and receiver thus providing synchronization at bit level. 2.
 <strong>Bit rate control:</strong> The Physical layer also defines the
-transmission rate i.e. the number of bits sent per second. 3.
+transmission rate i.e. the number of bits sent per second. 3.
 <strong>Physical topologies:</strong> Physical layer specifies the way
-in which the different, devices/nodes are arranged in a network i.e.
-bus, star or mesh topolgy. 4. <strong>Transmission mode:</strong>
+in which the different, devices/nodes are arranged in a network
+i.e. bus, star or mesh topolgy. 4. <strong>Transmission mode:</strong>
 Physical layer also defines the way in which the data flows between the
 two connected devices. The various transmission modes possible are:
 Simplex, half-duplex and full-duplex.</p>
@@ -1331,7 +1331,7 @@ devices.</em></p>
 <h3 id="network-layer">3. Network Layer</h3>
 <p>Network layer works for the transmission of data from one host to the
 other located in different networks. It also takes care of packet
-routing i.e. selection of the shortest path to transmit the packet, from
+routing i.e. selection of the shortest path to transmit the packet, from
 the number of routes available. The sender &amp; receiver’s IP address
 are placed in the header by the network layer. The functions of the
 Network layer are : 1. <strong>Routing:</strong> The network layer
@@ -1632,7 +1632,7 @@ elements + Ethernet, 802.11 (Wi-Fi), PPP</p>
 Encapsulation</h2>
 <p>Watch the <a
 target="_blank" rel="noopener" href="http://gaia.cs.umass.edu/kurose_ross/videos/1/5/1.5_video_slides_posted.pptx">courseware</a>
-and <a target="_blank" rel="noopener" href="https://youtu.be/IZ_PnVXtMeY">instructional videos</a> for
+and <a target="_blank" rel="noopener external nofollow noreferrer" href="https://youtu.be/IZ_PnVXtMeY">instructional videos</a> for
 more details.</p>
 <p><img
 src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/计网学习笔记-Introduction/Encapsulation-end-end-view.png" srcset="/img/loading.gif" lazyload /></p>
@@ -1669,7 +1669,7 @@ some cases, without any user intervention, the application may accept
 the malware from the Internet and run it, creating a worm.</p>
 <p><strong>Botnet</strong> – A network of private computers infected
 with malicious software and controlled as a group without the owners’
-knowledge, e.g. to send spam.</p>
+knowledge, e.g. to send spam.</p>
 <p><strong>DoS (Denial of Service)</strong> – A DoS attack renders a
 network, host, or other pieces of infrastructure unusable by legitimate
 users. Most Internet DoS attacks fall into one of three categories :</p>
@@ -1761,7 +1761,7 @@ class="footnote-text"><span>https://www.differencebetween.com/difference-between
 </li>
 <li>
 <span id="fn:4"
-class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=A_-L-kn9biw">Speed
+class="footnote-text"><span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.youtube.com/watch?v=A_-L-kn9biw">Speed
 vs Bandwidth Explained - Arvig</a>
 <a href="#fnref:4" rev="footnote" class="footnote-backref">
 ↩︎</a></span></span>
@@ -1822,7 +1822,7 @@ class="footnote-text"><span>https://www.geeksforgeeks.org/layers-of-osi-model/
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>寒雨</div>
+          <div>煊宇</div>
         </div>
       
       
@@ -1839,19 +1839,19 @@ class="footnote-text"><span>https://www.geeksforgeeks.org/layers-of-osi-model/
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
                     <i class="iconfont icon-cc-nc"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
                     <i class="iconfont icon-cc-sa"></i>
                   </span>
@@ -1898,23 +1898,40 @@ class="footnote-text"><span>https://www.geeksforgeeks.org/layers-of-osi-model/
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
-          {
-            id: '2f76ac59c00a1d14f860bb0d179e6f73'
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Mundi-Xu/gitment-blog","repo-id":"MDEwOlJlcG9zaXRvcnkxNjA1NDIyODU=","category":"Announcements","category-id":"DIC_kwDOCZGuTc4Cpu7C","theme-light":"light","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN","strict":0};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -2019,35 +2036,9 @@ class="footnote-text"><span>https://www.geeksforgeeks.org/layers-of-osi-model/
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>mundi.xu@gmail.com</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
-        <span id="busuanzi_value_site_pv"></span>
-        
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
-        <span id="busuanzi_value_site_uv"></span>
-        
-      </span>
-    
-    
-
-  
-
-</div>
-
   
   
 </div>
@@ -2265,8 +2256,6 @@ class="footnote-text"><span>https://www.geeksforgeeks.org/layers-of-osi-model/
   <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

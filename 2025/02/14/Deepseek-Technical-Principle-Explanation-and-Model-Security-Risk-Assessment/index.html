@@ -11,12 +11,14 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
   <link rel="icon" href="/img/favicon.png">
   
+    <link rel="canonical" href="https://mundi-xu.github.io/2025/02/14/Deepseek-Technical-Principle-Explanation-and-Model-Security-Risk-Assessment/"/>
+  
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="寒雨">
+  <meta name="author" content="煊宇">
   <meta name="keywords" content="">
   
     <meta name="description" content="DeepSeek V3通过MLA优化长文本推理、改进MoE架构，结合MTP、DualPipe以及FP8混合精度训练等技术降低训练和推理成本，提升模型性能，在基准测试中表现出色，训练计算量大幅减少。DeepSeek R1基于V3强化学习提升推理能力，在多领域及内生安全方面表现良好，但同时引入了新的攻击面，存在标签伪造劫持、海绵样本等安全风险。">
@@ -28,15 +30,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-02-14T12:05:21.000Z">
 <meta property="article:modified_time" content="2025-02-17T13:05:10.000Z">
-<meta property="article:author" content="寒雨">
-<meta property="article:tag" content="Security">
+<meta property="article:author" content="煊宇">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Security">
 <meta property="article:tag" content="DeepSeek">
 <meta name="twitter:card" content="summary_large_image">
   
-  
-    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
     <meta name="google-site-verification" content="8weHOmi2lqvnOxDE30WJFT51umo63nyCgfm8dXHNT5g" />
@@ -79,7 +79,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"mundi-xu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":true,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":false,"baidu":null,"google":{"measurement_id":"G-3847WCVNF2"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -193,7 +193,7 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               <i class="iconfont icon-search"></i>
             </a>
           </li>
@@ -201,7 +201,7 @@
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">
               <i class="iconfont icon-dark" id="color-toggle-icon"></i>
             </a>
           </li>
@@ -254,7 +254,7 @@
         
         
         
-          47 mins
+          46 mins
         
       </span>
     
@@ -456,8 +456,9 @@ alt="Comparison of the KV cache per token among different attention mechanisms" 
 among different attention mechanisms</figcaption>
 </figure>
 <p>对DeepSeekv3而言，<span
-class="math inline">\(n_h=128\)</span>，MLA可以将KV Cache降低为 <span
-class="math inline">\(\frac{\frac{9}{2}}{2n_h}=1.7\%\)</span></p>
+class="math inline"><em>n</em><sub><em>h</em></sub> = 128</span>，MLA可以将KV
+Cache降低为 <span
+class="math inline">$\frac{\frac{9}{2}}{2n_h}=1.7\%$</span></p>
 <h3 id="deepseek-moe">DeepSeek MoE</h3>
 <blockquote>
 <p>DeepSeek
@@ -502,12 +503,12 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
 <p><strong>DeepSeek V3 MTP</strong>:</p>
 <ul>
 <li>主网络结构中<strong>接入2个预测头</strong>，针对输入token <span
-class="math inline">\(t_i\)</span>分别预估后续的<span
-class="math inline">\(t_{i+1}\)</span>， <span
-class="math inline">\(t_{i+2}\)</span></li>
+class="math inline"><em>t</em><sub><em>i</em></sub></span>分别预估后续的<span
+class="math inline"><em>t</em><sub><em>i</em> + 1</sub></span>， <span
+class="math inline"><em>t</em><sub><em>i</em> + 2</sub></span></li>
 <li>预测头之间是<strong>串行架构</strong>，预测第 <span
-class="math inline">\(i+2\)</span> 个token时，会把第 <span
-class="math inline">\(i+1\)</span>
+class="math inline"><em>i</em> + 2</span> 个token时，会把第 <span
+class="math inline"><em>i</em> + 1</span>
 个token也作为输入，保证完整的序列推理链实现串行预测</li>
 <li>一次预测多个token，有效提升训练性能，次token的接受率稳定在85%＋，<strong>训练时推理</strong>速度提升1.8倍</li>
 <li>共享Embedding层和输出头<strong>减少内存开销</strong></li>
@@ -797,7 +798,7 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
 id="应用安全智能体劫持海绵样本">应用安全（智能体劫持、海绵样本）</h2>
 <p>同时暴露思维链让对抗变更容易，暴露思维链 = 暴露大模型的思考思路 -&gt;
 让对抗（越狱、劫持）更<strong>有的放矢</strong>。根本原因是反馈信息从“劫持成功与否”这个二元的反馈变成了整个推理过程，具备了更多信息。</p>
-<p>例如在<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2312.02119">Tree of Attacks:
+<p>例如在<a target="_blank" rel="noopener external nofollow noreferrer" href="https://arxiv.org/pdf/2312.02119">Tree of Attacks:
 Jailbreaking Black-Box LLMs Automatically</a> 中就介绍了TAP:
 一种迭代式越狱话术优化方法。同时在Cisco测试报告（<a
 target="_blank" rel="noopener" href="https://blogs.cisco.com/security/evaluating-security-risk-in-deepseek-and-other-frontier-reasoning-models">Evaluating
@@ -826,11 +827,11 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Security/" class="print-no-link">#Security</a>
-      
         <a href="/tags/AI/" class="print-no-link">#AI</a>
       
         <a href="/tags/LLM/" class="print-no-link">#LLM</a>
+      
+        <a href="/tags/Security/" class="print-no-link">#Security</a>
       
         <a href="/tags/DeepSeek/" class="print-no-link">#DeepSeek</a>
       
@@ -851,7 +852,7 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>寒雨</div>
+          <div>煊宇</div>
         </div>
       
       
@@ -868,19 +869,19 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
             
               
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="BY - Attribution">
                     <i class="iconfont icon-cc-by"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="NC - Non-commercial">
                     <i class="iconfont icon-cc-nc"></i>
                   </span>
                 </a>
               
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer">
                   <span class="hint--top hint--rounded" aria-label="SA - Share-alike">
                     <i class="iconfont icon-cc-sa"></i>
                   </span>
@@ -921,23 +922,40 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
   
     <article id="comments">
       
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://lib.baomitu.com/gitalk/1.8.0/gitalk.min.js', function() {
-        var options = Object.assign(
-          {"clientID":"1331118797b631adeeb5","clientSecret":"367f791b0ab3489c94cc96bf4096b64f442b6ce3","repo":"gitment-blog","owner":"Mundi-Xu","admin":["Mundi-Xu"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://jolly-silence-2d9d.mundi-xu.workers.dev/?https://github.com/login/oauth/access_token"},
-          {
-            id: '58eb81992792ef8497576c886bd794d6'
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"Mundi-Xu/gitment-blog","repo-id":"MDEwOlJlcG9zaXRvcnkxNjA1NDIyODU=","category":"Announcements","category-id":"DIC_kwDOCZGuTc4Cpu7C","theme-light":"light","theme-dark":"dark","mapping":"title","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN","strict":0};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
           }
-        )
-        var gitalk = new Gitalk(options);
-        gitalk.render('gitalk-container');
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
     </article>
@@ -1057,35 +1075,9 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog"target="_blank"><span>mundi.xu@gmail.com</span></a> 
+       <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:mundi.xu@gmail.com?subject=Interested+In+Your+Blog" rel="external nofollow noreferrer"target="_blank"><span>mundi.xu@gmail.com</span></a> 
     </div>
   
-  
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        Views: 
-        <span id="busuanzi_value_site_pv"></span>
-        
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        Visitors: 
-        <span id="busuanzi_value_site_uv"></span>
-        
-      </span>
-    
-    
-
-  
-
-</div>
-
   
   
 </div>
@@ -1303,8 +1295,6 @@ src="https://raw.githubusercontent.com/Mundi-Xu/picture_resource/master/picture/
   <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
