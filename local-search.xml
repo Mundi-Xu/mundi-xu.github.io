@@ -14,11 +14,11 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>AI</tag>
       
       <tag>LLM</tag>
+      
+      <tag>Security</tag>
       
       <tag>DeepSeek</tag>
       
@@ -39,11 +39,11 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>AI</tag>
       
       <tag>LLM</tag>
+      
+      <tag>Security</tag>
       
     </tags>
     
@@ -108,13 +108,13 @@
     
     <tags>
       
-      <tag>Fuzzing</tag>
-      
-      <tag>模糊测试</tag>
+      <tag>AI</tag>
       
       <tag>Security</tag>
       
-      <tag>AI</tag>
+      <tag>Fuzzing</tag>
+      
+      <tag>模糊测试</tag>
       
       <tag>MindSpore</tag>
       
@@ -204,11 +204,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -352,11 +352,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>Security</tag>
       
       <tag>Chromium</tag>
       
@@ -381,11 +381,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>Security</tag>
       
       <tag>AFL++</tag>
       
@@ -504,11 +504,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>Security</tag>
       
       <tag>CVE</tag>
       
@@ -560,13 +560,13 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>勒索软件</tag>
       
       <tag>恶意软件</tag>
       
       <tag>Hybrid Cryptosystem</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -587,6 +587,8 @@
       
       <tag>crypto</tag>
       
+      <tag>rsa</tag>
+      
       <tag>rust</tag>
       
       <tag>仿射密码</tag>
@@ -596,8 +598,6 @@
       <tag>分组密码</tag>
       
       <tag>密码协议</tag>
-      
-      <tag>rsa</tag>
       
       <tag>RC4</tag>
       
@@ -712,11 +712,11 @@
     
     <tags>
       
+      <tag>ctf</tag>
+      
       <tag>crypto</tag>
       
       <tag>rsa</tag>
-      
-      <tag>ctf</tag>
       
     </tags>
     
