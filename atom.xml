@@ -92,9 +92,9 @@
     
     
     
-    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
-    
     <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
+    
+    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
     
     <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
     
@@ -140,9 +140,9 @@
     
     
     
-    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
-    
     <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
+    
+    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
     
     <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
     
@@ -226,9 +226,9 @@
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
-    
     <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    
+    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
     
   </entry>
   
