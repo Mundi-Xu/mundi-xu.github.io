@@ -14,11 +14,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>AI</tag>
       
       <tag>LLM</tag>
-      
-      <tag>Security</tag>
       
       <tag>DeepSeek</tag>
       
@@ -39,11 +39,11 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>AI</tag>
       
       <tag>LLM</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
@@ -108,13 +108,13 @@
     
     <tags>
       
-      <tag>AI</tag>
-      
-      <tag>Security</tag>
-      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
+      
+      <tag>Security</tag>
+      
+      <tag>AI</tag>
       
       <tag>MindSpore</tag>
       
@@ -204,11 +204,11 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
+      
+      <tag>Security</tag>
       
     </tags>
     
@@ -352,13 +352,13 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
-      <tag>Chromium</tag>
-      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
+      
+      <tag>Security</tag>
+      
+      <tag>Chromium</tag>
       
       <tag>AFL</tag>
       
@@ -381,11 +381,11 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
+      
+      <tag>Security</tag>
       
       <tag>AFL++</tag>
       
@@ -504,13 +504,13 @@
     
     <tags>
       
-      <tag>Security</tag>
-      
-      <tag>CVE</tag>
-      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
+      
+      <tag>Security</tag>
+      
+      <tag>CVE</tag>
       
       <tag>AFL</tag>
       
@@ -560,13 +560,13 @@
     
     <tags>
       
+      <tag>Security</tag>
+      
       <tag>勒索软件</tag>
       
       <tag>恶意软件</tag>
       
       <tag>Hybrid Cryptosystem</tag>
-      
-      <tag>Security</tag>
       
     </tags>
     
