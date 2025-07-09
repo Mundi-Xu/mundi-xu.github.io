@@ -354,11 +354,11 @@
       
       <tag>Security</tag>
       
+      <tag>Chromium</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>Chromium</tag>
       
       <tag>AFL</tag>
       
@@ -506,11 +506,11 @@
       
       <tag>Security</tag>
       
+      <tag>CVE</tag>
+      
       <tag>Fuzzing</tag>
       
       <tag>模糊测试</tag>
-      
-      <tag>CVE</tag>
       
       <tag>AFL</tag>
       
