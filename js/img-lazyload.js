@@ -7,4 +7,4 @@
       each.removeAttribute('lazyload');
     }, CONFIG.lazyload.offset_factor);
   }
-})(window, document);
+})(window, document); 

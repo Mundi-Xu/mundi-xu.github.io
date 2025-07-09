@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /css/
+Disallow: /js/
+Disallow: /lib/
+Disallow: /*.json$
 
+# 主要搜索引擎
+User-agent: Googlebot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# 站点地图
 Sitemap: https://mundi-xu.github.io/sitemap.xml
+Sitemap: https://mundi-xu.github.io/atom.xml

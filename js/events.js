@@ -30,8 +30,16 @@ Fluid.events = {
       }
     });
     jQuery('#navbar-toggler-btn').on('click', function() {
+      var $this = jQuery(this);
+      if ($this.data('animating')) {
+        return;
+      }
+      $this.data('animating', true);
       jQuery('.animated-icon').toggleClass('open');
       jQuery('#navbar').toggleClass('navbar-col-show');
+      setTimeout(function() {
+        $this.data('animating', false);
+      }, 300);
     });
   },
 
@@ -161,24 +169,5 @@ Fluid.events = {
   },
 
   billboard: function() {
-    if (!('console' in window)) {
-      return;
-    }
-    // eslint-disable-next-line no-console
-    console.log(`
--------------------------------------------------
-|                                               |
-|      ________  __            _        __      |
-|     |_   __  |[  |          (_)      |  ]     |
-|       | |_ \\_| | | __   _   __   .--.| |      |
-|       |  _|    | |[  | | | [  |/ /'\`\\' |      |
-|      _| |_     | | | \\_/ |, | || \\__/  |      |
-|     |_____|   [___]'.__.'_/[___]'.__.;__]     |
-|                                               |
-|            Powered by Hexo x Fluid            |
-| https://github.com/fluid-dev/hexo-theme-fluid |
-|                                               |
--------------------------------------------------
-    `);
   }
 };

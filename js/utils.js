@@ -15,7 +15,7 @@ Fluid.utils = {
     window.removeEventListener('scroll', callback);
   },
 
-  listenDOMLoaded(callback) {
+  listenDOMLoaded: function(callback) {
     if (document.readyState !== 'loading') {
       callback();
     } else {
@@ -243,3 +243,6 @@ Debouncer.prototype = {
     this.requestTick();
   }
 };
+
+
+

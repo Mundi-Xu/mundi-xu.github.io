@@ -202,27 +202,6 @@ h6:hover > .anchorjs-link {
 .footer-inner .statistics > *:nth-last-child(2):first-child ~ * {
   text-align: left;
 }
-.footer-inner .beian {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.footer-inner .beian > * {
-  margin: 0 0.25rem;
-}
-.footer-inner .beian-police {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: left;
-}
-.footer-inner .beian-police img {
-  margin-right: 3px;
-  width: 1rem;
-  height: 1rem;
-  margin-bottom: 0.1rem;
-}
 @media (max-width: 424px) {
   .footer-inner .statistics {
     flex-direction: column;
@@ -231,18 +210,6 @@ h6:hover > .anchorjs-link {
     text-align: center;
   }
   .footer-inner .statistics > *:nth-last-child(2):first-child ~ * {
-    text-align: center;
-  }
-  .footer-inner .beian {
-    flex-direction: column;
-  }
-  .footer-inner .beian .beian-police {
-    justify-content: center;
-  }
-  .footer-inner .beian > *:nth-last-child(2):first-child {
-    text-align: center;
-  }
-  .footer-inner .beian > *:nth-last-child(2):first-child ~ * {
     text-align: center;
   }
 }
@@ -772,7 +739,7 @@ html {
 html,
 body {
   height: 100%;
-  font-family: var(--font-family-sans-serif);
+  font-family: "LXGW WenKai Screen", "LXGW WenKai", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   overflow-wrap: break-word;
 }
 body {
@@ -1291,34 +1258,6 @@ i.iconfont {
     margin: 0.25rem 0;
   }
 }
-#valine.v[data-class=v] .status-bar,
-#valine.v[data-class=v] .veditor,
-#valine.v[data-class=v] .vinput,
-#valine.v[data-class=v] .vbtn,
-#valine.v[data-class=v] p,
-#valine.v[data-class=v] pre code {
-  color: var(--text-color);
-}
-#valine.v[data-class=v] .vinput::placeholder {
-  color: var(--sec-text-color);
-}
-#valine.v[data-class=v] .vicon {
-  fill: var(--text-color);
-}
-.gt-container .gt-comment-content:hover {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.gt-container .gt-comment-body {
-  color: var(--text-color) !important;
-  transition: color 0.2s ease-in-out;
-}
-#remark-km423lmfdslkm34-back {
-  z-index: 1030;
-}
-#remark-km423lmfdslkm34-node {
-  z-index: 1031;
-}
 .markdown-body .highlight pre,
 .markdown-body pre {
   padding: 1.45rem 1rem;
@@ -1393,7 +1332,7 @@ figure.highlight td.code > pre {
 .markdown-body {
   font-size: 1rem;
   line-height: 1.6;
-  font-family: var(--font-family-sans-serif);
+  font-family: "LXGW WenKai Screen", "LXGW WenKai", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   margin-bottom: 2rem;
   color: var(--post-text-color);
 }
