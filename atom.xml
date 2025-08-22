@@ -30,16 +30,16 @@
     
     
     
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/categories/LLM-Security/"/>
+    
+    
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/tags/LLM-Security/"/>
     
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
-    <category term="AI/ML Security" scheme="https://mundi-xu.github.io/tags/AI-ML-Security/"/>
-    
-    <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
     <category term="DeepSeek" scheme="https://mundi-xu.github.io/tags/DeepSeek/"/>
+    
+    <category term="Red Teaming" scheme="https://mundi-xu.github.io/tags/Red-Teaming/"/>
     
   </entry>
   
@@ -57,16 +57,18 @@
     
     
     
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/categories/LLM-Security/"/>
+    
+    
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/tags/LLM-Security/"/>
     
     <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
     
-    <category term="AI/ML Security" scheme="https://mundi-xu.github.io/tags/AI-ML-Security/"/>
+    <category term="Threat Analysis" scheme="https://mundi-xu.github.io/tags/Threat-Analysis/"/>
     
-    <category term="LLM" scheme="https://mundi-xu.github.io/tags/LLM/"/>
+    <category term="Model Safety" scheme="https://mundi-xu.github.io/tags/Model-Safety/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
-    
-    <category term="大模型安全" scheme="https://mundi-xu.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%89%E5%85%A8/"/>
+    <category term="AI Alignment" scheme="https://mundi-xu.github.io/tags/AI-Alignment/"/>
     
   </entry>
   
@@ -83,6 +85,8 @@
     <summary type="html">Salvation Lies within IELTS.</summary>
     
     
+    
+    <category term="Life &amp; Study" scheme="https://mundi-xu.github.io/categories/Life-Study/"/>
     
     
     <category term="IELTS" scheme="https://mundi-xu.github.io/tags/IELTS/"/>
@@ -105,18 +109,20 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
+    
     
     <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
     
-    <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
+    <category term="linux" scheme="https://mundi-xu.github.io/tags/linux/"/>
     
-    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
     
     <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
     
     <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
     
-    <category term="容器逃逸" scheme="https://mundi-xu.github.io/tags/%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/"/>
+    <category term="Container Escape" scheme="https://mundi-xu.github.io/tags/Container-Escape/"/>
     
   </entry>
   
@@ -134,20 +140,16 @@
     
     
     
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/categories/LLM-Security/"/>
     
-    <category term="AI" scheme="https://mundi-xu.github.io/tags/AI/"/>
-    
-    <category term="AI/ML Security" scheme="https://mundi-xu.github.io/tags/AI-ML-Security/"/>
-    
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    <category term="LLM Security" scheme="https://mundi-xu.github.io/tags/LLM-Security/"/>
     
     <category term="MindSpore" scheme="https://mundi-xu.github.io/tags/MindSpore/"/>
     
-    <category term="AI框架安全" scheme="https://mundi-xu.github.io/tags/AI%E6%A1%86%E6%9E%B6%E5%AE%89%E5%85%A8/"/>
+    <category term="AI Security" scheme="https://mundi-xu.github.io/tags/AI-Security/"/>
     
   </entry>
   
@@ -165,18 +167,18 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
     
-    <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
+    
+    <category term="linux" scheme="https://mundi-xu.github.io/tags/linux/"/>
     
     <category term="DirtyCred" scheme="https://mundi-xu.github.io/tags/DirtyCred/"/>
-    
-    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
     
     <category term="Kernel" scheme="https://mundi-xu.github.io/tags/Kernel/"/>
     
     <category term="CVE" scheme="https://mundi-xu.github.io/tags/CVE/"/>
     
-    <category term="内核安全" scheme="https://mundi-xu.github.io/tags/%E5%86%85%E6%A0%B8%E5%AE%89%E5%85%A8/"/>
+    <category term="Kernel Security" scheme="https://mundi-xu.github.io/tags/Kernel-Security/"/>
     
   </entry>
   
@@ -194,14 +196,14 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
     
     <category term="Hardware Security" scheme="https://mundi-xu.github.io/tags/Hardware-Security/"/>
     
-    <category term="内存安全" scheme="https://mundi-xu.github.io/tags/%E5%86%85%E5%AD%98%E5%AE%89%E5%85%A8/"/>
+    <category term="Memory Safety" scheme="https://mundi-xu.github.io/tags/Memory-Safety/"/>
     
   </entry>
   
@@ -219,14 +221,14 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
     
-    <category term="AI/ML Security" scheme="https://mundi-xu.github.io/tags/AI-ML-Security/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
+    <category term="AI Security" scheme="https://mundi-xu.github.io/tags/AI-Security/"/>
     
-    <category term="机器学习" scheme="https://mundi-xu.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <category term="Machine Learning" scheme="https://mundi-xu.github.io/tags/Machine-Learning/"/>
     
-    <category term="网络安全" scheme="https://mundi-xu.github.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    <category term="Network Security" scheme="https://mundi-xu.github.io/tags/Network-Security/"/>
     
   </entry>
   
@@ -244,12 +246,14 @@
     
     
     
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/categories/Fuzzing/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    <category term="Program Analysis" scheme="https://mundi-xu.github.io/tags/Program-Analysis/"/>
+    
+    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
   </entry>
   
@@ -267,14 +271,16 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
+    
     
     <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
     
-    <category term="Linux" scheme="https://mundi-xu.github.io/tags/Linux/"/>
+    <category term="windows" scheme="https://mundi-xu.github.io/tags/windows/"/>
     
-    <category term="Windows" scheme="https://mundi-xu.github.io/tags/Windows/"/>
+    <category term="linux" scheme="https://mundi-xu.github.io/tags/linux/"/>
     
-    <category term="漏洞缓解" scheme="https://mundi-xu.github.io/tags/%E6%BC%8F%E6%B4%9E%E7%BC%93%E8%A7%A3/"/>
+    <category term="Vulnerability Mitigation" scheme="https://mundi-xu.github.io/tags/Vulnerability-Mitigation/"/>
     
   </entry>
   
@@ -292,14 +298,16 @@
     
     
     
+    <category term="Software Development" scheme="https://mundi-xu.github.io/categories/Software-Development/"/>
+    
     
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
-    <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
+    <category term="v8" scheme="https://mundi-xu.github.io/tags/v8/"/>
     
-    <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    <category term="javascript" scheme="https://mundi-xu.github.io/tags/javascript/"/>
     
-    <category term="数据类型" scheme="https://mundi-xu.github.io/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <category term="Data Types" scheme="https://mundi-xu.github.io/tags/Data-Types/"/>
     
   </entry>
   
@@ -317,14 +325,16 @@
     
     
     
+    <category term="Software Development" scheme="https://mundi-xu.github.io/categories/Software-Development/"/>
+    
     
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
-    <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
+    <category term="v8" scheme="https://mundi-xu.github.io/tags/v8/"/>
     
-    <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    <category term="javascript" scheme="https://mundi-xu.github.io/tags/javascript/"/>
     
-    <category term="引擎架构" scheme="https://mundi-xu.github.io/tags/%E5%BC%95%E6%93%8E%E6%9E%B6%E6%9E%84/"/>
+    <category term="Engine Architecture" scheme="https://mundi-xu.github.io/tags/Engine-Architecture/"/>
     
   </entry>
   
@@ -342,14 +352,16 @@
     
     
     
+    <category term="Software Development" scheme="https://mundi-xu.github.io/categories/Software-Development/"/>
+    
     
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
-    <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
+    <category term="v8" scheme="https://mundi-xu.github.io/tags/v8/"/>
     
-    <category term="JavaScript" scheme="https://mundi-xu.github.io/tags/JavaScript/"/>
+    <category term="javascript" scheme="https://mundi-xu.github.io/tags/javascript/"/>
     
-    <category term="内存机制" scheme="https://mundi-xu.github.io/tags/%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
+    <category term="Memory Management" scheme="https://mundi-xu.github.io/tags/Memory-Management/"/>
     
   </entry>
   
@@ -367,12 +379,16 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
+    
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
     
-    <category term="V8" scheme="https://mundi-xu.github.io/tags/V8/"/>
+    <category term="v8" scheme="https://mundi-xu.github.io/tags/v8/"/>
+    
+    <category term="Risk Analysis" scheme="https://mundi-xu.github.io/tags/Risk-Analysis/"/>
     
   </entry>
   
@@ -390,18 +406,16 @@
     
     
     
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/categories/Fuzzing/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
+    <category term="afl" scheme="https://mundi-xu.github.io/tags/afl/"/>
     
-    <category term="Chromium" scheme="https://mundi-xu.github.io/tags/Chromium/"/>
+    <category term="pdfium" scheme="https://mundi-xu.github.io/tags/pdfium/"/>
     
-    <category term="AFL" scheme="https://mundi-xu.github.io/tags/AFL/"/>
-    
-    <category term="PDFium" scheme="https://mundi-xu.github.io/tags/PDFium/"/>
+    <category term="chromium" scheme="https://mundi-xu.github.io/tags/chromium/"/>
     
   </entry>
   
@@ -419,14 +433,12 @@
     
     
     
+    <category term="Fuzzing" scheme="https://mundi-xu.github.io/categories/Fuzzing/"/>
     
-    <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
     <category term="Fuzzing" scheme="https://mundi-xu.github.io/tags/Fuzzing/"/>
     
-    <category term="模糊测试" scheme="https://mundi-xu.github.io/tags/%E6%A8%A1%E7%B3%8A%E6%B5%8B%E8%AF%95/"/>
-    
-    <category term="AFL++" scheme="https://mundi-xu.github.io/tags/AFL/"/>
+    <category term="afl++" scheme="https://mundi-xu.github.io/tags/afl/"/>
     
   </entry>
   
@@ -435,7 +447,7 @@
     <link href="https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/"/>
     <id>https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/</id>
     <published>2021-03-10T15:05:21.000Z</published>
-    <updated>2021-11-29T08:06:32.279Z</updated>
+    <updated>2025-08-22T09:28:32.406Z</updated>
     
     <content type="html"><![CDATA[<h1 id="docker安装">Docker安装</h1><blockquote><p>Docker Version: 20.10.5 Site:https://hub.docker.com/r/mysql/mysql-server Ubuntu 20.04.2 LTS(GNU/Linux 4.15.0-136-generic aarch64)</p></blockquote><p>Docker的安装就跳过了，直接快进到mysql-server的安装，好消息是mysql官方Docker已经适配了arm64架构，所以直接参照官方文档安装就可以了。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker pull mysql/mysql-server # 默认选择latest<br>docker run --name=mysql1 -d mysql/mysql-server<br>docker ps # 等待初始化完成，starting变为healthy<br>docker logs mysql1 # 监控容器输出<br>docker logs mysql1 2&gt;&amp;1 | grep GENERATED # 初始化完成后查看密码<br>GENERATED ROOT PASSWORD: Axegh3kAJyDLaRuBemecis&amp;EShOs # 生成的随机密码<br>docker exec -it mysql1 mysql -uroot -p # 输入上面生成的随机密码<br>ALTER USER &#x27;root&#x27;@&#x27;localhost&#x27; IDENTIFIED BY &#x27;password&#x27;; # 修改root密码<br></code></pre></td></tr></table></figure><h1 id="包管理器安装">包管理器安装</h1><blockquote><p>mysql Ver 8.0.23-0ubuntu0.20.04.1 for Linux on aarch64 ((Ubuntu))</p></blockquote><p>更新源，安装依赖</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install mysql-server<br>sudo apt install mysql-client<br>sudo apt install libmysqlclient-dev<br>sudo mysql # 查看是否成功<br></code></pre></td></tr></table></figure><h1 id="mysql配置">MySQL配置</h1><p>mysql安装完成后默认是没有密码的,需要先修改密码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &quot;password&quot;;<br></code></pre></td></tr></table></figure><p>远程连接需要单独配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf<br><span class="hljs-meta prompt_"># </span><span class="language-bash">注释掉bind-address= 127.0.0.1 或改为0.0.0.0</span><br>sudo service mysql restart # 重启MySQL服务<br></code></pre></td></tr></table></figure><p>添加远程连接的账号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">create user root@&#x27;%&#x27; identified by &#x27;password&#x27;;<br>grant all privileges on *.* to root@&#x27;%&#x27;;<br>flush privileges;<br></code></pre></td></tr></table></figure><p>最后在华为ECS的安全组配置中开启3306端口就可以远程连接了。</p>]]></content>
     
@@ -444,12 +456,16 @@
     
     
     
+    <category term="Software Development" scheme="https://mundi-xu.github.io/categories/Software-Development/"/>
+    
+    
+    <category term="mysql" scheme="https://mundi-xu.github.io/tags/mysql/"/>
+    
+    <category term="database" scheme="https://mundi-xu.github.io/tags/database/"/>
     
     <category term="arm64" scheme="https://mundi-xu.github.io/tags/arm64/"/>
     
-    <category term="Ubuntu" scheme="https://mundi-xu.github.io/tags/Ubuntu/"/>
-    
-    <category term="MySQL" scheme="https://mundi-xu.github.io/tags/MySQL/"/>
+    <category term="ubuntu" scheme="https://mundi-xu.github.io/tags/ubuntu/"/>
     
   </entry>
   
@@ -467,12 +483,14 @@
     
     
     
+    <category term="Software Development" scheme="https://mundi-xu.github.io/categories/Software-Development/"/>
     
-    <category term="IPy" scheme="https://mundi-xu.github.io/tags/IPy/"/>
+    
+    <category term="ipy" scheme="https://mundi-xu.github.io/tags/ipy/"/>
     
     <category term="python" scheme="https://mundi-xu.github.io/tags/python/"/>
     
-    <category term="网络编程" scheme="https://mundi-xu.github.io/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+    <category term="Network Programming" scheme="https://mundi-xu.github.io/tags/Network-Programming/"/>
     
   </entry>
   
@@ -490,12 +508,14 @@
     
     
     
+    <category term="Security Research" scheme="https://mundi-xu.github.io/categories/Security-Research/"/>
+    
+    
+    <category term="Program Analysis" scheme="https://mundi-xu.github.io/tags/Program-Analysis/"/>
     
     <category term="Security" scheme="https://mundi-xu.github.io/tags/Security/"/>
     
-    <category term="程序分析" scheme="https://mundi-xu.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/"/>
-    
-    <category term="符号执行" scheme="https://mundi-xu.github.io/tags/%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C/"/>
+    <category term="Symbolic Execution" scheme="https://mundi-xu.github.io/tags/Symbolic-Execution/"/>
     
   </entry>
   
@@ -513,10 +533,12 @@
     
     
     
+    <category term="Life &amp; Study" scheme="https://mundi-xu.github.io/categories/Life-Study/"/>
+    
     
     <category term="Computer Networking" scheme="https://mundi-xu.github.io/tags/Computer-Networking/"/>
     
-    <category term="学习笔记" scheme="https://mundi-xu.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <category term="Study Notes" scheme="https://mundi-xu.github.io/tags/Study-Notes/"/>
     
   </entry>
   
