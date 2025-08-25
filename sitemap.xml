@@ -2,18 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/</loc>
-    
-    <lastmod>2025-08-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://mundi-xu.github.io/2018/10/25/hello-world/</loc>
     
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2025-07-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -191,6 +182,15 @@
   </url>
   
   <url>
+    <loc>https://mundi-xu.github.io/2021/03/10/MySQL8-under-Kunpeng/</loc>
+    
+    <lastmod>2021-03-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mundi-xu.github.io/2021/02/23/recent-technology-of-symbolic-execution/</loc>
     
     <lastmod>2021-02-24</lastmod>
@@ -283,7 +283,7 @@
 
   <url>
     <loc>https://mundi-xu.github.io/</loc>
-    <lastmod>2025-08-22</lastmod>
+    <lastmod>2025-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
