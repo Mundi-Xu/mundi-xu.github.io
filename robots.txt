@@ -1,0 +1,7 @@
+User-agent: *
+
+Disallow: /*.json$
+
+# 站点地图
+Sitemap: https://mundi-xu.github.io/sitemap.xml
+Sitemap: https://mundi-xu.github.io/atom.xml
