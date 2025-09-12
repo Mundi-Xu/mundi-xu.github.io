@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://mundi-xu.github.io/2025/09/10/ai-agent-security-attack-surface-2025/</loc>
+    <loc>https://mundi-xu.github.io/2025/09/10/ai-agent-trust-chain-failure/</loc>
     
-    <lastmod>2025-09-10</lastmod>
+    <lastmod>2025-09-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -292,7 +292,7 @@
 
   <url>
     <loc>https://mundi-xu.github.io/</loc>
-    <lastmod>2025-09-11</lastmod>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
