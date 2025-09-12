@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mundi-xu.github.io/2025/09/11/getting-started-with-llm-security/</loc>
+    
+    <lastmod>2025-09-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mundi-xu.github.io/2025/09/10/ai-agent-trust-chain-failure/</loc>
     
     <lastmod>2025-09-11</lastmod>
