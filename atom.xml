@@ -850,9 +850,9 @@
     <category term="Life &amp; Study" scheme="https://mundi-xu.github.io/categories/Life-Study/"/>
     
     
-    <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
-    
     <category term="LLM Security" scheme="https://mundi-xu.github.io/tags/LLM-Security/"/>
+    
+    <category term="System Security" scheme="https://mundi-xu.github.io/tags/System-Security/"/>
     
     <category term="about me" scheme="https://mundi-xu.github.io/tags/about-me/"/>
     
