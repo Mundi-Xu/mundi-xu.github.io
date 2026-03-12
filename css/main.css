@@ -690,6 +690,9 @@ sup > a::before,
 .tocbot-list a {
   font-size: 0.95rem;
 }
+.tocbot-list ol a {
+  font-size: 0.85rem;
+}
 .tocbot-link {
   color: var(--text-color);
 }
@@ -705,7 +708,10 @@ sup > a::before,
   transition: all 0.3s ease-in-out;
 }
 .toc-list-item {
-  white-space: nowrap;
+  padding: 0.1rem 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 }

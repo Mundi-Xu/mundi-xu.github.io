@@ -166,8 +166,5 @@ Fluid.events = {
         }
       }
     }
-  },
-
-  billboard: function() {
   }
 };

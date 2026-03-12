@@ -38,11 +38,15 @@ Fluid.utils = {
   elementVisible: function(element, offsetFactor) {
     offsetFactor = offsetFactor && offsetFactor >= 0 ? offsetFactor : 0;
     var rect = element.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    return (
-      (rect.top >= 0 && rect.top <= viewportHeight * (1 + offsetFactor) + rect.height / 2) ||
-      (rect.bottom >= 0 && rect.bottom <= viewportHeight * (1 + offsetFactor) + rect.height / 2)
-    );
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var vw = window.innerWidth || document.documentElement.clientWidth;
+    var expandH = vh * offsetFactor;
+    var expandW = vw * offsetFactor;
+    // 判断元素矩形与视口（上下左右各扩展 offsetFactor 屏）是否有重叠
+    return rect.bottom > -expandH
+      && rect.top < vh + expandH
+      && rect.right > -expandW
+      && rect.left < vw + expandW;
   },
 
   waitElementVisible: function(selectorOrElement, callback, offsetFactor) {
@@ -62,6 +66,7 @@ Fluid.utils = {
           return;
         }
         if ('IntersectionObserver' in window) {
+          var margin = (window.innerHeight || document.documentElement.clientHeight) * offsetFactor + 'px';
           var io = new IntersectionObserver(function(entries, ob) {
             if (entries[0].isIntersecting) {
               callback();
@@ -69,7 +74,7 @@ Fluid.utils = {
             }
           }, {
             threshold : [0],
-            rootMargin: (window.innerHeight || document.documentElement.clientHeight) * offsetFactor + 'px'
+            rootMargin: margin + ' 0px'
           });
           io.observe(element);
         } else {
@@ -146,17 +151,6 @@ Fluid.utils = {
     var ss = document.getElementsByTagName('script');
     var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
     e.parentNode.insertBefore(s, e.nextSibling);
-  },
-
-  createCssLink: function(url) {
-    var l = document.createElement('link');
-    l.setAttribute('rel', 'stylesheet');
-    l.setAttribute('type', 'text/css');
-    l.setAttribute('href', url);
-    var e = document.getElementsByTagName('link')[0]
-      || document.getElementsByTagName('head')[0]
-      || document.head || document.documentElement;
-    e.parentNode.insertBefore(l, e);
   },
 
   loadComments: function(selector, loadFunc) {
