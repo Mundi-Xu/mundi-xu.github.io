@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mundi-xu.github.io/2018/10/25/hello-world/</loc>
+    
+    <lastmod>2026-04-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://mundi-xu.github.io/about/index.html</loc>
     
     <lastmod>2026-03-12</lastmod>
@@ -32,15 +41,6 @@
     <loc>https://mundi-xu.github.io/2019/06/30/The-essence-of-linear-algebra/</loc>
     
     <lastmod>2025-10-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://mundi-xu.github.io/2018/10/25/hello-world/</loc>
-    
-    <lastmod>2025-09-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -310,7 +310,7 @@
 
   <url>
     <loc>https://mundi-xu.github.io/</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-04-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
