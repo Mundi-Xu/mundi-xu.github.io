@@ -13,7 +13,7 @@
     
     <categories>
       
-      <category>Life &amp; Study</category>
+      <category>Life</category>
       
     </categories>
     
@@ -53,6 +53,8 @@
       
       <tag>MITRE ATLAS</tag>
       
+      <tag>Prompt Injection</tag>
+      
     </tags>
     
   </entry>
@@ -80,9 +82,9 @@
       
       <tag>Threat Modeling</tag>
       
-      <tag>Agent Security</tag>
+      <tag>Prompt Injection</tag>
       
-      <tag>IPI</tag>
+      <tag>Agent Security</tag>
       
       <tag>Zero Trust</tag>
       
@@ -162,7 +164,7 @@
     
     <categories>
       
-      <category>Life &amp; Study</category>
+      <category>Study</category>
       
     </categories>
     
@@ -170,8 +172,6 @@
     <tags>
       
       <tag>IELTS</tag>
-      
-      <tag>English Learning</tag>
       
     </tags>
     
@@ -189,7 +189,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>System Security</category>
       
     </categories>
     
@@ -198,11 +198,9 @@
       
       <tag>System Security</tag>
       
-      <tag>linux</tag>
-      
       <tag>DirtyCred</tag>
       
-      <tag>Kernel</tag>
+      <tag>Linux Kernel</tag>
       
       <tag>CVE</tag>
       
@@ -231,13 +229,15 @@
     
     <tags>
       
+      <tag>Fuzzing</tag>
+      
       <tag>LLM Security</tag>
       
-      <tag>Fuzzing</tag>
+      <tag>Threat Modeling</tag>
       
       <tag>MindSpore</tag>
       
-      <tag>Threat Analysis</tag>
+      <tag>Machine Learning</tag>
       
     </tags>
     
@@ -255,7 +255,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>System Security</category>
       
     </categories>
     
@@ -264,11 +264,9 @@
       
       <tag>System Security</tag>
       
-      <tag>linux</tag>
-      
       <tag>DirtyCred</tag>
       
-      <tag>Kernel</tag>
+      <tag>Linux Kernel</tag>
       
       <tag>CVE</tag>
       
@@ -288,7 +286,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>System Security</category>
       
     </categories>
     
@@ -317,7 +315,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>Study</category>
       
     </categories>
     
@@ -327,8 +325,6 @@
       <tag>Machine Learning</tag>
       
       <tag>Cybersecurity</tag>
-      
-      <tag>ML Pitfalls</tag>
       
     </tags>
     
@@ -375,7 +371,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>System Security</category>
       
     </categories>
     
@@ -388,9 +384,9 @@
       
       <tag>Vulnerability Mitigation</tag>
       
-      <tag>windows</tag>
+      <tag>Windows</tag>
       
-      <tag>linux</tag>
+      <tag>Linux</tag>
       
     </tags>
     
@@ -408,7 +404,7 @@
     
     <categories>
       
-      <category>Software Development</category>
+      <category>Browser Security</category>
       
     </categories>
     
@@ -417,11 +413,9 @@
       
       <tag>Chromium</tag>
       
-      <tag>v8</tag>
+      <tag>V8</tag>
       
-      <tag>javascript</tag>
-      
-      <tag>Data Types</tag>
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -439,7 +433,7 @@
     
     <categories>
       
-      <category>Software Development</category>
+      <category>Browser Security</category>
       
     </categories>
     
@@ -448,11 +442,9 @@
       
       <tag>Chromium</tag>
       
-      <tag>v8</tag>
+      <tag>V8</tag>
       
-      <tag>javascript</tag>
-      
-      <tag>Engine Architecture</tag>
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -470,7 +462,7 @@
     
     <categories>
       
-      <category>Software Development</category>
+      <category>Browser Security</category>
       
     </categories>
     
@@ -479,11 +471,9 @@
       
       <tag>Chromium</tag>
       
-      <tag>v8</tag>
+      <tag>V8</tag>
       
-      <tag>javascript</tag>
-      
-      <tag>Memory Management</tag>
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -501,7 +491,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>Browser Security</category>
       
     </categories>
     
@@ -510,7 +500,7 @@
       
       <tag>Chromium</tag>
       
-      <tag>v8</tag>
+      <tag>V8</tag>
       
       <tag>Risk Analysis</tag>
       
@@ -541,9 +531,9 @@
       
       <tag>Chromium</tag>
       
-      <tag>afl</tag>
+      <tag>AFL</tag>
       
-      <tag>pdfium</tag>
+      <tag>PDFium</tag>
       
     </tags>
     
@@ -570,11 +560,7 @@
       
       <tag>Fuzzing</tag>
       
-      <tag>System Security</tag>
-      
-      <tag>afl++</tag>
-      
-      <tag>afl utils</tag>
+      <tag>AFL</tag>
       
     </tags>
     
@@ -599,13 +585,9 @@
     
     <tags>
       
-      <tag>mysql</tag>
+      <tag>Linux</tag>
       
-      <tag>database</tag>
-      
-      <tag>arm64</tag>
-      
-      <tag>ubuntu</tag>
+      <tag>Database</tag>
       
     </tags>
     
@@ -630,9 +612,7 @@
     
     <tags>
       
-      <tag>ipy</tag>
-      
-      <tag>python</tag>
+      <tag>Python</tag>
       
       <tag>Network Programming</tag>
       
@@ -652,7 +632,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>Study</category>
       
     </categories>
     
@@ -679,7 +659,7 @@
     
     <categories>
       
-      <category>Life &amp; Study</category>
+      <category>Study</category>
       
     </categories>
     
@@ -687,8 +667,6 @@
     <tags>
       
       <tag>Computer Networking</tag>
-      
-      <tag>Study Notes</tag>
       
     </tags>
     
@@ -715,11 +693,9 @@
       
       <tag>Fuzzing</tag>
       
-      <tag>System Security</tag>
-      
       <tag>CVE</tag>
       
-      <tag>afl</tag>
+      <tag>AFL</tag>
       
     </tags>
     
@@ -737,20 +713,16 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>Study</category>
       
     </categories>
     
     
     <tags>
       
+      <tag>Cryptography</tag>
+      
       <tag>Ransomware</tag>
-      
-      <tag>Malware</tag>
-      
-      <tag>Key Escrow</tag>
-      
-      <tag>Hybrid Cryptosystem</tag>
       
     </tags>
     
@@ -775,11 +747,9 @@
     
     <tags>
       
+      <tag>Cryptography</tag>
+      
       <tag>Ransomware</tag>
-      
-      <tag>Malware</tag>
-      
-      <tag>Hybrid Cryptosystem</tag>
       
     </tags>
     
@@ -797,7 +767,7 @@
     
     <categories>
       
-      <category>Security Research</category>
+      <category>Study</category>
       
     </categories>
     
@@ -806,11 +776,7 @@
       
       <tag>Cryptography</tag>
       
-      <tag>Symmetric Cryptography</tag>
-      
-      <tag>Asymmetric Cryptography</tag>
-      
-      <tag>rust</tag>
+      <tag>Rust</tag>
       
     </tags>
     
@@ -837,13 +803,7 @@
       
       <tag>Blockchain</tag>
       
-      <tag>Log System</tag>
-      
       <tag>Smart Contract</tag>
-      
-      <tag>Security Audit</tag>
-      
-      <tag>fabric</tag>
       
     </tags>
     
@@ -861,16 +821,14 @@
     
     <categories>
       
-      <category>Software Development</category>
+      <category>Study</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>c++</tag>
-      
-      <tag>stl</tag>
+      <tag>C++</tag>
       
       <tag>Source Code Analysis</tag>
       
@@ -897,9 +855,7 @@
     
     <tags>
       
-      <tag>javascript</tag>
-      
-      <tag>DOM Manipulation</tag>
+      <tag>JavaScript</tag>
       
       <tag>Automation</tag>
       
@@ -919,7 +875,7 @@
     
     <categories>
       
-      <category>Life &amp; Study</category>
+      <category>Study</category>
       
     </categories>
     
@@ -929,10 +885,6 @@
       <tag>Linear Algebra</tag>
       
       <tag>Mathematics</tag>
-      
-      <tag>3Blue1Brown</tag>
-      
-      <tag>Geometric Intuition</tag>
       
     </tags>
     
@@ -950,7 +902,7 @@
     
     <categories>
       
-      <category>CTF</category>
+      <category>Study</category>
       
     </categories>
     
@@ -961,7 +913,7 @@
       
       <tag>CTF</tag>
       
-      <tag>rsa</tag>
+      <tag>RSA</tag>
       
     </tags>
     
@@ -974,23 +926,25 @@
     <link href="/2018/10/25/hello-world/"/>
     <url>/2018/10/25/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Dedicated to vulnerability research at Ant Security Light-Year Lab,with a current focus on LLM Security and its intersection withtraditional binary and system-level security.</p><hr /><p>This is my ongoing security research journey — a public log ofvulnerabilities reported to and acknowledged by vendors, alongsideawards, public contributions, and work in progress.</p><blockquote><p>Work conducted under NDA or as internal corporate research —including during my tenure at Huawei (2022.08–2025.04) — is excludedfrom this chronicle, per disclosure and publication restrictions.</p></blockquote><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out-of-bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>CVE-2021-38236</strong> : Heap-buffer-overflow inraw2image.cpp</li><li><strong>CVE-2021-38235</strong> : Heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>数科OFD阅读器:</strong></p><ul><li><strong>CNNVD-202111-2224-2225</strong> : Integer overflow leadingto buffer overflow in pdfdom.dll</li><li><strong>CNVD-2022-00039–00048</strong> : Uncontrolled resourceconsumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary address access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><p><strong>Issue 1312736, Issue 1327884</strong> : Null-dereferencein PDFium</p></li><li><p><strong>Issue 1314658</strong> : Heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</p></li></ul><p><strong>Year – 2025</strong></p><p><strong>Tianwang Cup (National AI Security Challenge):</strong></p><ul><li><strong>1st Place</strong>, Large Language Model Track</li></ul><p><strong>Year – 2026</strong></p><p><strong>OpenClaw:</strong></p><ul><li><strong>GHSA-xj9w-5r6q-x6v4</strong> : Host RCE via scope gatebypass in device pairing</li><li><strong>GHSA-gjm7-hw8f-73rq</strong> : Gateway RCE via unrestrictedagent dispatch in node.event</li><li><strong>GHSA-9p3r-hh9g-5cmg</strong> : Sandbox escape via TOCTOUrace in FS bridge readFile</li><li><strong>GHSA-g5cg-8x5w-7jpm</strong> : Sandbox escape via contextinheritance in Heartbeat</li><li><strong>GHSA-cwf8-44x6-32c2</strong> : Sandbox escape via symlinktraversal in OpenShell Mirror Sync</li><li><strong>GHSA-rm5c-4rmf-vvhw</strong> : Sandbox escape viacheck-then-act bypassing fd-based TOCTOU defenses</li><li><strong>CVE-2026-33579</strong> : Privilege escalation via scopebypass in /pair approve</li><li><strong>CVE-2026-33577</strong> : Privilege escalation viacallerScopes bypass in node.pair.approve</li><li><strong>CVE-2026-33581</strong> : Arbitrary file read via mediaparameter in message tool</li><li><strong>GHSA-fv94-qvg8-xqpw</strong> : Arbitrary file write viasymlink in SSH sandbox tar upload</li><li><strong>CVE-2026-34504</strong> : SSRF in fal provider imagedownload</li><li><strong>CVE-2026-34503</strong> : Privilege persistence via staleWebSocket session after token revocation</li><li><strong>GHSA-hhff-fj5f-qg48</strong> : Resource exhaustion via audiopreflight transcription in Discord</li></ul><p><strong>PraisonAI:</strong></p><ul><li><strong>GHSA-99g3-w8gr-x37c</strong> : Arbitrary file write via pathtraversal in recipe unpack</li><li><strong>GHSA-qq9r-63f6-v542</strong> : SSRF via unvalidated URL inweb_crawl httpx fallback</li></ul><hr /><p><img lazyloadsrc="/img/loading.gif" data-src="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" /></p>]]></content>
+    <content type="html"><![CDATA[<p>Dedicated to vulnerability research at Ant Security Light-Year Lab,with a current focus on LLM Security and its intersection withtraditional binary and system-level security.</p><hr /><p>This is my ongoing security research journey — a public log ofvulnerabilities reported to and acknowledged by vendors, alongsideawards, public contributions, and work in progress.</p><blockquote><p>Work conducted under NDA or as internal corporate research —including during my tenure at Huawei (2022.08–2025.04) — is excludedfrom this chronicle, per disclosure and publication restrictions.</p></blockquote><p><strong>Year – 2021</strong></p><p><strong>Chromium:</strong></p><ul><li><strong>CVE-2021-37972</strong> : Out-of-bounds read inlibjpeg-turbo</li></ul><p><strong>LibRaw:</strong></p><ul><li><strong>CVE-2021-38236</strong> : Heap-buffer-overflow inraw2image.cpp</li><li><strong>CVE-2021-38235</strong> : Heap-buffer-overflow infp_dng.cpp</li></ul><p><strong>数科OFD阅读器:</strong></p><ul><li><strong>CNNVD-202111-2224-2225</strong> : Integer overflow leadingto buffer overflow in pdfdom.dll</li><li><strong>CNVD-2022-00039–00048</strong> : Uncontrolled resourceconsumption in suwellofdapp.exe</li><li><strong>CNVD-2022-00049</strong> : Arbitrary address access inswd20.dll</li></ul><p><strong>Year – 2022</strong></p><p><strong>Chromium:</strong></p><ul><li><p><strong>Issue 1312736, Issue 1327884</strong> : Null-dereferencein PDFium</p></li><li><p><strong>Issue 1314658</strong> : Heap-use-after-free in PDFiumCPDFSDK_AppStream::Write</p></li></ul><p><strong>Year – 2025</strong></p><p><strong>Tianwang Cup (National AI Security Challenge):</strong></p><ul><li><strong>1st Place</strong>, Large Language Model Track</li></ul><p><strong>Year – 2026</strong></p><p><strong>Tianfu Cup:</strong></p><ul><li><strong>Champion</strong>, General AI Infrastructure Framework</li></ul><p><strong>OpenClaw:</strong></p><ul><li><strong>GHSA-xj9w-5r6q-x6v4</strong> : Host RCE via scope gatebypass in device pairing</li><li><strong>GHSA-gjm7-hw8f-73rq</strong> : Gateway RCE via unrestrictedagent dispatch in node.event</li><li><strong>GHSA-9p3r-hh9g-5cmg</strong> : Sandbox escape via TOCTOUrace in FS bridge readFile</li><li><strong>GHSA-g5cg-8x5w-7jpm</strong> : Sandbox escape via contextinheritance in Heartbeat</li><li><strong>GHSA-cwf8-44x6-32c2</strong> : Sandbox escape via symlinktraversal in OpenShell Mirror Sync</li><li><strong>GHSA-rm5c-4rmf-vvhw</strong> : Sandbox escape viacheck-then-act bypassing fd-based TOCTOU defenses</li><li><strong>CVE-2026-33579</strong> : Privilege escalation via scopebypass in /pair approve</li><li><strong>CVE-2026-33577</strong> : Privilege escalation viacallerScopes bypass in node.pair.approve</li><li><strong>CVE-2026-33581</strong> : Arbitrary file read via mediaparameter in message tool</li><li><strong>GHSA-fv94-qvg8-xqpw</strong> : Arbitrary file write viasymlink in SSH sandbox tar upload</li><li><strong>CVE-2026-34504</strong> : SSRF in fal provider imagedownload</li><li><strong>CVE-2026-34503</strong> : Privilege persistence via staleWebSocket session after token revocation</li><li><strong>GHSA-hhff-fj5f-qg48</strong> : Resource exhaustion via audiopreflight transcription in Discord</li></ul><p><strong>PraisonAI:</strong></p><ul><li><strong>GHSA-99g3-w8gr-x37c</strong> : Arbitrary file write via pathtraversal in recipe unpack</li><li><strong>GHSA-qq9r-63f6-v542</strong> : SSRF via unvalidated URL inweb_crawl httpx fallback</li></ul><hr /><p><img lazyloadsrc="/img/loading.gif" data-src="https://raw.githubusercontent.com/Mundi-Xu/Mundi-Xu/main/blog-metrics.svg" /></p>]]></content>
     
     
     <categories>
       
-      <category>Life &amp; Study</category>
+      <category>Life</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>LLM Security</tag>
-      
       <tag>System Security</tag>
       
+      <tag>LLM Security</tag>
+      
       <tag>about me</tag>
+      
+      <tag>Agent Security</tag>
       
     </tags>
     
